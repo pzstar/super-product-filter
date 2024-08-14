@@ -1,0 +1,2975 @@
+.swpf-main-wrap *,
+.swpf-main-wrap *:before,
+.swpf-main-wrap *:after{
+    box-sizing: border-box;
+}
+
+.swpf-main-wrap {
+    --swpf-primary-color: #2483d6;
+    --swpf-text-color: inherit;
+    --swpf-default-size: 22px;
+    --swpf-grey-color: #cbd1d8;
+    --swpf-dark-grey-color: #9faab7;
+    --swpf-checkboxradio-bgcolor: var(--swpf-grey-color);
+    --swpf-checkboxradio-bgcolorhov: var(--swpf-dark-grey-color);
+    --swpf-checkboxradio-bordercolor: var(--swpf-grey-color);
+    --swpf-checkboxradio-bordercolorhov: var(--swpf-dark-grey-color);
+    --swpf-input-bordercolor: var(--swpf-grey-color);
+    --swpf-input-bordercolorhov: var(--swpf-dark-grey-color);
+    --swpf-input-height: 46px;
+    --swpf-toggle-bgcolor: #efefef;
+    --swpf-toggle-activecolor: #0fca80;
+    --swpf-toggle-inactivecolor: #ff2a2b;
+    --swpf-pricerangeslider-highlightcolor: var(--swpf-primary-color);
+    --swpf-pricerangeslider-barcolor: var(--swpf-grey-color);
+    --swpf-rating-textcoloractive: var(--swpf-primary-color);
+    font-family: var(--swpf-content-typo-family, inherit);
+    font-weight: var(--swpf-content-typo-weight, inherit);
+    font-style: var(--swpf-content-typo-style, inherit);
+    font-size: var(--swpf-content-typo-size, 1em);
+    text-transform: var(--swpf-content-typo-text-transform, inherit);
+    line-height: var(--swpf-content-typo-line-height, 1.3);
+    letter-spacing: var(--swpf-content-typo-letter-spacing, inherit);
+    color: var(--swpf-filterbox-textcolor, inherit);
+}
+
+.swpf-form .swpf-filters{
+    display: grid;
+    grid-template-columns: repeat(var(--swpf-filter-gridcol, 1), 1fr);
+    gap: var(--swpf-filterbox-spacing, 40px);
+}
+
+.swpf-filter-item-wrap,
+.swpf-filter-block{
+    position: relative;
+    background: var(--swpf-filterbox-bgcolor, transparent);
+    border-radius: var(--swpf-filterbox-borderradius, 0);
+    padding-top: var(--swpf-filterbox-padding-top, 0);
+    padding-bottom: var(--swpf-filterbox-padding-bottom, 0);
+    padding-left: var(--swpf-filterbox-padding-left, 0);
+    padding-right: var(--swpf-filterbox-padding-right, 0);
+    border-color: var(--swpf-filterbox-bordercolor, transparent);
+    border-style: solid;
+    border-width: var(--swpf-filterbox-borderwidth, 0);
+    box-shadow: var(--swpf-filterbox-shadow-x, 0) var(--swpf-filterbox-shadow-y, 0) var(--swpf-filterbox-shadow-blur, 0) var(--swpf-filterbox-shadow-spread, 0) var(--swpf-filterbox-shadow-color, transparent);
+}
+
+.swpf-filter-block{
+    grid-column: span var(--swpf-filter-gridcol, 1);
+}
+
+.swpf-enablebottomborder .swpf-filter-item-wrap,
+.swpf-enablebottomborder .swpf-filter-block{
+    border: 0;
+}
+
+.swpf-enablebottomborder .swpf-filter-item-wrap:after,
+.swpf-enablebottomborder .swpf-filter-block:after{
+    content: "";
+    background: var(--swpf-filterbox-bordercolor, transparent);
+    height: var(--swpf-filterbox-borderwidth, 0);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    margin-top: calc( var(--swpf-filterbox-spacing, 40px)/2 );
+    transform: translateY(-50%);
+}
+
+.swpf-header-filters .swpf-filter-title,
+.swpf-form .swpf-filter-title {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--swpf-heading-typo-family, inherit);
+    font-weight: var(--swpf-heading-typo-weight, inherit);
+    font-style: var(--swpf-heading-typo-style, inherit);
+    font-size: var(--swpf-heading-typo-size, 1.3em);
+    text-transform: var(--swpf-heading-typo-text-transform, inherit);
+    text-decoration: var(--swpf-heading-typo-text-decoration, inherit);
+    line-height: var(--swpf-heading-typo-size, inherit);
+    letter-spacing: var(--swpf-heading-typo-letter-spacing, inherit);
+    color: var(--swpf-heading-textcolor, inherit);
+    background: var(--swpf-heading-bgcolor, transparent);
+    border-radius: var(--swpf-heading-borderradius, 0);
+    padding-top: var(--swpf-heading-padding-top, 0);
+    padding-bottom: var(--swpf-heading-padding-bottom, 0);
+    padding-left: var(--swpf-heading-padding-left, 0);
+    padding-right: var(--swpf-heading-padding-right, 0);
+    border-color: var(--swpf-heading-bordercolor, transparent);
+    border-style: solid;
+    border-top-width: var(--swpf-heading-bordertop, 0);
+    border-bottom-width: var(--swpf-heading-borderbottom, 0);
+    border-left-width: var(--swpf-heading-borderleft, 0);
+    border-right-width: var(--swpf-heading-borderright, 0);
+}
+
+.swpf-header-filters .swpf-filter-title h4,
+.swpf-form .swpf-filter-title h4 {
+    margin: 0;
+    font-family: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    text-transform: inherit;
+    text-decoration: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    font-size: inherit;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.swpf-filter-content{
+    margin-top: var(--swpf-heading-marginbottom, 15px);
+}
+
+/*Search*/
+.swpf-filter-search{
+    margin-bottom: 15px;
+}
+
+.swpf-filter-search input.swpf-filter-search-input{
+    width: 100%;
+    background: var(--swpf-searchfilter-bgcolor, transparent);
+    border: 1px solid var(--swpf-searchfilter-bordercolor, #EEE);
+    color: var(--swpf-searchfilter-textcolor, inherit);
+    padding-top: var(--swpf-searchfilter-padding-top, 10px);
+    padding-right: var(--swpf-searchfilter-padding-right, 10px);
+    padding-bottom: var(--swpf-searchfilter-padding-bottom, 10px);
+    padding-left: var(--swpf-searchfilter-padding-left, 10px);
+    border-radius: var(--swpf-searchfilter-borderradius, 0);
+    line-height: 0;
+    box-shadow: none;
+    outline: none;
+    font-size: inherit;
+    height: auto;
+}
+
+.swpf-filter-search input.swpf-filter-search-input::placeholder,
+.swpf-filter-search input.swpf-filter-search-input:focus{
+    color: var(--swpf-searchfilter-textcolor, inherit);
+}
+
+.swpf-filter-search input.swpf-filter-search-input::placeholder{
+    opacity: 0.5;
+}
+
+/* Filter Togge */
+.swpf-filter-title .swpf-filter-title-toggle {
+    position: relative;
+    height: 20px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.swpf-minus-icon:before {
+    content: "";
+    position: absolute;
+    border-top: 2px solid transparent;
+    border-color: inherit;
+    height: 2px;
+    width: 12px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.swpf-plus-icon:before {
+    content: "";
+    position: absolute;
+    border-top: 2px solid transparent;
+    border-color: inherit;
+    height: 2px;
+    width: 12px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.swpf-plus-icon:after {
+    content: "";
+    position: absolute;
+    border-top: 12px solid transparent;
+    border-color: inherit;
+    width: 2px;
+    height: 12px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Listing */
+.swpf-filter-item-list{
+    max-height: var(--swpf-filterbox-height, none);
+    overflow: hidden auto;
+}
+
+.swpf-filter-item-list::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+.swpf-filter-item-list::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.05);
+}
+
+/* Handle */
+.swpf-filter-item-list::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.1); 
+}
+
+/* Handle on hover */
+.swpf-filter-item-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(0,0,0,0.3); 
+}
+
+.swpf-filter-item-list ul{
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.swpf-filter-item-list ul li{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.swpf-filter-item-list ul ul{
+    padding-left: 15px !important;
+    margin: 0 !important;
+}
+
+/* Horizontal and Vertical Orientation*/
+.swpf-filter-item-wrap:not(.swpf-product_cat-wrap) .swpf-field-horizontal .swpf-filter-item-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--swpf-filterbox-itemspacing, 10px);
+}
+
+.swpf-filter-item-wrap:not(.swpf-product_cat-wrap) .swpf-field-vertical .swpf-filter-item-list {
+    display: grid;
+    gap: var(--swpf-filterbox-itemspacing, 10px);
+    padding-right: 5px;
+}
+
+.swpf-filter-item-wrap:not(.swpf-product_cat-wrap) .swpf-field-vertical.swpf-vcol-2 .swpf-filter-item-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.swpf-filter-item-wrap:not(.swpf-product_cat-wrap) .swpf-field-vertical.swpf-vcol-3 .swpf-filter-item-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.swpf-filter-item-wrap .swpf-field-horizontal .swpf-filter-product-category{
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--swpf-filterbox-itemspacing, 10px);
+}
+
+.swpf-filter-item-wrap .swpf-field-vertical .swpf-filter-product-category {
+    display: grid;
+    gap: var(--swpf-filterbox-itemspacing, 10px);
+}
+
+.swpf-filter-item-wrap.swpf-product_cat-wrap .swpf-field-vertical.swpf-vcol-2 .swpf-filter-product-category {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.swpf-filter-item-wrap.swpf-product_cat-wrap .swpf-field-vertical.swpf-vcol-3 .swpf-filter-product-category {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.swpf-filter-item-wrap.swpf-product_cat-wrap .swpf-field-vertical .swpf-filter-product-category .swpf-filter-children,
+.swpf-filter-item-wrap.swpf-product_cat-wrap .swpf-field-vertical .swpf-filter-product-category li{
+    display: flex;
+    flex-direction: column;
+    gap: var(--swpf-filterbox-itemspacing, 10px);
+}
+
+/*===========Simple Checkbox and Raido Styles===========*/
+input[type=checkbox]:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.swpf-checkbox-type .swpf-filter-label,
+.swpf-radio-type .swpf-filter-label {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin: 0;
+}
+
+.swpf-checkbox-type .swpf-filter-item input,
+.swpf-radio-type .swpf-filter-item input {
+    margin-right: 8px;
+    visibility: visible;
+    opacity: 1;
+    padding: 0;
+}
+
+.swpf-checkbox-type .swpf-filter-label,
+.swpf-radio-type .swpf-filter-label,
+.swpf-checkbox-type .swpf-filter-label input,
+.swpf-radio-type .swpf-filter-label input {
+    cursor: pointer;
+}
+
+/* Checkbox & Raido Skin 2*/
+@-webkit-keyframes click-wave {
+    0% {
+        height: 100%;
+        width: 100%;
+        opacity: 0.35;
+        position: relative;
+    }
+
+    100% {
+        height: 200%;
+        width: 200%;
+        margin-left: -50%;
+        margin-top: -50%;
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes click-wave {
+    0% {
+        height: 100%;
+        width: 100%;
+        opacity: 0.35;
+        position: relative;
+    }
+
+    100% {
+        height: 200%;
+        width: 200%;
+        margin-left: -50%;
+        margin-top: -50%;
+        opacity: 0;
+    }
+}
+
+@keyframes click-wave {
+    0% {
+        height: 100%;
+        width: 100%;
+        opacity: 0.35;
+        position: relative;
+    }
+
+    100% {
+        height: 200%;
+        width: 200%;
+        margin-left: -50%;
+        margin-top: -50%;
+        opacity: 0;
+    }
+}
+
+.swpf-form:not(.swpf-checkboxradio-skin-1) .swpf-checkbox-type input[type='checkbox'],
+.swpf-form:not(.swpf-checkboxradio-skin-1) .swpf-radio-type input[type='radio'] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    position: relative;
+    font-size: var(--swpf-checkboxradio-size, var(--swpf-default-size));
+    height: var(--swpf-checkboxradio-size, var(--swpf-default-size));
+    width: var(--swpf-checkboxradio-size, var(--swpf-default-size));
+    flex: 0 0 var(--swpf-checkboxradio-size, var(--swpf-default-size));
+}
+
+.swpf-checkboxradio-skin-2 .swpf-checkbox-type input[type='checkbox'],
+.swpf-checkboxradio-skin-2 .swpf-radio-type input[type='radio'] {
+    transition: all 0.15s ease-out;
+    background: var(--swpf-checkboxradio-bgcolor);
+}
+
+.swpf-checkboxradio-skin-2 .swpf-checkbox-type input[type='checkbox']:hover,
+.swpf-checkboxradio-skin-2 .swpf-radio-type input[type='radio']:hover {
+    background: var(--swpf-checkboxradio-bgcolorhov);
+}
+
+.swpf-checkboxradio-skin-2 .swpf-checkbox-type input[type='checkbox']:checked,
+.swpf-checkboxradio-skin-2 .swpf-radio-type input[type='radio']:checked {
+    background: var(--swpf-checkboxradio-bgcoloractive, var(--swpf-primary-color));
+}
+
+.swpf-checkboxradio-skin-2 .swpf-checkbox-type input[type='checkbox']:checked:before,
+.swpf-checkboxradio-skin-2 .swpf-radio-type input[type='radio']:checked:before {
+    font-family: 'eleganticons';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    content: "\4d";
+    font-size: 0.8em;
+    text-align: center;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--swpf-checkboxradio-iconcolor, #FFFFFF);
+}
+
+.swpf-checkboxradio-skin-2 .swpf-checkbox-type input[type='checkbox']:checked:after,
+.swpf-checkboxradio-skin-2 .swpf-radio-type input[type='radio']:checked:after {
+    -webkit-animation: click-wave 0.65s;
+    -moz-animation: click-wave 0.65s;
+    animation: click-wave 0.65s;
+    background: var(--swpf-checkboxradio-bgcoloractive, var(--swpf-primary-color));
+    content: "";
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+.swpf-checkboxradio-skin-2 .swpf-radio-type input[type='radio'] {
+    border-radius: 50%;
+}
+
+.swpf-checkboxradio-skin-2 .swpf-radio-type input[type='radio']:after {
+    border-radius: 50%;
+}
+
+/* Checkbox & Raido Skin 3*/
+.swpf-checkboxradio-skin-3 .swpf-checkbox-type input[type=checkbox],
+.swpf-checkboxradio-skin-3 .swpf-radio-type input[type=radio] {
+    display: grid;
+    place-items: center;
+}
+
+.swpf-checkboxradio-skin-3 .swpf-checkbox-type input[type='checkbox']:after,
+.swpf-checkboxradio-skin-3 .swpf-radio-type input[type='radio']:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border: 2px solid var(--swpf-checkboxradio-bordercolor);
+    cursor: pointer;
+}
+
+.swpf-checkboxradio-skin-3 .swpf-radio-type input[type='radio']:after {
+    border-radius: 50%;
+}
+
+.swpf-checkboxradio-skin-3 .swpf-checkbox-type input[type='checkbox']:before {
+    transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+    transform: rotate(-45deg) scale(0);
+    content: "";
+    z-index: 1;
+    width: 0.6em;
+    height: 0.3em;
+    margin-top: -0.1em;
+    border: 2px solid var(--swpf-checkboxradio-bordercoloractive, var(--swpf-primary-color));
+    border-top-style: none;
+    border-right-style: none;
+}
+
+.swpf-checkboxradio-skin-3 .swpf-checkbox-type input[type='checkbox']:checked:before {
+    transform: rotate(-45deg) scale(1);
+}
+
+.swpf-checkboxradio-skin-3 .swpf-checkbox-type input[type='checkbox']:hover:after,
+.swpf-checkboxradio-skin-3 .swpf-radio-type input[type='radio']:hover:after {
+    border-color: var(--swpf-checkboxradio-bordercolorhov);
+}
+
+.swpf-checkboxradio-skin-3 .swpf-checkbox-type input[type='checkbox']:checked:after,
+.swpf-checkboxradio-skin-3 .swpf-radio-type input[type='radio']:checked:after {
+    border: 2px solid var(--swpf-checkboxradio-bordercoloractive, var(--swpf-primary-color));
+}
+
+.swpf-checkboxradio-skin-3 .swpf-radio-type input[type='radio']:before {
+    transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+    transform: scale(0);
+    content: "";
+    z-index: 1;
+    width: 0.6em;
+    height: 0.6em;
+    background: var(--swpf-checkboxradio-bordercoloractive, var(--swpf-primary-color));
+    border-radius: 50%;
+}
+
+.swpf-checkboxradio-skin-3 .swpf-radio-type input[type='radio']:checked:before {
+    transform: scale(1);
+}
+
+/* Checkbox Skin 4*/
+.swpf-checkboxradio-skin-4 .swpf-checkbox-type input[type=checkbox],
+.swpf-checkboxradio-skin-4 .swpf-radio-type input[type=radio] {
+    display: grid;
+    place-items: center;
+}
+
+.swpf-checkboxradio-skin-4 .swpf-checkbox-type input[type=checkbox]:before,
+.swpf-checkboxradio-skin-4 .swpf-radio-type input[type=radio]:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--swpf-checkboxradio-bordercolor);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.swpf-checkboxradio-skin-4 .swpf-checkbox-type input[type=checkbox]:hover:before,
+.swpf-checkboxradio-skin-4 .swpf-radio-type input[type=radio]:hover:before {
+    border-color: var(--swpf-checkboxradio-bordercolorhov);
+}
+
+.swpf-checkboxradio-skin-4 .swpf-radio-type input[type=radio]:after {
+    content: "";
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 50%;
+    background: var(--swpf-checkboxradio-bordercolor);
+    transition: all 0.2s ease;
+    position: absolute;
+}
+
+.swpf-checkboxradio-skin-4 .swpf-radio-type input[type=radio]:hover:after {
+    background: var(--swpf-checkboxradio-bordercolorhov);
+}
+
+.swpf-checkboxradio-skin-4 .swpf-checkbox-type input[type=checkbox]:after {
+    content: "";
+    width: 0.6em;
+    height: 0.3em;
+    margin-top: -0.1em;
+    border: 2px solid var(--swpf-checkboxradio-bordercolor);
+    border-top-style: none;
+    border-right-style: none;
+    transform: rotate(-45deg);
+    transition: all 0.2s ease;
+    position: absolute;
+}
+
+.swpf-checkboxradio-skin-4 .swpf-checkbox-type input[type=checkbox]:hover:after {
+    border-color: var(--swpf-checkboxradio-bordercolorhov);
+}
+
+.swpf-checkboxradio-skin-4 .swpf-radio-type input[type=radio]:before {
+    border-radius: 50%;
+}
+
+.swpf-checkboxradio-skin-4 .swpf-checkbox-type input[type=checkbox]:checked:before,
+.swpf-checkboxradio-skin-4 .swpf-radio-type input[type=radio]:checked:before {
+    background: var(--swpf-checkboxradio-bordercolor);
+    border-color: var(--swpf-checkboxradio-bordercolor);
+}
+
+.swpf-checkboxradio-skin-4 .swpf-checkbox-type input[type=checkbox]:checked:after {
+    border-color: var(--swpf-checkboxradio-iconcolor, #FFFFFF);
+}
+
+.swpf-checkboxradio-skin-4 .swpf-radio-type input[type=radio]:checked:after {
+    background: var(--swpf-checkboxradio-iconcolor, #FFFFFF);
+    height: 0.3em;
+    width: 0.3em;
+}
+
+/* Checkbox Skin 5*/
+.swpf-checkboxradio-skin-5 .swpf-checkbox-type input[type=checkbox],
+.swpf-checkboxradio-skin-5 .swpf-radio-type input[type=radio] {
+    display: grid;
+    place-items: center;
+}
+
+.swpf-checkboxradio-skin-5 .swpf-checkbox-type input[type=checkbox]:before,
+.swpf-checkboxradio-skin-5 .swpf-radio-type input[type=radio]:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    border: 1px solid var(--swpf-checkboxradio-bordercolor);
+    background: transparent;
+}
+
+.swpf-checkboxradio-skin-5 .swpf-checkbox-type input[type=checkbox]:hover:before,
+.swpf-checkboxradio-skin-5 .swpf-radio-type input[type=radio]:hover:before {
+    border: 1px solid var(--swpf-checkboxradio-bordercolorhov);
+}
+
+.swpf-checkboxradio-skin-5 .swpf-radio-type input[type=radio]:before {
+    border-radius: 50%;
+}
+
+.swpf-checkboxradio-skin-5 .swpf-checkbox-type input[type=checkbox]:after,
+.swpf-checkboxradio-skin-5 .swpf-radio-type input[type=radio]:after {
+    content: "✓";
+    color: var(--swpf-checkboxradio-iconcolor, #FFFFFF);
+    font-size: 0.7em;
+    position: absolute;
+    transform: scale(0);
+    transition: all 300ms ease-in-out;
+}
+
+.swpf-checkboxradio-skin-5 .swpf-checkbox-type input[type=checkbox]:checked:before,
+.swpf-checkboxradio-skin-5 .swpf-radio-type input[type=radio]:checked:before {
+    background: var(--swpf-checkboxradio-bgcoloractive, var(--swpf-primary-color));
+    border-color: var(--swpf-checkboxradio-bgcoloractive, var(--swpf-primary-color));
+}
+
+.swpf-checkboxradio-skin-5 .swpf-checkbox-type input[type=checkbox]:checked:after,
+.swpf-checkboxradio-skin-5 .swpf-radio-type input[type=radio]:checked:after {
+    transform: scale(1);
+}
+
+/* Checkbox Skin 6*/
+.swpf-checkboxradio-skin-6 .swpf-checkbox-type input[type=checkbox],
+.swpf-checkboxradio-skin-6 .swpf-radio-type input[type=radio] {
+    display: grid;
+    place-items: center;
+}
+
+.swpf-checkboxradio-skin-6 .swpf-checkbox-type input[type=checkbox]:before,
+.swpf-checkboxradio-skin-6 .swpf-radio-type input[type=radio]:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    border: 1px solid var(--swpf-checkboxradio-bordercolor);
+}
+
+.swpf-checkboxradio-skin-6 .swpf-checkbox-type input[type=checkbox]:hover:before,
+.swpf-checkboxradio-skin-6 .swpf-radio-type input[type=radio]:hover:before {
+    border-color: var(--swpf-checkboxradio-bordercolorhov);
+}
+
+.swpf-checkboxradio-skin-6 .swpf-radio-type input[type=radio]:before {
+    border-radius: 50%;
+}
+
+.swpf-checkboxradio-skin-6 .swpf-checkbox-type input[type=checkbox]:after,
+.swpf-checkboxradio-skin-6 .swpf-radio-type input[type=radio]:after {
+    content: "";
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 3px;
+    position: absolute;
+    background: var(--swpf-checkboxradio-bordercoloractive, var(--swpf-primary-color));
+    transform: scale(0);
+    transition: all 300ms ease-in-out;
+}
+
+.swpf-checkboxradio-skin-6 .swpf-radio-type input[type=radio]:after {
+    border-radius: 50%;
+}
+
+.swpf-checkboxradio-skin-6 .swpf-checkbox-type input[type=checkbox]:checked:before,
+.swpf-checkboxradio-skin-6 .swpf-radio-type input[type=radio]:checked:before {
+    border-color: var(--swpf-checkboxradio-bordercoloractive, var(--swpf-primary-color));
+}
+
+.swpf-checkboxradio-skin-6 .swpf-checkbox-type input[type=checkbox]:checked:after,
+.swpf-checkboxradio-skin-6 .swpf-radio-type input[type=radio]:checked:after {
+    transform: scale(1);
+}
+
+/* Checkbox Skin 7*/
+.swpf-checkboxradio-skin-7 .swpf-checkbox-type input[type=checkbox],
+.swpf-checkboxradio-skin-7 .swpf-radio-type input[type=radio] {
+    display: grid;
+    place-items: center;
+}
+
+.swpf-checkboxradio-skin-7 .swpf-checkbox-type input[type=checkbox]:before,
+.swpf-checkboxradio-skin-7 .swpf-radio-type input[type=radio]:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--swpf-checkboxradio-bordercolor);
+    transition: all 300ms ease-in-out;
+}
+
+.swpf-checkboxradio-skin-7 .swpf-checkbox-type input[type=checkbox]:hover:before,
+.swpf-checkboxradio-skin-7 .swpf-radio-type input[type=radio]:hover:before {
+    border-color: var(--swpf-checkboxradio-bordercolorhov)
+}
+
+.swpf-checkboxradio-skin-7 .swpf-radio-type input[type=radio]:before {
+    border-radius: 50%;
+}
+
+.swpf-checkboxradio-skin-7 .swpf-checkbox-type input[type=checkbox]:checked:before,
+.swpf-checkboxradio-skin-7 .swpf-radio-type input[type=radio]:checked:before {
+    border-top: transparent;
+    border-left: transparent;
+    transform: rotate(40deg);
+    width: 50%;
+    height: 80%;
+    border-radius: 0;
+    border-color: var(--swpf-checkboxradio-iconcolor, var(--swpf-checkboxradio-bordercolor));
+}
+
+/* Checkbox Skin 8*/
+.swpf-checkboxradio-skin-8 .swpf-checkbox-type input[type=checkbox],
+.swpf-checkboxradio-skin-8 .swpf-radio-type input[type=radio] {
+    display: grid;
+    place-items: center;
+    background: var(--swpf-checkboxradio-bgcolor);
+    cursor: pointer;
+}
+
+.swpf-checkboxradio-skin-8 .swpf-checkbox-type input[type=checkbox]:hover,
+.swpf-checkboxradio-skin-8 .swpf-radio-type input[type=radio]:hover {
+    background: var(--swpf-checkboxradio-bgcolorhov);
+}
+
+.swpf-checkboxradio-skin-8 .swpf-radio-type input[type=radio] {
+    border-radius: 50%;
+}
+
+.swpf-checkboxradio-skin-8 .swpf-checkbox-type input[type=checkbox]:before,
+.swpf-checkboxradio-skin-8 .swpf-radio-type input[type=radio]:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: var(--swpf-checkboxradio-bgcoloractive, var(--swpf-primary-color));
+    transform: translateX(100%) rotate(-60deg);
+    transition: all 300ms ease-in-out;
+    opacity: 0;
+}
+
+.swpf-checkboxradio-skin-8 .swpf-radio-type input[type=radio]:before {
+    border-radius: 50%;
+}
+
+.swpf-checkboxradio-skin-8 .swpf-checkbox-type input[type=checkbox]:checked:before,
+.swpf-checkboxradio-skin-8 .swpf-radio-type input[type=radio]:checked:before {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
+}
+
+/* Checkbox Skin 9*/
+.swpf-checkboxradio-skin-9 .swpf-checkbox-type input[type=checkbox],
+.swpf-checkboxradio-skin-9 .swpf-radio-type input[type=radio] {
+    display: grid;
+    place-items: center;
+}
+
+.swpf-checkboxradio-skin-9 .swpf-checkbox-type input[type=checkbox]:before,
+.swpf-checkboxradio-skin-9 .swpf-radio-type input[type=radio]:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    border: 1px solid var(--swpf-checkboxradio-bordercolor);
+    background-image: linear-gradient(to bottom, #eeedee, #fff 30%);
+}
+
+.swpf-checkboxradio-skin-9 .swpf-checkbox-type input[type=checkbox]:hover:before,
+.swpf-checkboxradio-skin-9 .swpf-radio-type input[type=radio]:hover:before {
+    border-color: var(--swpf-checkboxradio-bordercolorhov);
+}
+
+.swpf-checkboxradio-skin-9 .swpf-radio-type input[type=radio]:before {
+    border-radius: 50%;
+}
+
+.swpf-checkboxradio-skin-9 .swpf-checkbox-type input[type=checkbox]:checked:after,
+.swpf-checkboxradio-skin-9 .swpf-radio-type input[type=radio]:checked:after {
+    content: "";
+    width: 0.8em;
+    height: 0.3em;
+    margin-top: -0.3em;
+    border: 1px solid var(--swpf-checkboxradio-bordercoloractive, var(--swpf-primary-color));
+    border-top-style: none;
+    border-right-style: none;
+    transform: rotate(-45deg);
+    position: absolute;
+    transition: all 300ms ease-in-out;
+    margin-right: -0.6em;
+}
+
+.swpf-checkboxradio-skin-9 .swpf-checkbox-type input[type=checkbox]:checked:before,
+.swpf-checkboxradio-skin-9 .swpf-radio-type input[type=radio]:checked:before {
+    border-color: var(--swpf-checkboxradio-bordercoloractive, var(--swpf-primary-color));
+    border-right-color: transparent;
+}
+
+/* Checkbox Skin 10*/
+.swpf-checkboxradio-skin-10 .swpf-checkbox-type input[type=checkbox],
+.swpf-checkboxradio-skin-10 .swpf-radio-type input[type=radio] {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+.swpf-checkboxradio-skin-10 .swpf-checkbox-type span.swpf-title,
+.swpf-checkboxradio-skin-10 .swpf-radio-type span.swpf-title {
+    position: relative;
+    padding: 4px;
+    padding-left: calc(var(--swpf-checkboxradio-size, var(--swpf-default-size)) + 8px);
+    transition: all 0.3s ease;
+    min-height: var(--swpf-checkboxradio-size, var(--swpf-default-size));
+    display: block;
+}
+
+.swpf-checkboxradio-skin-10 .swpf-checkbox-type input[type="checkbox"]:checked+span.swpf-title,
+.swpf-checkboxradio-skin-10 .swpf-radio-type input[type="radio"]:checked+span.swpf-title {
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #FFF;
+}
+
+.swpf-checkboxradio-skin-10 .swpf-checkbox-type span.swpf-title:before,
+.swpf-checkboxradio-skin-10 .swpf-radio-type span.swpf-title:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    display: block;
+    width: var(--swpf-checkboxradio-size, var(--swpf-default-size));
+    height: var(--swpf-checkboxradio-size, var(--swpf-default-size));
+    border: 2px solid var(--swpf-checkboxradio-bordercolor);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    z-index: 1;
+}
+
+.swpf-checkboxradio-skin-10 .swpf-checkbox-type span.swpf-title:hover:before,
+.swpf-checkboxradio-skin-10 .swpf-radio-type span.swpf-title:hover:before {
+    border-color: var(--swpf-checkboxradio-bordercolorhov);
+}
+
+.swpf-checkboxradio-skin-10 .swpf-radio-type span.swpf-title:before {
+    border-radius: 40px;
+}
+
+.swpf-checkboxradio-skin-10 .swpf-checkbox-type input[type="checkbox"]:checked+span.swpf-title:before,
+.swpf-checkboxradio-skin-10 .swpf-radio-type input[type="radio"]:checked+span.swpf-title:before {
+    width: 100%;
+    background: var(--swpf-checkboxradio-bgcoloractive, var(--swpf-primary-color));
+    top: 0;
+    transform: none;
+    height: 100%;
+    width: 100%;
+    border: 2px solid var(--swpf-checkboxradio-bgcoloractive, var(--swpf-primary-color));
+}
+
+.swpf-checkboxradio-skin-10 .swpf-checkbox-type span.swpf-title > span,
+.swpf-checkboxradio-skin-10 .swpf-radio-type span.swpf-title > span {
+    position: relative;
+    z-index: 2;
+}
+
+/* Checkbox Skin 11*/
+.swpf-checkboxradio-skin-11 .swpf-checkbox-type input[type=checkbox],
+.swpf-checkboxradio-skin-11 .swpf-radio-type input[type=radio] {
+    background: var(--swpf-checkboxradio-bgcolor);
+}
+
+.swpf-checkboxradio-skin-11 .swpf-checkbox-type input[type=checkbox]:hover,
+.swpf-checkboxradio-skin-11 .swpf-radio-type input[type=radio]:hover {
+    background: var(--swpf-checkboxradio-bgcolorhov);
+}
+
+.swpf-checkboxradio-skin-11 .swpf-radio-type input[type=radio] {
+    border-radius: 50%;
+}
+
+.swpf-checkboxradio-skin-11 .swpf-checkbox-type input[type=checkbox]:before,
+.swpf-checkboxradio-skin-11 .swpf-radio-type input[type=radio]:before {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    content: "";
+    width: 65%;
+    height: 65%;
+    background: var(--swpf-checkboxradio-bgcoloractive, var(--swpf-primary-color));
+    transform: translate3d(110%, -50%, 0) scale(0.5);
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+    opacity: 0;
+}
+
+.swpf-checkboxradio-skin-11 .swpf-radio-type input[type=radio]:before {
+    border-radius: 50%;
+}
+
+.swpf-checkboxradio-skin-11 .swpf-checkbox-type input[type=checkbox]:checked:hover,
+.swpf-checkboxradio-skin-11 .swpf-radio-type input[type=radio]:checked:hover {
+    background: var(--swpf-checkboxradio-bgcolor);
+}
+
+.swpf-checkboxradio-skin-11 .swpf-checkbox-type input[type=checkbox]:checked:before,
+.swpf-checkboxradio-skin-11 .swpf-radio-type input[type=radio]:checked:before {
+    transform: translate3d(-50%, -50%, 0);
+    opacity: 1;
+}
+
+/*===========Button Style===========*/
+.swpf-button-type{
+    text-align: center;
+}
+
+.swpf-button-type .swpf-filter-item input[type='checkbox'] {
+    display: none;
+}
+
+.swpf-filter-item label{
+    display: block;
+}
+
+.swpf-button-type .swpf-title{
+    position: relative;
+    display: block;
+    cursor: pointer;
+    font-size: var(--swpf-button-fontsize, inherit);
+    background: var(--swpf-button-bgcolor, transparent);
+    color: var(--swpf-button-textcolor, inherit);
+    border: 1px solid #EEE;
+    border-color: var(--swpf-button-bordercolor, var(--swpf-input-bordercolor));
+    padding: var(--swpf-button-padding-top, 10px) var(--swpf-button-padding-right, 10px) var(--swpf-button-padding-bottom, 10px) var(--swpf-button-padding-left, 10px);
+    border-radius: var(--swpf-button-borderradius, 0);
+}
+
+.swpf-button-type .swpf-title:hover{
+    border-color: var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov)));
+}
+
+.swpf-button-type input[type='checkbox']:checked+.swpf-title {
+    background: var(--swpf-button-bgcolor-hov, var(--swpf-primary-color));
+    color: var(--swpf-button-textcolor-hov, #FFF);
+    border-color: var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov)));
+}
+
+
+.swpf-button-skin-2 .swpf-button-type .swpf-filter-item label{
+    padding: 4px 4px 0 0;
+}
+
+.swpf-button-skin-2 .swpf-button-type .swpf-title {
+    box-shadow: 4px -4px 0 0 var(--swpf-button-bordercolor, var(--swpf-input-bordercolor));
+}
+
+.swpf-button-skin-2 .swpf-button-type .swpf-title:hover,
+.swpf-button-skin-2 .swpf-button-type input[type='checkbox']:checked+.swpf-title {
+    box-shadow: 4px -4px 0 0 var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov)));
+}
+
+.swpf-button-skin-3 .swpf-button-type .swpf-filter-item label{
+    padding: 0 5px 5px 0;
+}
+
+.swpf-button-skin-3 .swpf-button-type .swpf-title {
+    box-shadow: 1px 1px 0px 0px var(--swpf-button-bordercolor, var(--swpf-input-bordercolor)), 
+        2px 2px 0px 0px var(--swpf-button-bordercolor, var(--swpf-input-bordercolor)), 
+        3px 3px 0px 0px var(--swpf-button-bordercolor, var(--swpf-input-bordercolor)), 
+        4px 4px 0px 0px var(--swpf-button-bordercolor, var(--swpf-input-bordercolor)), 
+        5px 5px 0px 0px var(--swpf-button-bordercolor, var(--swpf-input-bordercolor));
+}
+
+.swpf-button-skin-3 .swpf-button-type .swpf-title:hover,
+.swpf-button-skin-3 .swpf-button-type input[type='checkbox']:checked+.swpf-title {
+    box-shadow: 1px 1px 0px 0px var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov))), 
+        2px 2px 0px 0px var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov))), 
+        3px 3px 0px 0px var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov))), 
+        4px 4px 0px 0px var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov))), 
+        5px 5px 0px 0px var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov)));
+}
+
+.swpf-button-skin-4 .swpf-button-type .swpf-filter-item label{
+    padding: 0 0 6px 0;
+}
+
+.swpf-button-skin-4 .swpf-button-type .swpf-title{
+    box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0, inset 0px -6px 0px rgba(0, 0, 0, 0.15);
+    padding-bottom: calc(var(--swpf-button-padding-bottom, 10px) + 6px);
+}
+
+.swpf-button-skin-5 .swpf-button-type .swpf-filter-item label{
+    padding: 0 6px;
+}
+
+.swpf-button-skin-5 .swpf-button-type .swpf-title {
+    transform: skew(-10deg, 0deg);
+    display: flex;
+    justify-content: center;
+}
+
+.swpf-button-skin-5 .swpf-button-type .swpf-title-text,
+.swpf-button-skin-5 .swpf-button-type .swpf-count{
+    transform: skew(10deg, 0deg);
+}
+
+/*===========Toggle Style===========*/
+.swpf-toggle-type input[type=checkbox] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+}
+
+.swpf-toggle-type .swpf-filter-label,
+.swpf-toggle-type .swpf-filter-label input {
+    cursor: pointer;
+}
+
+/* Toggle Style 1 */
+.swpf-toggle-type .swpf-filter-label {
+    display: flex;
+    align-items: center;
+    min-height: 20px;
+    overflow: hidden;
+    line-height: 1;
+}
+
+.swpf-toggle-type input[type=checkbox] {
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.swpf-toggle-skin-1 .swpf-toggle-type input[type=checkbox] {
+    position: relative;
+    width: 40px;
+    height: 20px;
+}
+
+.swpf-toggle-skin-1 .swpf-toggle-type input[type=checkbox]:before,
+.swpf-toggle-skin-1 .swpf-toggle-type input[type=checkbox]:after {
+    content: "";
+    position: absolute;
+}
+
+.swpf-toggle-skin-1 .swpf-toggle-type input[type=checkbox]:before {
+    height: 100%;
+    width: 100%;
+    background-color: var(--swpf-toggle-inactivecolor);
+    border-radius: 30px;
+    opacity: 0.3;
+}
+
+.swpf-toggle-skin-1 .swpf-toggle-type input[type=checkbox]:after {
+    width: 16px;
+    height: 16px;
+    top: 2px;
+    left: 2px;
+    background-color: var(--swpf-toggle-inactivecolor);
+    border-radius: 30px;
+    transform: translate(0, 0);
+    transition: all 0.3s ease;
+}
+
+.swpf-toggle-skin-1 .swpf-toggle-type input[type=checkbox]:checked:after {
+    transform: translate(20px, 0);
+    background: var(--swpf-toggle-activecolor);
+}
+
+.swpf-toggle-skin-1 .swpf-toggle-type input[type=checkbox]:checked:before {
+    background-color: var(--swpf-toggle-activecolor);
+}
+
+/* Toggle Style 2 */
+.swpf-toggle-skin-2 .swpf-toggle-type input[type=checkbox] {
+    position: relative;
+    width: 34px;
+    height: 10px;
+    background-color: var(--swpf-toggle-bgcolor);
+    border-radius: 30px;
+    margin-right: 8px;
+    transition: all 0.3s ease;
+}
+
+.swpf-toggle-skin-2 .swpf-toggle-type input[type=checkbox]:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--swpf-toggle-inactivecolor);
+    box-sizing: border-box;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.swpf-toggle-skin-2 .swpf-toggle-type input[type=checkbox]:checked:before {
+    transform: translateX(14px) translateY(-50%);
+    background-color: var(--swpf-toggle-activecolor);
+}
+
+/* Toggle Style 3 */
+.swpf-toggle-skin-3 .swpf-toggle-type input[type=checkbox] {
+    width: 42px;
+    height: 22px;
+    border: 2px solid var(--swpf-toggle-inactivecolor);
+    border-radius: 20px;
+    background: var(--swpf-toggle-bgcolor);
+    position: relative;
+}
+
+.swpf-toggle-skin-3 .swpf-toggle-type input[type=checkbox]:before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    background: var(--swpf-toggle-inactivecolor);
+    border: 2px solid var(--swpf-toggle-inactivecolor);
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+.swpf-toggle-skin-3 .swpf-toggle-type input[type=checkbox]:after {
+    font-family: 'eleganticons';
+    content: "\4d";
+    font-size: 1em;
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    color: var(--swpf-toggle-inactivecolor);
+    line-height: 14px;
+}
+
+.swpf-toggle-skin-3 .swpf-toggle-type input[type=checkbox]:checked {
+    border: 2px solid var(--swpf-toggle-activecolor);
+}
+
+.swpf-toggle-skin-3 .swpf-toggle-type input[type=checkbox]:checked::before {
+    background: var(--swpf-toggle-activecolor);
+    border: 2px solid var(--swpf-toggle-activecolor);
+    transform: translateX(20px);
+    transition: all 0.3s ease-in-out;
+}
+
+.swpf-toggle-skin-3 .swpf-toggle-type input[type=checkbox]:checked::after {
+    content: "\4e";
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    right: auto;
+    color: var(--swpf-toggle-activecolor);
+    line-height: 14px;
+}
+
+/* Toggle Style 4 */
+.swpf-toggle-skin-4 .swpf-toggle-type input[type=checkbox] {
+    width: 42px;
+    height: 22px;
+    position: relative;
+}
+
+.swpf-toggle-skin-4 .swpf-toggle-type input[type=checkbox]:after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 20px;
+    background: var(--swpf-toggle-inactivecolor);
+    opacity: 0.3;
+}
+
+.swpf-toggle-skin-4 .swpf-toggle-type input[type=checkbox]:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    transition: all 0.2s ease;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 4px solid #FFF;
+    background-color: var(--swpf-toggle-inactivecolor);
+    z-index: 1;
+}
+
+.swpf-toggle-skin-4 .swpf-toggle-type input[type=checkbox]:checked:before {
+    background-color: var(--swpf-toggle-activecolor);
+    transform: translateX(20px);
+}
+
+.swpf-toggle-skin-4 .swpf-toggle-type input[type=checkbox]:checked:after {
+    background-color: var(--swpf-toggle-activecolor);
+}
+
+/* Toggle Style 5 */
+.swpf-toggle-skin-5 .swpf-toggle-type .swpf-toggle-wrap {
+    position: relative;
+    width: 40px;
+    height: 22px;
+    margin-right: 8px;
+}
+
+.swpf-toggle-skin-5 .swpf-toggle-type input[type=checkbox] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 20px;
+    background: var(--swpf-toggle-inactivecolor);
+    position: relative;
+}
+
+.swpf-toggle-skin-5 .swpf-toggle-type .swpf-toggle-knob {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 3px;
+    left: 3px;
+    background: #FFF;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.swpf-toggle-skin-5 .swpf-toggle-type .swpf-toggle-knob:before {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 2px;
+    width: 12px;
+    height: 2px;
+    background: var(--swpf-toggle-inactivecolor);
+    transform: rotateZ(45deg);
+    transform-origin: center;
+}
+
+.swpf-toggle-skin-5 .swpf-toggle-type .swpf-toggle-knob:after {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 2px;
+    width: 12px;
+    height: 2px;
+    background: var(--swpf-toggle-inactivecolor);
+    transform: rotateZ(-45deg);
+    transform-origin: center;
+}
+
+.swpf-toggle-skin-5 .swpf-toggle-type input[type=checkbox]:checked {
+    background: var(--swpf-toggle-activecolor);
+}
+
+.swpf-toggle-skin-5 .swpf-toggle-type input[type=checkbox]:checked+.swpf-toggle-knob {
+    transform: translateX(18px);
+}
+
+.swpf-toggle-skin-5 .swpf-toggle-type input[type=checkbox]:checked+.swpf-toggle-knob:before {
+    top: 9px;
+    left: 2px;
+    width: 6px;
+    height: 2px;
+    transform: rotateZ(45deg);
+    background: var(--swpf-toggle-activecolor);
+}
+
+.swpf-toggle-skin-5 .swpf-toggle-type input[type=checkbox]:checked+.swpf-toggle-knob:after {
+    top: 8px;
+    left: 5px;
+    width: 10px;
+    height: 2px;
+    transform: rotateZ(-45deg);
+    background: var(--swpf-toggle-activecolor);
+}
+
+/*===========Remove Filter===========*/
+.swpf-activated-filter-wrap {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(var(--swpf-filter-gridcol, 1), 1fr);
+    margin-top: var(--swpf-heading-marginbottom, 15px);
+}
+
+.swpf-activated-filter-wrap.swpf-hide-active-filter-label{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.swpf-group-activated-filter{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 15px;
+}
+
+.swpf-active-filter-title {
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.swpf-activated-clear-all .swpf-clear-all{
+    font-size: 0.8em;
+    border: 0;
+    background: none;
+    color: inherit;
+    padding: 0;
+    box-shadow: none;
+    height: auto;
+    min-height: 0;
+}
+
+.swpf-activated-filter-wrap .swpf-remove-filter-item{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--swpf-filterbutton-fontsize);
+    background: var(--swpf-filterbutton-bgcolor);
+    color: var(--swpf-filterbutton-textcolor, inherit);
+    border: 1px solid var(--swpf-filterbutton-bordercolor);
+    padding: var(--swpf-filterbutton-padding-top, 0) var(--swpf-filterbutton-padding-right, 0) var(--swpf-filterbutton-padding-bottom, 0) var(--swpf-filterbutton-padding-left, 0);
+    border-radius: var(--swpf-filterbutton-borderradius, 0);
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    font-size: 0.9em;
+}
+
+.swpf-activated-filter-wrap .swpf-remove-filter-item:hover{
+    background: var(--swpf-filterbutton-bgcolor-hov, var(--swpf-filterbutton-bgcolor));
+    color: var(--swpf-filterbutton-textcolor-hov, var(--swpf-filterbutton-textcolor));
+    border-color: var(--swpf-filterbutton-bordercolor-hov, (--swpf-filterbutton-bordercolor));
+}
+
+.swpf-remove-filter-icon {
+    height: 8px;
+    width: 8px;
+    display: grid;
+    place-items: center;
+}
+
+.swpf-remove-filter-icon:after,
+.swpf-remove-filter-icon:before {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 8px;
+    height: 1px;
+    border-top: 1px solid transparent;
+    border-color: inherit;
+    transform: rotate(45deg);
+    transition: transform ease 200ms;
+}
+
+.swpf-remove-filter-icon:after {
+    transform: rotate(-45deg);
+}
+
+.swpf-remove-filter-item:hover .swpf-remove-filter-icon:after,
+.swpf-remove-filter-item:hover .swpf-remove-filter-icon:before {
+    transform: rotate(0deg);
+    border-color: inherit;
+}
+
+/*===========Hamburger Menu===========*/
+.swpf-filter-toggle-bar {
+    flex: 0 0 auto;
+    width: 50px;
+    height: 50px;
+    border: 2px solid rgb(15, 15, 15);
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 20px
+}
+
+.swpf-hamburger {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.swpf-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    margin-bottom: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.swpf-hamburger span:last-child {
+    margin: 0;
+}
+
+.swpf-hamburger span:before,
+.swpf-hamburger span:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(15, 15, 15);
+    transform: translateX(-200%);
+    transition: transform ease 300ms;
+}
+
+.swpf-hamburger span:after {
+    transform: translateX(0);
+}
+
+.swpf-hamburger span:nth-child(2):before,
+.swpf-hamburger span:nth-child(2):after {
+    transition-delay: 75ms;
+}
+
+.swpf-hamburger span:last-child:before,
+.swpf-hamburger span:last-child:after {
+    transition-delay: 150ms;
+}
+
+.swpf-filter-toggle-bar:hover .swpf-hamburger span:before {
+    transform: translateX(0);
+}
+
+.swpf-filter-toggle-bar:hover .swpf-hamburger span:after {
+    transform: translateX(200%);
+}
+
+.swpf-filter-toggle-bar.swpf-filter-toggled .swpf-hamburger span:before {
+    transform: translateX(100%);
+}
+
+.swpf-filter-toggle-bar.swpf-filter-toggled .swpf-hamburger span:after {
+    transform: translateX(200%);
+}
+
+/*===========Select===========*/
+select.swpf-filter-type-dropdown {
+    border: 1px solid #eee;
+    height: 50px;
+    padding: 3px 40px 3px 10px;
+    outline: 0;
+    position: relative;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    border-radius: 0;
+    background: none;
+    font-size: inherit;
+}
+
+.swpf-filter-select {
+    position: relative;
+}
+
+.swpf-filter-select:after {
+    content: '';
+    border-style: solid;
+    border-color: var(--swpf-dropdown-textcolor, inherit);
+    border-width: 0px 0.1em 0.1em 0px;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    height: 0.6em;
+    width: 0.6em;
+    transform: translateY(-50%) rotate(45deg);
+    margin-top: -0.25em;
+    pointer-events: none;
+}
+
+.nice-select.swpf-filter-type-dropdown {
+    border: 1px solid #eee;
+    height: 50px;
+    padding: 3px 40px 3px 10px;
+    cursor: pointer;
+    border-radius: 0;
+    line-height: 40px;
+    font-size: inherit;
+}
+
+.nice-select.swpf-filter-type-dropdown:after {
+    display: none;
+}
+
+select.swpf-filter-type-dropdown,
+.nice-select.swpf-filter-type-dropdown,
+.nice-select.swpf-filter-type-dropdown:hover{
+    height: var(--swpf-dropdown-height, var(--swpf-input-height));
+    border-color: var(--swpf-dropdown-bordercolor, var(--swpf-input-bordercolor));
+    background-color: var(--swpf-dropdown-bgcolor, transparent);
+    color: var(--swpf-dropdown-textcolor, inherit);
+}
+
+.nice-select.swpf-filter-type-dropdown:active, 
+.nice-select.swpf-filter-type-dropdown.open, 
+.nice-select.swpf-filter-type-dropdown:focus{
+    border-color: var(--swpf-dropdown-bordercolor, var(--swpf-input-bordercolor));
+}
+
+.nice-select.swpf-filter-type-dropdown .list {
+    border: 1px solid var(--swpf-dropdown-bordercolor, var(--swpf-input-bordercolor));
+    background-color: var(--swpf-dropdown-bgcolor, #FFF);
+    color: var(--swpf-dropdown-textcolor, inherit);
+    border-radius: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    max-height: 240px;
+    overflow-y: scroll;
+}
+
+.nice-select.swpf-filter-type-dropdown span.current {
+    display: block;
+    line-height: calc(var(--swpf-dropdown-height, var(--swpf-input-height)) - 6px);
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.nice-select.swpf-filter-type-dropdown .option {
+    margin: 0;
+    padding: 10px 40px 10px 10px;
+    border: 0;
+    white-space: normal;
+    line-height: 1.3em;
+    min-height: 0;
+}
+
+.nice-select.swpf-filter-type-dropdown .option:hover,
+.nice-select.swpf-filter-type-dropdown .option.focus,
+.nice-select.swpf-filter-type-dropdown .option.selected.focus {
+    color: var(--swpf-dropdown-bgcolor, inherit);
+    background-color: var(--swpf-dropdown-textcolor, #f6f6f6);
+}
+
+.nice-select.swpf-filter-type-dropdown .list:hover .option:not(:hover) {
+    color: var(--swpf-dropdown-textcolor);
+}
+
+/*===========Rating Stars===========*/
+.swpf-list-rating{
+    display: flex;
+    flex-direction: column;
+    gap: var(--swpf-filterbox-itemspacing, 10px);
+}
+
+.swpf-rating-input {
+    display: none;
+}
+
+.swpf-each-star:before {
+    font-family: "star";
+    font-style: normal;
+    letter-spacing: 2px;
+}
+
+.swpf-1-star .swpf-each-star:before {
+    content: "\53";
+}
+
+.swpf-2-star .swpf-each-star:before {
+    content: "\53\53";
+}
+
+.swpf-3-star .swpf-each-star:before {
+    content: "\53\53\53";
+}
+
+.swpf-4-star .swpf-each-star:before {
+    content: "\53\53\53\53";
+}
+
+.swpf-5-star .swpf-each-star:before {
+    content: "\53\53\53\53\53";
+}
+
+.swpf-each-star:after {
+    content: "AND UP";
+    margin-left: 10px;
+}
+
+.swpf-5-star .swpf-each-star:after {
+    content: "";
+}
+
+.swpf-rating-star {
+    color: var(--swpf-rating-textcolor, inherit);
+}
+
+.swpf-rating-star:hover {
+    color: var(--swpf-rating-textcolorhover, var(--swpf-rating-textcolor));
+}
+
+.swpf-rating-input:checked + .swpf-rating-star {
+    color: var(--swpf-rating-textcoloractive);
+}
+
+.swpf-rating-star {
+    cursor: pointer;
+    font-size: inherit;
+    overflow: hidden;
+}
+
+.swpf-rating-star i{
+    color: inherit;
+    font-style: normal;
+}
+
+/*===========Color===========*/
+.swpf-checkbox-color-select-type{
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.swpf-checkbox-color-select-type input[type="checkbox"] {
+    display: none;
+}
+
+.swpf-checkbox-color-select-type .swpf-filter-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 0;
+}
+
+.swpf-checkbox-color-select-type .swpf-filter-label .swpf-rating-input {
+    display: none;
+}
+
+.swpf-checkbox-color-select-type .swpf-color-box {
+    position: relative;
+    height: var(--swpf-color-size, 30px);
+    width: var(--swpf-color-size, 30px);
+    flex: 0 0 var(--swpf-color-size, 30px);
+    border: 1px solid var(--swpf-color-bordercolor, #EEE);
+    background: #F6F6F6;
+    border-radius: var(--swpf-color-borderradius, 0);
+}
+
+.swpf-checkbox-color-select-type input[type="checkbox"]:checked+.swpf-color-box:before {
+    transform: rotate(-45deg) scale(1, 1) translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+.swpf-checkbox-color-select-type input[type="checkbox"]+.swpf-color-box:after {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    transform: scale(0, 0);
+    z-index: 1;
+    content: "\4e";
+    font-family: 'eleganticons';
+    color: #16a085;
+    height: 16px;
+    width: 16px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFF;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.swpf-checkbox-color-select-type input[type="checkbox"]:checked+.swpf-color-box:after {
+    transform: scale(1, 1);
+}
+
+.swpf-checkbox-color-select-type .swpf-title {
+    margin-left: 10px;
+}
+
+/*===========Image Style===========*/
+.swpf-checkbox-image-select-type input[type="checkbox"] {
+    display: none;
+}
+
+.swpf-checkbox-image-select-type .swpf-filter-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.swpf-checkbox-image-select-type .swpf-image-box {
+    position: relative;
+    height: var(--swpf-image-size, 50px);
+    width: var(--swpf-image-size, 50px);
+    flex: 0 0 var(--swpf-image-size, 50px);
+    border-radius: var(--swpf-image-borderradius, 0);
+    border: 1px solid var(--swpf-image-bordercolor, #EEE);
+}
+
+.swpf-checkbox-image-select-type .swpf-image-url{
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: var(--swpf-image-padding, 0);
+    border-radius: var(--swpf-image-borderradius, 0);
+}
+
+.swpf-checkbox-image-select-type input[type="checkbox"]+.swpf-image-box:after {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    transform: scale(0, 0);
+    z-index: 1;
+    content: "\4e";
+    font-family: 'eleganticons';
+    color: #16a085;
+    height: 16px;
+    width: 16px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFF;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+}
+
+.swpf-checkbox-image-select-type input[type="checkbox"]:checked+.swpf-image-box:after {
+    transform: scale(1, 1);
+}
+
+.swpf-checkbox-image-select-type .swpf-title {
+    margin-left: 10px;
+}
+
+/*===========Price Slider===========*/
+.swpf-price-amount-slider {
+    margin-top: 20px;
+}
+
+.swpf-pricerangeslider-skin-1 .ui-widget.ui-widget-content {
+    height: 4px;
+    margin-bottom: 20px;
+    border: 0;
+    background: var(--swpf-pricerangeslider-barcolor);
+    border-radius: 0;
+}
+
+.swpf-pricerangeslider-skin-1 .ui-slider-horizontal .ui-slider-range {
+    background: var(--swpf-pricerangeslider-highlightcolor);
+}
+
+.swpf-pricerangeslider-skin-1 .ui-slider-horizontal .ui-slider-handle {
+    height: 16px;
+    width: 16px;
+    margin-left: -6px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 0;
+    background: var(--swpf-pricerangeslider-highlightcolor);
+    top: 50%;
+    transform: translateY(-50%);
+    transition: height 0.2s ease, width 0.2s ease;
+}
+
+.swpf-pricerangeslider-skin-1 .ui-slider-horizontal .ui-slider-handle:hover {
+    height: 18px;
+    width: 18px;
+}
+
+.swpf-pricerangeslider-skin-1 .ui-slider-horizontal .ui-slider-handle:focus {
+    outline: none;
+}
+
+
+.swpf-range-irs-slider .irs .irs-bar,
+.swpf-range-irs-slider .irs .irs-from,
+.swpf-range-irs-slider .irs .irs-to,
+.swpf-range-irs-slider .irs .irs-single,
+.swpf-range-irs-slider .irs--flat .irs-handle>i:first-child,
+.swpf-range-irs-slider .irs--flat .irs-handle.state_hover>i:first-child,
+.swpf-range-irs-slider .irs--flat .irs-handle:hover>i:first-child,
+.swpf-range-irs-slider .irs--sharp .irs-handle,
+.swpf-range-irs-slider .irs--sharp .irs-handle.state_hover,
+.swpf-range-irs-slider .irs--sharp .irs-handle:hover {
+    background: var(--swpf-pricerangeslider-highlightcolor);
+}
+
+.swpf-range-irs-slider .irs .irs-from:before,
+.swpf-range-irs-slider .irs .irs-to:before,
+.swpf-range-irs-slider .irs .irs-single:before,
+.swpf-range-irs-slider .irs--sharp .irs-handle>i:first-child,
+.swpf-range-irs-slider .irs--sharp .irs-handle.state_hover>i:first-child,
+.swpf-range-irs-slider .irs--sharp .irs-handle:hover>i:first-child {
+    border-top-color: var(--swpf-pricerangeslider-highlightcolor);
+}
+
+.swpf-range-irs-slider .irs--round .irs-handle,
+.swpf-range-irs-slider .irs--square .irs-handle {
+    border-color: var(--swpf-pricerangeslider-highlightcolor);
+}
+
+.swpf-range-irs-slider .irs .irs-line,
+.swpf-range-irs-slider .irs .irs-grid-pol,
+.swpf-range-irs-slider .irs .irs-min,
+.swpf-range-irs-slider .irs .irs-max {
+    background: var(--swpf-pricerangeslider-barcolor);
+}
+
+.swpf-range-irs-slider .irs .irs-grid-text {
+    color: var(--swpf-pricerangeslider-barcolor);
+}
+
+.swpf-range-irs-slider .irs .irs-min,
+.swpf-range-irs-slider .irs .irs-max {
+    color: #FFF;
+}
+
+/*===========Price Input===========*/
+
+.swpf-price-range-inputs {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.swpf-price-range-inputs input[type=number] {
+    width: 100px;
+    background: var(--swpf-searchfilter-bgcolor, transparent);
+    border: 1px solid var(--swpf-searchfilter-bordercolor, #EEE);
+    color: var(--swpf-searchfilter-textcolor, inherit);
+    padding-top: var(--swpf-searchfilter-padding-top, 10px);
+    padding-right: var(--swpf-searchfilter-padding-right, 10px);;
+    padding-bottom: var(--swpf-searchfilter-padding-bottom, 10px);
+    padding-left: var(--swpf-searchfilter-padding-left, 10px);
+    border-radius: var(--swpf-searchfilter-borderradius, 0);
+    line-height: 0;
+    box-shadow: none;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    font-size: inherit;
+    text-align: center;
+    height: auto;
+}
+
+.swpf-price-range-inputs input[type=number]::placeholder,
+.swpf-price-range-inputs input[type=number]:focus{
+    color: var(--swpf-searchfilter-textcolor, inherit);
+}
+
+.swpf-price-range-inputs input[type=number]::-webkit-outer-spin-button,
+.swpf-price-range-inputs input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/*===========MultiSelcet===========*/
+.swpf-multiselect-wrap .chosen-container-multi .chosen-choices {
+    background: var(--swpf-multiselect-bgcolor, none);
+    border-color: var(--swpf-dropdown-bordercolor, var(--swpf-input-bordercolor));
+    padding: 3px 8px 3px 8px;
+    margin: 0;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    color: var(--swpf-multiselect-textcolor, inherit);
+    box-shadow: none;
+}
+
+.swpf-multiselect-wrap .chosen-container{
+    font-size: 1em;
+}
+
+.swpf-multiselect-wrap .chosen-container .chosen-drop {
+    border: 1px solid var(--swpf-multiselect-bordercolor, var(-swpf-input-bordercolor));
+    background-color: var(--swpf-multiselect-bgcolor, #FFF);
+    color: var(--swpf-multiselect-textcolor, inherit);
+    box-shadow: none;
+}
+
+.swpf-multiselect-wrap .chosen-container .chosen-results {
+    margin: 0;
+    padding: 0;
+}
+
+.swpf-multiselect-wrap .chosen-container .chosen-results li {
+    padding: 10px 12px;
+    line-height: 1.3;
+    margin: 0;
+    color: var(--swpf-multiselect-textcolor, inherit);
+}
+
+.swpf-multiselect-wrap .chosen-container .chosen-results li.highlighted{
+    background: var(--swpf-multiselect-textcolor, #f6f6f6);
+    color: var(--swpf-multiselect-bgcolor, inherit);
+}
+
+.swpf-multiselect-wrap .chosen-container-multi .chosen-choices li.search-choice {
+    margin: 0;
+    padding: 8px 30px 8px 14px;
+    border-radius: 3px;
+    box-shadow: none;
+    background: var(--swpf-multiselect-selectedbgcolor, var(--swpf-primary-color));
+    color: var(--swpf-multiselect-selectedtextcolor, #FFF);
+    border: 0;
+    line-height: 1em;
+    font-size: 1em;
+    display: inline-flex;
+    align-items: center;
+    height: calc(var(--swpf-multiselect-height, var(--swpf-input-height)) - 6px);
+}
+
+.swpf-multiselect-wrap .chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none !important;
+}
+
+.swpf-multiselect-wrap .chosen-container-multi .chosen-choices li.search-choice .search-choice-close:before,
+.swpf-multiselect-wrap .chosen-container-multi .chosen-choices li.search-choice .search-choice-close:after {
+    content: "";
+    height: 1px;
+    width: 10px;
+    background-color: var(--swpf-multiselect-selectedtextcolor, #FFF);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+}
+
+.swpf-multiselect-wrap .chosen-container-multi .chosen-choices li.search-choice .search-choice-close:before {
+    transform: rotate(45deg);
+}
+
+.swpf-multiselect-wrap .chosen-container-multi .chosen-choices li.search-choice .search-choice-close:after {
+    transform: rotate(-45deg);
+}
+
+.swpf-multiselect-wrap .chosen-container-multi .chosen-choices li.search-field input[type='text'] {
+    color: var(--swpf-multiselect-textcolor, inherit);
+    height: calc(var(--swpf-multiselect-height, var(--swpf-input-height)) - 6px);
+    margin: 0;
+    font-size: 1em;
+    font-family: inherit;
+}
+
+.swpf-multiselect-wrap .chosen-container-multi .chosen-drop .result-selected{
+    display: none;
+}
+
+/*Multi Select Style 2*/
+.swpf-multiselect-skin-2 .swpf-multiselect-wrap .chosen-container-multi .chosen-choices li.search-choice {
+    border-radius: 20px;
+}
+
+/*Apply Button*/
+.swpf-form .swpf-form-submit{
+    font-size: var(--swpf-applybutton-fontsize, inherit);
+    background: var(--swpf-applybutton-bgcolor, var(--swpf-primary-color));
+    color: var(--swpf-applybutton-textcolor, #FFF);
+    border: 1px solid var(--swpf-applybutton-bordercolor);
+    padding: var(--swpf-applybutton-padding-top, 15px) var(--swpf-applybutton-padding-right, 20px) var(--swpf-applybutton-padding-bottom, 15px) var(--swpf-applybutton-padding-left, 20px);
+    border-radius: var(--swpf-applybutton-borderradius, 0);
+    height: auto;
+    min-height: 0;
+    line-height: 1.3;
+    margin-top: var(--swpf-filterbox-spacing, 40px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.swpf-form .swpf-form-submit:hover{
+    background: var(--swpf-applybutton-bgcolor-hov, var(--swpf-applybutton-bgcolor, var(--swpf-primary-color)));
+    color: var(--swpf-applybutton-textcolor-hov, var(--swpf-applybutton-textcolor, #FFF));
+    border-color: var(--swpf-applybutton-bordercolor-hov, (--swpf-applybutton-bordercolor));
+}
+
+.swpf-form .swpf-form-submit i{
+    animation-name: swpf-spin;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    font-weight: 900;
+    display: none;
+}
+
+.swpf-form .swpf-form-submit.swpf-button-clicked i{
+    display: block;
+}
+
+@-webkit-keyframes swpf-spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes swpf-spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+
+/*===========Review===========*/
+.swpf-review-item label{
+    display: block;
+    margin: 0 0 10px;
+}
+
+.swpf-review-item input[name="review-from"] {
+    width: 100px;
+    background: var(--swpf-searchfilter-bgcolor, transparent);
+    border: 1px solid var(--swpf-searchfilter-bordercolor, #EEE);
+    color: var(--swpf-searchfilter-textcolor, inherit);
+    padding-top: var(--swpf-searchfilter-padding-top, 10px);
+    padding-right: var(--swpf-searchfilter-padding-right, 10px);;
+    padding-bottom: var(--swpf-searchfilter-padding-bottom, 10px);
+    padding-left: var(--swpf-searchfilter-padding-left, 10px);
+    border-radius: var(--swpf-searchfilter-borderradius, 0);
+    line-height: 0;
+    box-shadow: none;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    font-size: inherit;
+}
+
+.swpf-review-item input[name="review-from"]::placeholder,
+.swpf-review-item input[name="review-from"]:focus{
+    color: var(--swpf-searchfilter-textcolor, inherit);
+}
+
+.swpf-review-item input[name="review-from"]::-webkit-outer-spin-button,
+.swpf-review-item input[name="review-from"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/*SWOOPF Widger Area*/
+.swpf-widget-area {
+    clear: both;
+    --swpf-widgetarea-gridcol: 2;
+    margin-bottom: 40px;
+}
+
+.swpf-widget-area .swpf-filters {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(var(--swpf-widgetarea-gridcol), 1fr);
+}
+
+.swpf-widget-area .swpf-form .swpf-active-filter {
+    grid-area: 1 / 1 / 2 / calc(var(--swpf-widgetarea-gridcol) + 1);
+}
+
+/*PRELOADER*/
+.swpf-ajax-loader {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+}
+
+.swpf-filter-loading:not(.swpf-pagination-loading) .swpf-ajax-loader{
+    display: block;
+}
+
+.swpf-preloader-wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swpf-shown-filters .swpf-filter-block,
+.swpf-shown-items{
+    margin-bottom: 30px;
+}
+
+.swpf-enablebottomborder.swpf-header-filters .swpf-shown-filters .swpf-filter-block:after{
+    display: none;
+}
+
+/* Trigger Button */
+.swpf-sidemenu-trigger-block {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    z-index: 9999;
+}
+
+.swpf-sidemenu-trigger-block.swpf-shape-round .swpf-sidemenu-trigger {
+    border-radius: 50%;
+}
+
+.swpf-sidemenu-trigger-block.swpf-shape-rounded-square .swpf-sidemenu-trigger {
+    border-radius: 0.2em;
+}
+
+.swpf-sidemenu-trigger-block.swpf-shape-blob .swpf-sidemenu-trigger,
+.swpf-fullscreen-anim-morphin .swpf-sidemenu-trigger-block.swpf-shape-blob .swpf-sidemenu-trigger:before {
+    animation: swpf-border-transform 9s linear infinite;
+}
+
+@keyframes swpf-border-transform {
+
+    0%,
+    100% {
+        border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+    }
+
+    14% {
+        border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%;
+    }
+
+    28% {
+        border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%;
+    }
+
+    42% {
+        border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%;
+    }
+
+    56% {
+        border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%;
+    }
+
+    70% {
+        border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%;
+    }
+
+    84% {
+        border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%;
+    }
+}
+
+body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
+    margin-top: 32px;
+}
+
+.swpf-position-top-left.swpf-sidemenu-trigger-block {
+    top: var(--swpf-offset-top, 20px);
+    left: var(--swpf-offset-left, 20px);
+}
+
+.swpf-position-top-middle.swpf-sidemenu-trigger-block {
+    top: var(--swpf-offset-top, 20px);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.swpf-position-top-right.swpf-sidemenu-trigger-block {
+    top: var(--swpf-offset-top, 20px);
+    right: var(--swpf-offset-right, 20px);
+}
+
+.swpf-position-bottom-left.swpf-sidemenu-trigger-block {
+    bottom: var(--swpf-offset-bottom, 20px);
+    left: var(--swpf-offset-left, 20px);
+}
+
+.swpf-position-bottom-middle.swpf-sidemenu-trigger-block {
+    bottom: var(--swpf-offset-bottom, 20px);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.swpf-position-bottom-right.swpf-sidemenu-trigger-block {
+    bottom: var(--swpf-offset-bottom, 20px);
+    right: var(--swpf-offset-right, 20px);
+}
+
+.swpf-position-middle-left.swpf-sidemenu-trigger-block {
+    top: 50%;
+    left: var(--swpf-offset-left, 20px);
+    transform: translateY(-50%);
+}
+
+.swpf-position-middle-right.swpf-sidemenu-trigger-block {
+    top: 50%;
+    right: var(--swpf-offset-right, 20px);
+    transform: translateY(-50%);
+}
+
+.swpf-sidemenu-trigger-idle-animation {
+    filter: drop-shadow(var(--swpf-trigger-btn-shadow-x, 0) var(--swpf-trigger-btn-shadow-y, 0) var(--swpf-trigger-btn-shadow-blur, 0) var(--swpf-trigger-btn-shadow-color, transparent));
+}
+
+.swpf-sidemenu-trigger-idle-animation,
+.swpf-sidemenu-trigger-hover-animation {
+    position: relative;
+    z-index: 9999;
+}
+
+.swpf-sidemenu-trigger-idle-animation:hover,
+.swpf-sidemenu-show .swpf-sidemenu-trigger-idle-animation,
+.swpf-sidemenu-trigger-idle-animation:hover:before,
+.swpf-sidemenu-show .swpf-sidemenu-trigger-idle-animation:before {
+    animation: none;
+}
+
+.swpf-sidemenu-trigger {
+    width: var(--swpf-trigger-btn-size, 74px);
+    height: var(--swpf-trigger-btn-size, 74px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: var(--swpf-trigger-btn-icon-size, 24px);
+    background: var(--swpf-trigger-btn-bg-color, var(--swpf-primary-color, #000));
+    color: var(--swpf-trigger-btn-icon-color, #FFF);
+    overflow: hidden;
+}
+
+.swpf-sidemenu-trigger:hover {
+    background: var(--swpf-trigger-btn-bg-color-hover, var(--swpf-trigger-btn-bg-color, var(--swpf-primary-color, #000)));
+    color: var(--swpf-trigger-btn-icon-color-hover, var(--swpf-trigger-btn-icon-color, #FFF));
+}
+
+.swpf-sidemenu-trigger-close-icon {
+    display: none;
+}
+
+.swpf-sidemenu-show .swpf-sidemenu-trigger-open-icon,
+.swpf-sidemenu-hide .swpf-sidemenu-trigger-close-icon {
+    display: none;
+}
+
+.swpf-sidemenu-show .swpf-sidemenu-trigger-close-icon {
+    display: block;
+}
+
+.swpf-sidemenu-trigger img {
+    width: var(--swpf-trigger-btn-image-size, 100%);
+}
+
+/* Panel CSS */
+.swpf-sidemenu-panel {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 400px;
+    background-color: var(--swpf-panel-background-color, #FFF);
+    z-index: 999;
+    transition: left 0.3s ease-in-out, right 0.3s ease-in-out;
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.1);
+    z-index: 999999;
+}
+
+.swpf-sidemenu-pos-left .swpf-sidemenu-panel {
+    left: -100%
+}
+
+.swpf-sidemenu-pos-right .swpf-sidemenu-panel {
+    right: -100%;
+}
+
+.swpf-sidemenu-show.swpf-sidemenu-pos-left .swpf-sidemenu-panel,
+.swpf-sidemenu-pos-left.swpf-panel-animation-enabled .swpf-sidemenu-panel {
+    left: 0
+}
+
+.swpf-sidemenu-show.swpf-sidemenu-pos-right .swpf-sidemenu-panel,
+.swpf-sidemenu-pos-right.swpf-panel-animation-enabled .swpf-sidemenu-panel {
+    right: 0;
+}
+
+.swpf-panel-animation-enabled .swpf-sidemenu-panel {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.swpf-panel-animation-enabled .animate--animated.swpf-sidemenu-panel,
+.swpf-panel-animation-enabled.swpf-panel-in-view .swpf-sidemenu-panel {
+    visibility: visible;
+    opacity: 1;
+}
+
+.swpf-sidemenu-panel-scroller {
+    position: relative;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.swpf-sidemenu-panel-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: var(--swpf-panel-spacing-top, 50px) var(--swpf-panel-spacing-right, 30px) var(--swpf-panel-spacing-bottom, 30px) var(--swpf-panel-spacing-left, 30px);
+}
+
+.swpf-sidemenu-panel .swpf-panel-close {
+    position: absolute;
+    top: var(--swpf-close-button-offset-top, 5px);
+    height: var(--swpf-close-button-size, 30px);
+    width: var(--swpf-close-button-size, 30px);
+    background: var(--swpf-close-button-bg-color, #111);
+    color: var(--swpf-close-button-icon-color, #FFF);
+    border-radius: var(--swpf-close-button-border-radius, 0px);
+    font-size: var(--swpf-close-button-size, 30px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9;
+}
+
+.swpf-sidemenu-panel .swpf-panel-close.swpf-pos-left {
+    left: 5px;
+}
+
+.swpf-sidemenu-panel .swpf-panel-close.swpf-pos-right {
+    right: 5px;
+}
+
+.swpf-sidemenu-panel .swpf-panel-close i {
+    font-size: 0.45em;
+}
+
+/* Hamburger Icons */
+
+.swpf-toggle-button {
+    position: relative;
+    display: block;
+    width: var(--swpf-hamburger-width,25px);
+    height: var(--swpf-hamburger-thickness,2px);
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+    background: var(--swpf-trigger-btn-icon-color,var(--swpf-button-color,#fff));
+    color: inherit;
+    font-size: 0
+}
+
+.swpf-toggle-button:before,
+.swpf-toggle-button:after {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: block;
+    width: 100%;
+    height: var(--swpf-hamburger-thickness,2px);
+    background: var(--swpf-trigger-btn-icon-color,var(--swpf-button-color,#fff));
+    content: ""
+}
+
+.swpf-toggle-animating.swpf-toggle-button {
+    transition: all .35s
+}
+
+.swpf-toggle-animating.swpf-toggle-button:before,
+.swpf-toggle-animating.swpf-toggle-button:after {
+    transition: transform .35s
+}
+
+.swpf-sidemenu-trigger:hover .swpf-toggle-button,
+.swpf-sidemenu-trigger:hover .swpf-toggle-button:before,
+.swpf-sidemenu-trigger:hover .swpf-toggle-button:after {
+    background: var(--swpf-trigger-btn-hover-icon-color,var(--swpf-trigger-btn-icon-color,var(--swpf-button-color-hover,var(--swpf-button-color,#fff))));
+}
+
+.swpf-toggle-button:before {
+    transform: translate(-50%,calc(-1*var(--swpf-hamburger-spacing,8px)));
+}
+
+.swpf-toggle-button:after {
+    transform: translate(-50%,var(--swpf-hamburger-spacing,8px));
+}
+
+.swpf-toggle-button.style1:before,
+.swpf-toggle-button.style1:after {
+    transform-origin: 50% 50%;
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style1 {
+    background: 0 0;
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style1:before {
+    transform: translate(-50%,0) rotate(45deg);
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style1:after {
+    transform: translate(-50%,0) rotate(-45deg);
+}
+
+.swpf-toggle-animating.swpf-toggle-button.style2 {
+    transition: background .35s;
+}
+
+.swpf-toggle-button.style2:before,
+.swpf-toggle-button.style2:after {
+    transform-origin: 50% 50%;
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style2 {
+    background: 0 0;
+    transition: none;
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style2:before {
+    animation: menuBefore .5s forwards;
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style2:after {
+    animation: menuAfter .5s forwards;
+}
+
+@keyframes menuBefore {
+    0% {
+        transform: translate(-50%,calc(-1*var(--swpf-hamburger-spacing,8px)))
+    }
+
+    40% {
+        transform: translate(-50%,0)
+    }
+
+    60% {
+        transform: translate(-50%,0)
+    }
+
+    100% {
+        transform: translate(-50%,0) rotate(45deg)
+    }
+}
+
+@keyframes menuAfter {
+    0% {
+        transform: translate(-50%,calc(var(--swpf-hamburger-spacing,8px)))
+    }
+
+    40% {
+        transform: translate(-50%,0)
+    }
+
+    60% {
+        transform: translate(-50%,0)
+    }
+
+    100% {
+        transform: translate(-50%,0) rotate(-45deg)
+    }
+}
+
+.swpf-toggle-button.style3,
+.swpf-toggle-button.style4,
+.swpf-toggle-button.style5,
+.swpf-toggle-button.style6,
+.swpf-toggle-button.style7,
+.swpf-toggle-button.style8 {
+    height: calc(2*var(--swpf-hamburger-spacing,8px) + var(--swpf-hamburger-thickness,2px));
+    background: 0 0 !important;
+    border-top: var(--swpf-hamburger-thickness,2px) solid;
+    border-bottom: var(--swpf-hamburger-thickness,2px) solid
+}
+
+.swpf-toggle-button.style3:before,
+.swpf-toggle-button.style3:after,
+.swpf-toggle-button.style4:before,
+.swpf-toggle-button.style4:after,
+.swpf-toggle-button.style5:before,
+.swpf-toggle-button.style5:after,
+.swpf-toggle-button.style6:before,
+.swpf-toggle-button.style6:after,
+.swpf-toggle-button.style7:before,
+.swpf-toggle-button.style7:after,
+.swpf-toggle-button.style8:before,
+.swpf-toggle-button.style8:after,
+.swpf-toggle-button.style8:before,
+.swpf-toggle-button.style8:after {
+    top: 50%;
+    transform: translate(-50%,-50%)
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style3 {
+    border-color: transparent
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style3:before {
+    transform: translate(-50%,-50%) rotate(45deg)
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style3:after {
+    transform: translate(-50%,-50%) rotate(-45deg)
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style4 {
+    border-color: transparent
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style4:before {
+    transform: translate(-50%,-50%) rotate(-45deg)
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style4:after {
+    transform: translate(-50%,-50%) rotate(-135deg)
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style5 {
+    border-color: transparent
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style5:before {
+    transform: translate(-50%,-50%) rotate(135deg)
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style5:after {
+    transform: translate(-50%,-50%) rotate(-135deg)
+}
+
+.swpf-toggle-button.style6 {
+    transition: height .35s .35s,border-color .35s .35s
+}
+
+.swpf-toggle-button.style6:before,.swpf-toggle-button.style6:after {
+    transform-origin: 50% 50%
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style6 {
+    height: 0;
+    border-color: transparent;
+    transition: all .35s 0s
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style6:before {
+    transform: translate(-50%,-50%) rotate(45deg);
+    transition-delay: .5s
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style6:after {
+    transform: translate(-50%,-50%) rotate(-45deg);
+    transition-delay: .5s
+}
+
+.swpf-toggle-button.style7 {
+    transition: height .35s .35s,border-color .35s .35s
+}
+
+.swpf-toggle-button.style7:before,
+.swpf-toggle-button.style7:after {
+    transform-origin: 50% 50%
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style7 {
+    height: 0;
+    border-color: transparent;
+    transition: all .35s 0s
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style7:before {
+    transform: translate(-50%,-50%) rotate(-45deg);
+    transition-delay: .5s
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style7:after {
+    transform: translate(-50%,-50%) rotate(-135deg);
+    transition-delay: .5s
+}
+
+.swpf-toggle-button.style8 {
+    transition: height .35s .35s,border-color .35s .35s,transform .35s 0s
+}
+
+.swpf-toggle-button.style8:before,.swpf-toggle-button.style8:after {
+    transform-origin: 50% 50%
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style8 {
+    height: 0;
+    border-color: transparent;
+    transform: rotate(135deg);
+    transition: all .35s 0s,transform .35s 1s
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style8:before {
+    transform: translate(-50%,-50%) rotate(90deg);
+    transition-delay: .5s
+}
+
+.swpf-toggle-button.style9:before,.swpf-toggle-button.style9:after {
+    transform-origin: 0% 0%
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style9:before {
+    transform: translate(-50%,0) rotate(-45deg) scaleX(.6)
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style9:after {
+    transform: translate(-50%,0) rotate(45deg) scaleX(.6)
+}
+
+.swpf-toggle-button.style10:before,.swpf-toggle-button.style10:after {
+    transform-origin: 100% 0%
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style10:before {
+    transform: translate(-50%,0) rotate(45deg) scaleX(.6)
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style10:after {
+    transform: translate(-50%,0) rotate(-45deg) scaleX(.6)
+}
+
+.swpf-toggle-button.style11:before,.swpf-toggle-button.style11:after {
+    transform-origin: 0% 0%
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style11 {
+    transform: rotate(-90deg)
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style11:before {
+    transform: translate(-50%,0) rotate(-45deg) scaleX(.6)
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style11:after {
+    transform: translate(-50%,0) rotate(45deg) scaleX(.6)
+}
+
+.swpf-toggle-button.style12:before,.swpf-toggle-button.style12:after {
+    transform-origin: 0% 0%
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style12 {
+    transform: rotate(90deg)
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style12:before {
+    transform: translate(-50%,0) rotate(-45deg) scaleX(.6)
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style12:after {
+    transform: translate(-50%,0) rotate(45deg) scaleX(.6)
+}
+
+.swpf-toggle-button.style13:before,.swpf-toggle-button.style13:after {
+    transform-origin: 0% 0%
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style13 {
+    background: 0 0
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style13:before {
+    transform: translate(-30%,0) rotate(-45deg) scaleX(.6)
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style13:after {
+    transform: translate(-30%,0) rotate(45deg) scaleX(.6)
+}
+
+.swpf-toggle-button.style14:before,.swpf-toggle-button.style14:after {
+    transform-origin: 100% 0%
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style14 {
+    background: 0 0
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style14:before {
+    transform: translate(-80%,0) rotate(45deg) scaleX(.6)
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style14:after {
+    transform: translate(-80%,0) rotate(-45deg) scaleX(.6)
+}
+
+.swpf-toggle-button.style15:before,.swpf-toggle-button.style15:after {
+    transform-origin: 100% 0%
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style15 {
+    transform: rotate(90deg);
+    background: 0 0
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style15:before {
+    transform: translate(-80%,0) rotate(45deg) scaleX(.6)
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style15:after {
+    transform: translate(-80%,0) rotate(-45deg) scaleX(.6)
+}
+
+.swpf-toggle-button.style16:before,.swpf-toggle-button.style16:after {
+    transform-origin: 100% 0%
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style16 {
+    transform: rotate(-90deg);
+    background: 0 0
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style16:before {
+    transform: translate(-80%,0) rotate(45deg) scaleX(.6)
+}
+
+.swpf-sidemenu-show .swpf-toggle-button.style16:after {
+    transform: translate(-80%,0) rotate(-45deg) scaleX(.6)
+}
+
+/* Scrollbar Off */
+.swpf-scrollbar-off .swpf-sidemenu-panel-scroller::-webkit-scrollbar {
+    display: none;
+}
+
+.swpf-scrollbar-on .mCS_no_scrollbar .mCustomScrollBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.swpf-scrollbar-on .mCS-swpf-scrollbar-theme.mCSB_outside+.mCSB_scrollTools {
+    right: 0;
+}
+
+.swpf-scrollbar-on .mCS-swpf-scrollbar-theme.mCSB_scrollTools,
+.swpf-scrollbar-on .mCS-swpf-scrollbar-theme.mCSB_scrollTools .mCSB_draggerRail,
+.swpf-scrollbar-on .mCS-swpf-scrollbar-theme.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+    width: var(--swpf-scrollbar-width, 4px);
+    border-radius: 0;
+}
+
+.swpf-scrollbar-on .mCS-swpf-scrollbar-theme.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+    background: var(--swpf-scrollbar-drag-bar-color, rgba(255, 255, 255, 0.75));
+}
+
+.swpf-scrollbar-on .mCS-swpf-scrollbar-theme.mCSB_scrollTools .mCSB_draggerRail {
+    background: var(--swpf-scrollbar-drag-rail-color, rgba(0, 0, 0, 0.4));
+}
+
+
+
+/* Ajax Loader and Pagination */
+.swpf-loading {
+    display: none;
+}
+
+.swpf-processing:not(.swpf-fetching) .swpf-loading {
+    display: block;
+}
+
+.swpf-block-inner {
+    position: relative;
+}
+
+.swpf-big-loading,
+.swpf-loader-gif {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px;
+    height: 72px;
+}
+
+.swpf-big-loading:after,
+.swpf-big-loading:before,
+.swpf-loader-gif:after, 
+.swpf-loader-gif:before {
+    content: "";
+    position: absolute;
+    border: 4px solid #666;
+    opacity: 1;
+    border-radius: 50%;
+    animation: swpf-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.swpf-big-loading:before,
+.swpf-loader-gif:before {
+    animation-delay: -0.5s;
+}
+
+.swpf-big-loading {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+}
+
+@keyframes swpf-ripple {
+    0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+    }
+}
+
+.swpf-loading {
+    position: absolute;
+    left: 100%;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.swpf-loading:after, 
+.swpf-loading:before {
+    content: "";
+    position: absolute;
+    border: 2px solid #666;
+    opacity: 1;
+    border-radius: 50%;
+    animation: swpf-small-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.swpf-loading:before {
+    animation-delay: -0.5s;
+}
+
+@keyframes swpf-small-ripple {
+    0% {
+        top: 20px;
+        left: 20px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 40px;
+        height: 40px;
+        opacity: 0;
+    }
+}
+
+.swpf-ajax-pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.swpf-ajax-pagination.swpf-shop-load-more-nav,
+.swpf-ajax-pagination.swpf-infinite-scroll-nav {
+    margin-top: 0 !important;
+}
+
+.swpf-ajax-pagination .swpf-page-nav {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    border: 1px solid #EEE;
+    margin: 0 5px;
+    padding: 0;
+}
+
+.swpf-ajax-pagination .swpf-page-nav i {
+    font-size: 1.3em;
+}
+
+.swpf-ajax-pagination .swpf-page-nav.swpf-numbered {
+    font-size: 14px;
+}
+
+.swpf-ajax-pagination .swpf-page-nav.swpf-current-page {
+    background: #F2F2F2;
+}
+
+.swpf-ajax-pagination .swpf-page-nav i {
+    line-height: 1;
+}
+
+.swpf-ajax-pagination .swpf-page-nav.swpf-disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.swpf-ajax-pagination .swpf-shop-load-more.swpf-button {
+    border: 1px solid #EEE;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.swpf-ajax-pagination .swpf-shop-load-more.swpf-disabled {
+    display: none;
+}
+
+.swpf-ajax-pagination .swpf-shop-load-more span {
+    background: #000;
+    color: #FFF;
+    font-size: 0.7em;
+    font-weight: bold;
+    border-radius: 2px;
+    line-height: 1;
+    padding: 0.2em;
+    display: inline-block;
+    margin-left: 8px;
+}
+
+.swpf-ajax-pagination .swpf-shop-load-more.swpf-infinite-scroll {
+    background: none !important;
+}
+
+.swpf-block-inner > div {
+    margin-bottom: 30px;
+}
+
+.swpf-block-inner > div:last-child,
+.swpf-block-inner > div.swpf-tile-block {
+    margin-bottom: 0;
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(255,255,255, 0.9);
+    z-index: 999;
+}
+
+.swpf-responsive-sidemenu{
+    display: none;
+}
+
+.swpf-responsive-sidemenu .swpf-form .swpf-filters,
+.swpf-responsive-sidemenu .swpf-activated-filter-wrap{
+    display: flex;
+    flex-direction: column;
+}
+
+.swpf-hidden{
+    display: none;
+}
