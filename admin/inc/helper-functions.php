@@ -59,6 +59,31 @@ function swpf_get_taxonomies() {
     return $taxonomies;
 }
 
+function swpf_get_checkbox_allowed_protocols() {
+    return array(
+        'ul' => array(
+            'class' => array()
+        ),
+        'li' => array(
+            'class' => array()
+        ),
+        'input' => array(
+            'id' => array(),
+            'type' => array(),
+            'name' => array(),
+            'checked' => array(),
+            'value' => array(),
+        ),
+        'span' => array(
+            'class' => array()
+        ),
+        'label' => array(
+            'class' => array()
+        ),
+    );
+}
+
+
 /* Check List */
 if (!class_exists('SWPF_Walker_Category_Checklist')) {
 
@@ -176,10 +201,10 @@ if (!function_exists('swpf_terms_checklist')) {
             }
 
             // Put checked cats on top
-            echo call_user_func_array(array(&$walker, 'walk'), array($checked_categories, 0, $args));
+            echo wp_kses(call_user_func_array(array(&$walker, 'walk'), array($checked_categories, 0, $args)), swpf_get_checkbox_allowed_protocols());
         }
         // Then the rest of them
-        echo call_user_func_array(array(&$walker, 'walk'), array($categories, 0, $args));
+        echo wp_kses(call_user_func_array(array(&$walker, 'walk'), array($categories, 0, $args)), swpf_get_checkbox_allowed_protocols());
     }
 
 }
@@ -296,11 +321,11 @@ if (!function_exists('swpf_terms_radiolist')) {
             }
 
             // Put checked cats on top
-            echo call_user_func_array(array(&$walker, 'walk'), array($checked_categories, 0, $args));
+            echo wp_kses(call_user_func_array(array(&$walker, 'walk'), array($checked_categories, 0, $args)), swpf_get_checkbox_allowed_protocols());
         }
 
         // Then the rest of them
-        echo call_user_func_array(array(&$walker, 'walk'), array($categories, 0, $args));
+        echo wp_kses(call_user_func_array(array(&$walker, 'walk'), array($categories, 0, $args)), swpf_get_checkbox_allowed_protocols());
     }
 
 }
@@ -426,10 +451,10 @@ if (!function_exists('swpf_terms_togglelist')) {
             }
 
             // Put checked cats on top
-            echo call_user_func_array(array(&$walker, 'walk'), array($checked_categories, 0, $args));
+            echo wp_kses(call_user_func_array(array(&$walker, 'walk'), array($checked_categories, 0, $args)), swpf_get_checkbox_allowed_protocols());
         }
         // Then the rest of them
-        echo call_user_func_array(array(&$walker, 'walk'), array($categories, 0, $args));
+        echo wp_kses(call_user_func_array(array(&$walker, 'walk'), array($categories, 0, $args)), swpf_get_checkbox_allowed_protocols());
     }
 
 }
@@ -559,10 +584,10 @@ if (!function_exists('swpf_terms_color_image_checkboxlist')) {
             }
 
             // Put checked cats on top
-            echo call_user_func_array(array(&$walker, 'walk'), array($checked_categories, 0, $args));
+            echo wp_kses(call_user_func_array(array(&$walker, 'walk'), array($checked_categories, 0, $args)), swpf_get_checkbox_allowed_protocols());
         }
         // Then the rest of them
-        echo call_user_func_array(array(&$walker, 'walk'), array($categories, 0, $args));
+        echo wp_kses(call_user_func_array(array(&$walker, 'walk'), array($categories, 0, $args)), swpf_get_checkbox_allowed_protocols());
     }
 
 }
