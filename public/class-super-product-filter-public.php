@@ -69,7 +69,7 @@ class Super_Product_Filter_Public {
 
     public function includes() {
         include SWPF_PATH . 'public/inc/woo-helpers.php';
-        include SWPF_PATH . 'public/inc/wptt-webfont-loader.php';
+        include SWPF_PATH . 'public/inc/swpf-webfont-loader.php';
         include SWPF_PATH . 'public/inc/style.php';
     }
 

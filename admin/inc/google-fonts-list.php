@@ -310,8 +310,8 @@ function swpf_fonts_url() {
     $load_font_locally = (isset($general_settings['load_fonts_locally']) && $general_settings['load_fonts_locally'] == 'on') ? true : false;
 
     if ($fonts_url && $load_font_locally) {
-        require_once SWPF_PATH . 'public/inc/wptt-webfont-loader.php';
-        $fonts_url = wptt_get_webfont_url($fonts_url);
+        require_once SWPF_PATH . 'public/inc/swpf-webfont-loader.php';
+        $fonts_url = swpf_get_webfont_url($fonts_url);
     }
 
     return $fonts_url;
