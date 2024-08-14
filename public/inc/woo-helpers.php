@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || die();
 
 function swpf_get_shop_page_url() {
     $shop_page_id = (int) wc_get_page_id('shop');
@@ -22,14 +23,14 @@ function swpf_pagination($products, $left_icon, $right_icon) {
             }
         }
         $current_page = max(1, $paged);
-        echo paginate_links(array(
+        echo wp_kses_post(paginate_links(array(
             'base' => str_replace($big, '%#%', get_pagenum_link($big, false)),
             'format' => '?paged=%#%',
             'current' => $current_page,
             'total' => $total_pages,
             'prev_text' => '<i class="' . esc_attr($left_icon['value']) . '"></i>',
             'next_text' => '<i class="' . esc_attr($right_icon['value']) . '"></i>',
-        ));
+        )));
     }
 }
 

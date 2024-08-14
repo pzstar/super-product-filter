@@ -1,6 +1,8 @@
 <?php
+defined('ABSPATH') || die();
 
-class SPF_Icon_Manager {
+
+class SWPF_Icon_Manager {
 
     private static $instance = null;
 
@@ -88,4 +90,4 @@ class SPF_Icon_Manager {
 
 }
 
-SPF_Icon_Manager::instance();
+SWPF_Icon_Manager::instance();

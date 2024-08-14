@@ -1,4 +1,6 @@
 <?php
+defined('ABSPATH') || die();
+
 $items_order = array();
 $taxonomies = swpf_get_taxonomies(); // get all taxonomies object
 $taxonomies_keys = array_keys($taxonomies); // get only the taxo name array

@@ -2,7 +2,7 @@
 
 defined('ABSPATH') || die();
 
-class SWOOPFBlock {
+class SWPFBlock {
 
     public function __construct() {
         add_action('init', array($this, 'register_block'));
@@ -27,8 +27,8 @@ class SWOOPFBlock {
     }
 
     public function enqueue_block_editor_assets() {
-        wp_register_style('swpf-block-editor', SPF_URL . 'admin/css/filter-block.css', array('wp-edit-blocks'), SPF_VERSION);
-        wp_register_script('swpf-block-editor', SPF_URL . 'admin/js/filter-block.min.js', array('wp-blocks', 'wp-element', 'wp-i18n', 'wp-components'), SPF_VERSION, true);
+        wp_register_style('swpf-block-editor', SWPF_URL . 'admin/css/filter-block.css', array('wp-edit-blocks'), SWPF_VERSION);
+        wp_register_script('swpf-block-editor', SWPF_URL . 'admin/js/filter-block.min.js', array('wp-blocks', 'wp-element', 'wp-i18n', 'wp-components'), SWPF_VERSION, true);
 
         $all_filters = swpf_get_all_filters();
 
@@ -60,4 +60,4 @@ class SWOOPFBlock {
 
 }
 
-new SWOOPFBlock();
+new SWPFBlock();

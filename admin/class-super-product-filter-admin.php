@@ -64,36 +64,36 @@ class Super_Product_Filter_Admin {
         });
 
         // Get posts by query
-        add_filter('plugin_action_links_' . SPF_BASENAME, array($this, 'add_settings_link'));
+        add_filter('plugin_action_links_' . SWPF_BASENAME, array($this, 'add_settings_link'));
     }
 
     public function include_files() {
-        include SPF_PATH . 'admin/inc/register-widget-class.php';
-        include SPF_PATH . 'admin/inc/google-fonts-list.php';
-        include SPF_PATH . 'admin/inc/helper-functions.php';
-        include SPF_PATH . 'admin/inc/icon-manager.php';
-        include SPF_PATH . 'admin/inc/swpf-block.php';
+        include SWPF_PATH . 'admin/inc/register-widget-class.php';
+        include SWPF_PATH . 'admin/inc/google-fonts-list.php';
+        include SWPF_PATH . 'admin/inc/helper-functions.php';
+        include SWPF_PATH . 'admin/inc/icon-manager.php';
+        include SWPF_PATH . 'admin/inc/swpf-block.php';
     }
 
     public function enqueue_styles() {
         global $post_type, $pagenow, $current_screen;
         if ('swpf-product-filter' == $post_type || $pagenow == 'widgets.php' || in_array($current_screen->id, array('swpf-product-filter_page_swpf-general-settings', 'swpf-product-filter_page_swpf-metafield-settings'))) {
-            wp_enqueue_style('fontawesome-6.3.0', SPF_URL . 'public/css/fontawesome-6.3.0.css', array(), $this->version);
-            wp_enqueue_style('eleganticons', SPF_URL . 'public/css/eleganticons.css', array(), $this->version);
-            wp_enqueue_style('essentialicon', SPF_URL . 'public/css/essentialicon.css', array(), $this->version);
-            wp_enqueue_style('materialdesignicons', SPF_URL . 'public/css/materialdesignicons.css', array(), $this->version);
-            wp_enqueue_style('icofont', SPF_URL . 'public/css/icofont.css', array(), $this->version);
+            wp_enqueue_style('fontawesome-6.3.0', SWPF_URL . 'public/css/fontawesome-6.3.0.css', array(), $this->version);
+            wp_enqueue_style('eleganticons', SWPF_URL . 'public/css/eleganticons.css', array(), $this->version);
+            wp_enqueue_style('essentialicon', SWPF_URL . 'public/css/essentialicon.css', array(), $this->version);
+            wp_enqueue_style('materialdesignicons', SWPF_URL . 'public/css/materialdesignicons.css', array(), $this->version);
+            wp_enqueue_style('icofont', SWPF_URL . 'public/css/icofont.css', array(), $this->version);
 
             /* Select2 */
-            wp_enqueue_style('jquery-select2', SPF_URL . 'admin/css/select2.min.css', array(), $this->version);
+            wp_enqueue_style('jquery-select2', SWPF_URL . 'admin/css/select2.min.css', array(), $this->version);
             wp_enqueue_style('wp-color-picker');
 
-            wp_enqueue_style('jquery-ui-slider', SPF_URL . 'public/vendor/slider-ui/slider-ui.css', array(), $this->version, 'all');
+            wp_enqueue_style('jquery-ui-slider', SWPF_URL . 'public/vendor/slider-ui/slider-ui.css', array(), $this->version, 'all');
 
-            wp_enqueue_style('selectize', SPF_URL . 'public/vendor/selectize/selectize.css', array(), $this->version, 'all');
-            wp_enqueue_style('chosen', SPF_URL . 'public/vendor/chosen/chosen.css', array(), $this->version);
+            wp_enqueue_style('selectize', SWPF_URL . 'public/vendor/selectize/selectize.css', array(), $this->version, 'all');
+            wp_enqueue_style('chosen', SWPF_URL . 'public/vendor/chosen/chosen.css', array(), $this->version);
 
-            wp_enqueue_style($this->plugin_name, SPF_URL . 'admin/css/admin.css', array(), $this->version, 'all');
+            wp_enqueue_style($this->plugin_name, SWPF_URL . 'admin/css/admin.css', array(), $this->version, 'all');
         }
     }
 
@@ -103,28 +103,28 @@ class Super_Product_Filter_Admin {
             wp_enqueue_media();
             wp_enqueue_script('wp-color-picker');
 
-            wp_enqueue_script('selectize', SPF_URL . 'public/vendor/selectize/selectize.js', array('jquery'), $this->version);
+            wp_enqueue_script('selectize', SWPF_URL . 'public/vendor/selectize/selectize.js', array('jquery'), $this->version);
 
             /* Select2 */
-            wp_enqueue_script('jquery-select2', SPF_URL . 'admin/js/select2.min.js', array('jquery'), $this->version, true);
+            wp_enqueue_script('jquery-select2', SWPF_URL . 'admin/js/select2.min.js', array('jquery'), $this->version, true);
 
             // CodeMirror Enqueue
             wp_enqueue_code_editor(array('type' => 'text/html'));
 
             /* Enqueue jQuery Chosen */
-            wp_enqueue_script('chosen-script', SPF_URL . 'public/vendor/chosen/chosen.jquery.js', array('jquery'), $this->version);
+            wp_enqueue_script('chosen-script', SWPF_URL . 'public/vendor/chosen/chosen.jquery.js', array('jquery'), $this->version);
 
-            wp_enqueue_script('wp-color-picker-alpha-min', SPF_URL . 'public/vendor/wp-color-picker-alpha/wp-color-picker-alpha.min.js', array('wp-color-picker'), $this->version);
+            wp_enqueue_script('wp-color-picker-alpha-min', SWPF_URL . 'public/vendor/wp-color-picker-alpha/wp-color-picker-alpha.min.js', array('wp-color-picker'), $this->version);
 
             /* Jquery Condition */
-            wp_enqueue_script('jquery-condition', SPF_URL . 'admin/js/jquery-condition.js', array('jquery'), $this->version);
+            wp_enqueue_script('jquery-condition', SWPF_URL . 'admin/js/jquery-condition.js', array('jquery'), $this->version);
 
-            wp_enqueue_script($this->plugin_name, SPF_URL . 'admin/js/admin.js', array('jquery', 'jquery-ui-core', 'jquery-ui-sortable', 'jquery-ui-slider'), $this->version, false);
+            wp_enqueue_script($this->plugin_name, SWPF_URL . 'admin/js/admin.js', array('jquery', 'jquery-ui-core', 'jquery-ui-sortable', 'jquery-ui-slider'), $this->version, false);
 
             $admin_var = array(
-                'ajaxurl' => admin_url('admin-ajax.php'),
+                'ajaxurl' => esc_url(admin_url('admin-ajax.php')),
                 'ajax_nonce' => wp_create_nonce('swpf-backend-ajax-nonce'),
-                'admin_url' => admin_url() . 'post.php'
+                'admin_url' => esc_url(admin_url('post.php'))
             );
             if (swpf_get_post('tab') == 'swpf') {
                 $admin_var['swpf_settings_save_link'] = 'admin.php?page=wc-settings&tab=swpf&settings_saved=1';
@@ -201,7 +201,7 @@ class Super_Product_Filter_Admin {
 
     public function widgets_init() {
         register_sidebar([
-            'name' => esc_html__('SWOOPF Widget Area', 'super-product-filter'),
+            'name' => esc_html__('SWPF Widget Area', 'super-product-filter'),
             'id' => 'swpf-sidebar',
             'description' => esc_html__('The main sidebar appears on the right on each page except the front page template', 'super-product-filter'),
             'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -209,18 +209,20 @@ class Super_Product_Filter_Admin {
             'before_title' => '<h3 class="swpf-widget-title">',
             'after_title' => '</h3>',
         ]);
-        register_widget('SPF_Widget');
+        register_widget('SWPF_Widget');
     }
 
     public function save_metabox_settings($post_id) {
-        if (wp_verify_nonce(swpf_get_post('swpf_settings_nonce'), 'swpf-settings-nonce') && isset($_POST['swpf_settings'])) {
+        if (wp_verify_nonce(swpf_get_post('swpf_settings_nonce'), 'swpf-settings-nonce')) {
             $settings = get_post_meta($post_id, 'swpf_settings', true);
             $terms_customize = isset($settings['terms_customize']) ? $settings['terms_customize'] : array();
-            $settings = $_POST['swpf_settings'];
-            $settings['terms_customize'] = $terms_customize;
-            $settings = self::recursive_parse_args($settings, self::checkbox_settings());
-            $settings = self::sanitize_array($settings, self::sanitize_settings_rules());
-            update_post_meta($post_id, 'swpf_settings', $settings);
+            $settings = swpf_get_post_data_arr('swpf_settings');
+            if($settings) {
+                $settings['terms_customize'] = $terms_customize;
+                $settings = self::recursive_parse_args($settings, self::checkbox_settings());
+                $settings = self::sanitize_array($settings, self::sanitize_settings_rules());
+                update_post_meta($post_id, 'swpf_settings', $settings);
+            }
         }
         return;
     }
@@ -228,92 +230,94 @@ class Super_Product_Filter_Admin {
     public function settings_metabox_xhr() {
         global $post;
         if ('swpf-product-filter' === $post->post_type) {
+            ob_start();
             ?>
-            <script>
-                // Avoid collisions with other libraries
-                (function ($) {
-                    "use strict";
-                    // Make sure the document is ready
-                    $(document).ready(function () {
+            // Avoid collisions with other libraries
+            (function ($) {
+                "use strict";
+                // Make sure the document is ready
+                $(document).ready(function () {
 
-                        $(document).on('submit', 'form#post', function (e) {
-                            e.preventDefault()
+                    $(document).on('submit', 'form#post', function (e) {
+                        e.preventDefault()
 
-                            $('.swpf-settings-footer .button').addClass('swpf-button-loader');
+                        $('.swpf-settings-footer .button').addClass('swpf-button-loader');
 
-                            // This is the post.php url we localized (via php) above
-                            var url = '<?php echo admin_url('post.php') ?>'
-                            // Serialize form data
-                            var data = $('form#post').serializeArray();                 // Tell PHP what we're doing
-                            // NOTE: "name" and "value" are the array keys. This is important. I use int(1) for the value to make sure we don't get a string server-side.
-                            data.push({name: 'save_post_ajax', value: 1})
-                            data.push({name: 'post_status', value: 'publish'})
+                        // This is the post.php url we localized (via php) above
+                        var url = '<?php echo esc_url(admin_url('post.php')) ?>'
+                        // Serialize form data
+                        var data = $('form#post').serializeArray();                 // Tell PHP what we're doing
+                        // NOTE: "name" and "value" are the array keys. This is important. I use int(1) for the value to make sure we don't get a string server-side.
+                        data.push({name: 'save_post_ajax', value: 1})
+                        data.push({name: 'post_status', value: 'publish'})
 
-                            // Replaces wp.autosave.initialCompareString
-                            var ajax_updated = false
+                        // Replaces wp.autosave.initialCompareString
+                        var ajax_updated = false
 
-                            /**
-                             * Supercede the WP beforeunload function to remove                  * the confirm dialog when leaving the page (if we saved via ajax)
-                             *
-                             * The following line of code SHOULD work in $.post.done(), but
-                             *     for some reason, wp.autosave.initialCompareString isn't changed
-                             *     when called from wp-includes/js/autosave.js
-                             * wp.autosave.initialCompareString = wp.autosave.getCompareString();
-                             */
-                            $(window).unbind('beforeunload.edit-post')
-                            $(window).on('beforeunload.edit-post', function () {
-                                var editor = typeof tinymce !== 'undefined' && tinymce.get('content')
+                        /**
+                         * Supercede the WP beforeunload function to remove                  * the confirm dialog when leaving the page (if we saved via ajax)
+                         *
+                         * The following line of code SHOULD work in $.post.done(), but
+                         *     for some reason, wp.autosave.initialCompareString isn't changed
+                         *     when called from wp-includes/js/autosave.js
+                         * wp.autosave.initialCompareString = wp.autosave.getCompareString();
+                         */
+                        $(window).unbind('beforeunload.edit-post')
+                        $(window).on('beforeunload.edit-post', function () {
+                            var editor = typeof tinymce !== 'undefined' && tinymce.get('content')
 
-                                // Use our "ajax_updated" var instead of wp.autosave.initialCompareString
-                                if ((editor && !editor.isHidden() && editor.isDirty()) ||
-                                    (wp.autosave && wp.autosave.getCompareString() !== ajax_updated)) {
-                                    return postL10n.saveAlert
-                                }
-                            })
-
-
-                            // Post it
-                            $.post(url, data, function (response) {
-                                // Validate response
-                                if (response.success) {
-                                    // Mark TinyMCE as saved
-                                    if (typeof tinyMCE !== 'undefined') {
-                                        for (id in tinyMCE.editors) {
-                                            if (tinyMCE.get(id))
-                                                tinyMCE.get(id).setDirty(false)
-                                        }
-                                    }
-                                    // Update the saved content for the beforeunload check
-                                    ajax_updated = wp.autosave.getCompareString();
-                                }
-                                $('.swpf-alert').addClass('swpf-alert-success');
-                                $('.swpf-alert span').html('Settings Saved');
-                                $('.swpf-alert').addClass('swpf-alert-active');
-                                $('.swpf-settings-footer .button').removeClass('swpf-button-loader');
-                                clearTimeout();
-                                setTimeout(function () {
-                                    if ($('.swpf-alert').hasClass('swpf-alert-active')) {
-                                        $('.swpf-alert').removeClass('swpf-alert-active');
-                                        $('.swpf-alert').removeClass('swpf-alert-success swpf-alert-warning swpf-alert-neutral');
-                                    }
-                                }, 3500);
-                                history.pushState("", document.title, url + '?' + 'post=' + response.data + '&action=edit');
-                            }).fail(function (response) {
-                                console.log('ERROR: Could not contact server. ', response)
-                            }).done(function () {
-                                if (wp.autosave) {
-                                    wp.autosave.enableButtons();
-                                }
-
-                                $('#publishing-action .spinner').removeClass('is-active');
-                            })
-
-                            return false
+                            // Use our "ajax_updated" var instead of wp.autosave.initialCompareString
+                            if ((editor && !editor.isHidden() && editor.isDirty()) ||
+                                (wp.autosave && wp.autosave.getCompareString() !== ajax_updated)) {
+                                return postL10n.saveAlert
+                            }
                         })
+
+
+                        // Post it
+                        $.post(url, data, function (response) {
+                            // Validate response
+                            if (response.success) {
+                                // Mark TinyMCE as saved
+                                if (typeof tinyMCE !== 'undefined') {
+                                    for (id in tinyMCE.editors) {
+                                        if (tinyMCE.get(id))
+                                            tinyMCE.get(id).setDirty(false)
+                                    }
+                                }
+                                // Update the saved content for the beforeunload check
+                                ajax_updated = wp.autosave.getCompareString();
+                            }
+                            $('.swpf-alert').addClass('swpf-alert-success');
+                            $('.swpf-alert span').html('Settings Saved');
+                            $('.swpf-alert').addClass('swpf-alert-active');
+                            $('.swpf-settings-footer .button').removeClass('swpf-button-loader');
+                            clearTimeout();
+                            setTimeout(function () {
+                                if ($('.swpf-alert').hasClass('swpf-alert-active')) {
+                                    $('.swpf-alert').removeClass('swpf-alert-active');
+                                    $('.swpf-alert').removeClass('swpf-alert-success swpf-alert-warning swpf-alert-neutral');
+                                }
+                            }, 3500);
+                            history.pushState("", document.title, url + '?' + 'post=' + response.data + '&action=edit');
+                        }).fail(function (response) {
+                            console.log('ERROR: Could not contact server. ', response)
+                        }).done(function () {
+                            if (wp.autosave) {
+                                wp.autosave.enableButtons();
+                            }
+
+                            $('#publishing-action .spinner').removeClass('is-active');
+                        })
+
+                        return false
                     })
-                })(jQuery)
-            </script>
+                })
+            })(jQuery)
             <?php
+            wp_register_script('swpf-admin-save-post', '',);
+            wp_enqueue_script('swpf-admin-save-post');
+            wp_add_inline_script('swpf-admin-save-post', ob_get_clean());
         }
     }
 
@@ -324,7 +328,7 @@ class Super_Product_Filter_Admin {
         #If this is your post type
         if ('swpf-product-filter' === swpf_get_post('post_type')) {
             # Send JSON response
-            if (swpf_get_post_data('save_post_ajax') == true) {
+            if (swpf_get_post('save_post_ajax') == true) {
                 wp_send_json_success($post_id);
             }
         }
@@ -372,7 +376,7 @@ class Super_Product_Filter_Admin {
     }
 
     public function settings_metabox_callback() {
-        include SPF_PATH . 'admin/inc/metabox/settings-metabox.php';
+        include SWPF_PATH . 'admin/inc/metabox/settings-metabox.php';
     }
 
     public function register_submenu_page() {
@@ -381,7 +385,7 @@ class Super_Product_Filter_Admin {
     }
 
     public function generalsettingsconfiguration() {
-        include SPF_PATH . 'admin/inc/general/settings.php';
+        include SWPF_PATH . 'admin/inc/general/settings.php';
     }
 
     public function handle_generalsettingsform() {
@@ -392,7 +396,7 @@ class Super_Product_Filter_Admin {
             </div> <?php
             exit;
         } else {
-            $general_settings = isset($_POST['swpf_general_settings']) ? $_POST['swpf_general_settings'] : array();
+            $general_settings = swpf_get_post_data_arr('swpf_general_settings');
             $general_settings = self::recursive_parse_args($general_settings, self::checkbox_general_settings());
             $general_settings = self::sanitize_array($general_settings, self::sanitize_general_setting_rules());
 
@@ -1161,45 +1165,57 @@ class Super_Product_Filter_Admin {
     public function icon_choices() {
         global $current_screen;
         if ('swpf-product-filter' == $current_screen->post_type) {
-            echo '<div id="swpf-icon-box" class="swpf-icon-box">';
-            echo '<div class="swpf-icon-search">';
-            echo '<select>';
+            ?>
+            <div id="swpf-icon-box" class="swpf-icon-box">
+                <div class="swpf-icon-search">
+                    <select>
+                        <?php
+                        //See customizer-icon-manager.php file
+                        $icons = apply_filters('swpf_register_icon', array());
 
-            //See customizer-icon-manager.php file
-            $icons = apply_filters('swpf_register_icon', array());
-
-            if ($icons && is_array($icons)) {
-                foreach ($icons as $icon) {
-                    if ($icon['name'] && $icon['label']) {
-                        echo '<option value="' . esc_attr($icon['name']) . '">' . esc_html($icon['label']) . '</option>';
-                    }
-                }
-            }
-
-            echo '</select>';
-            echo '<input type="text" class="swpf-icon-search-input" placeholder="' . esc_html__('Type to filter', 'super-product-filter') . '" />';
-            echo '</div>';
-
-            if ($icons && is_array($icons)) {
-                $active_class = ' active';
-                foreach ($icons as $icon) {
-                    $icon_name = isset($icon['name']) && $icon['name'] ? $icon['name'] : '';
-                    $icon_prefix = isset($icon['prefix']) && $icon['prefix'] ? $icon['prefix'] : '';
-                    $icon_displayPrefix = isset($icon['displayPrefix']) && $icon['displayPrefix'] ? $icon['displayPrefix'] . ' ' : '';
-
-                    echo '<ul class="swpf-icon-list ' . esc_attr($icon_name) . esc_attr($active_class) . '">';
-                    $icon_array = isset($icon['icons']) ? $icon['icons'] : '';
-                    if (is_array($icon_array)) {
-                        foreach ($icon_array as $icon_id) {
-                            echo '<li><i class="' . esc_attr($icon_displayPrefix) . esc_attr($icon_prefix) . esc_attr($icon_id) . '"></i></li>';
+                        if ($icons && is_array($icons)) {
+                            foreach ($icons as $icon) {
+                                if ($icon['name'] && $icon['label']) {
+                                    ?>
+                                    <option value="<?php echo esc_attr($icon['name']); ?>"><?php echo esc_html($icon['label']); ?></option>
+                                    <?php
+                                }
+                            }
                         }
-                    }
-                    echo '</ul>';
-                    $active_class = '';
-                }
-            }
+                        ?>
 
-            echo '</div>';
+                    </select>
+                    <input type="text" class="swpf-icon-search-input" placeholder="<?php echo esc_html__('Type to filter', 'super-product-filter'); ?>" />
+                </div>
+                <?php
+                if ($icons && is_array($icons)) {
+                    $active_class = ' active';
+                    foreach ($icons as $icon) {
+                        $icon_name = isset($icon['name']) && $icon['name'] ? $icon['name'] : '';
+                        $icon_prefix = isset($icon['prefix']) && $icon['prefix'] ? $icon['prefix'] : '';
+                        $icon_displayPrefix = isset($icon['displayPrefix']) && $icon['displayPrefix'] ? $icon['displayPrefix'] . ' ' : '';
+                        ?>
+
+                        <ul class="swpf-icon-list <?php echo esc_attr($icon_name) . esc_attr($active_class); ?>">
+                            <?php
+                            $icon_array = isset($icon['icons']) ? $icon['icons'] : '';
+                            if (is_array($icon_array)) {
+                                foreach ($icon_array as $icon_id) {
+                                    ?>
+                                    <li><i class="<?php echo esc_attr($icon_displayPrefix) . esc_attr($icon_prefix) . esc_attr($icon_id); ?>"></i></li>
+                                    <?php
+                                }
+                            }
+                            ?>
+                        </ul>
+                        <?php
+                        $active_class = '';
+                    }
+                }
+                ?>
+
+            </div>
+            <?php
         }
     }
 
@@ -1272,15 +1288,15 @@ class Super_Product_Filter_Admin {
 
     public function process_settings_export() {
 
-        if (empty($_POST['swpf_imex_action']) || 'export_settings' != $_POST['swpf_imex_action'] || empty($_POST['swpf_filter_id']))
+        if (empty(swpf_get_post('swpf_imex_action')) || 'export_settings' != swpf_get_post('swpf_imex_action') || empty(swpf_get_post('swpf_filter_id')))
             return;
 
-        if (!wp_verify_nonce($_POST['swpf_imex_export_nonce'], 'swpf_imex_export_nonce'))
+        if (!wp_verify_nonce(swpf_get_post('swpf_imex_export_nonce'), 'swpf_imex_export_nonce'))
             return;
 
         if (!current_user_can('manage_options'))
             return;
-        $filter_id = $_POST['swpf_filter_id'];
+        $filter_id = swpf_get_post('swpf_filter_id');
 
         if ('publish' == get_post_status($filter_id) || 'draft' == get_post_status($filter_id)) {
             $settings = get_post_meta($filter_id, 'swpf_settings', true);
@@ -1307,16 +1323,16 @@ class Super_Product_Filter_Admin {
 
     public function process_settings_import() {
 
-        if (empty($_POST['swpf_imex_action']) || 'import_settings' != $_POST['swpf_imex_action'] || empty($_POST['swpf_filter_id']))
+        if (empty(swpf_get_post('swpf_imex_action')) || 'import_settings' != swpf_get_post('swpf_imex_action') || empty(swpf_get_post('swpf_filter_id')))
             return;
 
-        if (!wp_verify_nonce($_POST['swpf_imex_import_nonce'], 'swpf_imex_import_nonce'))
+        if (!wp_verify_nonce(swpf_get_post('swpf_imex_import_nonce'), 'swpf_imex_import_nonce'))
             return;
 
         if (!current_user_can('manage_options'))
             return;
 
-        $filename = $_FILES['swpf_import_file']['name'];
+        $filename = sanitize_file_name($_FILES['swpf_import_file']['name']);
         $extension = explode('.', $filename);
         $extension = end($extension);
 
@@ -1324,7 +1340,7 @@ class Super_Product_Filter_Admin {
             wp_die(__('Please upload a valid .json file', 'super-product-filter'));
         }
 
-        $import_file = $_FILES['swpf_import_file']['tmp_name'];
+        $import_file = sanitize_text_field($_FILES['swpf_import_file']['tmp_name']);
 
         if (empty($import_file)) {
             wp_die(__('Please upload a file to import', 'super-product-filter'));
@@ -1333,7 +1349,7 @@ class Super_Product_Filter_Admin {
         // Retrieve the settings from the file and convert the json object to an array.
         $imdat = json_decode(file_get_contents($import_file), true);
 
-        $filter_id = $_POST['swpf_filter_id'];
+        $filter_id = swpf_get_post('swpf_filter_id');
 
         if ('publish' == get_post_status($filter_id) || 'draft' == get_post_status($filter_id)) {
             $old_settings = get_post_meta($filter_id, 'swpf_settings', true);
@@ -1342,7 +1358,7 @@ class Super_Product_Filter_Admin {
             $settings = self::sanitize_array($settings, self::sanitize_settings_rules());
             update_post_meta($filter_id, 'swpf_settings', $settings);
 
-            $location = $_SERVER['HTTP_REFERER'];
+            $location = sanitize_text_field($_SERVER['HTTP_REFERER']);
             wp_safe_redirect($location . '&swpfalert=Settings%20Imported%20Successfully');
             exit();
         } else {
@@ -1493,7 +1509,7 @@ class Super_Product_Filter_Admin {
 
                                     <div class="swpf-custom-term-field swpf-field-wrap swpf-custom-color">
                                         <label><?php esc_html_e('Color', 'super-product-filter'); ?></label>
-                                        <input type="text" data-alpha-enabled="true" data-alpha-color-type="hex" class="color-picker swpf-color-picker" name="swpf_settings[terms_customize][<?php echo esc_attr($key); ?>][<?php echo esc_attr($tval->term_id) ?>][term_color]" value="<?php echo isset($terms_customize_settings[$tval->term_id]['term_color']) ? $terms_customize_settings[$tval->term_id]['term_color'] : ''; ?>">
+                                        <input type="text" data-alpha-enabled="true" data-alpha-color-type="hex" class="color-picker swpf-color-picker" name="swpf_settings[terms_customize][<?php echo esc_attr($key); ?>][<?php echo esc_attr($tval->term_id) ?>][term_color]" value="<?php echo esc_attr(isset($terms_customize_settings[$tval->term_id]['term_color']) ? $terms_customize_settings[$tval->term_id]['term_color'] : ''); ?>">
                                     </div>
 
                                     <div class="swpf-custom-term-field swpf-field-wrap swpf-custom-image">
@@ -1509,7 +1525,7 @@ class Super_Product_Filter_Admin {
                                         <div class="swpf-icon-image-uploader<?php echo esc_attr($upload_class); ?>">
                                             <div class="swpf-custom-menu-image-icon" >
                                                 <?php if ($has_image) { ?>
-                                                    <img src="<?php echo isset($terms_customize_settings[$tval->term_id]['term_image']) ? esc_url($terms_customize_settings[$tval->term_id]['term_image']) : ''; ?>" width="100"/>
+                                                    <img src="<?php echo esc_attr(isset($terms_customize_settings[$tval->term_id]['term_image']) ? esc_url($terms_customize_settings[$tval->term_id]['term_image']) : ''); ?>" width="100"/>
                                                 <?php } ?>
                                             </div>
                                             <div class="swpf-custom-img-action-field">
@@ -1569,7 +1585,7 @@ class Super_Product_Filter_Admin {
     }
 
     public function add_settings_link($links) {
-        $settings_link = '<a href="' . get_admin_url(null, 'edit.php?post_type=swpf-product-filter') . '">' . esc_html__('Settings', 'super-product-filter') . '</a>';
+        $settings_link = '<a href="' . esc_url(get_admin_url(null, 'edit.php?post_type=swpf-product-filter')) . '">' . esc_html__('Settings', 'super-product-filter') . '</a>';
         array_unshift($links, $settings_link);
         return $links;
     }

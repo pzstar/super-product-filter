@@ -1,4 +1,6 @@
 <?php
+defined('ABSPATH') || die();
+
 global $wp_query;
 
 $taxonomy = swpf_get_taxonomies();
@@ -95,11 +97,11 @@ $main_wrap_classes = array(
 ?>
 
 <div class="<?php echo esc_attr(implode(' ', $main_wrap_classes)) ?>" id="swpf-filter-preset-<?php echo esc_attr($unique_id); ?>">
-    <form id="swpf-form-<?php echo esc_attr($unique_id); ?>" class="swpf-form <?php echo esc_attr(implode(' ', $form_class)); ?>" action="<?php echo get_permalink(wc_get_page_id('shop')); ?>" method="post" data-config="<?php echo esc_js($config); ?>">
+    <form id="swpf-form-<?php echo esc_attr($unique_id); ?>" class="swpf-form <?php echo esc_attr(implode(' ', $form_class)); ?>" action="<?php echo esc_url(get_permalink(wc_get_page_id('shop'))); ?>" method="post" data-config="<?php echo esc_attr($config); ?>">
         <div class="swpf-filters">
             <?php
             /* Show Active Filters Position at The Start */
-            include SPF_PATH . 'public/inc/shortcodes/active-filters.php';
+            include SWPF_PATH . 'public/inc/shortcodes/active-filters.php';
 
             if ($settings) {
                 $order_lists = isset($settings['list_order']) ? $settings['list_order'] : array();

@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || die();
 
 /**
  * Download webfonts locally.
@@ -274,7 +275,7 @@ if (!class_exists('WPTT_WebFont_Loader')) {
          */
         public function get_local_files_from_css() {
             $font_files = $this->get_remote_files_from_css();
-            $stored = get_site_option('downloaded_font_files', array());
+            $stored = get_site_option('swpf_downloaded_font_files', array());
             $change = false; // If in the end this is true, we need to update the cache option.
 
             if (!defined('FS_CHMOD_DIR')) {
@@ -352,7 +353,7 @@ if (!class_exists('WPTT_WebFont_Loader')) {
                         unset($stored[$url]);
                     }
                 }
-                update_site_option('downloaded_font_files', $stored);
+                update_site_option('swpf_downloaded_font_files', $stored);
             }
 
             return $stored;

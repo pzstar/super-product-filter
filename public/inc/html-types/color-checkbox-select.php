@@ -8,7 +8,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
     <?php
     if ($tax_name == 'product_cat') {
         ?>
-        <ul class="swpf-filter-product-category swpf-filter-product-category-color-checkbox <?php echo $settings['config']['indent_cat'] == 'on' ? 'swpf-indent-product-cat' : '' ?>">
+        <ul class="swpf-filter-product-category swpf-filter-product-category-color-checkbox <?php echo esc_attr($settings['config']['indent_cat']) == 'on' ? 'swpf-indent-product-cat' : '' ?>">
             <?php
             $all_terms = $settings['terms_customize'][$tax_name];
             $term_preview_array = [];
@@ -48,7 +48,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                     }
                 }
 
-                echo swpf_terms_color_image_checkboxlist(0, array(
+                swpf_terms_color_image_checkboxlist(0, array(
                     'taxonomy' => 'product_cat',
                     'name' => 'categories',
                     'value_field' => 'slug',

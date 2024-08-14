@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || die();
 
 function swpf_default_font_array() {
     return array(
@@ -216,14 +217,14 @@ function swpf_get_google_font_variants() {
 
         foreach ($variants_array as $key => $variants) {
             if ($font_family == 'inherit') {
-                $selected = $key == 'inherit' ? 'selected="selected"' : '';
+                $selected = $key == 'inherit' ? true : false;
             } else {
-                $selected = $key == '400' ? 'selected="selected"' : '';
+                $selected = $key == '400' ? true : false;
             }
-            $options .= '<option ' . $selected . ' value="' . esc_attr($key) . '">' . esc_html($variants) . '</option>';
+            ?>
+            <option <?php selected($selected, true); ?> value="<?php echo esc_attr($key); ?>"></option><?php echo esc_html($variants); ?></option>
+            <?php
         }
-
-        echo $options;
     }
     die();
 }
@@ -309,7 +310,7 @@ function swpf_fonts_url() {
     $load_font_locally = (isset($general_settings['load_fonts_locally']) && $general_settings['load_fonts_locally'] == 'on') ? true : false;
 
     if ($fonts_url && $load_font_locally) {
-        require_once SPF_PATH . 'public/inc/wptt-webfont-loader.php';
+        require_once SWPF_PATH . 'public/inc/wptt-webfont-loader.php';
         $fonts_url = wptt_get_webfont_url($fonts_url);
     }
 

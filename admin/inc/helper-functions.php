@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || die();
 
 function swpf_sanitize_url($url) {
     $sanitized_url = wp_strip_all_tags(stripslashes(filter_var($url, FILTER_VALIDATE_URL)));
@@ -59,9 +60,9 @@ function swpf_get_taxonomies() {
 }
 
 /* Check List */
-if (!class_exists('SPF_Walker_Category_Checklist')) {
+if (!class_exists('SWPF_Walker_Category_Checklist')) {
 
-    class SPF_Walker_Category_Checklist extends Walker {
+    class SWPF_Walker_Category_Checklist extends Walker {
 
         var $tree_type = 'category';
         var $db_fields = array(
@@ -136,7 +137,7 @@ if (!function_exists('swpf_terms_checklist')) {
         extract(wp_parse_args($args, $defaults), EXTR_SKIP);
 
         if (empty($walker) || !is_a($walker, 'Walker')) {
-            $walker = new SPF_Walker_Category_Checklist;
+            $walker = new SWPF_Walker_Category_Checklist;
         }
 
         $args = array(
@@ -184,9 +185,9 @@ if (!function_exists('swpf_terms_checklist')) {
 }
 
 /* Radio List */
-if (!class_exists('SPF_Walker_Category_Radiolist')) {
+if (!class_exists('SWPF_Walker_Category_Radiolist')) {
 
-    class SPF_Walker_Category_Radiolist extends Walker {
+    class SWPF_Walker_Category_Radiolist extends Walker {
 
         var $tree_type = 'category';
         var $db_fields = array('parent' => 'parent', 'id' => 'term_id'); //TODO: decouple this
@@ -260,7 +261,7 @@ if (!function_exists('swpf_terms_radiolist')) {
         extract(wp_parse_args($args, $defaults), EXTR_SKIP);
 
         if (empty($walker) || !is_a($walker, 'Walker')) {
-            $walker = new SPF_Walker_Category_Radiolist;
+            $walker = new SWPF_Walker_Category_Radiolist;
         }
         $args = array(
             'taxonomy' => $taxonomy,
@@ -305,9 +306,9 @@ if (!function_exists('swpf_terms_radiolist')) {
 }
 
 /* Toggle Button */
-if (!class_exists('SPF_Walker_Category_Toggle')) {
+if (!class_exists('SWPF_Walker_Category_Toggle')) {
 
-    class SPF_Walker_Category_Toggle extends Walker {
+    class SWPF_Walker_Category_Toggle extends Walker {
 
         var $tree_type = 'category';
         var $db_fields = array(
@@ -386,7 +387,7 @@ if (!function_exists('swpf_terms_togglelist')) {
         extract(wp_parse_args($args, $defaults), EXTR_SKIP);
 
         if (empty($walker) || !is_a($walker, 'Walker')) {
-            $walker = new SPF_Walker_Category_Toggle;
+            $walker = new SWPF_Walker_Category_Toggle;
         }
 
         $args = array(
@@ -434,9 +435,9 @@ if (!function_exists('swpf_terms_togglelist')) {
 }
 
 /* Color / Image Checkbox */
-if (!class_exists('SPF_Walker_Category_Color_Image_Checkbox')) {
+if (!class_exists('SWPF_Walker_Category_Color_Image_Checkbox')) {
 
-    class SPF_Walker_Category_Color_Image_Checkbox extends Walker {
+    class SWPF_Walker_Category_Color_Image_Checkbox extends Walker {
 
         var $tree_type = 'category';
         var $db_fields = array(
@@ -516,7 +517,7 @@ if (!function_exists('swpf_terms_color_image_checkboxlist')) {
         extract(wp_parse_args($args, $defaults), EXTR_SKIP);
 
         if (empty($walker) || !is_a($walker, 'Walker')) {
-            $walker = new SPF_Walker_Category_Color_Image_Checkbox;
+            $walker = new SWPF_Walker_Category_Color_Image_Checkbox;
         }
 
         $args = array(
@@ -566,9 +567,9 @@ if (!function_exists('swpf_terms_color_image_checkboxlist')) {
 
 }
 
-if (!class_exists('SPF_Walker_TaxonomyDropdown')) {
+if (!class_exists('SWPF_Walker_TaxonomyDropdown')) {
 
-    class SPF_Walker_TaxonomyDropdown extends Walker_CategoryDropdown {
+    class SWPF_Walker_TaxonomyDropdown extends Walker_CategoryDropdown {
 
         function start_el(&$output, $category, $depth = 0, $args = [], $id = 0) {
             $pad = str_repeat('&nbsp;', $depth * 2);
@@ -630,6 +631,14 @@ function swpf_get_post_data($param) {
     }
 
     return Super_Product_Filter_Admin::sanitize_array($post_data);
+}
+
+function swpf_get_post_data_arr($param) {
+    $post_data = [];
+    if (isset($_POST[$param])) {
+        $post_data = $_POST[$param];
+    }
+    return $post_data && is_array($post_data) ? Super_Product_Filter_Admin::sanitize_array($post_data) : [];
 }
 
 function swpf_get_request_data($param, $sanitize = 'sanitize_text_field', $default = '') {

@@ -2,14 +2,14 @@
 defined('ABSPATH') or die();
 
 /*
- * Register Plugin Widget : SPF_Widget
+ * Register Plugin Widget : SWPF_Widget
  */
-if (!class_exists('SPF_Widget')) {
+if (!class_exists('SWPF_Widget')) {
 
-    class SPF_Widget extends WP_Widget {
+    class SWPF_Widget extends WP_Widget {
 
         public function __construct() {
-            parent::__construct('SPF_Widget', 'Super Woocommerce Filter', array('description' => esc_html__('Select The Filter Preset', 'super-product-filter')));
+            parent::__construct('SWPF_Widget', 'Super Woocommerce Filter', array('description' => esc_html__('Select The Filter Preset', 'super-product-filter')));
         }
 
         public function widget($args, $instance) {
@@ -32,7 +32,7 @@ if (!class_exists('SPF_Widget')) {
             ?>
             <div class="swpf-widget-field-wrap">
                 <p>
-                    <label for="<?php echo esc_attr($this->get_field_id('swpf_id')); ?>"><?php _e('Select Filter Preset', 'super-product-filter'); ?></label>
+                    <label for="<?php echo esc_attr($this->get_field_id('swpf_id')); ?>"><?php esc_html_e('Select Filter Preset', 'super-product-filter'); ?></label>
                     <select name="<?php echo esc_attr($this->get_field_name('swpf_id')); ?>" class='widefat swpf-widget-selected-filter' id="<?php echo esc_attr($this->get_field_id('swpf_id')); ?>">
                         <option value=""><?php echo esc_html__('Select Filter', 'super-product-filter'); ?></option>
                         <?php

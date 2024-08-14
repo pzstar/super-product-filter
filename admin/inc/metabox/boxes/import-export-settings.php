@@ -1,3 +1,7 @@
+<?php
+defined('ABSPATH') || die();
+?>
+
 <div class="swpf-options-fields-wrap tab-content swpf-settings-content" id="import-export-settings" style="display: none;">
     <h3><?php esc_html_e('Import/Export Settings', 'super-product-filter') ?></h3>
 

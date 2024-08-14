@@ -8,7 +8,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
     <?php
     if ($tax_name == 'product_cat') {
         ?>
-        <ul class="swpf-filter-product-category swpf-filter-product-category-toggle <?php echo $settings['config']['indent_cat'] == 'on' ? 'swpf-indent-product-cat' : ''; ?>">
+        <ul class="swpf-filter-product-category swpf-filter-product-category-toggle <?php echo esc_attr($settings['config']['indent_cat']) == 'on' ? 'swpf-indent-product-cat' : ''; ?>">
             <?php
             if ($settings['field_orientation']['product_cat'] != 'horizontal' && (isset($settings['config']['indent_cat']) && $settings['config']['indent_cat'] == 'on')) {
                 $selected_cats = array();
@@ -39,7 +39,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                         }
                     }
                 }
-                echo swpf_terms_togglelist(0, array(
+                swpf_terms_togglelist(0, array(
                     'taxonomy' => 'product_cat',
                     'name' => 'categories',
                     'value_field' => 'slug',

@@ -90,7 +90,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
 
             wp_dropdown_categories(
                     array(
-                        'walker' => new SPF_Walker_TaxonomyDropdown(),
+                        'walker' => new SWPF_Walker_TaxonomyDropdown(),
                         'taxonomy' => 'product_cat',
                         'hierarchical' => ($settings['field_orientation']['product_cat'] != 'horizontal' && (isset($settings['config']['indent_cat']) && $settings['config']['indent_cat'] == 'on')),
                         'show_count' => isset($settings['show_count']['product_cat']) && $settings['show_count']['product_cat'] == 'on',

@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || die();
 
 global $wp_query, $swpf_product_columns;
 $GLOBALS['swpf_data']['need_reset_paging'] = 0;
@@ -15,15 +16,15 @@ $settings = Super_Product_Filter_Admin::recursive_parse_args($settings, Super_Pr
 $post_per_page = get_option('posts_per_page');
 
 if (isset($settings['config']['product_columns']) && !empty($settings['config']['product_columns'])) {
-    $product_columns = absint($settings['config']['product_columns']);
+    $swpf_product_columns = absint($settings['config']['product_columns']);
 }
 
 if (isset($settings['config']['product_rows']) && !empty($settings['config']['product_rows'])) {
     $product_rows = absint($settings['config']['product_rows']);
 }
 
-if (isset($product_columns) && isset($product_rows)) {
-    $post_per_page = $product_columns * $product_rows;
+if (isset($swpf_product_columns) && isset($product_rows)) {
+    $post_per_page = $swpf_product_columns * $product_rows;
 }
 
 remove_action('woocommerce_product_query', array($this, 'filter_posts'), 11);
@@ -50,15 +51,15 @@ wp_reset_postdata();
 
 $filtered_data = '';
 
-if (isset($product_columns) && $product_columns > 1) {
+if (isset($swpf_product_columns) && $swpf_product_columns > 1) {
     add_filter('loop_shop_columns', function() {
-        global $product_columns;
-        return absint($product_columns);
+        global $swpf_product_columns;
+        return absint($swpf_product_columns);
     }, 999);
 }
 
 ob_start();
-require SPF_PATH . 'public/inc/ajax-product-list.php';
+require SWPF_PATH . 'public/inc/ajax-product-list.php';
 $html_ul_products_content = ob_get_clean();
 
 ob_start();
@@ -76,7 +77,7 @@ $html_pagination_content = ob_get_clean();
 $min_max_price = $this->get_filtered_price($qry->get('tax_query'));
 
 ob_start();
-self::render_html(SPF_PATH . 'public/inc/render-filter.php', array(
+self::render_html(SWPF_PATH . 'public/inc/render-filter.php', array(
     'post_data' => $post_data,
     'settings' => $settings,
     'min_price' => floor($min_max_price->min_price ?: 0),
@@ -91,7 +92,7 @@ $response['html_pagination_content'] = preg_replace('/<\/*nav[^>]*>/', '', $html
 $response['html_filter_panel'] = $filter_panel;
 $response['html_filtered_data'] = $filtered_data;
 $response['html_post_count'] = $total_posts_found . ' ' . _n('Item Found', 'Items Found', $total_posts_found, 'super-product-filter');
-$response['html_columns'] = $product_columns;
+$response['html_columns'] = $swpf_product_columns;
 $response['qry'] = $wp_query;
 $response['posid'] = $posid;
 wp_send_json($response);

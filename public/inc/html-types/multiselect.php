@@ -57,52 +57,54 @@ if ($tax_name == 'product_visibility') {
     if (isset($current_filter_option['categories'])) {
         $selected_cats = is_array($current_filter_option['categories']) ? implode(',', $current_filter_option['categories']) : $current_filter_option['categories'];
     }
-    echo '<div class="swpf-multiselect-wrap" data-placeholder="' . (isset($settings['placeholder_txt'][$tax_name]) ? esc_attr($settings['placeholder_txt'][$tax_name]) : esc_html__('Search', 'super-product-filter')) . '">';
-    $all_terms = $settings['terms_customize'][$tax_name];
-    $term_name_array = [];
-    $term_count_array = [];
-    $hide_terms = [];
+    ?>
+    <div class="swpf-multiselect-wrap" data-placeholder="<?php echo (isset($settings['placeholder_txt'][$tax_name]) ? esc_attr($settings['placeholder_txt'][$tax_name]) : esc_html__('Search', 'super-product-filter')); ?>">
+        <?php
+        $all_terms = $settings['terms_customize'][$tax_name];
+        $term_name_array = [];
+        $term_count_array = [];
+        $hide_terms = [];
 
-    if ($all_terms) {
-        foreach ($all_terms as $key => $aterm) {
-            $term_name_array[$key] = (isset($aterm['term_name']) && !empty($aterm['term_name'])) ? esc_html(apply_filters('swpf_translate_string', $aterm['term_name'], 'Super Product Filter', esc_html($sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($key))) : esc_html(ucwords(str_replace('-', ' ', get_term($key)->name)));
-            if (isset($settings['show_count']['product_cat']) && $settings['show_count']['product_cat'] == 'on') {
-                $term = get_term($key);
-                $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
-                $term_cquery = new WP_Query($args);
-                $post_count = $term_cquery->post_count;
+        if ($all_terms) {
+            foreach ($all_terms as $key => $aterm) {
+                $term_name_array[$key] = (isset($aterm['term_name']) && !empty($aterm['term_name'])) ? esc_html(apply_filters('swpf_translate_string', $aterm['term_name'], 'Super Product Filter', esc_html($sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($key))) : esc_html(ucwords(str_replace('-', ' ', get_term($key)->name)));
+                if (isset($settings['show_count']['product_cat']) && $settings['show_count']['product_cat'] == 'on') {
+                    $term = get_term($key);
+                    $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
+                    $term_cquery = new WP_Query($args);
+                    $post_count = $term_cquery->post_count;
 
-                $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
-                $term_cquery = new WP_Query($args);
-                $post_count_ckk = $term_cquery->post_count;
-                wp_reset_postdata();
-                $post_count = min($post_count, $post_count_ckk, $term->count);
+                    $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
+                    $term_cquery = new WP_Query($args);
+                    $post_count_ckk = $term_cquery->post_count;
+                    wp_reset_postdata();
+                    $post_count = min($post_count, $post_count_ckk, $term->count);
 
-                $term_count_array[$key] = $post_count;
+                    $term_count_array[$key] = $post_count;
+                }
             }
         }
-    }
-    wp_dropdown_categories(
-            array(
-                'walker' => new SPF_Walker_TaxonomyDropdown(),
-                'taxonomy' => 'product_cat',
-                'hierarchical' => ($settings['field_orientation']['product_cat'] != 'horizontal' && (isset($settings['config']['indent_cat']) && $settings['config']['indent_cat'] == 'on')),
-                'show_count' => isset($settings['show_count']['product_cat']) && $settings['show_count']['product_cat'] == 'on',
-                'echo' => true,
-                'hide_empty' => [],
-                'name' => 'categories',
-                'selected' => $selected_cats,
-                'class' => "swpf-multiselect",
-                'value_field' => 'slug',
-                'exclude' => $exclude_terms,
-                'include' => $include_terms,
-                'multiple' => true,
-                'term_count_array' => $term_count_array,
-                'term_name_array' => $term_name_array,
-                'hide_terms' => $hide_terms,
-            )
-    );
-    echo '</div>';
+        wp_dropdown_categories(array(
+            'walker' => new SWPF_Walker_TaxonomyDropdown(),
+            'taxonomy' => 'product_cat',
+            'hierarchical' => ($settings['field_orientation']['product_cat'] != 'horizontal' && (isset($settings['config']['indent_cat']) && $settings['config']['indent_cat'] == 'on')),
+            'show_count' => isset($settings['show_count']['product_cat']) && $settings['show_count']['product_cat'] == 'on',
+            'echo' => true,
+            'hide_empty' => [],
+            'name' => 'categories',
+            'selected' => $selected_cats,
+            'class' => "swpf-multiselect",
+            'value_field' => 'slug',
+            'exclude' => $exclude_terms,
+            'include' => $include_terms,
+            'multiple' => true,
+            'term_count_array' => $term_count_array,
+            'term_name_array' => $term_name_array,
+            'hide_terms' => $hide_terms,
+        ));
+        ?>
+    </div>
+    <?php
 } else if ($tax_name == 'product_tag') {
     ?>
     <div class="swpf-multiselect-wrap">

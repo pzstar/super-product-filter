@@ -17,11 +17,6 @@ if (!defined('WPINC')) {
     die;
 }
 
-define('SPF_VERSION', '1.0.0');
-define('SPF_PATH', plugin_dir_path(__FILE__));
-define('SPF_URL', plugin_dir_url(__FILE__));
-define('SPF_BASENAME', plugin_basename(__FILE__));
-
 function super_product_filter_activate() {
     require_once plugin_dir_path(__FILE__) . 'includes/class-super-product-filter-activator.php';
     Super_Product_Filter_Activator::activate();
@@ -43,6 +38,10 @@ function super_product_filter_run() {
 
     if (is_plugin_active('woocommerce/woocommerce.php')) {
         if (!is_plugin_active('super-woocommerce-product-filter/super-woocommerce-product-filter.php')) {
+            define('SWPF_VERSION', '1.0.0');
+            define('SWPF_PATH', plugin_dir_path(__FILE__));
+            define('SWPF_URL', plugin_dir_url(__FILE__));
+            define('SWPF_BASENAME', plugin_basename(__FILE__));
             require plugin_dir_path(__FILE__) . 'includes/class-super-product-filter.php';
             $plugin = new Super_Product_Filter();
             $plugin->run();
@@ -50,7 +49,7 @@ function super_product_filter_run() {
     } else {
         add_action('admin_notices', function () {
             $message = sprintf(/* translators: Placeholders: %1$s and %2$s are <strong> tags. %3$s and %4$s are <a> tags */
-                    esc_html__('%1$sSuper Product Filter for WooCommerce %2$s requires WooCommerce Plugin. Please install and activate %3$sWooCommerce%4$s.', 'super-product-filter'), '<strong>', '</strong>', '<a href="' . admin_url('plugin-install.php?s=woocommerce&tab=search&type=term') . '">', '</a>'
+                    esc_html__('%1$sSuper Product Filter for WooCommerce %2$s requires WooCommerce Plugin. Please install and activate %3$sWooCommerce%4$s.', 'super-product-filter'), '<strong>', '</strong>', '<a href="' . esc_url(admin_url('plugin-install.php?s=woocommerce&tab=search&type=term')) . '">', '</a>'
             );
 
             echo sprintf('<div class="error"><p>%s</p></div>', $message);

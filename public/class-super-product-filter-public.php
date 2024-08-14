@@ -68,9 +68,9 @@ class Super_Product_Filter_Public {
     }
 
     public function includes() {
-        include SPF_PATH . 'public/inc/woo-helpers.php';
-        include SPF_PATH . 'public/inc/wptt-webfont-loader.php';
-        include SPF_PATH . 'public/inc/style.php';
+        include SWPF_PATH . 'public/inc/woo-helpers.php';
+        include SWPF_PATH . 'public/inc/wptt-webfont-loader.php';
+        include SWPF_PATH . 'public/inc/style.php';
     }
 
     public function add_numerical_order($terms, $taxonomies, $args, $term_query) {
@@ -91,19 +91,19 @@ class Super_Product_Filter_Public {
     }
 
     public function enqueue_styles() {
-        wp_enqueue_style('swpf-loaders', SPF_URL . 'public/css/loaders.css', array(), $this->version);
-        wp_enqueue_style('swpf-hover', SPF_URL . 'public/css/hover-min.css', array(), $this->version);
+        wp_enqueue_style('swpf-loaders', SWPF_URL . 'public/css/loaders.css', array(), $this->version);
+        wp_enqueue_style('swpf-hover', SWPF_URL . 'public/css/hover-min.css', array(), $this->version);
 
-        wp_enqueue_style('fontawesome-6.3.0', SPF_URL . 'public/css/fontawesome-6.3.0.css', array(), $this->version);
-        wp_enqueue_style('eleganticons', SPF_URL . 'public/css/eleganticons.css', array(), $this->version);
-        wp_enqueue_style('essentialicon', SPF_URL . 'public/css/essentialicon.css', array(), $this->version);
-        wp_enqueue_style('icofont', SPF_URL . 'public/css/icofont.css', array(), $this->version);
-        wp_enqueue_style('materialdesignicons', SPF_URL . 'public/css/materialdesignicons.css', array(), $this->version);
+        wp_enqueue_style('fontawesome-6.3.0', SWPF_URL . 'public/css/fontawesome-6.3.0.css', array(), $this->version);
+        wp_enqueue_style('eleganticons', SWPF_URL . 'public/css/eleganticons.css', array(), $this->version);
+        wp_enqueue_style('essentialicon', SWPF_URL . 'public/css/essentialicon.css', array(), $this->version);
+        wp_enqueue_style('icofont', SWPF_URL . 'public/css/icofont.css', array(), $this->version);
+        wp_enqueue_style('materialdesignicons', SWPF_URL . 'public/css/materialdesignicons.css', array(), $this->version);
 
-        wp_enqueue_style('jquery-ui-slider', SPF_URL . 'public/vendor/slider-ui/slider-ui.css', array(), $this->version, 'all');
-        wp_enqueue_style('chosen', SPF_URL . 'public/vendor/chosen/chosen.css', '', $this->version);
+        wp_enqueue_style('jquery-ui-slider', SWPF_URL . 'public/vendor/slider-ui/slider-ui.css', array(), $this->version, 'all');
+        wp_enqueue_style('chosen', SWPF_URL . 'public/vendor/chosen/chosen.css', '', $this->version);
 
-        wp_enqueue_style('swpf-animate', SPF_URL . 'public/css/animate.css', array(), $this->version);
+        wp_enqueue_style('swpf-animate', SWPF_URL . 'public/css/animate.css', array(), $this->version);
 
         wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/style.css', array(), $this->version);
         wp_add_inline_style($this->plugin_name, swpf_dynamic_styles());
@@ -120,7 +120,7 @@ class Super_Product_Filter_Public {
         /* enable this only when woo range slider is enabled */
 
         /* Enqueue jQuery Chosen */
-        wp_enqueue_script('chosen-script', SPF_URL . 'public/vendor/chosen/chosen.jquery.js', array('jquery'), $this->version);
+        wp_enqueue_script('chosen-script', SWPF_URL . 'public/vendor/chosen/chosen.jquery.js', array('jquery'), $this->version);
 
         $js_obj = array(
             'plugin_url' => WP_PLUGIN_URL,
@@ -129,7 +129,7 @@ class Super_Product_Filter_Public {
 
         $front_var = array(
             'ajax_nonce' => wp_create_nonce('swpf-frontend-ajax-nonce'),
-            'ajax_url' => admin_url('admin-ajax.php'),
+            'ajax_url' => esc_url(admin_url('admin-ajax.php')),
             'wcLinks' => get_option('woocommerce_permalinks'),
             'shopUrl' => wc_get_page_permalink('shop'),
             'queryVars' => $GLOBALS['wp_query']->query_vars
@@ -143,7 +143,7 @@ class Super_Product_Filter_Public {
             ];
         }
 
-        wp_enqueue_script($this->plugin_name, SPF_URL . 'public/js/custom-script.js', array('jquery', 'jquery-ui-slider'), $this->version, true);
+        wp_enqueue_script($this->plugin_name, SWPF_URL . 'public/js/custom-script.js', array('jquery', 'jquery-ui-slider'), $this->version, true);
 
         /* Send php values to JS script */
         wp_localize_script($this->plugin_name, 'swpf_front_js_obj', $front_var);
@@ -151,7 +151,7 @@ class Super_Product_Filter_Public {
 
     public function get_product_list() {
         if (wp_verify_nonce(swpf_get_post('ajax_nonce'), 'swpf-frontend-ajax-nonce')) {
-            include SPF_PATH . 'public/inc/ajax-request.php';
+            include SWPF_PATH . 'public/inc/ajax-request.php';
         }
     }
 
@@ -550,21 +550,21 @@ class Super_Product_Filter_Public {
                 ?>
                 <div class="swpf-ajax-loader">
                     <div class="swpf-preloader-wrap">
-                        <?php include SPF_PATH . 'public/inc/preloader/' . sanitize_text_field($preloader) . '.php' ?>
+                        <?php include SWPF_PATH . 'public/inc/preloader/' . sanitize_text_field($preloader) . '.php' ?>
                     </div>
                 </div>
                 <?php
             } //preloaders
 
             if (isset($this->settings['advanced_settings']['custom_css']) && trim($this->settings['advanced_settings']['custom_css'])) {
-                echo '<style>';
-                echo swpf_css_strip_whitespace($this->settings['advanced_settings']['custom_css']);
-                echo '</style>';
+                wp_register_style('swpf-custom-css-'. $post_id, false);
+                wp_enqueue_style('swpf-custom-css-'. $post_id );
+                wp_add_inline_style('swpf-custom-css-'. $post_id, swpf_css_strip_whitespace($this->settings['advanced_settings']['custom_css']));
             }
             ?>
 
             <?php
-            self::render_html(SPF_PATH . 'public/inc/render-filter.php', $args);
+            self::render_html(SWPF_PATH . 'public/inc/render-filter.php', $args);
             ?>
         </div>
         <?php
@@ -732,31 +732,31 @@ class Super_Product_Filter_Public {
                             }
                             switch ($display_type) {
                                 case 'checkbox':
-                                    self::render_html(SPF_PATH . 'public/inc/html-types/checkbox.php', $args);
+                                    self::render_html(SWPF_PATH . 'public/inc/html-types/checkbox.php', $args);
                                     break;
                                 case 'toggle':
-                                    self::render_html(SPF_PATH . 'public/inc/html-types/toggle.php', $args);
+                                    self::render_html(SWPF_PATH . 'public/inc/html-types/toggle.php', $args);
                                     break;
                                 case 'dropdown':
-                                    self::render_html(SPF_PATH . 'public/inc/html-types/dropdown.php', $args);
+                                    self::render_html(SWPF_PATH . 'public/inc/html-types/dropdown.php', $args);
                                     break;
                                 case 'multi_select':
-                                    self::render_html(SPF_PATH . 'public/inc/html-types/multiselect.php', $args);
+                                    self::render_html(SWPF_PATH . 'public/inc/html-types/multiselect.php', $args);
                                     break;
                                 case 'radio':
-                                    self::render_html(SPF_PATH . 'public/inc/html-types/radio.php', $args);
+                                    self::render_html(SWPF_PATH . 'public/inc/html-types/radio.php', $args);
                                     break;
                                 case 'button':
-                                    self::render_html(SPF_PATH . 'public/inc/html-types/button.php', $args);
+                                    self::render_html(SWPF_PATH . 'public/inc/html-types/button.php', $args);
                                     break;
                                 case 'image':
-                                    self::render_html(SPF_PATH . 'public/inc/html-types/image-checkbox-select.php', $args);
+                                    self::render_html(SWPF_PATH . 'public/inc/html-types/image-checkbox-select.php', $args);
                                     break;
                                 case 'color':
-                                    self::render_html(SPF_PATH . 'public/inc/html-types/color-checkbox-select.php', $args);
+                                    self::render_html(SWPF_PATH . 'public/inc/html-types/color-checkbox-select.php', $args);
                                     break;
                                 default:
-                                    self::render_html(SPF_PATH . 'public/inc/html-types/checkbox.php', $args);
+                                    self::render_html(SWPF_PATH . 'public/inc/html-types/checkbox.php', $args);
                                     break;
                             }
                             ?>
@@ -777,7 +777,7 @@ class Super_Product_Filter_Public {
             'min_price' => $min_price,
             'max_price' => $max_price
         ];
-        self::render_html(SPF_PATH . 'public/inc/shortcodes/price.php', $args);
+        self::render_html(SWPF_PATH . 'public/inc/shortcodes/price.php', $args);
     }
 
     public function render_price($price) {
@@ -785,16 +785,16 @@ class Super_Product_Filter_Public {
         $price_html = '';
         switch ($currency_pos) {
             case 'left':
-                $price_html = printf('<span class="woocommerce-Price-currencySymbol">%s</span><span class="price amount woocommerce-Price-amount">%s</span>', get_woocommerce_currency_symbol(), $price);
+                $price_html = printf('<span class="woocommerce-Price-currencySymbol">%s</span><span class="price amount woocommerce-Price-amount">%s</span>', esc_html(get_woocommerce_currency_symbol()), esc_html($price));
                 break;
             case 'right':
-                $price_html = printf('<span class="price amount woocommerce-Price-amount">%s</span><span class="woocommerce-Price-currencySymbol">%s</span>', $price, get_woocommerce_currency_symbol());
+                $price_html = printf('<span class="price amount woocommerce-Price-amount">%s</span><span class="woocommerce-Price-currencySymbol">%s</span>', esc_html($price), esc_html(get_woocommerce_currency_symbol()));
                 break;
             case 'left_space':
-                $price_html = printf('<span class="woocommerce-Price-currencySymbol">%s</span> <span class="price amount woocommerce-Price-amount">%s</span>', get_woocommerce_currency_symbol(), $price);
+                $price_html = printf('<span class="woocommerce-Price-currencySymbol">%s</span> <span class="price amount woocommerce-Price-amount">%s</span>', esc_html(get_woocommerce_currency_symbol()), esc_html($price));
                 break;
             case 'right_space':
-                $price_html = printf('<span class="price amount woocommerce-Price-amount">%s</span> <span class="woocommerce-Price-currencySymbol">%s</span>', $price, get_woocommerce_currency_symbol());
+                $price_html = printf('<span class="price amount woocommerce-Price-amount">%s</span> <span class="woocommerce-Price-currencySymbol">%s</span>', esc_html($price), esc_html(get_woocommerce_currency_symbol()));
                 break;
         }
         return $price_html;
@@ -805,7 +805,7 @@ class Super_Product_Filter_Public {
             'current_filter_option' => $current_filter_option,
             'settings' => $settings
         );
-        self::render_html(SPF_PATH . 'public/inc/shortcodes/order-by.php', $args);
+        self::render_html(SWPF_PATH . 'public/inc/shortcodes/order-by.php', $args);
     }
 
     public function render_ratings($settings, $current_filter_option) {
@@ -813,7 +813,7 @@ class Super_Product_Filter_Public {
             'current_filter_option' => $current_filter_option,
             'settings' => $settings
         );
-        self::render_html(SPF_PATH . 'public/inc/shortcodes/ratings.php', $args);
+        self::render_html(SWPF_PATH . 'public/inc/shortcodes/ratings.php', $args);
     }
 
     public function render_reviews($settings, $current_filter_option) {
@@ -821,7 +821,7 @@ class Super_Product_Filter_Public {
             'current_filter_option' => $current_filter_option,
             'settings' => $settings
         );
-        self::render_html(SPF_PATH . 'public/inc/shortcodes/reviews.php', $args);
+        self::render_html(SWPF_PATH . 'public/inc/shortcodes/reviews.php', $args);
     }
 
     public function render_onsale($settings, $current_filter_option) {
@@ -829,7 +829,7 @@ class Super_Product_Filter_Public {
             'current_filter_option' => $current_filter_option,
             'settings' => $settings
         );
-        self::render_html(SPF_PATH . 'public/inc/shortcodes/on-sale.php', $args);
+        self::render_html(SWPF_PATH . 'public/inc/shortcodes/on-sale.php', $args);
     }
 
     public function render_instock($settings, $current_filter_option) {
@@ -837,7 +837,7 @@ class Super_Product_Filter_Public {
             'current_filter_option' => $current_filter_option,
             'settings' => $settings
         );
-        self::render_html(SPF_PATH . 'public/inc/shortcodes/in-stock.php', $args);
+        self::render_html(SWPF_PATH . 'public/inc/shortcodes/in-stock.php', $args);
     }
 
     public function render_html($filepath, $data = array()) {
@@ -850,9 +850,7 @@ class Super_Product_Filter_Public {
         }
 
         $filepath = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $filepath);
-        ob_start();
         include($filepath);
-        echo ob_get_clean();
     }
 
     public function render_result() {
@@ -883,7 +881,7 @@ class Super_Product_Filter_Public {
             $filter_class[] = 'swpf-header-filters-' . esc_attr($filter_id);
         }
         ?>
-        <div class="<?php echo implode(' ', $filter_class); ?>">
+        <div class="<?php echo esc_attr(implode(' ', $filter_class)); ?>">
             <div class="swpf-shown-items"><?php echo esc_html($total_posts_found); ?></div>
             <div class="swpf-shown-filters"><?php echo wp_kses_post($filtered_data); ?></div>
         </div>

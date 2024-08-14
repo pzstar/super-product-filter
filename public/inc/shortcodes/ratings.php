@@ -31,7 +31,7 @@ $sc_title = get_the_title($sc_id);
                 ?>
                 <div class="swpf-filter-item swpf-rating-item <?php echo esc_attr($class_item); ?>">
                     <label class="swpf-filter-label">
-                        <input type="radio" name="rating-from[]" value="<?php echo esc_attr($star); ?>" class="swpf-rating-input" <?php echo isset($selected_val) && in_array($star, $selected_val) ? 'checked="checked"' : ''; ?>>
+                        <input type="radio" name="rating-from[]" value="<?php echo esc_attr($star); ?>" class="swpf-rating-input" <?php isset($selected_val) ? checked(in_array($star, $selected_val), true) : ''; ?>>
                         <div class="swpf-rating-star swpf-<?php echo esc_attr($star); ?>-star" data-rating-star="<?php echo esc_attr($star) ?>">
                             <i class="swpf-each-star"></i>
                         </div>

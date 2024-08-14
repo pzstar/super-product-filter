@@ -1011,7 +1011,7 @@ msgid "Super Product Filter for WooCommerce"
 msgstr ""
 
 #: admin/class-super-product-filter-admin.php:204
-msgid "SWOOPF Widget Area"
+msgid "SWPF Widget Area"
 msgstr ""
 
 #: public/inc/shortcodes/active-filter-items.php:67

@@ -1,3 +1,7 @@
+<?php
+defined('ABSPATH') || die();
+?>
+
 <div class="swpf-options-fields-wrap tab-content swpf-settings-content" id="swpf-design-settings" style="display: none;">
     <div class="swpf-option-fields-inner-wrap">
 

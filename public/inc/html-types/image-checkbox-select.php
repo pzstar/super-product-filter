@@ -50,7 +50,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                     }
                 }
 
-                echo swpf_terms_color_image_checkboxlist(0, array(
+                swpf_terms_color_image_checkboxlist(0, array(
                     'taxonomy' => 'product_cat',
                     'name' => 'categories',
                     'value_field' => 'slug',

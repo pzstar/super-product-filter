@@ -1,4 +1,6 @@
 <?php
+defined('ABSPATH') || die();
+
 global $post;
 $post_id = $post->ID;
 $settings = get_post_meta($post_id, 'swpf_settings', true);
@@ -32,12 +34,12 @@ $text_decorations = swpf_get_text_decoration_choices();
         </div>
 
         <?php
-        include SPF_PATH . 'admin/inc/metabox/boxes/swpf-filters.php';
-        include SPF_PATH . 'admin/inc/metabox/boxes/appearance-settings.php';
-        include SPF_PATH . 'admin/inc/metabox/boxes/design-settings.php';
-        include SPF_PATH . 'admin/inc/metabox/boxes/custom-code.php';
-        include SPF_PATH . 'admin/inc/metabox/boxes/display-settings.php';
-        include SPF_PATH . 'admin/inc/metabox/boxes/import-export-settings.php';
+        include SWPF_PATH . 'admin/inc/metabox/boxes/swpf-filters.php';
+        include SWPF_PATH . 'admin/inc/metabox/boxes/appearance-settings.php';
+        include SWPF_PATH . 'admin/inc/metabox/boxes/design-settings.php';
+        include SWPF_PATH . 'admin/inc/metabox/boxes/custom-code.php';
+        include SWPF_PATH . 'admin/inc/metabox/boxes/display-settings.php';
+        include SWPF_PATH . 'admin/inc/metabox/boxes/import-export-settings.php';
         ?>
     </div>
 

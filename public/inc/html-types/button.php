@@ -7,7 +7,9 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
 <div class="swpf-filter-item-list swpf-button-type">
     <?php
     if ($tax_name == 'product_cat') {
-        echo '<ul class="swpf-filter-product-category swpf-filter-product-category-button">';
+        ?>
+        <ul class="swpf-filter-product-category swpf-filter-product-category-button">
+        <?php
     }
 
     if ($terms) {
@@ -176,7 +178,9 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
     }
 
     if ($tax_name == 'product_cat') {
-        echo '</ul>';
+        ?>
+        </ul>
+        <?php
     }
     ?>
 </div>

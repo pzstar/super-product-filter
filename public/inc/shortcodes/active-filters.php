@@ -49,7 +49,7 @@ if (!empty($current_filter_option)) {
     <div class="swpf-activated-filter-wrap">
         <?php
         if (isset($current_filter_option) && isset($filters_count)) {
-            include SPF_PATH . 'public/inc/shortcodes/active-filter-items.php';
+            include SWPF_PATH . 'public/inc/shortcodes/active-filter-items.php';
         }
         ?>
     </div>

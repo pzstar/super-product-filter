@@ -16,8 +16,8 @@ class Super_Product_Filter {
     protected $version;
 
     public function __construct() {
-        if (defined('SPF_VERSION')) {
-            $this->version = SPF_VERSION;
+        if (defined('SWPF_VERSION')) {
+            $this->version = SWPF_VERSION;
         } else {
             $this->version = '1.0.0';
         }
@@ -35,24 +35,24 @@ class Super_Product_Filter {
          * The class responsible for orchestrating the actions and filters of the
          * core plugin.
          */
-        require_once SPF_PATH . 'includes/class-super-product-filter-loader.php';
+        require_once SWPF_PATH . 'includes/class-super-product-filter-loader.php';
 
         /**
          * The class responsible for defining internationalization functionality
          * of the plugin.
          */
-        require_once SPF_PATH . 'includes/class-super-product-filter-i18n.php';
+        require_once SWPF_PATH . 'includes/class-super-product-filter-i18n.php';
 
         /**
          * The class responsible for defining all actions that occur in the admin area.
          */
-        require_once SPF_PATH . 'admin/class-super-product-filter-admin.php';
+        require_once SWPF_PATH . 'admin/class-super-product-filter-admin.php';
 
         /**
          * The class responsible for defining all actions that occur in the public-facing
          * side of the site.
          */
-        require_once SPF_PATH . 'public/class-super-product-filter-public.php';
+        require_once SWPF_PATH . 'public/class-super-product-filter-public.php';
 
         $this->loader = new Super_Product_Filter_Loader();
     }
