@@ -751,11 +751,6 @@ class Super_Product_Filter_Admin {
             'widgetarea' => array(
                 'column' => 3,
             ),
-            'advanced_settings' => array(
-                'before_filter_js' => '',
-                'after_filter_js' => '',
-                'custom_css' => '',
-            ),
             'primary_color' => '',
         );
         $return['include_exclude_filter']['order_by'] = 'all';
@@ -1052,11 +1047,6 @@ class Super_Product_Filter_Admin {
             ),
             'widgetarea' => array(
                 'column' => 'swpf_sanitize_number',
-            ),
-            'advanced_settings' => array(
-                'before_filter_js' => 'wp_strip_all_tags',
-                'after_filter_js' => 'wp_strip_all_tags',
-                'custom_css' => 'wp_strip_all_tags',
             ),
             'primary_color' => 'swpf_sanitize_color',
         );
