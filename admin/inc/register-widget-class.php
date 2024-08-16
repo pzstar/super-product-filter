@@ -13,10 +13,10 @@ if (!class_exists('SWPF_Widget')) {
         }
 
         public function widget($args, $instance) {
-            echo $args['before_widget'];
+            echo wp_kses_post($args['before_widget']);
             echo '<div class="swpf-widget-wrap">';
             if (!empty($instance['title'])) {
-                echo $args['before_title'] . apply_filters('widget_title', $instance['title']) . $args['after_title'];
+                echo wp_kses_post($args['before_title']) . wp_kses_post(apply_filters('widget_title', $instance['title'])) . wp_kses_post($args['after_title']);
             }
             $id = isset($instance['swpf_id']) ? $instance['swpf_id'] : '';
 
@@ -24,7 +24,7 @@ if (!class_exists('SWPF_Widget')) {
                 echo do_shortcode('[swpf_shortcode id="' . absint($id) . '"]');
             }
             echo '</div>';
-            echo $args['after_widget'];
+            echo wp_kses_post($args['after_widget']);
         }
 
         public function form($instance) {

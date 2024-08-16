@@ -318,7 +318,7 @@ $index = 1;
                                 <div class="swpf-field-wrap" data-condition-toggle="swpf-field-settings-display-type-<?php echo esc_attr($key); ?>" data-condition-val="multi_select">
                                     <label><?php esc_html_e('Placeholder Text', 'super-product-filter'); ?></label>
                                     <div class="swpf-settings-input-field">
-                                        <input type="text" name="swpf_settings[placeholder_txt][<?php echo esc_attr($key); ?>]" value="<?php echo isset($settings['placeholder_txt'][$key]) ? $settings['placeholder_txt'][$key] : null; ?>">
+                                        <input type="text" name="swpf_settings[placeholder_txt][<?php echo esc_attr($key); ?>]" value="<?php echo isset($settings['placeholder_txt'][$key]) ? esc_attr($settings['placeholder_txt'][$key]) : null; ?>">
                                     </div>
                                 </div>
 
@@ -492,7 +492,14 @@ $index = 1;
 
                             <div class="swpf-custom-term-options-wrap">
                                 <div class="swpf-button-wrap">
-                                    <button class="swpf-show-custom-term-options" data-tax-key="<?php echo esc_attr($key); ?>" data-tax-id="<?php echo esc_attr($post_id); ?>" data-terms-customize-settings="<?php echo htmlspecialchars(wp_json_encode(isset($settings['terms_customize'][$key]) ? $settings['terms_customize'][$key] : []), ENT_QUOTES, 'UTF-8'); ?>"><i class="icofont-gear"></i> <?php esc_html_e('Configure Term Options', 'super-product-filter'); ?></button>
+                                    <button
+                                        class="swpf-show-custom-term-options"
+                                        data-tax-key="<?php echo esc_attr($key); ?>"
+                                        data-tax-id="<?php echo esc_attr($post_id); ?>"
+                                        data-terms-customize-settings="<?php echo esc_attr(htmlspecialchars(wp_json_encode(isset($settings['terms_customize'][$key]) ? $settings['terms_customize'][$key] : []), ENT_QUOTES, 'UTF-8')); ?>"
+                                    >
+                                        <i class="icofont-gear"></i> <?php esc_html_e('Configure Term Options', 'super-product-filter'); ?>
+                                    </button>
                                 </div>     
 
                             </div> <!-- swpf-custom-term-options-wrap -->                   

@@ -106,7 +106,7 @@ class Super_Product_Filter_Public {
         wp_enqueue_style('swpf-animate', SWPF_URL . 'public/css/animate.css', array(), $this->version);
 
         wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/style.css', array(), $this->version);
-        wp_add_inline_style($this->plugin_name, swpf_dynamic_styles());
+        wp_add_inline_style($this->plugin_name, strip_tags(swpf_dynamic_styles()));
 
         wp_enqueue_style('swpf-fonts', swpf_fonts_url(), array(), NULL);
     }
@@ -559,7 +559,7 @@ class Super_Product_Filter_Public {
             if (isset($this->settings['advanced_settings']['custom_css']) && trim($this->settings['advanced_settings']['custom_css'])) {
                 wp_register_style('swpf-custom-css-'. $post_id, false);
                 wp_enqueue_style('swpf-custom-css-'. $post_id );
-                wp_add_inline_style('swpf-custom-css-'. $post_id, swpf_css_strip_whitespace($this->settings['advanced_settings']['custom_css']));
+                wp_add_inline_style('swpf-custom-css-'. $post_id, strip_tags(swpf_css_strip_whitespace($this->settings['advanced_settings']['custom_css'])));
             }
             ?>
 
@@ -939,7 +939,7 @@ class Super_Product_Filter_Public {
                 }
             }
         }
-        echo woocommerce_get_product_thumbnail();
+        echo wp_kses_post(woocommerce_get_product_thumbnail());
     }
 
     public function wp_dropdown_cats_multiple($output, $r) {

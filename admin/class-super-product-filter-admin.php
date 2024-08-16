@@ -1252,7 +1252,7 @@ class Super_Product_Filter_Admin {
                 $string_array = array();
 
                 foreach ($order_lists as $tax_name) {
-                    $string_array['Taxonomy Name ' . $tax_name] = isset($settings['title_label'][$tax_name]) ? $settings['title_label'][$tax_name] : '';
+                    $string_array['Taxonomy Name ' . $tax_name] = isset($settings['title_label'][$tax_name]) ? esc_attr($settings['title_label'][$tax_name]) : '';
                     if (isset($settings['placeholder_txt'][$tax_name]) && ($tax_name == 'product_cat' || $tax_name == 'multi_select')) {
                         $string_array['Taxonomy Placeholder ' . $tax_name] = $settings['placeholder_txt'][$tax_name];
                     }
@@ -1504,12 +1504,23 @@ class Super_Product_Filter_Admin {
 
                                     <div class="swpf-custom-term-field swpf-field-wrap">    
                                         <label><?php esc_html_e('Term Name', 'super-product-filter'); ?></label>
-                                        <input type="text" name="swpf_settings[terms_customize][<?php echo esc_attr($key); ?>][<?php echo esc_attr($tval->term_id) ?>][term_name]" value="<?php echo isset($terms_customize_settings[$tval->term_id]['term_name']) ? $terms_customize_settings[$tval->term_id]['term_name'] : ''; ?>">
+                                        <input
+                                            type="text"
+                                            name="swpf_settings[terms_customize][<?php echo esc_attr($key); ?>][<?php echo esc_attr($tval->term_id) ?>][term_name]"
+                                            value="<?php echo isset($terms_customize_settings[$tval->term_id]['term_name']) ? esc_attr($terms_customize_settings[$tval->term_id]['term_name']) : ''; ?>"
+                                        >
                                     </div>
 
                                     <div class="swpf-custom-term-field swpf-field-wrap swpf-custom-color">
                                         <label><?php esc_html_e('Color', 'super-product-filter'); ?></label>
-                                        <input type="text" data-alpha-enabled="true" data-alpha-color-type="hex" class="color-picker swpf-color-picker" name="swpf_settings[terms_customize][<?php echo esc_attr($key); ?>][<?php echo esc_attr($tval->term_id) ?>][term_color]" value="<?php echo esc_attr(isset($terms_customize_settings[$tval->term_id]['term_color']) ? $terms_customize_settings[$tval->term_id]['term_color'] : ''); ?>">
+                                        <input
+                                            type="text"
+                                            data-alpha-enabled="true"
+                                            data-alpha-color-type="hex"
+                                            class="color-picker swpf-color-picker"
+                                            name="swpf_settings[terms_customize][<?php echo esc_attr($key); ?>][<?php echo esc_attr($tval->term_id) ?>][term_color]"
+                                            value="<?php echo isset($terms_customize_settings[$tval->term_id]['term_color']) ? esc_attr($terms_customize_settings[$tval->term_id]['term_color']) : ''; ?>"
+                                        >
                                     </div>
 
                                     <div class="swpf-custom-term-field swpf-field-wrap swpf-custom-image">

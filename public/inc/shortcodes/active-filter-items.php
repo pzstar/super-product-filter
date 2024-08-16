@@ -89,7 +89,7 @@ if ($current_filter_option) {
                         $term = get_term_by('slug', $tag_slug, 'product_tag');
                         ?>
                         <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[tags][<?php echo esc_attr($tag_slug); ?>]" value="<?php echo esc_attr($tag_slug); ?>">
-                            <?php echo ucwords(esc_html($term->name)); ?><span class="swpf-remove-filter-icon"></span>
+                            <?php echo esc_html(ucwords($term->name)); ?><span class="swpf-remove-filter-icon"></span>
                         </button>
                         <?php
                     }
@@ -112,7 +112,7 @@ if ($current_filter_option) {
                         $term = get_term_by('slug', $visibility_slug, 'product_visibility');
                         ?>
                         <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[visibility][<?php echo esc_attr($visibility_slug); ?>]" value="<?php echo esc_attr($visibility_slug); ?>">
-                            <?php echo ucwords(esc_html($term->name)); ?><span class="swpf-remove-filter-icon"></span>
+                            <?php echo esc_html(ucwords($term->name)); ?><span class="swpf-remove-filter-icon"></span>
                         </button>
                         <?php
                     }

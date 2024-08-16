@@ -1,3 +1,7 @@
+<?php
+defined('ABSPATH') || die();
+?>
+
 <div class="swpf-general-settings">
     <?php
     if (swpf_get_post('updated') === 'true') {

@@ -163,7 +163,7 @@ $main_wrap_classes = array(
         <input type="hidden" name="paged" value="<?php echo esc_attr($wp_query->query_vars['paged']) ?>">
         <input type="hidden" name="posts_per_page" value="<?php echo absint(get_query_var('posts_per_page')); ?>">
         <input type="hidden" name="hide_empty" value="<?php echo esc_attr($hide_empty); ?>">
-        <input type="hidden" name="pagination_link" value="<?php echo esc_url_raw(str_replace(999999999, '%#%', remove_query_arg('add-to-cart', get_pagenum_link(999999999, false)))); ?>">
+        <input type="hidden" name="pagination_link" value="<?php echo esc_url(str_replace(999999999, '%#%', remove_query_arg('add-to-cart', get_pagenum_link(999999999, false)))); ?>">
         <input type="hidden" name="filter_list_id" value="<?php echo esc_attr($unique_id); ?>">
         <input type="hidden" name="swpf_filter" value="1">
         <input type="hidden" name="swpf_filter_sc" value="<?php echo esc_attr($shortcode_id); ?>">
