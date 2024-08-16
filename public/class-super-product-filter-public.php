@@ -555,12 +555,15 @@ class Super_Product_Filter_Public {
                 </div>
                 <?php
             } //preloaders
+<<<<<<< HEAD
 
             if (isset($this->settings['advanced_settings']['custom_css']) && trim($this->settings['advanced_settings']['custom_css'])) {
                 wp_register_style('swpf-custom-css-'. $post_id, false);
                 wp_enqueue_style('swpf-custom-css-'. $post_id );
                 wp_add_inline_style('swpf-custom-css-'. $post_id, strip_tags(swpf_css_strip_whitespace($this->settings['advanced_settings']['custom_css'])));
             }
+=======
+>>>>>>> b893a60970d6deb13db2067e9662823a4ed51b00
             ?>
 
             <?php

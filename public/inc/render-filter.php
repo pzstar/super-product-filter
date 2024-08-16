@@ -79,16 +79,6 @@ $toggle_skin = isset($settings['toggle']['skin']) ? array_push($form_class, $set
 $button_size = isset($settings['button']['size']) ? array_push($form_class, $settings['button']['size']) : array_push($form_class, 'swpf-medium');
 $enablebottomborder = isset($settings['filterbox']['enablebottomborder']) && $settings['filterbox']['enablebottomborder'] == 'on' ? array_push($form_class, 'swpf-enablebottomborder') : '';
 
-$before_trigger = isset($settings['advanced_settings']['before_filter_js']) && !empty($settings['advanced_settings']['before_filter_js']) ? $settings['advanced_settings']['before_filter_js'] : null;
-$after_trigger = isset($settings['advanced_settings']['after_filter_js']) && !empty($settings['advanced_settings']['after_filter_js']) ? $settings['advanced_settings']['after_filter_js'] : null;
-
-if (!empty($before_trigger)) {
-    wp_add_inline_script('super-product-filter', ' jQuery(document).bind("swpf_before_filter", function (event, response) {' . wp_kses_post($before_trigger) . '});');
-}
-if (!empty($after_trigger)) {
-    wp_add_inline_script('super-product-filter', 'jQuery(document).bind("swpf_after_filter", function (event, response) {' . wp_kses_post($after_trigger) . '});');
-}
-
 $main_wrap_classes = array(
     'swpf-main-wrap',
     'swpf-filter-id-' . esc_attr($posid),

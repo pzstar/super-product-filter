@@ -28,7 +28,6 @@ $text_decorations = swpf_get_text_decoration_choices();
                 <li class="swpf-tab" data-tab="appearance-settings" data-tohide="tab-content"><?php esc_html_e('Settings', 'super-product-filter'); ?></li>
                 <li class="swpf-tab" data-tab="swpf-display-settings" data-tohide="tab-content"><?php esc_html_e('Display Settings', 'super-product-filter'); ?></li>
                 <li class="swpf-tab" data-tab="swpf-design-settings" data-tohide="tab-content"><?php esc_html_e('Designs', 'super-product-filter'); ?></li>
-                <li class="swpf-tab" data-tab="swpf-custom-code" data-tohide="tab-content"><?php esc_html_e('Custom Code', 'super-product-filter'); ?></li>
                 <li class="swpf-tab" data-tab="import-export-settings" data-tohide="tab-content"><?php esc_html_e('Import/Export', 'super-product-filter'); ?></li>
             </ul>
         </div>
