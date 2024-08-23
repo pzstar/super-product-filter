@@ -163,7 +163,7 @@ if (!class_exists('SWPF_WebFont_Loader')) {
         public function get_local_stylesheet_url() {
             if (!$this->local_stylesheet_url) {
                 $this->local_stylesheet_url = str_replace(
-                        $this->get_base_path(), $this->get_base_url(), $this->get_local_stylesheet_path()
+                    $this->get_base_path(), $this->get_base_url(), $this->get_local_stylesheet_path()
                 );
             }
             return $this->local_stylesheet_url;
@@ -193,12 +193,12 @@ if (!class_exists('SWPF_WebFont_Loader')) {
             // Convert paths to URLs.
             foreach ($files as $remote => $local) {
                 $files[$remote] = str_replace(
-                        $this->get_base_path(), $this->get_base_url(), $local
+                    $this->get_base_path(), $this->get_base_url(), $local
                 );
             }
 
             $this->css = str_replace(
-                    array_keys($files), array_values($files), $this->remote_styles
+                array_keys($files), array_values($files), $this->remote_styles
             );
 
             $this->write_stylesheet();
@@ -278,13 +278,9 @@ if (!class_exists('SWPF_WebFont_Loader')) {
             $stored = get_site_option('swpf_downloaded_font_files', array());
             $change = false; // If in the end this is true, we need to update the cache option.
 
-            if (!defined('FS_CHMOD_DIR')) {
-                define('FS_CHMOD_DIR', ( 0755 & ~ umask()));
-            }
-
             // If the fonts folder don't exist, create it.
             if (!file_exists($this->get_fonts_folder())) {
-                $this->get_filesystem()->mkdir($this->get_fonts_folder(), FS_CHMOD_DIR);
+                $this->get_filesystem()->mkdir($this->get_fonts_folder(), (0755 & ~umask()));
             }
 
             foreach ($font_files as $font_family => $files) {
@@ -294,7 +290,7 @@ if (!class_exists('SWPF_WebFont_Loader')) {
 
                 // If the folder doesn't exist, create it.
                 if (!file_exists($folder_path)) {
-                    $this->get_filesystem()->mkdir($folder_path, FS_CHMOD_DIR);
+                    $this->get_filesystem()->mkdir($folder_path, (0755 & ~umask()));
                 }
 
                 foreach ($files as $url) {
@@ -438,13 +434,9 @@ if (!class_exists('SWPF_WebFont_Loader')) {
             $file_path = $this->get_local_stylesheet_path();
             $filesystem = $this->get_filesystem();
 
-            if (!defined('FS_CHMOD_DIR')) {
-                define('FS_CHMOD_DIR', ( 0755 & ~ umask()));
-            }
-
             // If the folder doesn't exist, create it.
             if (!file_exists($this->get_fonts_folder())) {
-                $this->get_filesystem()->mkdir($this->get_fonts_folder(), FS_CHMOD_DIR);
+                $this->get_filesystem()->mkdir($this->get_fonts_folder(), (0755 & ~umask()));
             }
 
             // If the file doesn't exist, create it. Return false if it can not be created.
@@ -514,7 +506,7 @@ if (!class_exists('SWPF_WebFont_Loader')) {
          * @return bool
          */
         public function local_file_exists() {
-            return (!file_exists($this->get_local_stylesheet_path()) );
+            return (!file_exists($this->get_local_stylesheet_path()));
         }
 
         /**
@@ -587,7 +579,7 @@ if (!class_exists('SWPF_WebFont_Loader')) {
          * @return void
          */
         public function schedule_cleanup() {
-            if (!is_multisite() || ( is_multisite() && is_main_site() )) {
+            if (!is_multisite() || (is_multisite() && is_main_site())) {
                 if (!wp_next_scheduled('delete_fonts_folder') && !wp_installing()) {
                     wp_schedule_event(time(), self::CLEANUP_FREQUENCY, 'delete_fonts_folder');
                 }
