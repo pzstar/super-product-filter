@@ -14,7 +14,7 @@ class SWPFBlock {
             return;
         }
 
-        register_block_type('swpf/filter-selector', array(
+        register_block_type('swpf/product-filter', array(
             'attributes' => array(
                 'filterId' => array(
                     'type' => 'string',

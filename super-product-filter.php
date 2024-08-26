@@ -5,7 +5,7 @@
  * Plugin URI:        https://demo.hashthemes.com/super-woocommerce-product-filter/
  * Description:       Ajax Filter For WooCommerce Products - Simplify your Search, Save your Time.
  * Version:           1.0.1
- * Author:            hashthemes
+ * Author:            HashThemes
  * Author URI:        https://hashthemes.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
