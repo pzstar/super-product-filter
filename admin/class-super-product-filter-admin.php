@@ -30,8 +30,6 @@ class Super_Product_Filter_Admin {
         add_action('admin_head-post-new.php', array($this, 'settings_metabox_xhr'));
         add_action('save_post', array($this, 'save_metabox_settings_xhr'));
 
-        add_action('widgets_init', array($this, 'widgets_init'), 90);
-
         /* To add the Custom Column on Custom Post */
         add_filter('manage_swpf-product-filter_posts_columns', array($this, 'columns_head'));
         add_action('manage_swpf-product-filter_posts_custom_column', array($this, 'columns_content'), 10, 2);
@@ -68,11 +66,11 @@ class Super_Product_Filter_Admin {
     }
 
     public function include_files() {
-        include SWPF_PATH . 'admin/inc/register-widget-class.php';
         include SWPF_PATH . 'admin/inc/google-fonts-list.php';
         include SWPF_PATH . 'admin/inc/helper-functions.php';
         include SWPF_PATH . 'admin/inc/icon-manager.php';
         include SWPF_PATH . 'admin/inc/swpf-block.php';
+        include SWPF_PATH . 'admin/inc/elementor/loader.php';
     }
 
     public function enqueue_styles() {
@@ -197,19 +195,6 @@ class Super_Product_Filter_Admin {
             &lt;?php echo do_shortcode("[swpf_shortcode id='<?php echo esc_attr($id); ?>']"); ?&gt;
             <?php
         }
-    }
-
-    public function widgets_init() {
-        register_sidebar([
-            'name' => esc_html__('SWPF Widget Area', 'super-product-filter'),
-            'id' => 'swpf-sidebar',
-            'description' => esc_html__('The main sidebar appears on the right on each page except the front page template', 'super-product-filter'),
-            'before_widget' => '<div id="%1$s" class="widget %2$s">',
-            'after_widget' => '</div>',
-            'before_title' => '<h3 class="swpf-widget-title">',
-            'after_title' => '</h3>',
-        ]);
-        register_widget('SWPF_Widget');
     }
 
     public function save_metabox_settings($post_id) {

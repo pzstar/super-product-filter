@@ -29,6 +29,7 @@ class Super_Product_Filter_Public {
         $this->includes();
 
         add_shortcode('swpf_shortcode', array($this, 'add_shortcode'));
+        add_shortcode('swpf_elem_shortcode', array($this, 'add_shortcode'));
 
         add_action('wp_ajax_swpf_get_product_list', array($this, 'get_product_list'));
         add_action('wp_ajax_nopriv_swpf_get_product_list', array($this, 'get_product_list'));
