@@ -729,19 +729,19 @@ function swpf_get_current_filter_options_vars() {
         if ($val) {
             if ($key == 'categories' || $key == 'tags' || $key == 'visibility') {
                 $filter_array[$key] = is_array($val) ? $val : explode(',', $val);
-            } else if ($key == 'min_price') {
+            } elseif ($key == 'min_price') {
                 $filter_array['price']['min_price'] = $val;
-            } else if ($key == 'max_price') {
+            } elseif ($key == 'max_price') {
                 $filter_array['price']['max_price'] = $val;
-            } else if ($key == 'rating-from') {
+            } elseif ($key == 'rating-from') {
                 $filter_array[$key] = is_array($val) ? $val : explode(',', $val);
-            } else if ($key == 'review-from' && $val != '0' && !empty($val)) {
+            } elseif ($key == 'review-from' && $val != '0' && !empty($val)) {
                 $filter_array['review']['review_from'] = $val;
-            } else if ($key == 'review-to' && $val != '0' && !empty($val)) {
+            } elseif ($key == 'review-to' && $val != '0' && !empty($val)) {
                 $filter_array['review']['review_to'] = $val;
-            } else if ($key == 'on-sale' && $val == '1') {
+            } elseif ($key == 'on-sale' && $val == '1') {
                 $filter_array[$key] = $val;
-            } else if ($key === 'in-stock' && $val == '1') {
+            } elseif ($key === 'in-stock' && $val == '1') {
                 $filter_array[$key] = $val;
             } else {
                 if (substr($key, 0, 3) === 'pa_') {
@@ -791,7 +791,7 @@ function swpf_get_vars_query_args($current_filter_option, $settings, $tax, $term
                     'terms' => $ftroption
                 );
             }
-        } else if ($key == 'tags') {
+        } elseif ($key == 'tags') {
             if (!(($tax == 'product_tag') && $exclude_curtax)) {
                 $krelation = isset($settings['multiselect_logic_operator']['product_tag']) ? $settings['multiselect_logic_operator']['product_tag'] : 'AND';
                 $ftroption = is_array($option) ? $option : explode(',', $option);
@@ -806,7 +806,7 @@ function swpf_get_vars_query_args($current_filter_option, $settings, $tax, $term
                     'terms' => $ftroption
                 );
             }
-        } else if (($key == 'attribute' || 0 === strpos($key, 'pa_'))) {
+        } elseif (($key == 'attribute' || 0 === strpos($key, 'pa_'))) {
             foreach ($option as $optkey => $value) {
                 if (!(($tax == $optkey) && $exclude_curtax)) {
                     $krelation = isset($settings['multiselect_logic_operator'][$optkey]) ? $settings['multiselect_logic_operator'][$optkey] : 'AND';
@@ -823,7 +823,7 @@ function swpf_get_vars_query_args($current_filter_option, $settings, $tax, $term
                     );
                 }
             }
-        } else if ($key == 'visibility') {
+        } elseif ($key == 'visibility') {
             if (!(($tax == 'product_visibility') && $exclude_curtax)) {
                 $krelation = isset($settings['multiselect_logic_operator']['product_visibility']) ? $settings['multiselect_logic_operator']['product_visibility'] : 'AND';
                 $ftroption = is_array($option) ? $option : explode(',', $option);
@@ -863,7 +863,7 @@ function swpf_get_vars_query_args($current_filter_option, $settings, $tax, $term
                 'field' => 'slug',
                 'terms' => array($term)
             );
-        } else if ($tax == 'product_tag') {
+        } elseif ($tax == 'product_tag') {
             $krelation = isset($settings['multiselect_logic_operator']['product_tag']) ? $settings['multiselect_logic_operator']['product_tag'] : 'AND';
             $tax_query[] = array(
                 'operator' => $krelation,
@@ -871,7 +871,7 @@ function swpf_get_vars_query_args($current_filter_option, $settings, $tax, $term
                 'field' => 'slug',
                 'terms' => array($term)
             );
-        } else if (($type == 'attribute' || 0 === strpos($tax, 'pa_'))) {
+        } elseif (($type == 'attribute' || 0 === strpos($tax, 'pa_'))) {
             $krelation = isset($settings['multiselect_logic_operator'][$tax]) ? $settings['multiselect_logic_operator'][$tax] : 'AND';
             $tax_query[] = array(
                 'operator' => $krelation,
@@ -879,7 +879,7 @@ function swpf_get_vars_query_args($current_filter_option, $settings, $tax, $term
                 'field' => 'slug',
                 'terms' => array($term)
             );
-        } else if ($tax == 'product_visibility') {
+        } elseif ($tax == 'product_visibility') {
             $krelation = isset($settings['multiselect_logic_operator']['product_visibility']) ? $settings['multiselect_logic_operator']['product_visibility'] : 'AND';
             $tax_query[] = array(
                 'operator' => $krelation,
@@ -937,7 +937,7 @@ function swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax) {
                 'field' => 'slug',
                 'terms' => $ftroption
             );
-        } else if ($key == 'tags') {
+        } elseif ($key == 'tags') {
             $krelation = isset($settings['multiselect_logic_operator']['product_tag']) ? $settings['multiselect_logic_operator']['product_tag'] : 'AND';
             $ftroption = is_array($option) ? $option : explode(',', $option);
             if (!$is_var_set && ($tax == 'product_tag')) {
@@ -951,7 +951,7 @@ function swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax) {
                 'field' => 'slug',
                 'terms' => $ftroption
             );
-        } else if ($key == 'attribute' || 0 === strpos($key, 'pa_')) {
+        } elseif ($key == 'attribute' || 0 === strpos($key, 'pa_')) {
             foreach ($option as $optkey => $value) {
                 $krelation = isset($settings['multiselect_logic_operator'][$optkey]) ? $settings['multiselect_logic_operator'][$optkey] : 'AND';
                 $atts = (array) $value;
@@ -992,14 +992,14 @@ function swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax) {
                 'field' => 'slug',
                 'terms' => array()
             );
-        } else if ($tax == 'product_tag') {
+        } elseif ($tax == 'product_tag') {
             $tax_query[] = array(
                 'operator' => $krelation,
                 'taxonomy' => 'product_tag',
                 'field' => 'slug',
                 'terms' => array()
             );
-        } else if (0 === strpos($tax, 'pa_')) {
+        } elseif (0 === strpos($tax, 'pa_')) {
             $tax_query[] = array(
                 'operator' => $krelation,
                 'taxonomy' => $tax,

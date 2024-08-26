@@ -50,7 +50,7 @@ if ($tax_name == 'product_visibility') {
         </select>
     </div>
     <?php
-} else if ($tax_name == 'product_cat') {
+} elseif ($tax_name == 'product_cat') {
     $exclude_terms = isset($settings['exclude_terms']['product_cat']) && $settings['include_exclude_filter']['product_cat'] == 'exclude-terms' ? $settings['exclude_terms']['product_cat'] : [];
     $include_terms = isset($settings['include_terms']['product_cat']) && $settings['include_exclude_filter']['product_cat'] == 'include-terms' ? $settings['include_terms']['product_cat'] : [];
     $selected_cats = '';
@@ -105,7 +105,7 @@ if ($tax_name == 'product_visibility') {
         ?>
     </div>
     <?php
-} else if ($tax_name == 'product_tag') {
+} elseif ($tax_name == 'product_tag') {
     ?>
     <div class="swpf-multiselect-wrap">
         <select class="swpf-multiselect" name="tags[]" multiple>
@@ -152,7 +152,7 @@ if ($tax_name == 'product_visibility') {
         </select>
     </div>
     <?php
-} else if (substr($tax_name, 0, 3) === 'pa_') {
+} elseif (substr($tax_name, 0, 3) === 'pa_') {
     ?>
     <div class="swpf-multiselect-wrap">
         <select class="swpf-multiselect" name="attribute[<?php echo esc_attr($tax_name); ?>][]" multiple>
@@ -199,7 +199,7 @@ if ($tax_name == 'product_visibility') {
         </select>
     </div>
             <?php
-        } else if ($tax_name) {
+        } elseif ($tax_name) {
             ?>
     <div class="swpf-multiselect-wrap">
         <select class="swpf-multiselect" name="attribute[<?php echo esc_attr($tax_name); ?>][]" multiple>

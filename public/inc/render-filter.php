@@ -108,31 +108,31 @@ $main_wrap_classes = array(
                                 <?php $this->render_pricerange($settings, $current_filter_option, $min_price, $max_price); ?>
                             </div>
                             <?php
-                        } else if ($tax_name == 'reviews' && $settings['enable']['reviews'] == 'on') {
+                        } elseif ($tax_name == 'reviews' && $settings['enable']['reviews'] == 'on') {
                             ?>
                             <div class="swpf-filter-item-wrap swpf-<?php echo esc_attr($tax_name) ?>-wrap swpf-tax-count-<?php echo esc_attr($count); ?>">
                                 <?php $this->render_reviews($settings, $current_filter_option); ?>
                             </div>
                             <?php
-                        } else if ($tax_name == 'ratings' && $settings['enable']['ratings'] == 'on') {
+                        } elseif ($tax_name == 'ratings' && $settings['enable']['ratings'] == 'on') {
                             ?>
                             <div class="swpf-filter-item-wrap swpf-<?php echo esc_attr($tax_name) ?>-wrap swpf-tax-count-<?php echo esc_attr($count); ?>">
                                 <?php $this->render_ratings($settings, $current_filter_option); ?>
                             </div>
                             <?php
-                        } else if ($tax_name == 'on_sale' && $settings['enable']['on_sale'] == 'on') {
+                        } elseif ($tax_name == 'on_sale' && $settings['enable']['on_sale'] == 'on') {
                             ?>
                             <div class="swpf-filter-item-wrap swpf-<?php echo esc_attr($tax_name) ?>-wrap swpf-tax-count-<?php echo esc_attr($count); ?>">
                                 <?php $this->render_onsale($settings, $current_filter_option); ?>
                             </div>
                             <?php
-                        } else if ($tax_name == 'in_stock' && $settings['enable']['in_stock'] == 'on') {
+                        } elseif ($tax_name == 'in_stock' && $settings['enable']['in_stock'] == 'on') {
                             ?>
                             <div class="swpf-filter-item-wrap swpf-<?php echo esc_attr($tax_name) ?>-wrap swpf-tax-count-<?php echo esc_attr($count); ?>">
                                 <?php $this->render_instock($settings, $current_filter_option); ?>
                             </div>
                             <?php
-                        } else if (isset($settings['enable'][$tax_name]) && $settings['enable'][$tax_name] == 'on') {
+                        } elseif (isset($settings['enable'][$tax_name]) && $settings['enable'][$tax_name] == 'on') {
                             $args = swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax_name);
                             $term_cquery = new WP_Query($args);
                             wp_reset_postdata();

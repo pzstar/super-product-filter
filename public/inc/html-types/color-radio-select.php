@@ -31,7 +31,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                         <input type="radio" id="swpf-term-<?php echo esc_attr($term->term_id) ?>" class="swpf-radio-term swpf-radio-term-<?php echo esc_attr($term->term_id); ?>" name="visibility" data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php checked($checked, true); ?>>
                         <?php if ($settings['display_type'][$tax_name] == 'image') { ?>
                             <span class="swpf-image-box" style="background-image: url(<?php echo esc_url($settings['terms_customize'][$tax_name][$term->term_id]['term_image']); ?>)"></span>
-                        <?php } else if ($settings['display_type'][$tax_name] == 'color') { ?>
+                        <?php } elseif ($settings['display_type'][$tax_name] == 'color') { ?>
                             <span class="swpf-color-box" style="background: <?php echo esc_attr($settings['terms_customize'][$tax_name][$term->term_id]['term_color']); ?>"></span>
                         <?php } ?>
                         <span class="swpf-title">
@@ -56,7 +56,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                     </label>
                 </div>
                 <?php
-            } else if ($tax_name == 'product_cat') {
+            } elseif ($tax_name == 'product_cat') {
                 if (isset($current_filter_option['categories']) && !empty($current_filter_option['categories']) && is_array($current_filter_option['categories'])) {
                     $checked = in_array($term->slug, $current_filter_option['categories']) ? true : false;
                 }
@@ -66,7 +66,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                         <input type="radio" id="swpf-term-<?php echo esc_attr($term->term_id) ?>" class="swpf-radio-term swpf-radio-term-<?php echo esc_attr($term->term_id); ?>" name="categories" data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php checked($checked, true); ?>>
                         <?php if ($settings['display_type'][$tax_name] == 'image') { ?>
                             <span class="swpf-image-box" style="background-image: url(<?php echo esc_url($settings['terms_customize'][$tax_name][$term->term_id]['term_image']); ?>)"></span>
-                        <?php } else if ($settings['display_type'][$tax_name] == 'color') { ?>
+                        <?php } elseif ($settings['display_type'][$tax_name] == 'color') { ?>
                             <span class="swpf-color-box" style="background: <?php echo esc_attr($settings['terms_customize'][$tax_name][$term->term_id]['term_color']); ?>"></span>
                         <?php } ?>
                         <span class="swpf-title">
@@ -91,7 +91,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                     </label>
                 </div>
                 <?php
-            } else if ($tax_name == 'product_tag') {
+            } elseif ($tax_name == 'product_tag') {
                 if (isset($current_filter_option['tags']) && !empty($current_filter_option['tags']) && is_array($current_filter_option['tags'])) {
                     $checked = in_array($term->slug, $current_filter_option['tags']) ? true : false;
                 }
@@ -101,7 +101,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                         <input type="radio" id="swpf-term-<?php echo esc_attr($term->term_id) ?>" class="swpf-radio-term swpf-radio-term-<?php echo esc_attr($term->term_id); ?>" name="tags" data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php checked($checked, true); ?>>
                         <?php if ($settings['display_type'][$tax_name] == 'image') { ?>
                             <span class="swpf-image-box" style="background-image: url(<?php echo esc_url($settings['terms_customize'][$tax_name][$term->term_id]['term_image']); ?>)"></span>
-                        <?php } else if ($settings['display_type'][$tax_name] == 'color') { ?>
+                        <?php } elseif ($settings['display_type'][$tax_name] == 'color') { ?>
                             <span class="swpf-color-box" style="background: <?php echo esc_attr($settings['terms_customize'][$tax_name][$term->term_id]['term_color']); ?>"></span>
                         <?php } ?>
                         <span class="swpf-title">
@@ -126,7 +126,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                     </label>
                 </div>
                 <?php
-            } else if ((substr($tax_name, 0, 3) === 'pa_') && isset($term->term_id)) {
+            } elseif ((substr($tax_name, 0, 3) === 'pa_') && isset($term->term_id)) {
                 if (isset($current_filter_option['attribute'][$tax_name]) && !empty($current_filter_option['attribute'][$tax_name]) && is_array($current_filter_option['attribute'][$tax_name])) {
                     $checked = in_array($term->slug, $current_filter_option['attribute'][$tax_name]) ? true : false;
                 }
@@ -136,7 +136,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                         <input type="radio" id="swpf-term-<?php echo esc_attr($term->term_id) ?>" class="swpf-radio-term swpf-radio-term-<?php echo esc_attr($term->term_id); ?>" name="attribute[<?php echo esc_attr($tax_name); ?>][]" data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php checked($checked, true); ?>>
                         <?php if ($settings['display_type'][$tax_name] == 'image') { ?>
                             <span class="swpf-image-box" style="background-image: url(<?php echo esc_url($settings['terms_customize'][$tax_name][$term->term_id]['term_image']); ?>)"></span>
-                        <?php } else if ($settings['display_type'][$tax_name] == 'color') { ?>
+                        <?php } elseif ($settings['display_type'][$tax_name] == 'color') { ?>
                             <span class="swpf-color-box" style="background: <?php echo esc_attr($settings['terms_customize'][$tax_name][$term->term_id]['term_color']); ?>"></span>
                         <?php } ?>
                         <span class="swpf-title">
@@ -161,7 +161,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                     </label>
                 </div>
                 <?php
-            } else if (isset($term->term_id)) {
+            } elseif (isset($term->term_id)) {
                 if (isset($current_filter_option['attribute'][$tax_name]) && !empty($current_filter_option['attribute'][$tax_name]) && is_array($current_filter_option['attribute'][$tax_name])) {
                     $checked = in_array($term->slug, $current_filter_option['attribute'][$tax_name]) ? true : false;
                 }
@@ -171,7 +171,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                         <input type="radio" id="swpf-term-<?php echo esc_attr($term->term_id) ?>" class="swpf-radio-term swpf-radio-term-<?php echo esc_attr($term->term_id); ?>" name="attribute[<?php echo esc_attr($tax_name); ?>][]" data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php checked($checked, true); ?>>
                         <?php if ($settings['display_type'][$tax_name] == 'image') { ?>
                             <span class="swpf-image-box" style="background-image: url(<?php echo esc_url($settings['terms_customize'][$tax_name][$term->term_id]['term_image']); ?>)"></span>
-                        <?php } else if ($settings['display_type'][$tax_name] == 'color') { ?>
+                        <?php } elseif ($settings['display_type'][$tax_name] == 'color') { ?>
                             <span class="swpf-color-box" style="background: <?php echo esc_attr($settings['terms_customize'][$tax_name][$term->term_id]['term_color']); ?>"></span>
                         <?php } ?>
                         <span class="swpf-title">

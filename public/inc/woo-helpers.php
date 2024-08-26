@@ -40,11 +40,11 @@ function swpf_hide_show_pages($specific_page, $hide_show, $cpt, $specific_archiv
     $pageid = is_front_page() ? null : ($post ? $post->ID : null);
     if (class_exists('WooCommerce') && is_shop()) {
         $pageid = wc_get_page_id('shop');
-    } else if (is_single() || is_front_page()) {
+    } elseif (is_single() || is_front_page()) {
         $pageid = isset($post->ID) ? $post->ID : null;
-    } else if (is_archive()) {
+    } elseif (is_archive()) {
         $pageid = get_queried_object_id();
-    } else if (is_home()) {
+    } elseif (is_home()) {
         $pageid = get_queried_object_id();
     }
     $current_archive = $post ? $post->post_type : get_queried_object()->name;

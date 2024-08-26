@@ -43,15 +43,15 @@ $sc_title = get_the_title($sc_id);
             if (isset($settings['pricerangeslider']['skin'])) {
                 if ($settings['pricerangeslider']['skin'] == 'swpf-pricerangeslider-skin-2') {
                     $ionSkin = 'flat';
-                } else if ($settings['pricerangeslider']['skin'] == 'swpf-pricerangeslider-skin-3') {
+                } elseif ($settings['pricerangeslider']['skin'] == 'swpf-pricerangeslider-skin-3') {
                     $ionSkin = 'big';
-                } else if ($settings['pricerangeslider']['skin'] == 'swpf-pricerangeslider-skin-4') {
+                } elseif ($settings['pricerangeslider']['skin'] == 'swpf-pricerangeslider-skin-4') {
                     $ionSkin = 'modern';
-                } else if ($settings['pricerangeslider']['skin'] == 'swpf-pricerangeslider-skin-5') {
+                } elseif ($settings['pricerangeslider']['skin'] == 'swpf-pricerangeslider-skin-5') {
                     $ionSkin = 'sharp';
-                } else if ($settings['pricerangeslider']['skin'] == 'swpf-pricerangeslider-skin-6') {
+                } elseif ($settings['pricerangeslider']['skin'] == 'swpf-pricerangeslider-skin-6') {
                     $ionSkin = 'round';
-                } else if ($settings['pricerangeslider']['skin'] == 'swpf-pricerangeslider-skin-7') {
+                } elseif ($settings['pricerangeslider']['skin'] == 'swpf-pricerangeslider-skin-7') {
                     $ionSkin = 'square';
                 }
             }

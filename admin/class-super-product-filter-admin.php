@@ -1372,7 +1372,7 @@ class Super_Product_Filter_Admin {
                     }
 
                     $mods[$key] = $value;
-                } else if (self::is_image_url($value)) {
+                } elseif (self::is_image_url($value)) {
                     $data = self::media_handle_sideload($value);
                     if (!is_wp_error($data))
                         $mods[$key] = $data->url;

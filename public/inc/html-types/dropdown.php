@@ -55,7 +55,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
             ?>
         </select>
             <?php
-        } else if ($tax_name == 'product_cat') {
+        } elseif ($tax_name == 'product_cat') {
             $exclude_terms = $settings['include_exclude_filter']['product_cat'] == 'exclude-terms' ? $settings['exclude_terms']['product_cat'] : [];
             $include_terms = $settings['include_exclude_filter']['product_cat'] == 'include-terms' ? $settings['include_terms']['product_cat'] : [];
             $selected_cats = [];
@@ -109,7 +109,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                         'hide_terms' => [],
                     )
             );
-        } else if ($tax_name == 'product_tag') {
+        } elseif ($tax_name == 'product_tag') {
             ?>
         <select class="swpf-filter-type-dropdown" name="tags">
             <option value=""><?php esc_html_e('None', 'super-product-filter'); ?></option>
@@ -155,7 +155,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
             ?>
         </select>
             <?php
-        } else if ((substr($tax_name, 0, 3) === 'pa_')) {
+        } elseif ((substr($tax_name, 0, 3) === 'pa_')) {
             ?>
         <select class="swpf-filter-type-dropdown" name="attribute[<?php echo esc_attr($tax_name); ?>][]">
             <option value=""><?php esc_html_e('None', 'super-product-filter'); ?></option>
@@ -201,7 +201,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
             ?>
         </select>
             <?php
-        } else if ($tax_name) {
+        } elseif ($tax_name) {
             ?>
         <select class="swpf-filter-type-dropdown" name="attribute[<?php echo esc_attr($tax_name); ?>][]">
             <option value=""><?php esc_html_e('None', 'super-product-filter'); ?></option>

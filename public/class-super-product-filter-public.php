@@ -197,7 +197,7 @@ class Super_Product_Filter_Public {
         if (!empty($post_data['swpf_filter_sc'])) {
             $this->filter_shortcode_id = absint($post_data['swpf_filter_sc']);
             $this->settings = get_post_meta($this->filter_shortcode_id, 'swpf_settings', true);
-        } else if ($filter_shortcode_id) {
+        } elseif ($filter_shortcode_id) {
             $this->filter_shortcode_id = absint($filter_shortcode_id);
             $this->settings = get_post_meta($this->filter_shortcode_id, 'swpf_settings', true);
         }
@@ -216,7 +216,7 @@ class Super_Product_Filter_Public {
                         'field' => 'slug',
                         'terms' => is_array($option) ? $option : explode(',', $option)
                     );
-                } else if ($key == 'tags') {
+                } elseif ($key == 'tags') {
                     $krelation = isset($this->settings['multiselect_logic_operator']['product_tag']) ? $this->settings['multiselect_logic_operator']['product_tag'] : 'AND';
                     $tax_query[] = array(
                         'operator' => $krelation,
@@ -224,7 +224,7 @@ class Super_Product_Filter_Public {
                         'field' => 'slug',
                         'terms' => is_array($option) ? $option : explode(',', $option)
                     );
-                } else if ($key == 'attribute' || 0 === strpos($key, 'pa_')) {
+                } elseif ($key == 'attribute' || 0 === strpos($key, 'pa_')) {
                     foreach ($option as $key => $value) {
                         $krelation = isset($this->settings['multiselect_logic_operator'][$key]) ? $this->settings['multiselect_logic_operator'][$key] : 'AND';
                         $atts = (array) $value;
@@ -235,7 +235,7 @@ class Super_Product_Filter_Public {
                             'terms' => $atts
                         );
                     }
-                } else if ($key == 'visibility') {
+                } elseif ($key == 'visibility') {
                     $krelation = isset($this->settings['multiselect_logic_operator']['product_visibility']) ? $this->settings['multiselect_logic_operator']['product_visibility'] : 'AND';
                     $tax_query[] = array(
                         'operator' => $krelation,
@@ -259,7 +259,7 @@ class Super_Product_Filter_Public {
                         'compare' => 'BETWEEN',
                         'type' => 'DECIMAL'
                     );
-                } else if ($key == 'review') {
+                } elseif ($key == 'review') {
                     if (isset($option['review_from'])) {
                         $meta_query[] = array(
                             'key' => '_wc_review_count',
@@ -267,13 +267,13 @@ class Super_Product_Filter_Public {
                             'compare' => '>='
                         );
                     }
-                } else if ($key == 'in-stock' && $option == '1') {
+                } elseif ($key == 'in-stock' && $option == '1') {
                     $meta_query[] = array(
                         'key' => '_stock_status',
                         'value' => 'instock',
                         'compare' => '=',
                     );
-                } else if ($key == 'on-sale' && $option == '1') {
+                } elseif ($key == 'on-sale' && $option == '1') {
                     $wp_query->set('post__in', array_merge([0], wc_get_product_ids_on_sale()));
                 }
             }
@@ -374,15 +374,15 @@ class Super_Product_Filter_Public {
                     if (!empty($option) && !empty($option[0])) {
                         $filter_array[$key] = (array) $option;
                     }
-                } else if ($key == 'price') {
+                } elseif ($key == 'price') {
                     if ((isset($option['min_price']) && $option['min_price']) || (isset($option['max_price']) && $option['max_price'])) {
                         $filter_array[$key] = (array) $option;
                     }
-                } else if ($key == 'rating-from' && $option != '0' && !empty($option)) {
+                } elseif ($key == 'rating-from' && $option != '0' && !empty($option)) {
                     $filter_array[$key] = (array) $option;
-                } else if ($key == 'review-from' && $option != '0' && !empty($option)) {
+                } elseif ($key == 'review-from' && $option != '0' && !empty($option)) {
                     $filter_array['review']['review_from'] = $option;
-                } else if ($key == 'attribute') {
+                } elseif ($key == 'attribute') {
                     if (!empty($option)) {
                         foreach ($option as $optKey => $optVal) {
                             if (isset($optVal) && !empty($optVal[0])) {
@@ -390,11 +390,11 @@ class Super_Product_Filter_Public {
                             }
                         }
                     }
-                } else if ($key == 'in-stock' && $option == '1') {
+                } elseif ($key == 'in-stock' && $option == '1') {
                     $filter_array[$key] = $option;
-                } else if ($key == 'on-sale' && $option == '1') {
+                } elseif ($key == 'on-sale' && $option == '1') {
                     $filter_array[$key] = $option;
-                } else if ($key === 'orderby') {
+                } elseif ($key === 'orderby') {
                     $filter_array[$key] = $option;
                 }
             }
@@ -403,19 +403,19 @@ class Super_Product_Filter_Public {
                 foreach ($current_filter as $key => $val) {
                     if ($key == 'categories' || $key == 'tags' || $key == 'visibility') {
                         $filter_array[$key] = is_array($val) ? $val : explode(',', $val);
-                    } else if ($key == 'min_price') {
+                    } elseif ($key == 'min_price') {
                         $filter_array['price']['min_price'] = $val;
-                    } else if ($key == 'max_price') {
+                    } elseif ($key == 'max_price') {
                         $filter_array['price']['max_price'] = $val;
-                    } else if ($key == 'rating-from') {
+                    } elseif ($key == 'rating-from') {
                         $filter_array[$key] = is_array($val) ? $val : explode(',', $val);
-                    } else if ($key == 'review-from' && $val != '0' && !empty($val)) {
+                    } elseif ($key == 'review-from' && $val != '0' && !empty($val)) {
                         $filter_array['review']['review_from'] = $val;
-                    } else if ($key == 'review-to' && $val != '0' && !empty($val)) {
+                    } elseif ($key == 'review-to' && $val != '0' && !empty($val)) {
                         $filter_array['review']['review_to'] = $val;
-                    } else if ($key == 'on-sale' && $val == '1') {
+                    } elseif ($key == 'on-sale' && $val == '1') {
                         $filter_array[$key] = $val;
-                    } else if ($key === 'in-stock' && $val == '1') {
+                    } elseif ($key === 'in-stock' && $val == '1') {
                         $filter_array[$key] = $val;
                     } else {
                         if (substr($key, 0, 3) === 'pa_') {
@@ -648,7 +648,7 @@ class Super_Product_Filter_Public {
         if ($display_type == 'radio' || $display_type == 'checkbox' || $display_type == 'button' || $display_type == 'toggle' || $display_type == 'image' || $display_type == 'color') {
             if (isset($settings['field_orientation'][$tax_name]) && $settings['field_orientation'][$tax_name] == 'vertical') {
                 array_push($orientationClass, 'swpf-field-vertical');
-            } else if (isset($settings['field_orientation'][$tax_name]) && $settings['field_orientation'][$tax_name] == 'horizontal') {
+            } elseif (isset($settings['field_orientation'][$tax_name]) && $settings['field_orientation'][$tax_name] == 'horizontal') {
                 array_push($orientationClass, 'swpf-field-horizontal');
             }
         }
@@ -665,7 +665,7 @@ class Super_Product_Filter_Public {
                     $get_related_term = $this->get_related_term($config['page_tax_name'], $config['page_term_name'], $tax_name, $settings);
                 }
             }
-        } else if (!wp_doing_ajax() && is_product_taxonomy()) {
+        } elseif (!wp_doing_ajax() && is_product_taxonomy()) {
             if (!is_array($config)) {
                 $config = (array) json_decode($config);
             }
@@ -854,7 +854,7 @@ class Super_Product_Filter_Public {
         $sc_id = swpf_get_var('swpf_filter_sc');
         if (isset($this->settings) && !empty($this->settings)) {
             $settings = $this->settings;
-        } else if ($sc_id) {
+        } elseif ($sc_id) {
             $this->filter_shortcode_id = $sc_id;
             $settings = get_post_meta($sc_id, 'swpf_settings', true);
             if (!$settings) {
@@ -983,19 +983,19 @@ class Super_Product_Filter_Public {
             if ($val) {
                 if ($key == 'categories' || $key == 'tags' || $key == 'visibility') {
                     $filter_array[$key] = is_array($val) ? $val : explode(',', $val);
-                } else if ($key == 'min_price') {
+                } elseif ($key == 'min_price') {
                     $filter_array['price']['min_price'] = $val;
-                } else if ($key == 'max_price') {
+                } elseif ($key == 'max_price') {
                     $filter_array['price']['max_price'] = $val;
-                } else if ($key == 'rating-from') {
+                } elseif ($key == 'rating-from') {
                     $filter_array[$key] = is_array($val) ? $val : explode(',', $val);
-                } else if ($key == 'review-from' && $val != '0' && !empty($val)) {
+                } elseif ($key == 'review-from' && $val != '0' && !empty($val)) {
                     $filter_array['review']['review_from'] = $val;
-                } else if ($key == 'review-to' && $val != '0' && !empty($val)) {
+                } elseif ($key == 'review-to' && $val != '0' && !empty($val)) {
                     $filter_array['review']['review_to'] = $val;
-                } else if ($key == 'on-sale' && $val == '1') {
+                } elseif ($key == 'on-sale' && $val == '1') {
                     $filter_array[$key] = $val;
-                } else if ($key === 'in-stock' && $val == '1') {
+                } elseif ($key === 'in-stock' && $val == '1') {
                     $filter_array[$key] = $val;
                 } else {
                     if (substr($key, 0, 3) === 'pa_') {

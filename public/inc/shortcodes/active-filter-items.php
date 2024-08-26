@@ -47,7 +47,7 @@ if ($current_filter_option) {
                     <?php
                 }
             }
-        } else if ($key == 'attribute') {
+        } elseif ($key == 'attribute') {
             $attributes = $value;
             if ($attributes) {
                 foreach ($attributes as $attribute_slug => $option_slugs) {
@@ -120,7 +120,7 @@ if ($current_filter_option) {
                 ?>
             </div>
             <?php
-        } else if ($key == 'categories') {
+        } elseif ($key == 'categories') {
             $category_slugs = $value;
             ?>
             <div class="swpf-group-activated-filter  swpf-activated-categories">
@@ -150,7 +150,7 @@ if ($current_filter_option) {
                 ?>
             </div>
             <?php
-        } else if ($key == 'on-sale' && $value == '1') {
+        } elseif ($key == 'on-sale' && $value == '1') {
             ?>
             <div class="swpf-group-activated-filter swpf-activated-on-sale">
                 <span class="swpf-active-filter-title">
@@ -164,7 +164,7 @@ if ($current_filter_option) {
                 </button>
             </div>
             <?php
-        } else if ($key == 'in-stock' && $value == '1') {
+        } elseif ($key == 'in-stock' && $value == '1') {
             ?>
             <div class="swpf-group-activated-filter swpf-activated-in-stock">
                 <span class="swpf-active-filter-title">
@@ -178,7 +178,7 @@ if ($current_filter_option) {
                 </button>
             </div>
             <?php
-        } else if ($key == 'review') {
+        } elseif ($key == 'review') {
             ?>
             <div class="swpf-group-activated-filter swpf-activated-review">
                 <span class="swpf-active-filter-title">
@@ -193,7 +193,7 @@ if ($current_filter_option) {
                 </button>
             </div>
             <?php
-        } else if ($key == 'rating-from') {
+        } elseif ($key == 'rating-from') {
             ?>
             <div class="swpf-group-activated-filter swpf-activated-rating">
                 <span class="swpf-active-filter-title">

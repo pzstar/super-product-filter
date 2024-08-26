@@ -148,7 +148,7 @@ $index = 1;
                     </div>
                 </div>
                 <?php
-            } else if ($key == 'reviews') {
+            } elseif ($key == 'reviews') {
                 ?>
                 <div class="swpf-reviews-options-fields swpf-each-items-wrap" data-condition-toggle="swpf-filters-show-hide-reviews" id="reviews">
                     <div class="swpf-tax-heading-wrap">
@@ -172,7 +172,7 @@ $index = 1;
                     </div>
                 </div>
                 <?php
-            } else if ($key == 'ratings') {
+            } elseif ($key == 'ratings') {
                 ?>
                 <div class="swpf-ratings-options-fields swpf-each-items-wrap" data-condition-toggle="swpf-filters-show-hide-ratings" id="ratings">
                     <div class="swpf-tax-heading-wrap">
@@ -196,7 +196,7 @@ $index = 1;
                     </div>
                 </div>
                 <?php
-            } else if ($key == 'on_sale') {
+            } elseif ($key == 'on_sale') {
                 ?>
                 <div class="swpf-onsale-options-fields swpf-each-items-wrap" data-condition-toggle="swpf-filters-show-hide-on-sale" id="on_sale">
                     <div class="swpf-tax-heading-wrap">
@@ -220,7 +220,7 @@ $index = 1;
                     </div>
                 </div>
                 <?php
-            } else if ($key == 'in_stock') {
+            } elseif ($key == 'in_stock') {
                 ?>
                 <div class="swpf-instock-options-fields swpf-each-items-wrap" data-condition-toggle="swpf-filters-show-hide-in-stock" id="in_stock">
                     <div class="swpf-tax-heading-wrap">
