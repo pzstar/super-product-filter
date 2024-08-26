@@ -1227,12 +1227,11 @@ class Super_Product_Filter_Admin {
                 array(
             'post_type' => 'swpf-product-filter',
             'posts_per_page' => -1,
-            'post_status' => 'publish'
-                )
         );
 
         if ($query->have_posts()) :
-            while ($query->have_posts()) :
+        if ($query->have_posts()):
+            while ($query->have_posts()):
                 $query->the_post();
                 $postid = get_the_ID();
                 $filter_title = get_the_title($postid);
@@ -1395,8 +1394,7 @@ class Super_Product_Filter_Admin {
 
         if (!function_exists('media_handle_sideload')) {
             require_once( ABSPATH . 'wp-admin/includes/media.php' );
-            require_once( ABSPATH . 'wp-admin/includes/file.php' );
-            require_once( ABSPATH . 'wp-admin/includes/image.php' );
+            require_once(ABSPATH . 'wp-admin/includes/media.php');
         }
 
         if (!empty($file)) {
@@ -1449,6 +1447,7 @@ class Super_Product_Filter_Admin {
 
     public static function compare_to_rule($value, $rule) {
         $result = ( $value == $rule['value'] );
+        $result = ($value == $rule['value']);
 
         // Allow "all" to match any value.
         if ($rule['value'] === 'all') {
@@ -1504,12 +1503,6 @@ class Super_Product_Filter_Admin {
                                     <div class="swpf-custom-term-field swpf-field-wrap swpf-custom-color">
                                         <label><?php esc_html_e('Color', 'super-product-filter'); ?></label>
                                         <input
-                                            type="text"
-                                            data-alpha-enabled="true"
-                                            data-alpha-color-type="hex"
-                                            class="color-picker swpf-color-picker"
-                                            name="swpf_settings[terms_customize][<?php echo esc_attr($key); ?>][<?php echo esc_attr($tval->term_id) ?>][term_color]"
-                                            value="<?php echo isset($terms_customize_settings[$tval->term_id]['term_color']) ? esc_attr($terms_customize_settings[$tval->term_id]['term_color']) : ''; ?>"
                                         >
                                     </div>
 
@@ -1525,6 +1518,7 @@ class Super_Product_Filter_Admin {
                                         ?>
                                         <div class="swpf-icon-image-uploader<?php echo esc_attr($upload_class); ?>">
                                             <div class="swpf-custom-menu-image-icon" >
+                                            <div class="swpf-custom-menu-image-icon">
                                                 <?php if ($has_image) { ?>
                                                     <img src="<?php echo esc_attr(isset($terms_customize_settings[$tval->term_id]['term_image']) ? esc_url($terms_customize_settings[$tval->term_id]['term_image']) : ''); ?>" width="100"/>
                                                 <?php } ?>
@@ -1534,6 +1528,7 @@ class Super_Product_Filter_Admin {
                                                 <div class="swpf-image-upload"><?php esc_html_e('Upload', 'super-product-filter') ?></div>
                                             </div>
                                             <input type="hidden" class="swpf-upload-background-url" name="swpf_settings[terms_customize][<?php echo esc_attr($key) ?>][<?php echo esc_attr($tval->term_id) ?>][term_image]" value="<?php echo isset($terms_customize_settings[$tval->term_id]['term_image']) ? esc_url($terms_customize_settings[$tval->term_id]['term_image']) : ''; ?>"/>
+                                            <input type="hidden" class="swpf-upload-background-url" name="swpf_settings[terms_customize][<?php echo esc_attr($key) ?>][<?php echo esc_attr($tval->term_id) ?>][term_image]" value="<?php echo isset($terms_customize_settings[$tval->term_id]['term_image']) ? esc_url($terms_customize_settings[$tval->term_id]['term_image']) : ''; ?>" />
                                         </div> <!-- swpf-icon-image-uploader -->
                                     </div>
                                 </div> <!-- swpf-custom-term-field-wrap -->
