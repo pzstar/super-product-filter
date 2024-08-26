@@ -23,8 +23,6 @@ Explore a test dashboard to get a hands on experience with our features and func
 
 Feel free to experiment, and if you have any feedback or encounter issues, please let us know through our support tickets.
 
-<h2>Features</h2>
-
 <h3>Real Time AJAX Filtering</h3>
 Real-Time AJAX Filtering ensures that product search results update instantly as users adjust their filters without requiring a page reload. This dynamic feature enhances the shopping experience by providing immediate feedback, allowing customers to see filtered results in real-time.
 
