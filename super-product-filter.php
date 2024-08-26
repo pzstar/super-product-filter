@@ -3,7 +3,7 @@
 /**
  * Plugin Name:       Super Product Filter for WooCommerce
  * Plugin URI:        https://demo.hashthemes.com/super-woocommerce-product-filter/
- * Description:       Ajax Filter For WooCommerce Products
+ * Description:       Ajax Filter For WooCommerce Products - Simplify your Search, Save your Time.
  * Version:           1.0.0
  * Author:            hashthemes
  * Author URI:        https://hashthemes.com
@@ -49,7 +49,7 @@ function super_product_filter_run() {
     } else {
         add_action('admin_notices', function () {
             $message = sprintf(/* translators: Placeholders: %1$s and %2$s are <strong> tags. %3$s and %4$s are <a> tags */
-                    esc_html__('%1$sSuper Product Filter for WooCommerce %2$s requires WooCommerce Plugin. Please install and activate %3$sWooCommerce%4$s.', 'super-product-filter'), '<strong>', '</strong>', '<a href="' . esc_url(admin_url('plugin-install.php?s=woocommerce&tab=search&type=term')) . '">', '</a>'
+                esc_html__('%1$sSuper Product Filter for WooCommerce %2$s requires WooCommerce Plugin. Please install and activate %3$sWooCommerce%4$s.', 'super-product-filter'), '<strong>', '</strong>', '<a href="' . esc_url(admin_url('plugin-install.php?s=woocommerce&tab=search&type=term')) . '">', '</a>'
             );
 
             echo sprintf('<div class="error"><p>%s</p></div>', $message);
