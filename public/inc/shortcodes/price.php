@@ -8,7 +8,7 @@ $sc_title = get_the_title($sc_id);
 ?>
 <div class="swpf-pricerange swpf-filter-pricerange-wrap swpf-filter-byprice slider-price">
     <?php
-    if (isset($settings['title_label']['price_range']) and ! empty($settings['title_label']['price_range'])) {
+    if (isset($settings['title_label']['price_range']) && ! empty($settings['title_label']['price_range'])) {
         ?>
         <div class="swpf-filter-title">
             <h4 class="swpf-filter-title-heading">

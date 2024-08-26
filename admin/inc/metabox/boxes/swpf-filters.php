@@ -5,13 +5,13 @@ $items_order = array();
 $taxonomies = swpf_get_taxonomies(); // get all taxonomies object
 $taxonomies_keys = array_keys($taxonomies); // get only the taxo name array
 
-if (isset($settings['list_order']) AND ! empty($settings['list_order'])) {
+if (isset($settings['list_order']) && ! empty($settings['list_order'])) {
     $items_order = $settings['list_order'];
     $meta_items = ['price_range', 'reviews', 'ratings', 'on_sale', 'in_stock'];
     $tax_items = array_diff($items_order, $meta_items); // only tax_items from db
     $new_tax_items = array_diff($taxonomies_keys, $tax_items); // new added tax_items not available in db
     // check if new_tax_items are registered then append it to the current database items list
-    if (isset($new_tax_items) and ! empty($new_tax_items)) {
+    if (isset($new_tax_items) && ! empty($new_tax_items)) {
         $items_order = array_merge($items_order, $new_tax_items);
     }
 

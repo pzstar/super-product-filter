@@ -687,7 +687,7 @@ class Super_Product_Filter_Public {
             ?>
             <div class="swpf-filter-item-wrap swpf-<?php echo esc_attr($tax_name) ?>-wrap swpf-tax-count-<?php echo esc_attr($count); ?>">
                 <?php
-                if (isset($settings['title_label'][$tax_name]) and ! empty($settings['title_label'][$tax_name])) {
+                if (isset($settings['title_label'][$tax_name]) && ! empty($settings['title_label'][$tax_name])) {
                     ?>
                     <div class="swpf-filter-title">
                         <h4 class="swpf-filter-title-heading">

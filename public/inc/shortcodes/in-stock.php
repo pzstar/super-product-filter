@@ -4,7 +4,7 @@ defined('ABSPATH') || die();
 $sc_id = $this->filter_shortcode_id;
 $sc_title = get_the_title($sc_id);
 
-if (isset($settings['title_label']['in_stock']) and ! empty($settings['title_label']['in_stock'])) {
+if (isset($settings['title_label']['in_stock']) && ! empty($settings['title_label']['in_stock'])) {
     ?>
     <div class="swpf-filter-title">
         <h4 class="swpf-filter-title-heading">
