@@ -240,8 +240,8 @@ function swpf_custom_fonts() {
     );
     $query = new WP_Query($args);
 
-    if ($query->have_posts()) :
-        while ($query->have_posts()) :
+    if ($query->have_posts()):
+        while ($query->have_posts()):
             $query->the_post();
             $settings = get_post_meta(get_the_ID(), 'swpf_settings', true);
 
@@ -303,7 +303,7 @@ function swpf_fonts_url() {
             'family' => urlencode(implode('|', $fonts)),
             'subset' => urlencode($subsets),
             'display' => 'swap',
-                ), 'https://fonts.googleapis.com/css');
+        ), 'https://fonts.googleapis.com/css');
     }
 
     $general_settings = get_option('swpf_general_settings');

@@ -285,7 +285,7 @@
                 return multiplier * cmp(
                     get_field(field, a),
                     get_field(field, b)
-                    );
+                );
             };
         } else {
             return function (a, b) {
@@ -295,7 +295,7 @@
                     result = multipliers[i] * cmp(
                         get_field(field, a),
                         get_field(field, b)
-                        );
+                    );
                     if (result)
                         return result;
                 }
@@ -733,7 +733,7 @@
     };
 
 
-    var MicroEvent = function () {};
+    var MicroEvent = function () { };
     MicroEvent.prototype = {
         on: function (event, fct) {
             this._events = this._events || {};
@@ -1090,7 +1090,7 @@
                     (keyCode >= 65 && keyCode <= 90) || // A-Z
                     (keyCode >= 48 && keyCode <= 57) || // 0-9
                     keyCode === 32 // space
-                    );
+                );
 
                 if (keyCode === KEY_DELETE || keyCode === KEY_BACKSPACE) {
                     selection = getSelection($input[0]);
@@ -1248,10 +1248,12 @@
         MicroPlugin.mixin(Selectize);
     } else {
         logError("Dependency MicroPlugin is missing",
-            {explanation:
+            {
+                explanation:
                     "Make sure you either: (1) are using the \"standalone\" " +
                     "version of Selectize, or (2) require MicroPlugin before you " +
-                    "load Selectize."}
+                    "load Selectize."
+            }
         );
     }
 
@@ -1943,16 +1945,16 @@
 
             self.loading++;
             fn.apply(self, [function (results) {
-                    self.loading = Math.max(self.loading - 1, 0);
-                    if (results && results.length) {
-                        self.addOption(results);
-                        self.refreshOptions(self.isFocused && !self.isInputHidden);
-                    }
-                    if (!self.loading) {
-                        $wrapper.removeClass(self.settings.loadingClass);
-                    }
-                    self.trigger('load', results);
-                }]);
+                self.loading = Math.max(self.loading - 1, 0);
+                if (results && results.length) {
+                    self.addOption(results);
+                    self.refreshOptions(self.isFocused && !self.isInputHidden);
+                }
+                if (!self.loading) {
+                    $wrapper.removeClass(self.settings.loadingClass);
+                }
+                self.trigger('load', results);
+            }]);
         },
 
         /**
@@ -2786,7 +2788,7 @@
 
             var callback = arguments[arguments.length - 1];
             if (typeof callback !== 'function')
-                callback = function () {};
+                callback = function () { };
 
             if (typeof triggerDropdown !== 'boolean') {
                 triggerDropdown = true;
@@ -3704,7 +3706,7 @@
                     '<a href="javascript:void(0)" class="' + data.closeClass + '">&times;</a>' +
                     '</div>' +
                     '</div>'
-                    );
+                );
             }
         }, options);
 

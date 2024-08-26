@@ -48,7 +48,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                     'term_count_array' => $term_count_array,
                     'term_name_array' => $term_name_array,
                     'hide_terms' => [],
-                        ), $terms);
+                ), $terms);
             } else {
                 if ($terms) {
                     foreach ($terms as $key => $term) {

@@ -62,7 +62,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                     'term_count_array' => $term_count_array,
                     'term_name_array' => $term_name_array,
                     'hide_terms' => [],
-                        ), $terms);
+                ), $terms);
             } else {
                 if ($terms) {
                     foreach ($terms as $key => $term) {
@@ -88,7 +88,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                             <label class="swpf-filter-label">
                                 <input type="checkbox" id="swpf-term-<?php echo esc_attr($term->term_id) ?>" class="swpf-chkbox-term swpf-chkbox-term-<?php echo esc_attr($term->term_id); ?>" name="categories[]" data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php checked($checked, true); ?>>
                                 <?php if ($settings['display_type'][$tax_name] == 'image') { ?>
-                                    <span class="swpf-image-box"><span class="swpf-image-url"  style="background-image: url(<?php echo esc_url($settings['terms_customize'][$tax_name][$term->term_id]['term_image']); ?>)"></span></span>
+                                    <span class="swpf-image-box"><span class="swpf-image-url" style="background-image: url(<?php echo esc_url($settings['terms_customize'][$tax_name][$term->term_id]['term_image']); ?>)"></span></span>
                                 <?php } elseif ($settings['display_type'][$tax_name] == 'color') { ?>
                                     <span class="swpf-color-box" style="background: <?php echo esc_attr($settings['terms_customize'][$tax_name][$term->term_id]['term_color']); ?>"></span>
                                     <?php
@@ -148,7 +148,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                             <input type="checkbox" id="swpf-term-<?php echo esc_attr($term->term_id) ?>" class="swpf-chkbox-term swpf-chkbox-term-<?php echo esc_attr($term->term_id); ?>" name="visibility[]" data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php checked($checked, true); ?>>
 
                             <?php if ($settings['display_type'][$tax_name] == 'image') { ?>
-                                <span class="swpf-image-box"><span class="swpf-image-url"  style="background-image: url(<?php echo esc_url($settings['terms_customize'][$tax_name][$term->term_id]['term_image']); ?>)"></span></span>
+                                <span class="swpf-image-box"><span class="swpf-image-url" style="background-image: url(<?php echo esc_url($settings['terms_customize'][$tax_name][$term->term_id]['term_image']); ?>)"></span></span>
                             <?php } elseif ($settings['display_type'][$tax_name] == 'color') { ?>
                                 <span class="swpf-color-box" style="background: <?php echo esc_attr($settings['terms_customize'][$tax_name][$term->term_id]['term_color']); ?>"></span>
                                 <?php
@@ -186,7 +186,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                         <label class="swpf-filter-label">
                             <input type="checkbox" id="swpf-term-<?php echo esc_attr($term->term_id) ?>" class="swpf-chkbox-term swpf-chkbox-term-<?php echo esc_attr($term->term_id); ?>" name="tags[]" data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php checked($checked, true); ?>>
                             <?php if ($settings['display_type'][$tax_name] == 'image') { ?>
-                                <span class="swpf-image-box"><span class="swpf-image-url"  style="background-image: url(<?php echo esc_url($settings['terms_customize'][$tax_name][$term->term_id]['term_image']); ?>)"></span></span>
+                                <span class="swpf-image-box"><span class="swpf-image-url" style="background-image: url(<?php echo esc_url($settings['terms_customize'][$tax_name][$term->term_id]['term_image']); ?>)"></span></span>
                             <?php } elseif ($settings['display_type'][$tax_name] == 'color') { ?>
                                 <span class="swpf-color-box" style="background: <?php echo esc_attr($settings['terms_customize'][$tax_name][$term->term_id]['term_color']); ?>"></span>
                                 <?php
@@ -226,7 +226,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                             <?php
                             if ($settings['display_type'][$tax_name] == 'image') {
                                 ?>
-                                <span class="swpf-image-box"><span class="swpf-image-url"  style="background-image: url(<?php echo esc_url($settings['terms_customize'][$tax_name][$term->term_id]['term_image']); ?>)"></span></span>
+                                <span class="swpf-image-box"><span class="swpf-image-url" style="background-image: url(<?php echo esc_url($settings['terms_customize'][$tax_name][$term->term_id]['term_image']); ?>)"></span></span>
                                 <?php
                             } elseif ($settings['display_type'][$tax_name] == 'color') {
                                 ?>
@@ -268,7 +268,7 @@ $tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_
                             <?php
                             if ($settings['display_type'][$tax_name] == 'image') {
                                 ?>
-                                <span class="swpf-image-box"><span class="swpf-image-url"  style="background-image: url(<?php echo esc_url($settings['terms_customize'][$tax_name][$term->term_id]['term_image']); ?>)"></span></span>
+                                <span class="swpf-image-box"><span class="swpf-image-url" style="background-image: url(<?php echo esc_url($settings['terms_customize'][$tax_name][$term->term_id]['term_image']); ?>)"></span></span>
                                 <?php
                             } elseif ($settings['display_type'][$tax_name] == 'color') {
                                 ?>

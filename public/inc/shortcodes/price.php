@@ -8,7 +8,7 @@ $sc_title = get_the_title($sc_id);
 ?>
 <div class="swpf-pricerange swpf-filter-pricerange-wrap swpf-filter-byprice slider-price">
     <?php
-    if (isset($settings['title_label']['price_range']) && ! empty($settings['title_label']['price_range'])) {
+    if (isset($settings['title_label']['price_range']) && !empty($settings['title_label']['price_range'])) {
         ?>
         <div class="swpf-filter-title">
             <h4 class="swpf-filter-title-heading">
@@ -57,14 +57,7 @@ $sc_title = get_the_title($sc_id);
             }
             ?>
             <div class="swpf-range-irs-slider">
-                <input type="text" class="swpf-irs-slider" value="" 
-                       data-type="double"
-                       data-skin="<?php echo esc_attr($ionSkin); ?>"
-                       data-min="<?php echo esc_attr($price_min); ?>"
-                       data-max="<?php echo esc_attr($price_max); ?>"
-                       data-from="<?php echo esc_attr($price_from); ?>"
-                       data-to="<?php echo esc_attr($price_to); ?>"
-                       data-grid="true"/>
+                <input type="text" class="swpf-irs-slider" value="" data-type="double" data-skin="<?php echo esc_attr($ionSkin); ?>" data-min="<?php echo esc_attr($price_min); ?>" data-max="<?php echo esc_attr($price_max); ?>" data-from="<?php echo esc_attr($price_from); ?>" data-to="<?php echo esc_attr($price_to); ?>" data-grid="true" />
             </div>
             <?php
         }

@@ -8,7 +8,7 @@
 class Super_Product_Filter_Deactivator {
 
     public static function deactivate() {
-        
+
     }
 
 }

@@ -316,7 +316,7 @@ defined('ABSPATH') || die();
                     <div class="swpf-field-wrap" data-condition-toggle="swpf-toggle-button-icon-type" data-condition-val="default_icon,custom_icon,hamburger_icon">
                         <label><?php esc_html_e('Button Shape', 'super-product-filter') ?></label>
                         <div class="swpf-settings-input-field">
-                            <select name="swpf_settings[side_menu][button_shape]">                        
+                            <select name="swpf_settings[side_menu][button_shape]">
                                 <option value="square" <?php selected($settings['side_menu']['button_shape'], 'square'); ?>><?php esc_html_e('Square', 'super-product-filter'); ?></option>
                                 <option value="round" <?php selected($settings['side_menu']['button_shape'], 'round'); ?>><?php esc_html_e('Round', 'super-product-filter'); ?></option>
                                 <option value="rounded-square" <?php selected($settings['side_menu']['button_shape'], 'rounded-square'); ?>><?php esc_html_e('Rounded Square', 'super-product-filter'); ?></option>
@@ -499,7 +499,7 @@ defined('ABSPATH') || die();
                             </label>
                             &nbsp;&nbsp;
                             <label>
-                                <input type="radio" name="swpf_settings[side_menu][panel_position]" value="right" <?php checked($settings['side_menu']['panel_position'], 'right'); ?>> <?php esc_html_e('Right', 'super-product-filter'); ?> 
+                                <input type="radio" name="swpf_settings[side_menu][panel_position]" value="right" <?php checked($settings['side_menu']['panel_position'], 'right'); ?>> <?php esc_html_e('Right', 'super-product-filter'); ?>
                             </label>
                         </div>
                     </div>
@@ -513,13 +513,13 @@ defined('ABSPATH') || die();
                                 <option value="em" <?php selected($settings['side_menu']['panel_width_unit'], 'em'); ?>>em</option>
                                 <option value="%" <?php selected($settings['side_menu']['panel_width_unit'], '%'); ?>>%</option>
                             </select>
-                        </div>  
+                        </div>
                     </div>
 
                     <div class="swpf-field-wrap">
                         <label><?php esc_html_e('Panel Background Color', 'super-product-filter'); ?></label>
                         <div class="swpf-settings-input-field">
-                            <input type="text" class="color-picker swpf-color-picker" name="swpf_settings[side_menu][panel_background_color]" value="<?php echo esc_attr($settings['side_menu']['panel_background_color']); ?>"/>
+                            <input type="text" class="color-picker swpf-color-picker" name="swpf_settings[side_menu][panel_background_color]" value="<?php echo esc_attr($settings['side_menu']['panel_background_color']); ?>" />
                         </div>
                     </div>
 
@@ -541,7 +541,7 @@ defined('ABSPATH') || die();
                         <div class="swpf-settings-input-field">
                             <div class="swpf-range-slider-field">
                                 <div class="swpf-range-slider"></div>
-                                <input class="swpf-range-input" type="number" min="1" max="10" step="1" value="<?php echo esc_attr($settings['side_menu']['scrollbar_width']); ?>" name="swpf_settings[side_menu][scrollbar_width]"/> px
+                                <input class="swpf-range-input" type="number" min="1" max="10" step="1" value="<?php echo esc_attr($settings['side_menu']['scrollbar_width']); ?>" name="swpf_settings[side_menu][scrollbar_width]" /> px
                             </div>
                         </div>
                     </div>
@@ -551,14 +551,14 @@ defined('ABSPATH') || die();
                             <li>
                                 <label><?php esc_html_e('Drag Rail Color', 'super-product-filter'); ?></label>
                                 <div class="swpf-settings-input-field swpf-color-input-field">
-                                    <input type="text" class="color-picker swpf-color-picker" data-alpha-enabled="true" data-alpha-custom-width="30px" data-alpha-color-type="hex" name="swpf_settings[side_menu][scrollbar_drag_rail_color]" value="<?php echo esc_attr($settings['side_menu']['scrollbar_drag_rail_color']); ?>"/>
+                                    <input type="text" class="color-picker swpf-color-picker" data-alpha-enabled="true" data-alpha-custom-width="30px" data-alpha-color-type="hex" name="swpf_settings[side_menu][scrollbar_drag_rail_color]" value="<?php echo esc_attr($settings['side_menu']['scrollbar_drag_rail_color']); ?>" />
                                 </div>
                             </li>
 
                             <li>
                                 <label><?php esc_html_e('Drag Bar Color', 'super-product-filter'); ?></label>
                                 <div class="swpf-settings-input-field swpf-color-input-field">
-                                    <input type="text" class="color-picker swpf-color-picker" data-alpha-enabled="true" data-alpha-custom-width="30px" data-alpha-color-type="hex" name="swpf_settings[side_menu][scrollbar_drag_bar_color]" value="<?php echo esc_attr($settings['side_menu']['scrollbar_drag_bar_color']) ?>"/>
+                                    <input type="text" class="color-picker swpf-color-picker" data-alpha-enabled="true" data-alpha-custom-width="30px" data-alpha-color-type="hex" name="swpf_settings[side_menu][scrollbar_drag_bar_color]" value="<?php echo esc_attr($settings['side_menu']['scrollbar_drag_bar_color']) ?>" />
                                 </div>
                             </li>
                         </ul>

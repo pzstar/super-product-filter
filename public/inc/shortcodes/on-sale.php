@@ -4,7 +4,7 @@ defined('ABSPATH') || die();
 $sc_id = $this->filter_shortcode_id;
 $sc_title = get_the_title($sc_id);
 
-if (isset($settings['title_label']['on_sale']) && ! empty($settings['title_label']['on_sale'])) {
+if (isset($settings['title_label']['on_sale']) && !empty($settings['title_label']['on_sale'])) {
     ?>
     <div class="swpf-filter-title">
         <h4 class="swpf-filter-title-heading">
@@ -21,7 +21,7 @@ if (isset($settings['title_label']['on_sale']) && ! empty($settings['title_label
         <div class="swpf-filter-item-list swpf-checkbox-type">
             <div class="swpf-filter-item <?php isset($current_filter_option['on-sale']) ? selected($current_filter_option['on-sale'], '1') : ''; ?>">
                 <label class="swpf-filter-label">
-                    <input type="checkbox" value="1" name="on-sale" <?php isset($current_filter_option['on-sale']) ? checked($current_filter_option['on-sale'], '1') : ''; ?>/>
+                    <input type="checkbox" value="1" name="on-sale" <?php isset($current_filter_option['on-sale']) ? checked($current_filter_option['on-sale'], '1') : ''; ?> />
                     <span class="swpf-title">
                         <span class="swpf-term"><?php esc_html_e('Show On Sale only', 'super-product-filter'); ?></span>
                     </span>

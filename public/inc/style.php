@@ -4,16 +4,17 @@ defined('ABSPATH') || die();
 function swpf_dynamic_styles() {
 
     $query = new WP_Query(
-            array(
-        'post_type' => 'swpf-product-filter',
-        'posts_per_page' => -1,
-        'post_status' => 'publish'
-            )
+        array(
+            'post_type' => 'swpf-product-filter',
+            'posts_per_page' => -1,
+            'post_status' => 'publish'
+        )
     );
     $swpf_css = '';
 
-    if ($query->have_posts()) :
-        while ($query->have_posts()) : $query->the_post();
+    if ($query->have_posts()):
+        while ($query->have_posts()):
+            $query->the_post();
             $swpf_css_vars = '';
             $postid = get_the_ID();
             $swpf_settings = get_post_meta($postid, 'swpf_settings', true);

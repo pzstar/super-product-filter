@@ -24,7 +24,7 @@ function swpf_sanitize_number($input) {
 
 function swpf_sanitize_color($color) {
     // Is this an rgba color or a hex?
-    $mode = ( false === strpos($color, 'rgba') ) ? 'hex' : 'rgba';
+    $mode = (false === strpos($color, 'rgba')) ? 'hex' : 'rgba';
     if ('rgba' === $mode) {
         $color = str_replace(' ', '', $color);
         sscanf($color, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha);
@@ -119,7 +119,7 @@ if (!class_exists('SWPF_Walker_Category_Checklist')) {
                 }
             }
             if (!in_array($category->term_id, $hide_terms)) {
-                $output .= "\n<li class='swpf-filter-item swpf-{$taxonomy}-{$category->{$value_field}}'>";
+                $output .= "\n<li class='swpf-filter-item swpf-{$taxonomy}-{$category->{$value_field} }'>";
                 $output .= '<label class="swpf-filter-label">';
                 $output .= '<input value="' . $category->{$value_field} . '" type="checkbox" name="' . $name . '[]" id="in-' . $taxonomy . '-' . $category->{$value_field} . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . '/>';
                 $output .= '<span class="swpf-title">';
@@ -242,7 +242,7 @@ if (!class_exists('SWPF_Walker_Category_Radiolist')) {
             }
 
             if (!in_array($category->term_id, $hide_terms)) {
-                $output .= "\n<li class='swpf-filter-item swpf-{$taxonomy}-{$category->{$value_field}}'>";
+                $output .= "\n<li class='swpf-filter-item swpf-{$taxonomy}-{$category->{$value_field} }'>";
                 $output .= '<label class="swpf-filter-label">';
                 $output .= '<input value="' . $category->{$value_field} . '" type="radio" name="' . $name . '" id="in-' . $taxonomy . '-' . $category->{$value_field} . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . ' /> ';
                 $output .= '<span class="swpf-title">';
@@ -366,7 +366,7 @@ if (!class_exists('SWPF_Walker_Category_Toggle')) {
             }
 
             if (!in_array($category->term_id, $hide_terms)) {
-                $output .= "\n<li class='swpf-filter-item swpf-{$taxonomy}-{$category->{$value_field}}'>";
+                $output .= "\n<li class='swpf-filter-item swpf-{$taxonomy}-{$category->{$value_field} }'>";
                 $output .= '<label class="swpf-filter-label">';
                 $output .= '<span class="swpf-toggle-wrap">';
                 $output .= '<input value="' . $category->{$value_field} . '" type="checkbox" name="' . $name . '[]" id="in-' . $taxonomy . '-' . $category->{$value_field} . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . '/>';
@@ -494,7 +494,7 @@ if (!class_exists('SWPF_Walker_Category_Color_Image_Checkbox')) {
                 }
             }
             if (!in_array($category->term_id, $hide_terms)) {
-                $output .= "\n<li class='swpf-filter-item swpf-{$taxonomy}-{$category->{$value_field}}'>";
+                $output .= "\n<li class='swpf-filter-item swpf-{$taxonomy}-{$category->{$value_field} }'>";
                 $output .= '<label class="swpf-filter-label">';
                 $output .= '<input class="swpf-chkbox-term" value="' . $category->{$value_field} . '" type="checkbox" name="' . $name . '[]" id="in-' . $taxonomy . '-' . $category->{$value_field} . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . '/>';
                 $output .= '<span class="swpf-' . esc_attr($type) . '-box" ' . ($type == "color" ? 'style="background-color:' . esc_attr($term_preview_array[$category->term_id]['color']) . '"' : "") . '>';
@@ -602,7 +602,7 @@ if (!class_exists('SWPF_Walker_TaxonomyDropdown')) {
             $hide_terms = isset($args['hide_terms']) ? $args['hide_terms'] : [];
 
             if (!isset($args['value'])) {
-                $args['value'] = ( $category->taxonomy != 'category' ? 'slug' : 'id' );
+                $args['value'] = ($category->taxonomy != 'category' ? 'slug' : 'id');
             }
 
             $value = ($args['value'] == 'slug' ? $category->slug : $category->term_id);

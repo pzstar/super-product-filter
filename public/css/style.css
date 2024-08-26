@@ -1,6 +1,6 @@
 .swpf-main-wrap *,
 .swpf-main-wrap *:before,
-.swpf-main-wrap *:after{
+.swpf-main-wrap *:after {
     box-sizing: border-box;
 }
 
@@ -33,14 +33,14 @@
     color: var(--swpf-filterbox-textcolor, inherit);
 }
 
-.swpf-form .swpf-filters{
+.swpf-form .swpf-filters {
     display: grid;
     grid-template-columns: repeat(var(--swpf-filter-gridcol, 1), 1fr);
     gap: var(--swpf-filterbox-spacing, 40px);
 }
 
 .swpf-filter-item-wrap,
-.swpf-filter-block{
+.swpf-filter-block {
     position: relative;
     background: var(--swpf-filterbox-bgcolor, transparent);
     border-radius: var(--swpf-filterbox-borderradius, 0);
@@ -54,17 +54,17 @@
     box-shadow: var(--swpf-filterbox-shadow-x, 0) var(--swpf-filterbox-shadow-y, 0) var(--swpf-filterbox-shadow-blur, 0) var(--swpf-filterbox-shadow-spread, 0) var(--swpf-filterbox-shadow-color, transparent);
 }
 
-.swpf-filter-block{
+.swpf-filter-block {
     grid-column: span var(--swpf-filter-gridcol, 1);
 }
 
 .swpf-enablebottomborder .swpf-filter-item-wrap,
-.swpf-enablebottomborder .swpf-filter-block{
+.swpf-enablebottomborder .swpf-filter-block {
     border: 0;
 }
 
 .swpf-enablebottomborder .swpf-filter-item-wrap:after,
-.swpf-enablebottomborder .swpf-filter-block:after{
+.swpf-enablebottomborder .swpf-filter-block:after {
     content: "";
     background: var(--swpf-filterbox-bordercolor, transparent);
     height: var(--swpf-filterbox-borderwidth, 0);
@@ -72,7 +72,7 @@
     left: 0;
     right: 0;
     top: 100%;
-    margin-top: calc( var(--swpf-filterbox-spacing, 40px)/2 );
+    margin-top: calc(var(--swpf-filterbox-spacing, 40px)/2);
     transform: translateY(-50%);
 }
 
@@ -122,16 +122,16 @@
     align-items: center;
 }
 
-.swpf-filter-content{
+.swpf-filter-content {
     margin-top: var(--swpf-heading-marginbottom, 15px);
 }
 
 /*Search*/
-.swpf-filter-search{
+.swpf-filter-search {
     margin-bottom: 15px;
 }
 
-.swpf-filter-search input.swpf-filter-search-input{
+.swpf-filter-search input.swpf-filter-search-input {
     width: 100%;
     background: var(--swpf-searchfilter-bgcolor, transparent);
     border: 1px solid var(--swpf-searchfilter-bordercolor, #EEE);
@@ -149,11 +149,11 @@
 }
 
 .swpf-filter-search input.swpf-filter-search-input::placeholder,
-.swpf-filter-search input.swpf-filter-search-input:focus{
+.swpf-filter-search input.swpf-filter-search-input:focus {
     color: var(--swpf-searchfilter-textcolor, inherit);
 }
 
-.swpf-filter-search input.swpf-filter-search-input::placeholder{
+.swpf-filter-search input.swpf-filter-search-input::placeholder {
     opacity: 0.5;
 }
 
@@ -202,7 +202,7 @@
 }
 
 /* Listing */
-.swpf-filter-item-list{
+.swpf-filter-item-list {
     max-height: var(--swpf-filterbox-height, none);
     overflow: hidden auto;
 }
@@ -213,37 +213,37 @@
 
 /* Track */
 .swpf-filter-item-list::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.05);
+    background: rgba(0, 0, 0, 0.05);
 }
 
 /* Handle */
 .swpf-filter-item-list::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.1); 
+    background: rgba(0, 0, 0, 0.1);
 }
 
 /* Handle on hover */
 .swpf-filter-item-list::-webkit-scrollbar-thumb:hover {
-    background: rgba(0,0,0,0.3); 
+    background: rgba(0, 0, 0, 0.3);
 }
 
-.swpf-filter-item-list ul{
+.swpf-filter-item-list ul {
     list-style: none !important;
     margin: 0 !important;
     padding: 0 !important;
 }
 
-.swpf-filter-item-list ul li{
+.swpf-filter-item-list ul li {
     margin: 0 !important;
     padding: 0 !important;
 }
 
-.swpf-filter-item-list ul ul{
+.swpf-filter-item-list ul ul {
     padding-left: 15px !important;
     margin: 0 !important;
 }
 
 /* Horizontal and Vertical Orientation*/
-.swpf-filter-item-wrap:not(.swpf-product_cat-wrap) .swpf-field-horizontal .swpf-filter-item-list{
+.swpf-filter-item-wrap:not(.swpf-product_cat-wrap) .swpf-field-horizontal .swpf-filter-item-list {
     display: flex;
     flex-wrap: wrap;
     gap: var(--swpf-filterbox-itemspacing, 10px);
@@ -263,7 +263,7 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.swpf-filter-item-wrap .swpf-field-horizontal .swpf-filter-product-category{
+.swpf-filter-item-wrap .swpf-field-horizontal .swpf-filter-product-category {
     display: flex;
     flex-wrap: wrap;
     gap: var(--swpf-filterbox-itemspacing, 10px);
@@ -283,7 +283,7 @@
 }
 
 .swpf-filter-item-wrap.swpf-product_cat-wrap .swpf-field-vertical .swpf-filter-product-category .swpf-filter-children,
-.swpf-filter-item-wrap.swpf-product_cat-wrap .swpf-field-vertical .swpf-filter-product-category li{
+.swpf-filter-item-wrap.swpf-product_cat-wrap .swpf-field-vertical .swpf-filter-product-category li {
     display: flex;
     flex-direction: column;
     gap: var(--swpf-filterbox-itemspacing, 10px);
@@ -817,8 +817,8 @@ input[type=checkbox]:focus {
     display: block;
 }
 
-.swpf-checkboxradio-skin-10 .swpf-checkbox-type input[type="checkbox"]:checked+span.swpf-title,
-.swpf-checkboxradio-skin-10 .swpf-radio-type input[type="radio"]:checked+span.swpf-title {
+.swpf-checkboxradio-skin-10 .swpf-checkbox-type input[type="checkbox"]:checked + span.swpf-title,
+.swpf-checkboxradio-skin-10 .swpf-radio-type input[type="radio"]:checked + span.swpf-title {
     padding-left: 20px;
     padding-right: 20px;
     color: #FFF;
@@ -849,8 +849,8 @@ input[type=checkbox]:focus {
     border-radius: 40px;
 }
 
-.swpf-checkboxradio-skin-10 .swpf-checkbox-type input[type="checkbox"]:checked+span.swpf-title:before,
-.swpf-checkboxradio-skin-10 .swpf-radio-type input[type="radio"]:checked+span.swpf-title:before {
+.swpf-checkboxradio-skin-10 .swpf-checkbox-type input[type="checkbox"]:checked + span.swpf-title:before,
+.swpf-checkboxradio-skin-10 .swpf-radio-type input[type="radio"]:checked + span.swpf-title:before {
     width: 100%;
     background: var(--swpf-checkboxradio-bgcoloractive, var(--swpf-primary-color));
     top: 0;
@@ -911,7 +911,7 @@ input[type=checkbox]:focus {
 }
 
 /*===========Button Style===========*/
-.swpf-button-type{
+.swpf-button-type {
     text-align: center;
 }
 
@@ -919,11 +919,11 @@ input[type=checkbox]:focus {
     display: none;
 }
 
-.swpf-filter-item label{
+.swpf-filter-item label {
     display: block;
 }
 
-.swpf-button-type .swpf-title{
+.swpf-button-type .swpf-title {
     position: relative;
     display: block;
     cursor: pointer;
@@ -936,18 +936,18 @@ input[type=checkbox]:focus {
     border-radius: var(--swpf-button-borderradius, 0);
 }
 
-.swpf-button-type .swpf-title:hover{
+.swpf-button-type .swpf-title:hover {
     border-color: var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov)));
 }
 
-.swpf-button-type input[type='checkbox']:checked+.swpf-title {
+.swpf-button-type input[type='checkbox']:checked + .swpf-title {
     background: var(--swpf-button-bgcolor-hov, var(--swpf-primary-color));
     color: var(--swpf-button-textcolor-hov, #FFF);
     border-color: var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov)));
 }
 
 
-.swpf-button-skin-2 .swpf-button-type .swpf-filter-item label{
+.swpf-button-skin-2 .swpf-button-type .swpf-filter-item label {
     padding: 4px 4px 0 0;
 }
 
@@ -956,41 +956,41 @@ input[type=checkbox]:focus {
 }
 
 .swpf-button-skin-2 .swpf-button-type .swpf-title:hover,
-.swpf-button-skin-2 .swpf-button-type input[type='checkbox']:checked+.swpf-title {
+.swpf-button-skin-2 .swpf-button-type input[type='checkbox']:checked + .swpf-title {
     box-shadow: 4px -4px 0 0 var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov)));
 }
 
-.swpf-button-skin-3 .swpf-button-type .swpf-filter-item label{
+.swpf-button-skin-3 .swpf-button-type .swpf-filter-item label {
     padding: 0 5px 5px 0;
 }
 
 .swpf-button-skin-3 .swpf-button-type .swpf-title {
-    box-shadow: 1px 1px 0px 0px var(--swpf-button-bordercolor, var(--swpf-input-bordercolor)), 
-        2px 2px 0px 0px var(--swpf-button-bordercolor, var(--swpf-input-bordercolor)), 
-        3px 3px 0px 0px var(--swpf-button-bordercolor, var(--swpf-input-bordercolor)), 
-        4px 4px 0px 0px var(--swpf-button-bordercolor, var(--swpf-input-bordercolor)), 
+    box-shadow: 1px 1px 0px 0px var(--swpf-button-bordercolor, var(--swpf-input-bordercolor)),
+        2px 2px 0px 0px var(--swpf-button-bordercolor, var(--swpf-input-bordercolor)),
+        3px 3px 0px 0px var(--swpf-button-bordercolor, var(--swpf-input-bordercolor)),
+        4px 4px 0px 0px var(--swpf-button-bordercolor, var(--swpf-input-bordercolor)),
         5px 5px 0px 0px var(--swpf-button-bordercolor, var(--swpf-input-bordercolor));
 }
 
 .swpf-button-skin-3 .swpf-button-type .swpf-title:hover,
-.swpf-button-skin-3 .swpf-button-type input[type='checkbox']:checked+.swpf-title {
-    box-shadow: 1px 1px 0px 0px var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov))), 
-        2px 2px 0px 0px var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov))), 
-        3px 3px 0px 0px var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov))), 
-        4px 4px 0px 0px var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov))), 
+.swpf-button-skin-3 .swpf-button-type input[type='checkbox']:checked + .swpf-title {
+    box-shadow: 1px 1px 0px 0px var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov))),
+        2px 2px 0px 0px var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov))),
+        3px 3px 0px 0px var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov))),
+        4px 4px 0px 0px var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov))),
         5px 5px 0px 0px var(--swpf-button-bordercolor-hov, var(--swpf-button-bordercolor, var(--swpf-input-bordercolorhov)));
 }
 
-.swpf-button-skin-4 .swpf-button-type .swpf-filter-item label{
+.swpf-button-skin-4 .swpf-button-type .swpf-filter-item label {
     padding: 0 0 6px 0;
 }
 
-.swpf-button-skin-4 .swpf-button-type .swpf-title{
+.swpf-button-skin-4 .swpf-button-type .swpf-title {
     box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0, inset 0px -6px 0px rgba(0, 0, 0, 0.15);
     padding-bottom: calc(var(--swpf-button-padding-bottom, 10px) + 6px);
 }
 
-.swpf-button-skin-5 .swpf-button-type .swpf-filter-item label{
+.swpf-button-skin-5 .swpf-button-type .swpf-filter-item label {
     padding: 0 6px;
 }
 
@@ -1001,7 +1001,7 @@ input[type=checkbox]:focus {
 }
 
 .swpf-button-skin-5 .swpf-button-type .swpf-title-text,
-.swpf-button-skin-5 .swpf-button-type .swpf-count{
+.swpf-button-skin-5 .swpf-button-type .swpf-count {
     transform: skew(10deg, 0deg);
 }
 
@@ -1260,11 +1260,11 @@ input[type=checkbox]:focus {
     background: var(--swpf-toggle-activecolor);
 }
 
-.swpf-toggle-skin-5 .swpf-toggle-type input[type=checkbox]:checked+.swpf-toggle-knob {
+.swpf-toggle-skin-5 .swpf-toggle-type input[type=checkbox]:checked + .swpf-toggle-knob {
     transform: translateX(18px);
 }
 
-.swpf-toggle-skin-5 .swpf-toggle-type input[type=checkbox]:checked+.swpf-toggle-knob:before {
+.swpf-toggle-skin-5 .swpf-toggle-type input[type=checkbox]:checked + .swpf-toggle-knob:before {
     top: 9px;
     left: 2px;
     width: 6px;
@@ -1273,7 +1273,7 @@ input[type=checkbox]:focus {
     background: var(--swpf-toggle-activecolor);
 }
 
-.swpf-toggle-skin-5 .swpf-toggle-type input[type=checkbox]:checked+.swpf-toggle-knob:after {
+.swpf-toggle-skin-5 .swpf-toggle-type input[type=checkbox]:checked + .swpf-toggle-knob:after {
     top: 8px;
     left: 5px;
     width: 10px;
@@ -1290,13 +1290,13 @@ input[type=checkbox]:focus {
     margin-top: var(--swpf-heading-marginbottom, 15px);
 }
 
-.swpf-activated-filter-wrap.swpf-hide-active-filter-label{
+.swpf-activated-filter-wrap.swpf-hide-active-filter-label {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.swpf-group-activated-filter{
+.swpf-group-activated-filter {
     display: flex;
     flex-wrap: wrap;
     gap: 10px 15px;
@@ -1309,7 +1309,7 @@ input[type=checkbox]:focus {
     gap: 4px;
 }
 
-.swpf-activated-clear-all .swpf-clear-all{
+.swpf-activated-clear-all .swpf-clear-all {
     font-size: 0.8em;
     border: 0;
     background: none;
@@ -1320,7 +1320,7 @@ input[type=checkbox]:focus {
     min-height: 0;
 }
 
-.swpf-activated-filter-wrap .swpf-remove-filter-item{
+.swpf-activated-filter-wrap .swpf-remove-filter-item {
     display: flex;
     align-items: center;
     gap: 4px;
@@ -1336,7 +1336,7 @@ input[type=checkbox]:focus {
     font-size: 0.9em;
 }
 
-.swpf-activated-filter-wrap .swpf-remove-filter-item:hover{
+.swpf-activated-filter-wrap .swpf-remove-filter-item:hover {
     background: var(--swpf-filterbutton-bgcolor-hov, var(--swpf-filterbutton-bgcolor));
     color: var(--swpf-filterbutton-textcolor-hov, var(--swpf-filterbutton-textcolor));
     border-color: var(--swpf-filterbutton-bordercolor-hov, (--swpf-filterbutton-bordercolor));
@@ -1495,16 +1495,16 @@ select.swpf-filter-type-dropdown {
 
 select.swpf-filter-type-dropdown,
 .nice-select.swpf-filter-type-dropdown,
-.nice-select.swpf-filter-type-dropdown:hover{
+.nice-select.swpf-filter-type-dropdown:hover {
     height: var(--swpf-dropdown-height, var(--swpf-input-height));
     border-color: var(--swpf-dropdown-bordercolor, var(--swpf-input-bordercolor));
     background-color: var(--swpf-dropdown-bgcolor, transparent);
     color: var(--swpf-dropdown-textcolor, inherit);
 }
 
-.nice-select.swpf-filter-type-dropdown:active, 
-.nice-select.swpf-filter-type-dropdown.open, 
-.nice-select.swpf-filter-type-dropdown:focus{
+.nice-select.swpf-filter-type-dropdown:active,
+.nice-select.swpf-filter-type-dropdown.open,
+.nice-select.swpf-filter-type-dropdown:focus {
     border-color: var(--swpf-dropdown-bordercolor, var(--swpf-input-bordercolor));
 }
 
@@ -1548,7 +1548,7 @@ select.swpf-filter-type-dropdown,
 }
 
 /*===========Rating Stars===========*/
-.swpf-list-rating{
+.swpf-list-rating {
     display: flex;
     flex-direction: column;
     gap: var(--swpf-filterbox-itemspacing, 10px);
@@ -1611,17 +1611,18 @@ select.swpf-filter-type-dropdown,
     overflow: hidden;
 }
 
-.swpf-rating-star i{
+.swpf-rating-star i {
     color: inherit;
     font-style: normal;
 }
 
 /*===========Color===========*/
-.swpf-checkbox-color-select-type{
+.swpf-checkbox-color-select-type {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
 }
+
 .swpf-checkbox-color-select-type input[type="checkbox"] {
     display: none;
 }
@@ -1647,12 +1648,12 @@ select.swpf-filter-type-dropdown,
     border-radius: var(--swpf-color-borderradius, 0);
 }
 
-.swpf-checkbox-color-select-type input[type="checkbox"]:checked+.swpf-color-box:before {
+.swpf-checkbox-color-select-type input[type="checkbox"]:checked + .swpf-color-box:before {
     transform: rotate(-45deg) scale(1, 1) translate(-50%, -50%);
     transition: all 0.3s ease;
 }
 
-.swpf-checkbox-color-select-type input[type="checkbox"]+.swpf-color-box:after {
+.swpf-checkbox-color-select-type input[type="checkbox"] + .swpf-color-box:after {
     position: absolute;
     right: 2px;
     top: 2px;
@@ -1673,7 +1674,7 @@ select.swpf-filter-type-dropdown,
     transition: all 0.2s ease;
 }
 
-.swpf-checkbox-color-select-type input[type="checkbox"]:checked+.swpf-color-box:after {
+.swpf-checkbox-color-select-type input[type="checkbox"]:checked + .swpf-color-box:after {
     transform: scale(1, 1);
 }
 
@@ -1701,7 +1702,7 @@ select.swpf-filter-type-dropdown,
     border: 1px solid var(--swpf-image-bordercolor, #EEE);
 }
 
-.swpf-checkbox-image-select-type .swpf-image-url{
+.swpf-checkbox-image-select-type .swpf-image-url {
     background-size: cover;
     position: absolute;
     left: 0;
@@ -1712,7 +1713,7 @@ select.swpf-filter-type-dropdown,
     border-radius: var(--swpf-image-borderradius, 0);
 }
 
-.swpf-checkbox-image-select-type input[type="checkbox"]+.swpf-image-box:after {
+.swpf-checkbox-image-select-type input[type="checkbox"] + .swpf-image-box:after {
     position: absolute;
     right: 2px;
     top: 2px;
@@ -1733,7 +1734,7 @@ select.swpf-filter-type-dropdown,
     transition: all 0.2s ease;
 }
 
-.swpf-checkbox-image-select-type input[type="checkbox"]:checked+.swpf-image-box:after {
+.swpf-checkbox-image-select-type input[type="checkbox"]:checked + .swpf-image-box:after {
     transform: scale(1, 1);
 }
 
@@ -1785,9 +1786,9 @@ select.swpf-filter-type-dropdown,
 .swpf-range-irs-slider .irs .irs-from,
 .swpf-range-irs-slider .irs .irs-to,
 .swpf-range-irs-slider .irs .irs-single,
-.swpf-range-irs-slider .irs--flat .irs-handle>i:first-child,
-.swpf-range-irs-slider .irs--flat .irs-handle.state_hover>i:first-child,
-.swpf-range-irs-slider .irs--flat .irs-handle:hover>i:first-child,
+.swpf-range-irs-slider .irs--flat .irs-handle > i:first-child,
+.swpf-range-irs-slider .irs--flat .irs-handle.state_hover > i:first-child,
+.swpf-range-irs-slider .irs--flat .irs-handle:hover > i:first-child,
 .swpf-range-irs-slider .irs--sharp .irs-handle,
 .swpf-range-irs-slider .irs--sharp .irs-handle.state_hover,
 .swpf-range-irs-slider .irs--sharp .irs-handle:hover {
@@ -1797,9 +1798,9 @@ select.swpf-filter-type-dropdown,
 .swpf-range-irs-slider .irs .irs-from:before,
 .swpf-range-irs-slider .irs .irs-to:before,
 .swpf-range-irs-slider .irs .irs-single:before,
-.swpf-range-irs-slider .irs--sharp .irs-handle>i:first-child,
-.swpf-range-irs-slider .irs--sharp .irs-handle.state_hover>i:first-child,
-.swpf-range-irs-slider .irs--sharp .irs-handle:hover>i:first-child {
+.swpf-range-irs-slider .irs--sharp .irs-handle > i:first-child,
+.swpf-range-irs-slider .irs--sharp .irs-handle.state_hover > i:first-child,
+.swpf-range-irs-slider .irs--sharp .irs-handle:hover > i:first-child {
     border-top-color: var(--swpf-pricerangeslider-highlightcolor);
 }
 
@@ -1838,7 +1839,8 @@ select.swpf-filter-type-dropdown,
     border: 1px solid var(--swpf-searchfilter-bordercolor, #EEE);
     color: var(--swpf-searchfilter-textcolor, inherit);
     padding-top: var(--swpf-searchfilter-padding-top, 10px);
-    padding-right: var(--swpf-searchfilter-padding-right, 10px);;
+    padding-right: var(--swpf-searchfilter-padding-right, 10px);
+    ;
     padding-bottom: var(--swpf-searchfilter-padding-bottom, 10px);
     padding-left: var(--swpf-searchfilter-padding-left, 10px);
     border-radius: var(--swpf-searchfilter-borderradius, 0);
@@ -1855,7 +1857,7 @@ select.swpf-filter-type-dropdown,
 }
 
 .swpf-price-range-inputs input[type=number]::placeholder,
-.swpf-price-range-inputs input[type=number]:focus{
+.swpf-price-range-inputs input[type=number]:focus {
     color: var(--swpf-searchfilter-textcolor, inherit);
 }
 
@@ -1878,7 +1880,7 @@ select.swpf-filter-type-dropdown,
     box-shadow: none;
 }
 
-.swpf-multiselect-wrap .chosen-container{
+.swpf-multiselect-wrap .chosen-container {
     font-size: 1em;
 }
 
@@ -1901,7 +1903,7 @@ select.swpf-filter-type-dropdown,
     color: var(--swpf-multiselect-textcolor, inherit);
 }
 
-.swpf-multiselect-wrap .chosen-container .chosen-results li.highlighted{
+.swpf-multiselect-wrap .chosen-container .chosen-results li.highlighted {
     background: var(--swpf-multiselect-textcolor, #f6f6f6);
     color: var(--swpf-multiselect-bgcolor, inherit);
 }
@@ -1956,7 +1958,7 @@ select.swpf-filter-type-dropdown,
     font-family: inherit;
 }
 
-.swpf-multiselect-wrap .chosen-container-multi .chosen-drop .result-selected{
+.swpf-multiselect-wrap .chosen-container-multi .chosen-drop .result-selected {
     display: none;
 }
 
@@ -1966,7 +1968,7 @@ select.swpf-filter-type-dropdown,
 }
 
 /*Apply Button*/
-.swpf-form .swpf-form-submit{
+.swpf-form .swpf-form-submit {
     font-size: var(--swpf-applybutton-fontsize, inherit);
     background: var(--swpf-applybutton-bgcolor, var(--swpf-primary-color));
     color: var(--swpf-applybutton-textcolor, #FFF);
@@ -1982,13 +1984,13 @@ select.swpf-filter-type-dropdown,
     gap: 8px;
 }
 
-.swpf-form .swpf-form-submit:hover{
+.swpf-form .swpf-form-submit:hover {
     background: var(--swpf-applybutton-bgcolor-hov, var(--swpf-applybutton-bgcolor, var(--swpf-primary-color)));
     color: var(--swpf-applybutton-textcolor-hov, var(--swpf-applybutton-textcolor, #FFF));
     border-color: var(--swpf-applybutton-bordercolor-hov, (--swpf-applybutton-bordercolor));
 }
 
-.swpf-form .swpf-form-submit i{
+.swpf-form .swpf-form-submit i {
     animation-name: swpf-spin;
     animation-duration: 2000ms;
     animation-iteration-count: infinite;
@@ -1997,7 +1999,7 @@ select.swpf-filter-type-dropdown,
     display: none;
 }
 
-.swpf-form .swpf-form-submit.swpf-button-clicked i{
+.swpf-form .swpf-form-submit.swpf-button-clicked i {
     display: block;
 }
 
@@ -2027,7 +2029,7 @@ select.swpf-filter-type-dropdown,
 
 
 /*===========Review===========*/
-.swpf-review-item label{
+.swpf-review-item label {
     display: block;
     margin: 0 0 10px;
 }
@@ -2038,7 +2040,8 @@ select.swpf-filter-type-dropdown,
     border: 1px solid var(--swpf-searchfilter-bordercolor, #EEE);
     color: var(--swpf-searchfilter-textcolor, inherit);
     padding-top: var(--swpf-searchfilter-padding-top, 10px);
-    padding-right: var(--swpf-searchfilter-padding-right, 10px);;
+    padding-right: var(--swpf-searchfilter-padding-right, 10px);
+    ;
     padding-bottom: var(--swpf-searchfilter-padding-bottom, 10px);
     padding-left: var(--swpf-searchfilter-padding-left, 10px);
     border-radius: var(--swpf-searchfilter-borderradius, 0);
@@ -2053,7 +2056,7 @@ select.swpf-filter-type-dropdown,
 }
 
 .swpf-review-item input[name="review-from"]::placeholder,
-.swpf-review-item input[name="review-from"]:focus{
+.swpf-review-item input[name="review-from"]:focus {
     color: var(--swpf-searchfilter-textcolor, inherit);
 }
 
@@ -2093,7 +2096,7 @@ select.swpf-filter-type-dropdown,
     display: none;
 }
 
-.swpf-filter-loading:not(.swpf-pagination-loading) .swpf-ajax-loader{
+.swpf-filter-loading:not(.swpf-pagination-loading) .swpf-ajax-loader {
     display: block;
 }
 
@@ -2109,11 +2112,11 @@ select.swpf-filter-type-dropdown,
 }
 
 .swpf-shown-filters .swpf-filter-block,
-.swpf-shown-items{
+.swpf-shown-items {
     margin-bottom: 30px;
 }
 
-.swpf-enablebottomborder.swpf-header-filters .swpf-shown-filters .swpf-filter-block:after{
+.swpf-enablebottomborder.swpf-header-filters .swpf-shown-filters .swpf-filter-block:after {
     display: none;
 }
 
@@ -2357,12 +2360,12 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 .swpf-toggle-button {
     position: relative;
     display: block;
-    width: var(--swpf-hamburger-width,25px);
-    height: var(--swpf-hamburger-thickness,2px);
+    width: var(--swpf-hamburger-width, 25px);
+    height: var(--swpf-hamburger-thickness, 2px);
     margin: 0 auto;
     border: none;
     cursor: pointer;
-    background: var(--swpf-trigger-btn-icon-color,var(--swpf-button-color,#fff));
+    background: var(--swpf-trigger-btn-icon-color, var(--swpf-button-color, #fff));
     color: inherit;
     font-size: 0
 }
@@ -2374,8 +2377,8 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
     left: 50%;
     display: block;
     width: 100%;
-    height: var(--swpf-hamburger-thickness,2px);
-    background: var(--swpf-trigger-btn-icon-color,var(--swpf-button-color,#fff));
+    height: var(--swpf-hamburger-thickness, 2px);
+    background: var(--swpf-trigger-btn-icon-color, var(--swpf-button-color, #fff));
     content: ""
 }
 
@@ -2391,15 +2394,15 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 .swpf-sidemenu-trigger:hover .swpf-toggle-button,
 .swpf-sidemenu-trigger:hover .swpf-toggle-button:before,
 .swpf-sidemenu-trigger:hover .swpf-toggle-button:after {
-    background: var(--swpf-trigger-btn-hover-icon-color,var(--swpf-trigger-btn-icon-color,var(--swpf-button-color-hover,var(--swpf-button-color,#fff))));
+    background: var(--swpf-trigger-btn-hover-icon-color, var(--swpf-trigger-btn-icon-color, var(--swpf-button-color-hover, var(--swpf-button-color, #fff))));
 }
 
 .swpf-toggle-button:before {
-    transform: translate(-50%,calc(-1*var(--swpf-hamburger-spacing,8px)));
+    transform: translate(-50%, calc(-1*var(--swpf-hamburger-spacing, 8px)));
 }
 
 .swpf-toggle-button:after {
-    transform: translate(-50%,var(--swpf-hamburger-spacing,8px));
+    transform: translate(-50%, var(--swpf-hamburger-spacing, 8px));
 }
 
 .swpf-toggle-button.style1:before,
@@ -2412,11 +2415,11 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style1:before {
-    transform: translate(-50%,0) rotate(45deg);
+    transform: translate(-50%, 0) rotate(45deg);
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style1:after {
-    transform: translate(-50%,0) rotate(-45deg);
+    transform: translate(-50%, 0) rotate(-45deg);
 }
 
 .swpf-toggle-animating.swpf-toggle-button.style2 {
@@ -2443,37 +2446,37 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 
 @keyframes menuBefore {
     0% {
-        transform: translate(-50%,calc(-1*var(--swpf-hamburger-spacing,8px)))
+        transform: translate(-50%, calc(-1*var(--swpf-hamburger-spacing, 8px)))
     }
 
     40% {
-        transform: translate(-50%,0)
+        transform: translate(-50%, 0)
     }
 
     60% {
-        transform: translate(-50%,0)
+        transform: translate(-50%, 0)
     }
 
     100% {
-        transform: translate(-50%,0) rotate(45deg)
+        transform: translate(-50%, 0) rotate(45deg)
     }
 }
 
 @keyframes menuAfter {
     0% {
-        transform: translate(-50%,calc(var(--swpf-hamburger-spacing,8px)))
+        transform: translate(-50%, calc(var(--swpf-hamburger-spacing, 8px)))
     }
 
     40% {
-        transform: translate(-50%,0)
+        transform: translate(-50%, 0)
     }
 
     60% {
-        transform: translate(-50%,0)
+        transform: translate(-50%, 0)
     }
 
     100% {
-        transform: translate(-50%,0) rotate(-45deg)
+        transform: translate(-50%, 0) rotate(-45deg)
     }
 }
 
@@ -2483,10 +2486,10 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 .swpf-toggle-button.style6,
 .swpf-toggle-button.style7,
 .swpf-toggle-button.style8 {
-    height: calc(2*var(--swpf-hamburger-spacing,8px) + var(--swpf-hamburger-thickness,2px));
+    height: calc(2*var(--swpf-hamburger-spacing, 8px) + var(--swpf-hamburger-thickness, 2px));
     background: 0 0 !important;
-    border-top: var(--swpf-hamburger-thickness,2px) solid;
-    border-bottom: var(--swpf-hamburger-thickness,2px) solid
+    border-top: var(--swpf-hamburger-thickness, 2px) solid;
+    border-bottom: var(--swpf-hamburger-thickness, 2px) solid
 }
 
 .swpf-toggle-button.style3:before,
@@ -2504,7 +2507,7 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 .swpf-toggle-button.style8:before,
 .swpf-toggle-button.style8:after {
     top: 50%;
-    transform: translate(-50%,-50%)
+    transform: translate(-50%, -50%)
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style3 {
@@ -2512,11 +2515,11 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style3:before {
-    transform: translate(-50%,-50%) rotate(45deg)
+    transform: translate(-50%, -50%) rotate(45deg)
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style3:after {
-    transform: translate(-50%,-50%) rotate(-45deg)
+    transform: translate(-50%, -50%) rotate(-45deg)
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style4 {
@@ -2524,11 +2527,11 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style4:before {
-    transform: translate(-50%,-50%) rotate(-45deg)
+    transform: translate(-50%, -50%) rotate(-45deg)
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style4:after {
-    transform: translate(-50%,-50%) rotate(-135deg)
+    transform: translate(-50%, -50%) rotate(-135deg)
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style5 {
@@ -2536,18 +2539,19 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style5:before {
-    transform: translate(-50%,-50%) rotate(135deg)
+    transform: translate(-50%, -50%) rotate(135deg)
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style5:after {
-    transform: translate(-50%,-50%) rotate(-135deg)
+    transform: translate(-50%, -50%) rotate(-135deg)
 }
 
 .swpf-toggle-button.style6 {
-    transition: height .35s .35s,border-color .35s .35s
+    transition: height .35s .35s, border-color .35s .35s
 }
 
-.swpf-toggle-button.style6:before,.swpf-toggle-button.style6:after {
+.swpf-toggle-button.style6:before,
+.swpf-toggle-button.style6:after {
     transform-origin: 50% 50%
 }
 
@@ -2558,17 +2562,17 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style6:before {
-    transform: translate(-50%,-50%) rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
     transition-delay: .5s
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style6:after {
-    transform: translate(-50%,-50%) rotate(-45deg);
+    transform: translate(-50%, -50%) rotate(-45deg);
     transition-delay: .5s
 }
 
 .swpf-toggle-button.style7 {
-    transition: height .35s .35s,border-color .35s .35s
+    transition: height .35s .35s, border-color .35s .35s
 }
 
 .swpf-toggle-button.style7:before,
@@ -2583,20 +2587,21 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style7:before {
-    transform: translate(-50%,-50%) rotate(-45deg);
+    transform: translate(-50%, -50%) rotate(-45deg);
     transition-delay: .5s
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style7:after {
-    transform: translate(-50%,-50%) rotate(-135deg);
+    transform: translate(-50%, -50%) rotate(-135deg);
     transition-delay: .5s
 }
 
 .swpf-toggle-button.style8 {
-    transition: height .35s .35s,border-color .35s .35s,transform .35s 0s
+    transition: height .35s .35s, border-color .35s .35s, transform .35s 0s
 }
 
-.swpf-toggle-button.style8:before,.swpf-toggle-button.style8:after {
+.swpf-toggle-button.style8:before,
+.swpf-toggle-button.style8:after {
     transform-origin: 50% 50%
 }
 
@@ -2604,39 +2609,42 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
     height: 0;
     border-color: transparent;
     transform: rotate(135deg);
-    transition: all .35s 0s,transform .35s 1s
+    transition: all .35s 0s, transform .35s 1s
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style8:before {
-    transform: translate(-50%,-50%) rotate(90deg);
+    transform: translate(-50%, -50%) rotate(90deg);
     transition-delay: .5s
 }
 
-.swpf-toggle-button.style9:before,.swpf-toggle-button.style9:after {
+.swpf-toggle-button.style9:before,
+.swpf-toggle-button.style9:after {
     transform-origin: 0% 0%
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style9:before {
-    transform: translate(-50%,0) rotate(-45deg) scaleX(.6)
+    transform: translate(-50%, 0) rotate(-45deg) scaleX(.6)
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style9:after {
-    transform: translate(-50%,0) rotate(45deg) scaleX(.6)
+    transform: translate(-50%, 0) rotate(45deg) scaleX(.6)
 }
 
-.swpf-toggle-button.style10:before,.swpf-toggle-button.style10:after {
+.swpf-toggle-button.style10:before,
+.swpf-toggle-button.style10:after {
     transform-origin: 100% 0%
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style10:before {
-    transform: translate(-50%,0) rotate(45deg) scaleX(.6)
+    transform: translate(-50%, 0) rotate(45deg) scaleX(.6)
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style10:after {
-    transform: translate(-50%,0) rotate(-45deg) scaleX(.6)
+    transform: translate(-50%, 0) rotate(-45deg) scaleX(.6)
 }
 
-.swpf-toggle-button.style11:before,.swpf-toggle-button.style11:after {
+.swpf-toggle-button.style11:before,
+.swpf-toggle-button.style11:after {
     transform-origin: 0% 0%
 }
 
@@ -2645,14 +2653,15 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style11:before {
-    transform: translate(-50%,0) rotate(-45deg) scaleX(.6)
+    transform: translate(-50%, 0) rotate(-45deg) scaleX(.6)
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style11:after {
-    transform: translate(-50%,0) rotate(45deg) scaleX(.6)
+    transform: translate(-50%, 0) rotate(45deg) scaleX(.6)
 }
 
-.swpf-toggle-button.style12:before,.swpf-toggle-button.style12:after {
+.swpf-toggle-button.style12:before,
+.swpf-toggle-button.style12:after {
     transform-origin: 0% 0%
 }
 
@@ -2661,14 +2670,15 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style12:before {
-    transform: translate(-50%,0) rotate(-45deg) scaleX(.6)
+    transform: translate(-50%, 0) rotate(-45deg) scaleX(.6)
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style12:after {
-    transform: translate(-50%,0) rotate(45deg) scaleX(.6)
+    transform: translate(-50%, 0) rotate(45deg) scaleX(.6)
 }
 
-.swpf-toggle-button.style13:before,.swpf-toggle-button.style13:after {
+.swpf-toggle-button.style13:before,
+.swpf-toggle-button.style13:after {
     transform-origin: 0% 0%
 }
 
@@ -2677,14 +2687,15 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style13:before {
-    transform: translate(-30%,0) rotate(-45deg) scaleX(.6)
+    transform: translate(-30%, 0) rotate(-45deg) scaleX(.6)
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style13:after {
-    transform: translate(-30%,0) rotate(45deg) scaleX(.6)
+    transform: translate(-30%, 0) rotate(45deg) scaleX(.6)
 }
 
-.swpf-toggle-button.style14:before,.swpf-toggle-button.style14:after {
+.swpf-toggle-button.style14:before,
+.swpf-toggle-button.style14:after {
     transform-origin: 100% 0%
 }
 
@@ -2693,14 +2704,15 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style14:before {
-    transform: translate(-80%,0) rotate(45deg) scaleX(.6)
+    transform: translate(-80%, 0) rotate(45deg) scaleX(.6)
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style14:after {
-    transform: translate(-80%,0) rotate(-45deg) scaleX(.6)
+    transform: translate(-80%, 0) rotate(-45deg) scaleX(.6)
 }
 
-.swpf-toggle-button.style15:before,.swpf-toggle-button.style15:after {
+.swpf-toggle-button.style15:before,
+.swpf-toggle-button.style15:after {
     transform-origin: 100% 0%
 }
 
@@ -2710,14 +2722,15 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style15:before {
-    transform: translate(-80%,0) rotate(45deg) scaleX(.6)
+    transform: translate(-80%, 0) rotate(45deg) scaleX(.6)
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style15:after {
-    transform: translate(-80%,0) rotate(-45deg) scaleX(.6)
+    transform: translate(-80%, 0) rotate(-45deg) scaleX(.6)
 }
 
-.swpf-toggle-button.style16:before,.swpf-toggle-button.style16:after {
+.swpf-toggle-button.style16:before,
+.swpf-toggle-button.style16:after {
     transform-origin: 100% 0%
 }
 
@@ -2727,11 +2740,11 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style16:before {
-    transform: translate(-80%,0) rotate(45deg) scaleX(.6)
+    transform: translate(-80%, 0) rotate(45deg) scaleX(.6)
 }
 
 .swpf-sidemenu-show .swpf-toggle-button.style16:after {
-    transform: translate(-80%,0) rotate(-45deg) scaleX(.6)
+    transform: translate(-80%, 0) rotate(-45deg) scaleX(.6)
 }
 
 /* Scrollbar Off */
@@ -2744,7 +2757,7 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
     flex-direction: column;
 }
 
-.swpf-scrollbar-on .mCS-swpf-scrollbar-theme.mCSB_outside+.mCSB_scrollTools {
+.swpf-scrollbar-on .mCS-swpf-scrollbar-theme.mCSB_outside + .mCSB_scrollTools {
     right: 0;
 }
 
@@ -2790,7 +2803,7 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
 
 .swpf-big-loading:after,
 .swpf-big-loading:before,
-.swpf-loader-gif:after, 
+.swpf-loader-gif:after,
 .swpf-loader-gif:before {
     content: "";
     position: absolute;
@@ -2820,6 +2833,7 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
         height: 0;
         opacity: 1;
     }
+
     100% {
         top: 0px;
         left: 0px;
@@ -2837,7 +2851,7 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
     margin-left: 10px;
 }
 
-.swpf-loading:after, 
+.swpf-loading:after,
 .swpf-loading:before {
     content: "";
     position: absolute;
@@ -2859,6 +2873,7 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
         height: 0;
         opacity: 1;
     }
+
     100% {
         top: 0px;
         left: 0px;
@@ -2868,7 +2883,7 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
     }
 }
 
-.swpf-ajax-pagination{
+.swpf-ajax-pagination {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2956,20 +2971,20 @@ body.admin-bar [class*="swpf-position-top-"].swpf-sidemenu-trigger-block {
     top: 0;
     bottom: 0;
     right: 0;
-    background: rgba(255,255,255, 0.9);
+    background: rgba(255, 255, 255, 0.9);
     z-index: 999;
 }
 
-.swpf-responsive-sidemenu{
+.swpf-responsive-sidemenu {
     display: none;
 }
 
 .swpf-responsive-sidemenu .swpf-form .swpf-filters,
-.swpf-responsive-sidemenu .swpf-activated-filter-wrap{
+.swpf-responsive-sidemenu .swpf-activated-filter-wrap {
     display: flex;
     flex-direction: column;
 }
 
-.swpf-hidden{
+.swpf-hidden {
     display: none;
 }

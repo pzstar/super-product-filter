@@ -4,7 +4,7 @@ defined('ABSPATH') || die();
 $sc_id = $this->filter_shortcode_id;
 $sc_title = get_the_title($sc_id);
 
-if (isset($settings['title_label']['in_stock']) && ! empty($settings['title_label']['in_stock'])) {
+if (isset($settings['title_label']['in_stock']) && !empty($settings['title_label']['in_stock'])) {
     ?>
     <div class="swpf-filter-title">
         <h4 class="swpf-filter-title-heading">
@@ -21,7 +21,7 @@ if (isset($settings['title_label']['in_stock']) && ! empty($settings['title_labe
         <div class="swpf-filter-item-list swpf-checkbox-type">
             <div class="swpf-filter-item <?php isset($current_filter_option['in-stock']) ? selected($current_filter_option['in-stock'], '1') : ''; ?>">
                 <label class="swpf-filter-label">
-                    <input type="checkbox" value="1" name="in-stock" <?php isset($current_filter_option['in-stock']) ? checked($current_filter_option['in-stock'], '1') : ''; ?>/>
+                    <input type="checkbox" value="1" name="in-stock" <?php isset($current_filter_option['in-stock']) ? checked($current_filter_option['in-stock'], '1') : ''; ?> />
                     <span class="swpf-title">
                         <span class="swpf-term"><?php esc_html_e('Show In Stock Only', 'super-product-filter') ?></span>
                     </span>

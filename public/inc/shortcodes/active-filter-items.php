@@ -20,7 +20,7 @@ if ($current_filter_option) {
                     $this->render_price($from);
                     echo (" - ");
                     $this->render_price($to)
-                    ?>
+                        ?>
                     <span class="swpf-remove-filter-icon"></span>
                 </button>
             </div>
@@ -55,7 +55,7 @@ if ($current_filter_option) {
                     <div class="swpf-group-activated-filter swpf-activated-attribute">
                         <span class="swpf-active-filter-title">
                             <i class="icofont-tick-boxed"></i>
-                            <?php wc_attribute_label($attribute_slug);?>
+                            <?php wc_attribute_label($attribute_slug); ?>
                         </span>
                         <?php
                         if ($option_slugs) {
@@ -185,7 +185,7 @@ if ($current_filter_option) {
                     <i class="icofont-tick-boxed"></i>
                     <?php esc_html_e('Review From', 'super-product-filter'); ?>
                 </span>
- 
+
                 <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[review-from]" value="1">
                     <?php echo esc_attr($value['review_from']); ?>
                     <?php $value['review_from'] > 1 ? esc_html_e(' reviews', 'super-product-filter') : esc_html_e(' review', 'super-product-filter'); ?>

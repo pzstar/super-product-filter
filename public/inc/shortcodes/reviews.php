@@ -6,7 +6,7 @@ $sc_title = get_the_title($sc_id);
 ?>
 
 <div class="swpf-filter-reviews-wrap">
-    <?php if (isset($settings['title_label']['reviews']) && ! empty($settings['title_label']['reviews'])) { ?>
+    <?php if (isset($settings['title_label']['reviews']) && !empty($settings['title_label']['reviews'])) { ?>
         <div class="swpf-filter-title">
             <h4 class="swpf-filter-title-heading">
                 <?php echo esc_html(apply_filters('swpf_translate_string', $settings['title_label']['reviews'], 'Super Product Filter', esc_html($sc_title) . ' - Taxonomy Name reviews')); ?>

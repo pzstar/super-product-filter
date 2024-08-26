@@ -15,7 +15,7 @@ const SuperWooProductFilterUtils = {
 }
 
 class SuperWooProductFilter {
-    constructor(el) {
+    constructor (el) {
         if (!(el instanceof jQuery) || !el.hasClass('swpf-main-wrap')) {
             console.error('Invalid Form Obj!');
         }

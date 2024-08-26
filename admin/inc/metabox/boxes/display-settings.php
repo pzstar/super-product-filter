@@ -20,7 +20,7 @@ defined('ABSPATH') || die();
             <div class="swpf-settings-input-field">
                 <div class="swpf-range-slider-field">
                     <div class="swpf-range-slider"></div>
-                    <input class="swpf-range-input" type="number" min="320" max="1400" step="1" value="<?php echo esc_attr($settings['responsive_width']); ?>" name="swpf_settings[responsive_width]"/> px
+                    <input class="swpf-range-input" type="number" min="320" max="1400" step="1" value="<?php echo esc_attr($settings['responsive_width']); ?>" name="swpf_settings[responsive_width]" /> px
                 </div>
                 <p class="swpf-desc"><?php esc_html_e('The product filters will be hidden and will display on clicking a Toggle Button as OffCanvase Menu.', 'super-product-filter'); ?></p>
             </div>

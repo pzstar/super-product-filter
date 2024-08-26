@@ -172,5 +172,5 @@ defined('ABSPATH') || die();
                 <p class="swpf-desc"><?php esc_html_e('Open/Close each filter by clicking on title followed by arrow.', 'super-product-filter'); ?></p>
             </div>
         </div>
-    </div> 
+    </div>
 </div>

@@ -490,24 +490,20 @@ class Super_Product_Filter_Public {
             $side_menu_wrapper_classes[] = 'swpf-panel-animation-enabled';
         }
         ?>
-        <div class="<?php echo esc_attr(implode(' ', $side_menu_wrapper_classes)); ?>" 
-        <?php
-        if ($panel_animation == 'custom') {
-            ?>
-                 data-showanimation="animate--<?php echo esc_attr($show_animation); ?>"
-                 data-hideanimation="animate--<?php echo esc_attr($hide_animation); ?>"
-                 <?php
-             }
-             ?>>
-                 <?php
-                 $menu_toggle_button_settings = $this->settings['side_menu'];
-                 $icon_type = $menu_toggle_button_settings['button_icon_type'];
-                 if ($icon_type !== 'none') {
-                     $open_trigger_icon = $menu_toggle_button_settings['open_trigger_icon'];
-                     $close_trigger_icon = $menu_toggle_button_settings['close_trigger_icon'];
-                     $position = $menu_toggle_button_settings['position'];
-                     $shape = $menu_toggle_button_settings['button_shape'];
-                     ?>
+        <div class="<?php echo esc_attr(implode(' ', $side_menu_wrapper_classes)); ?>" <?php
+            if ($panel_animation == 'custom') {
+                ?> data-showanimation="animate--<?php echo esc_attr($show_animation); ?>" data-hideanimation="animate--<?php echo esc_attr($hide_animation); ?>" <?php
+            }
+            ?>>
+            <?php
+            $menu_toggle_button_settings = $this->settings['side_menu'];
+            $icon_type = $menu_toggle_button_settings['button_icon_type'];
+            if ($icon_type !== 'none') {
+                $open_trigger_icon = $menu_toggle_button_settings['open_trigger_icon'];
+                $close_trigger_icon = $menu_toggle_button_settings['close_trigger_icon'];
+                $position = $menu_toggle_button_settings['position'];
+                $shape = $menu_toggle_button_settings['button_shape'];
+                ?>
                 <div class="swpf-sidemenu-trigger-block swpf-position-<?php echo esc_attr($position); ?> swpf-shape-<?php echo esc_attr($shape); ?>">
                     <div class="swpf-sidemenu-trigger-idle-animation">
                         <div class="swpf-sidemenu-trigger-hover-animation">
@@ -537,7 +533,7 @@ class Super_Product_Filter_Public {
         <?php
         $responsive_html = ob_get_clean();
 
-        add_action('wp_footer', function() use ($responsive_html) {
+        add_action('wp_footer', function () use ($responsive_html) {
             echo wp_kses_post($responsive_html);
         });
 
@@ -555,7 +551,7 @@ class Super_Product_Filter_Public {
                 </div>
                 <?php
             } //preloaders
-
+    
             ?>
 
             <?php
@@ -587,8 +583,9 @@ class Super_Product_Filter_Public {
         $term_arr = array();
         $term_uniq = array();
 
-        if ($query->have_posts()) :
-            while ($query->have_posts()) : $query->the_post();
+        if ($query->have_posts()):
+            while ($query->have_posts()):
+                $query->the_post();
                 $ter = get_the_terms(get_the_ID(), $current_filter_taxname);
                 if (!empty($ter) && !is_wp_error($ter)) {
                     foreach ($ter as $tkey => $tval) {
@@ -687,7 +684,7 @@ class Super_Product_Filter_Public {
             ?>
             <div class="swpf-filter-item-wrap swpf-<?php echo esc_attr($tax_name) ?>-wrap swpf-tax-count-<?php echo esc_attr($count); ?>">
                 <?php
-                if (isset($settings['title_label'][$tax_name]) && ! empty($settings['title_label'][$tax_name])) {
+                if (isset($settings['title_label'][$tax_name]) && !empty($settings['title_label'][$tax_name])) {
                     ?>
                     <div class="swpf-filter-title">
                         <h4 class="swpf-filter-title-heading">
@@ -707,7 +704,7 @@ class Super_Product_Filter_Public {
                     <?php
                     if (!empty($terms) && !isset($terms->errors)) {
                         ?>
-                        <div class="swpf-tax-list-wrapper <?php echo!empty($orientationClass) ? esc_attr(implode(' ', $orientationClass)) : ''; ?>">                    
+                        <div class="swpf-tax-list-wrapper <?php echo !empty($orientationClass) ? esc_attr(implode(' ', $orientationClass)) : ''; ?>">
                             <?php
                             $args = array(
                                 'terms' => $terms,
@@ -914,8 +911,8 @@ class Super_Product_Filter_Public {
                     if (isset($variant['attributes'])) {
                         $rate[$key] = 0;
                         foreach ($need_array as $attr_name => $values) {
-                            if (isset($variant['attributes']["attribute_" . $attr_name]) AND in_array($variant['attributes']["attribute_" . $attr_name], $values)) {
-                                $rate[$key] ++;
+                            if (isset($variant['attributes']["attribute_" . $attr_name]) && in_array($variant['attributes']["attribute_" . $attr_name], $values)) {
+                                $rate[$key]++;
                             }
                         }
                     }
@@ -923,7 +920,7 @@ class Super_Product_Filter_Public {
                 arsort($rate);
                 $attr_key = array_key_first($rate);
                 if (array_shift($rate)) {
-                    if (isset($variations[$attr_key]["image_id"]) AND $variations[$attr_key]["image_id"]) {
+                    if (isset($variations[$attr_key]["image_id"]) && $variations[$attr_key]["image_id"]) {
                         $image_size = apply_filters('single_product_archive_thumbnail_size', 'woocommerce_thumbnail');
                         $image = wp_get_attachment_image($variations[$attr_key]["image_id"], $image_size, false, array());
                         if ($image) {

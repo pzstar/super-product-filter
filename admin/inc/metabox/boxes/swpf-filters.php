@@ -5,13 +5,13 @@ $items_order = array();
 $taxonomies = swpf_get_taxonomies(); // get all taxonomies object
 $taxonomies_keys = array_keys($taxonomies); // get only the taxo name array
 
-if (isset($settings['list_order']) && ! empty($settings['list_order'])) {
+if (isset($settings['list_order']) && !empty($settings['list_order'])) {
     $items_order = $settings['list_order'];
     $meta_items = ['price_range', 'reviews', 'ratings', 'on_sale', 'in_stock'];
     $tax_items = array_diff($items_order, $meta_items); // only tax_items from db
     $new_tax_items = array_diff($taxonomies_keys, $tax_items); // new added tax_items not available in db
     // check if new_tax_items are registered then append it to the current database items list
-    if (isset($new_tax_items) && ! empty($new_tax_items)) {
+    if (isset($new_tax_items) && !empty($new_tax_items)) {
         $items_order = array_merge($items_order, $new_tax_items);
     }
 
@@ -132,7 +132,7 @@ $index = 1;
                         <div class="swpf-tab-action">
                             <span class="swpf-each-actions swpf-sortable-box icofont-drag"></span>
                             <span class="swpf-each-actions swpf-toggle-box icofont-caret-down"></span>
-                        </div>  
+                        </div>
                     </div>
 
                     <div class="swpf-option-fields-inner-wrap">
@@ -281,7 +281,7 @@ $index = 1;
                                     </div>
                                 </div>
 
-                                <div class="swpf-field-wrap swpf-hide-term" data-condition-toggle="swpf-field-settings-display-type-<?php echo esc_attr($key); ?>" data-condition-val="image,color">    
+                                <div class="swpf-field-wrap swpf-hide-term" data-condition-toggle="swpf-field-settings-display-type-<?php echo esc_attr($key); ?>" data-condition-val="image,color">
                                     <label><?php esc_html_e('Hide Term Name', 'super-product-filter'); ?></label>
                                     <div class="swpf-toggle-wrap">
                                         <label class="swpf-toggle">
@@ -492,17 +492,12 @@ $index = 1;
 
                             <div class="swpf-custom-term-options-wrap">
                                 <div class="swpf-button-wrap">
-                                    <button
-                                        class="swpf-show-custom-term-options"
-                                        data-tax-key="<?php echo esc_attr($key); ?>"
-                                        data-tax-id="<?php echo esc_attr($post_id); ?>"
-                                        data-terms-customize-settings="<?php echo esc_attr(htmlspecialchars(wp_json_encode(isset($settings['terms_customize'][$key]) ? $settings['terms_customize'][$key] : []), ENT_QUOTES, 'UTF-8')); ?>"
-                                    >
+                                    <button class="swpf-show-custom-term-options" data-tax-key="<?php echo esc_attr($key); ?>" data-tax-id="<?php echo esc_attr($post_id); ?>" data-terms-customize-settings="<?php echo esc_attr(htmlspecialchars(wp_json_encode(isset($settings['terms_customize'][$key]) ? $settings['terms_customize'][$key] : []), ENT_QUOTES, 'UTF-8')); ?>">
                                         <i class="icofont-gear"></i> <?php esc_html_e('Configure Term Options', 'super-product-filter'); ?>
                                     </button>
-                                </div>     
+                                </div>
 
-                            </div> <!-- swpf-custom-term-options-wrap -->                   
+                            </div> <!-- swpf-custom-term-options-wrap -->
                         </div>
                     </div>
                     <?php

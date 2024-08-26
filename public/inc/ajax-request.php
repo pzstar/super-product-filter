@@ -52,7 +52,7 @@ wp_reset_postdata();
 $filtered_data = '';
 
 if (isset($swpf_product_columns) && $swpf_product_columns > 1) {
-    add_filter('loop_shop_columns', function() {
+    add_filter('loop_shop_columns', function () {
         global $swpf_product_columns;
         return absint($swpf_product_columns);
     }, 999);
