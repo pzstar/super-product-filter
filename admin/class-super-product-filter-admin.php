@@ -217,7 +217,7 @@ class Super_Product_Filter_Admin {
             $settings = get_post_meta($post_id, 'swpf_settings', true);
             $terms_customize = isset($settings['terms_customize']) ? $settings['terms_customize'] : array();
             $settings = swpf_get_post_data_arr('swpf_settings');
-            if($settings) {
+            if ($settings) {
                 $settings['terms_customize'] = $terms_customize;
                 $settings = self::recursive_parse_args($settings, self::checkbox_settings());
                 $settings = self::sanitize_array($settings, self::sanitize_settings_rules());
@@ -315,7 +315,6 @@ class Super_Product_Filter_Admin {
                 })
             })(jQuery)
             <?php
-            wp_register_script('swpf-admin-save-post', '',);
             wp_enqueue_script('swpf-admin-save-post');
             wp_add_inline_script('swpf-admin-save-post', ob_get_clean());
         }
@@ -1217,19 +1216,20 @@ class Super_Product_Filter_Admin {
                 <span><i class="swpf-down-icon"></i></span>
             </div>
 
-            <input type="hidden" name="<?php echo esc_attr($inputName); ?>" value="<?php echo esc_attr($iconName); ?>"/>
+            <input type="hidden" name="<?php echo esc_attr($inputName); ?>" value="<?php echo esc_attr($iconName); ?>" />
         </div>
         <?php
     }
 
     public function register_translation_strings() {
         $query = new WP_Query(
-                array(
-            'post_type' => 'swpf-product-filter',
-            'posts_per_page' => -1,
+            array(
+                'post_type' => 'swpf-product-filter',
+                'posts_per_page' => -1,
+                'post_status' => 'publish'
+            )
         );
 
-        if ($query->have_posts()) :
         if ($query->have_posts()):
             while ($query->have_posts()):
                 $query->the_post();
@@ -1393,8 +1393,9 @@ class Super_Product_Filter_Admin {
         $data = new stdClass();
 
         if (!function_exists('media_handle_sideload')) {
-            require_once( ABSPATH . 'wp-admin/includes/media.php' );
             require_once(ABSPATH . 'wp-admin/includes/media.php');
+            require_once(ABSPATH . 'wp-admin/includes/file.php');
+            require_once(ABSPATH . 'wp-admin/includes/image.php');
         }
 
         if (!empty($file)) {
@@ -1446,7 +1447,6 @@ class Super_Product_Filter_Admin {
     }
 
     public static function compare_to_rule($value, $rule) {
-        $result = ( $value == $rule['value'] );
         $result = ($value == $rule['value']);
 
         // Allow "all" to match any value.
@@ -1491,19 +1491,14 @@ class Super_Product_Filter_Admin {
                                 <div class="swpf-custom-term-field-wrap">
                                     <h4><?php echo esc_html(ucwords(str_replace('-', ' ', $tval->name))); ?></h4>
 
-                                    <div class="swpf-custom-term-field swpf-field-wrap">    
+                                    <div class="swpf-custom-term-field swpf-field-wrap">
                                         <label><?php esc_html_e('Term Name', 'super-product-filter'); ?></label>
-                                        <input
-                                            type="text"
-                                            name="swpf_settings[terms_customize][<?php echo esc_attr($key); ?>][<?php echo esc_attr($tval->term_id) ?>][term_name]"
-                                            value="<?php echo isset($terms_customize_settings[$tval->term_id]['term_name']) ? esc_attr($terms_customize_settings[$tval->term_id]['term_name']) : ''; ?>"
-                                        >
+                                        <input type="text" name="swpf_settings[terms_customize][<?php echo esc_attr($key); ?>][<?php echo esc_attr($tval->term_id) ?>][term_name]" value="<?php echo isset($terms_customize_settings[$tval->term_id]['term_name']) ? esc_attr($terms_customize_settings[$tval->term_id]['term_name']) : ''; ?>">
                                     </div>
 
                                     <div class="swpf-custom-term-field swpf-field-wrap swpf-custom-color">
                                         <label><?php esc_html_e('Color', 'super-product-filter'); ?></label>
-                                        <input
-                                        >
+                                        <input type="text" data-alpha-enabled="true" data-alpha-color-type="hex" class="color-picker swpf-color-picker" name="swpf_settings[terms_customize][<?php echo esc_attr($key); ?>][<?php echo esc_attr($tval->term_id) ?>][term_color]" value="<?php echo isset($terms_customize_settings[$tval->term_id]['term_color']) ? esc_attr($terms_customize_settings[$tval->term_id]['term_color']) : ''; ?>">
                                     </div>
 
                                     <div class="swpf-custom-term-field swpf-field-wrap swpf-custom-image">
@@ -1517,17 +1512,15 @@ class Super_Product_Filter_Admin {
                                         }
                                         ?>
                                         <div class="swpf-icon-image-uploader<?php echo esc_attr($upload_class); ?>">
-                                            <div class="swpf-custom-menu-image-icon" >
                                             <div class="swpf-custom-menu-image-icon">
                                                 <?php if ($has_image) { ?>
-                                                    <img src="<?php echo esc_attr(isset($terms_customize_settings[$tval->term_id]['term_image']) ? esc_url($terms_customize_settings[$tval->term_id]['term_image']) : ''); ?>" width="100"/>
+                                                    <img src="<?php echo esc_attr(isset($terms_customize_settings[$tval->term_id]['term_image']) ? esc_url($terms_customize_settings[$tval->term_id]['term_image']) : ''); ?>" width="100" />
                                                 <?php } ?>
                                             </div>
                                             <div class="swpf-custom-img-action-field">
                                                 <div class="swpf-image-remove"><?php esc_html_e('Remove', 'super-product-filter'); ?></div>
                                                 <div class="swpf-image-upload"><?php esc_html_e('Upload', 'super-product-filter') ?></div>
                                             </div>
-                                            <input type="hidden" class="swpf-upload-background-url" name="swpf_settings[terms_customize][<?php echo esc_attr($key) ?>][<?php echo esc_attr($tval->term_id) ?>][term_image]" value="<?php echo isset($terms_customize_settings[$tval->term_id]['term_image']) ? esc_url($terms_customize_settings[$tval->term_id]['term_image']) : ''; ?>"/>
                                             <input type="hidden" class="swpf-upload-background-url" name="swpf_settings[terms_customize][<?php echo esc_attr($key) ?>][<?php echo esc_attr($tval->term_id) ?>][term_image]" value="<?php echo isset($terms_customize_settings[$tval->term_id]['term_image']) ? esc_url($terms_customize_settings[$tval->term_id]['term_image']) : ''; ?>" />
                                         </div> <!-- swpf-icon-image-uploader -->
                                     </div>
