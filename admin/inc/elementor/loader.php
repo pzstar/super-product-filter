@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-class SFFM_Widget_Loader {
+class SWPF_Elementor_Widget_Loader {
 
     private static $instance = null;
 
@@ -50,16 +50,16 @@ class SFFM_Widget_Loader {
 
 }
 
-if (!function_exists('sffm_widget_loader')) {
+if (!function_exists('swpf_elementor_widget_loader')) {
 
     /**
      * Returns an instance of the plugin class.
      * @since  1.0.0
      * @return object
      */
-    function sffm_widget_loader() {
-        return SFFM_Widget_Loader::get_instance();
+    function swpf_elementor_widget_loader() {
+        return SWPF_Elementor_Widget_Loader::get_instance();
     }
 
 }
-sffm_widget_loader();
+swpf_elementor_widget_loader();
