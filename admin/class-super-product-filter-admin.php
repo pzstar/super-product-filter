@@ -63,6 +63,9 @@ class Super_Product_Filter_Admin {
 
         // Get posts by query
         add_filter('plugin_action_links_' . SWPF_BASENAME, array($this, 'add_settings_link'));
+
+        // Add new Category for blocks
+        add_filter('block_categories_all', array($this, 'register_category'), 10, 2);
     }
 
     public function include_files() {
@@ -1562,6 +1565,23 @@ class Super_Product_Filter_Admin {
         $settings_link = '<a href="' . esc_url(get_admin_url(null, 'edit.php?post_type=swpf-product-filter')) . '">' . esc_html__('Settings', 'super-product-filter') . '</a>';
         array_unshift($links, $settings_link);
         return $links;
+    }
+
+    /**
+     * Gutenberg block category.
+     *
+     * @param array  $categories Block categories.
+     * @param object $post Post object.
+     */
+    public function register_category($categories, $post) {
+        return array_merge(
+            $categories, array(
+                array(
+                    'slug' => 'swpf-blocks',
+                    'title' => esc_html__('Super Product Filter', 'smart-blocks')
+                )
+            )
+        );
     }
 
 }

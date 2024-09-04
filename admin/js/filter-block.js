@@ -11,7 +11,7 @@ const SWPFIcon = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.6 61.5"
 registerBlockType('swpf/product-filter', {
     title: swpf_block_data.i18n.title,
     icon: SWPFIcon,
-    category: 'widgets',
+    category: 'swpf-blocks',
     keywords: swpf_block_data.i18n.filter_keywords,
     description: swpf_block_data.i18n.description,
     attributes: {
