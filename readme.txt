@@ -8,7 +8,7 @@ Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Enhance your shopping experience by implementing a product filter that streamlines the selection process, ensuring you find the perfect product effortlessly. Simplify your search, save your time.
+Enhance your shopping experience by using a product filter that streamlines the selection process, ensuring you find the perfect product effortlessly.
 
 == Description ==
 
