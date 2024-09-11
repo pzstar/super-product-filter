@@ -4,7 +4,7 @@ Tags: ajax filter, ajax product filter, product filter, woocommerce ajax filter,
 Requires at least: 5.0
 Requires PHP: 5.6 
 Tested up to: 6.6
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -129,6 +129,9 @@ For premium upgrade, please click below link <br>
 
 
 == Changelog ==
+= 1.0.3 - 11 Sep, 2024 =
+* Filter block minor bug fixed
+
 = 1.0.2 - 3 Sep, 2024 =
 * Added Elementor Module of Filter
 * Added Elementor Block of Filter
