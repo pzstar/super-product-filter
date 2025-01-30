@@ -589,42 +589,119 @@ if (!function_exists('swpf_terms_color_image_checkboxlist')) {
         // Then the rest of them
         echo wp_kses(call_user_func_array(array(&$walker, 'walk'), array($categories, 0, $args)), swpf_get_checkbox_allowed_protocols());
     }
-
 }
 
-if (!class_exists('SWPF_Walker_TaxonomyDropdown')) {
 
-    class SWPF_Walker_TaxonomyDropdown extends Walker_CategoryDropdown {
+/* Dropdown */
+if (!class_exists('SWPF_Walker_Category_Dropdown')) {
+
+    class SWPF_Walker_Category_Dropdown extends Walker {
+
+        var $tree_type = 'category';
+        var $db_fields = array(
+            'parent' => 'parent',
+            'id' => 'term_id'
+        );
 
         function start_el(&$output, $category, $depth = 0, $args = [], $id = 0) {
-            $pad = str_repeat('&nbsp;', $depth * 2);
-            $cat_name = isset($args['term_name_array'][$category->term_id]) ? esc_html($args['term_name_array'][$category->term_id]) : esc_html($category->name);
-            $hide_terms = isset($args['hide_terms']) ? $args['hide_terms'] : [];
-
-            if (!isset($args['value'])) {
-                $args['value'] = ($category->taxonomy != 'category' ? 'slug' : 'id');
+            extract($args);
+            if (empty($taxonomy)) {
+                $taxonomy = 'category';
             }
 
-            $value = ($args['value'] == 'slug' ? $category->slug : $category->term_id);
-
-            if (!in_array($category->term_id, $hide_terms)) {
-
-                $output .= "\t<option class=\"level-$depth\" value=\"" . $value . "\"";
-                if ($value === (string) $args['selected']) {
-                    $output .= ' selected="selected"';
+            if (empty($name)) {
+                if ($taxonomy == 'category') {
+                    $name = 'post_category';
+                } else {
+                    $name = $taxonomy;
                 }
-
-                $output .= '>';
-                $output .= $pad . $cat_name;
-                if ($args['show_count']) {
+            }
+            if (!in_array($category->term_id, $hide_terms)) {
+                $output .= '<option class="level-' . $depth . '" value="' . $category->{$value_field} . '" id="in-' . $taxonomy . '-' . $category->{$value_field} . '"' . selected(in_array($category->{$value_field}, $selected_cats), true, false) . '>';
+                $indent = str_repeat("&nbsp;", $depth * 5);
+                $output .= $indent;
+                $output .= $category->name;
+                $output .= $hide_term_name ? '' : (isset($term_name_array[$category->term_id]) ? esc_html($term_name_array[$category->term_id]) : esc_html($category->name));
+                if ($show_count) {
                     $output .= '&nbsp;(';
-                    $output .= isset($args['term_count_array'][$category->term_id]) ? esc_html($args['term_count_array'][$category->term_id]) : esc_html($category->count);
+                    $output .= isset($term_count_array[$category->term_id]) ? esc_html($term_count_array[$category->term_id]) : esc_html($category->count);
                     $output .= ')';
                 }
+            }
+        }
+
+        function end_el(&$output, $category, $depth = 0, $args = []) {
+            extract($args);
+            if (!in_array($category->term_id, $hide_terms)) {
                 $output .= "</option>\n";
             }
         }
 
+    }
+
+}
+
+if (!function_exists('swpf_terms_dropdown')) {
+
+    function swpf_terms_dropdown($post_id = 0, $args = array(), $terms = NULL) {
+        $defaults = array(
+            'selected_cats' => false,
+            'walker' => null,
+            'taxonomy' => 'category',
+            'hide_terms' => [],
+            'checked_ontop' => false,
+            'name' => ''
+        );
+
+        extract(wp_parse_args($args, $defaults), EXTR_SKIP);
+
+        if (empty($walker) || !is_a($walker, 'Walker')) {
+            $walker = new SWPF_Walker_Category_Dropdown;
+        }
+
+        $args = array(
+            'taxonomy' => $taxonomy,
+            'name' => $name,
+            'value_field' => empty($value_field) ? 'term_id' : $value_field,
+            'show_count' => $show_count,
+            'term_preview_array' => empty($term_preview_array) ? array() : $term_preview_array,
+            'hide_term_name' => isset($hide_term_name) ? $hide_term_name : 'off',
+            'type' => empty($type) ? 'color' : $type,
+            'hide_terms' => isset($hide_terms) ? $hide_terms : [],
+            'term_name_array' => isset($term_name_array) ? $term_name_array : [],
+            'term_count_array' => isset($term_count_array) ? $term_count_array : []
+        );
+
+        $tax = get_taxonomy($taxonomy);
+        $args['disabled'] = !current_user_can($tax->cap->assign_terms);
+
+        if (is_array($selected_cats)) {
+            $args['selected_cats'] = $selected_cats;
+        } elseif ($post_id) {
+            $args['selected_cats'] = wp_get_object_terms($post_id, $taxonomy, array_merge($args, array('fields' => 'ids')));
+        } else {
+            $args['selected_cats'] = explode(',', $selected_cats);
+        }
+
+        $categories = $terms ? $terms : (array) get_terms($taxonomy, array('get' => 'all'));
+
+        if ($checked_ontop) {
+            // Post process $categories rather than adding an exclude to the get_terms() query to keep the query the same across all posts (for any query cache)
+            $checked_categories = array();
+            $keys = array_keys($categories);
+
+            foreach ($keys as $k) {
+                if (in_array($categories[$k]->term_id, $args['selected_cats'])) {
+                    $checked_categories[] = $categories[$k];
+                    unset($categories[$k]);
+                }
+            }
+
+            // Put checked cats on top
+            echo call_user_func_array(array(&$walker, 'walk'), array($checked_categories, 0, $args));
+        }
+        // Then the rest of them
+        echo call_user_func_array(array(&$walker, 'walk'), array($categories, 0, $args));
     }
 
 }
