@@ -1,8 +1,8 @@
 === Super Product Filter ===
 Contributors: hashthemes
 Tags: ajax filter, ajax product filter, product filter, woocommerce ajax filter, woocommerce filter
-Requires at least: 6.0
-Requires PHP: 7.0
+Requires at least: 6.3
+Requires PHP: 7.4
 Tested up to: 6.7
 Stable tag: 1.0.4
 License: GPLv2 or later
