@@ -16,7 +16,7 @@ function swpf_sanitize_checkbox($input) {
 
 function swpf_sanitize_number($input) {
     if (is_numeric($input)) {
-        return intval($input);
+        return floatval($input);
     } else {
         return '';
     }
