@@ -1,10 +1,10 @@
 === Super Product Filter ===
 Contributors: hashthemes
 Tags: ajax filter, ajax product filter, product filter, woocommerce ajax filter, woocommerce filter
-Requires at least: 5.0
-Requires PHP: 5.6 
-Tested up to: 6.6
-Stable tag: 1.0.3
+Requires at least: 6.3
+Requires PHP: 7.4
+Tested up to: 6.7
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -129,6 +129,9 @@ For premium upgrade, please click below link <br>
 
 
 == Changelog ==
+= 1.0.4 - 4 Feb, 2025 =
+* Category Walker bug fixed for dropdown filter
+
 = 1.0.3 - 11 Sep, 2024 =
 * Filter block minor bug fixed
 
