@@ -291,7 +291,8 @@ class Super_Product_Filter_Public {
                         $order_by_query = 'ID';
                         break;
                     case 'menu_order':
-                        $order_by_query = 'menu_order';
+                        $order_by_query = 'menu_order title';
+                        $order = 'asc';
                         break;
                     case 'title':
                         $order_by_query = 'title';
@@ -563,7 +564,7 @@ class Super_Product_Filter_Public {
         return ob_get_clean();
     }
 
-    public function get_related_term($page_taxnmy, $page_term_slug, $current_filter_taxname, $settings) {
+    public function get_related_term($page_taxnmy, $page_term_slug, $current_filter_taxname, $settings, $order, $orderby) {
         $query_args = array(
             $page_taxnmy => $page_term_slug,
             'post_type' => 'product',
@@ -602,13 +603,21 @@ class Super_Product_Filter_Public {
                             continue;
                         }
                         $term_uniq[] = $tvalue['slug']; // current term slug is added because its unique
-                        $term_arr[] = $tval; // Insert Current terms all details into arr
+                        $term_arr[] = $tvalue['term_id']; // Insert Current terms all details into arr
                     }
                 }
             endwhile;
         endif;
         wp_reset_postdata();
-        return $term_arr;
+        $terms_attr = array(
+            'orderby' => $orderby,
+            'order' => $order,
+            'hide_empty' => $swpf_settings['config']['hide_empty'] == 'on' ? true : false,
+            'hierarchical' => true,
+            'include' => $term_arr
+        );
+
+        return get_terms($terms_attr);
     }
 
     public function render_fields($settings, $taxonomy, $tax_name, $config, $current_filter_option = [], $count = 0) {
@@ -655,25 +664,25 @@ class Super_Product_Filter_Public {
         if (wp_doing_ajax()) {
             if (is_array($config)) {
                 if ($config['is_prod_taxonomy'] == 'yes') {
-                    $get_related_term = $this->get_related_term($config['page_tax_name'], $config['page_term_name'], $tax_name, $settings);
+                    $get_related_term = $this->get_related_term($config['page_tax_name'], $config['page_term_name'], $tax_name, $settings, $korder, $korderby);
                 }
             } else {
                 $config = (array) json_decode($config);
                 if ($config['is_prod_taxonomy'] == 'yes') {
-                    $get_related_term = $this->get_related_term($config['page_tax_name'], $config['page_term_name'], $tax_name, $settings);
+                    $get_related_term = $this->get_related_term($config['page_tax_name'], $config['page_term_name'], $tax_name, $settings, $korder, $korderby);
                 }
             }
         } elseif (!wp_doing_ajax() && is_product_taxonomy()) {
             if (!is_array($config)) {
                 $config = (array) json_decode($config);
             }
-            $get_related_term = $this->get_related_term(get_queried_object()->taxonomy, get_queried_object()->slug, $tax_name, $settings);
+            $get_related_term = $this->get_related_term(get_queried_object()->taxonomy, get_queried_object()->slug, $tax_name, $settings, $korder, $korderby);
         } else {
             if (!is_array($config)) {
                 $config = (array) json_decode($config);
             }
             if ($config['is_prod_taxonomy'] == 'yes') {
-                $get_related_term = $this->get_related_term($config['page_tax_name'], $config['page_term_name'], $tax_name, $settings);
+                $get_related_term = $this->get_related_term($config['page_tax_name'], $config['page_term_name'], $tax_name, $settings, $korder, $korderby);
             }
         }
 
