@@ -629,28 +629,7 @@ class Super_Product_Filter_Public {
         $display_type = isset($settings['display_type'][$tax_name]) ? $settings['display_type'][$tax_name] : '';
         $korderby = isset($settings['orderby'][$tax_name]) ? $settings['orderby'][$tax_name] : 'name';
         $korder = isset($settings['order_type'][$tax_name]) ? $settings['order_type'][$tax_name] : 'ASC';
-        $terms_attr = array(
-            'taxonomy' => $tax_name,
-            'orderby' => $korderby,
-            'order' => $korder,
-            'hide_empty' => false,
-            'hierarchical' => true,
-        );
 
-        // Include or exclude terms by taxonomys
-        if (isset($settings['include_exclude_filter'][$tax_name]) && $settings['include_exclude_filter'][$tax_name] == 'exclude-terms') {
-            if (isset($settings['exclude_terms'][$tax_name]) && !empty($settings['exclude_terms'][$tax_name])) {
-                $terms_attr['exclude'] = $settings['exclude_terms'][$tax_name];
-            }
-        }
-
-        if (isset($settings['include_exclude_filter'][$tax_name]) && $settings['include_exclude_filter'][$tax_name] == 'include-terms') {
-            if (isset($settings['include_terms'][$tax_name]) && !empty($settings['include_terms'][$tax_name])) {
-                $terms_attr['include'] = $settings['include_terms'][$tax_name];
-            }
-        }
-
-        $terms = get_terms($terms_attr);
         $orientationClass = [];
         if ($display_type == 'radio' || $display_type == 'checkbox' || $display_type == 'button' || $display_type == 'toggle' || $display_type == 'image' || $display_type == 'color') {
             if (isset($settings['field_orientation'][$tax_name]) && $settings['field_orientation'][$tax_name] == 'vertical') {
@@ -688,6 +667,28 @@ class Super_Product_Filter_Public {
 
         if (isset($get_related_term)) {
             $terms = $get_related_term;
+        } else {
+            $terms_attr = array(
+                'taxonomy' => $tax_name,
+                'orderby' => $korderby,
+                'order' => $korder,
+                'hide_empty' => false,
+                'hierarchical' => true,
+            );
+
+            // Include or exclude terms by taxonomys
+            if (isset($settings['include_exclude_filter'][$tax_name]) && $settings['include_exclude_filter'][$tax_name] == 'exclude-terms') {
+                if (isset($settings['exclude_terms'][$tax_name]) && !empty($settings['exclude_terms'][$tax_name])) {
+                    $terms_attr['exclude'] = $settings['exclude_terms'][$tax_name];
+                }
+            }
+
+            if (isset($settings['include_exclude_filter'][$tax_name]) && $settings['include_exclude_filter'][$tax_name] == 'include-terms') {
+                if (isset($settings['include_terms'][$tax_name]) && !empty($settings['include_terms'][$tax_name])) {
+                    $terms_attr['include'] = $settings['include_terms'][$tax_name];
+                }
+            }
+            $terms = get_terms($terms_attr);
         }
 
         if (!$hide_field) {
