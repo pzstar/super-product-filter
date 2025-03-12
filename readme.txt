@@ -4,7 +4,7 @@ Tags: ajax filter, ajax product filter, product filter, woocommerce ajax filter,
 Requires at least: 6.3
 Requires PHP: 7.4
 Tested up to: 6.7
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -129,6 +129,10 @@ For premium upgrade, please click below link <br>
 
 
 == Changelog ==
+= 1.0.5 - 12 Mar, 2025 =
+* Product ordering bug - fixed
+* Number sanitization fixed
+
 = 1.0.4 - 4 Feb, 2025 =
 * Category Walker bug fixed for dropdown filter
 
