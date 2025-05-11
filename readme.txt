@@ -127,6 +127,10 @@ For premium upgrade, please click below link <br>
 <li>Search for "Super Product Filter" and install the plugin</li>
 <li>Activate the plugin through the 'Plugins' menu in WordPress</li>
 
+== Frequently Asked Questions ==
+= How can I report security bugs? =
+
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/9e5fc0e0-3f66-4ffb-a43f-45bbd384b31e)
 
 == Changelog ==
 = 1.0.5 - 12 Mar, 2025 =
