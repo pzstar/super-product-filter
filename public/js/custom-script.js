@@ -234,6 +234,20 @@ class SuperWooProductFilter {
                         selected_item.prop('selected', false);
                     }
 
+                } else if (filterItemName == 'brands') {
+                    if (this.getEl('.swpf-product_brand-wrap input')) {
+                        selected_item = this.$el['.swpf-product_brand-wrap input'].filter(function () {
+                            return this.value == filterItemVal;
+                        });
+                        selected_item.prop('checked', false);
+                        selected_item.closest('.selected').removeClass('selected');
+                    } else if (this.getEl('.swpf-product_brand-wrap option')) {
+                        selected_item = this.$el['.swpf-product_brand-wrap option'].filter(function () {
+                            return this.value == filterItemVal;
+                        });
+                        selected_item.prop('selected', false);
+                    }
+
                 } else if (filterItemName == 'visibility') {
                     var filterItemAttr = filterItemArr[1][1],
                         tagType = jQuery('.swpf-product_visibility-wrap').find('.swpf-tax-list-wrapper').children(':first-child');
@@ -516,6 +530,8 @@ class SuperWooProductFilter {
                     queries += temp + 'categories=' + arg_val;
                 } else if (arg_type[0][0] == 'tags') {
                     queries += temp + 'tags=' + arg_val;
+                } else if (arg_type[0][0] == 'brands') {
+                    queries += temp + 'brands=' + arg_val;
                 } else if (arg_type[0][0] == 'rating-from') {
                     queries += temp + 'rating-from=' + arg_val;
                 } else if (arg_type[0][0] == 'visibility') {

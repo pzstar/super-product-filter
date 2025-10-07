@@ -784,6 +784,7 @@ function swpf_get_current_filter_options_vars() {
     $url_filter_options_array = array(
         'categories',
         'tags',
+        'brands',
         'visibility',
         'min_price',
         'max_price',
@@ -804,7 +805,7 @@ function swpf_get_current_filter_options_vars() {
     foreach ($url_filter_options_array as $key) {
         $val = swpf_get_var($key);
         if ($val) {
-            if ($key == 'categories' || $key == 'tags' || $key == 'visibility') {
+            if ($key == 'categories' || $key == 'tags' || $key == 'visibility' || $key == 'brands') {
                 $filter_array[$key] = is_array($val) ? $val : explode(',', $val);
             } elseif ($key == 'min_price') {
                 $filter_array['price']['min_price'] = $val;
@@ -883,6 +884,21 @@ function swpf_get_vars_query_args($current_filter_option, $settings, $tax, $term
                     'terms' => $ftroption
                 );
             }
+        } elseif ($key == 'brands') {
+            if (!(($tax == 'product_brand') && $exclude_curtax)) {
+                $krelation = isset($settings['multiselect_logic_operator']['product_brand']) ? $settings['multiselect_logic_operator']['product_brand'] : 'AND';
+                $ftroption = is_array($option) ? $option : explode(',', $option);
+                if (!$is_var_set && ($tax == 'product_brand')) {
+                    $ftroption[] = $term;
+                    $is_var_set = true;
+                }
+                $tax_query[] = array(
+                    'operator' => $krelation,
+                    'taxonomy' => 'product_brand',
+                    'field' => 'slug',
+                    'terms' => $ftroption
+                );
+            }
         } elseif (($key == 'attribute' || 0 === strpos($key, 'pa_'))) {
             foreach ($option as $optkey => $value) {
                 if (!(($tax == $optkey) && $exclude_curtax)) {
@@ -919,7 +935,7 @@ function swpf_get_vars_query_args($current_filter_option, $settings, $tax, $term
             if (!$is_var_set && ($tax == 'price')) {
                 $is_var_set = true;
             }
-            $min_max_price = Super_Product_Filter_Public::get_filtered_price();
+            $min_max_price = Super_Product_Filter_General::get_filtered_price();
             $min_price = isset($option['min_price']) ? floatval($option['min_price']) : floor($min_max_price->min_price ?: 0);
             $max_price = isset($option['max_price']) ? floatval($option['max_price']) : ceil($min_max_price->max_price ?: 0);
             $meta_query[] = array(
@@ -1028,6 +1044,20 @@ function swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax) {
                 'field' => 'slug',
                 'terms' => $ftroption
             );
+        } elseif ($key == 'brands') {
+            $krelation = isset($settings['multiselect_logic_operator']['product_brand']) ? $settings['multiselect_logic_operator']['product_brand'] : 'AND';
+            $ftroption = is_array($option) ? $option : explode(',', $option);
+            if (!$is_var_set && ($tax == 'product_brand')) {
+                $krelation = 'EXISTS';
+                $ftroption = [];
+                $is_var_set = true;
+            }
+            $tax_query[] = array(
+                'operator' => $krelation,
+                'taxonomy' => 'product_brand',
+                'field' => 'slug',
+                'terms' => $ftroption
+            );
         } elseif ($key == 'attribute' || 0 === strpos($key, 'pa_')) {
             foreach ($option as $optkey => $value) {
                 $krelation = isset($settings['multiselect_logic_operator'][$optkey]) ? $settings['multiselect_logic_operator'][$optkey] : 'AND';
@@ -1048,7 +1078,7 @@ function swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax) {
             if (!$is_var_set && ($tax == 'price')) {
                 $is_var_set = true;
             }
-            $min_max_price = Super_Product_Filter_Public::get_filtered_price();
+            $min_max_price = Super_Product_Filter_General::get_filtered_price();
             $min_price = isset($option['min_price']) ? floatval($option['min_price']) : floor($min_max_price->min_price ?: 0);
             $max_price = isset($option['max_price']) ? floatval($option['max_price']) : ceil($min_max_price->max_price ?: 0);
             $meta_query[] = array(
@@ -1120,4 +1150,22 @@ function swpf_get_all_filters() {
         }
     }
     return $all_filters;
+}
+
+if (!function_exists('swpf_get_brand_count')) {
+    function swpf_get_brand_count($brand_term_id) {
+        $products = wc_get_products(array(
+            'status' => 'publish',
+            'limit' => -1,
+            'return' => 'ids',
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'product_brand',
+                    'field' => 'term_id',
+                    'terms' => $brand_term_id,
+                ),
+            ),
+        ));
+        return count($products);
+    }
 }

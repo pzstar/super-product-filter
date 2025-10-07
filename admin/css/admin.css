@@ -50,6 +50,7 @@ body.post-type-swpf-product-filter #post-body-content {
     gap: 6px;
 }
 
+.swpf-general-settings .button.swpf-button-loader:after,
 .swpf-custom-terms-footer .button.swpf-btn-loading:after,
 .swpf-show-custom-term-options.swpf-btn-loading:after,
 .swpf-settings-footer .button.swpf-button-loader:after {

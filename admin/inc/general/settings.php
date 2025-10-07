@@ -4,15 +4,11 @@ defined('ABSPATH') || die();
 
 <div class="swpf-general-settings">
     <?php
-    if (swpf_get_post('updated') === 'true') {
-        $this->handle_generalsettingsform();
-    }
-
     $general_settings = get_option('swpf_general_settings');
     if (!$general_settings) {
         $general_settings = self::default_general_settings_values();
     } else {
-        $general_settings = self::recursive_parse_args($general_settings, self::default_general_settings_values());
+        $general_settings = Super_Product_Filter_Admin::recursive_parse_args($general_settings, self::default_general_settings_values());
     }
     ?>
 
@@ -29,7 +25,7 @@ defined('ABSPATH') || die();
             <p class="swpf-desc"><?php esc_html_e('It is required to load the Google Fonts locally in order to comply with GDPR. However, if your website is not required to comply with GDPR then you can check this field off. Loading the Fonts locally with lots of different Google fonts can decrease the speed of the website slightly.', 'super-product-filter'); ?></p>
         </div>
 
-        <div class="swpf-save-settings">
+        <div class="swpf-save-settings swpf-general-settings-btn">
             <button type="submit" name="submit" class="button button-primary"><?php esc_html_e('Save Settings', 'super-product-filter'); ?></button>
         </div>
     </form>
