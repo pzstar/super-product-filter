@@ -49,8 +49,8 @@ class Super_Product_Filter_Metabox {
     public function settings_metabox_xhr() {
         global $post;
         if ('swpf-product-filter' === $post->post_type) {
-            ob_start();
             ?>
+            <script>
             // Avoid collisions with other libraries
             (function ($) {
                 "use strict";
@@ -133,9 +133,8 @@ class Super_Product_Filter_Metabox {
                     })
                 })
             })(jQuery)
+            </script>
             <?php
-            wp_enqueue_script('swpf-admin-save-post');
-            wp_add_inline_script('swpf-admin-save-post', ob_get_clean());
         }
     }
 

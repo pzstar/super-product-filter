@@ -193,7 +193,12 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
                 $wp_query->set('order', $order);
             }
 
-            $selected_lo_specific_cat_ids = isset($this->settings['config']['lo_specific_cat']) && !empty($this->settings['config']['lo_specific_cat']) ? $this->settings['config']['lo_specific_cat'] : [];
+            $selected_lo_specific_cat_ids = [];
+
+            if (!is_shop() && swpf_get_post('is_shop') != 'yes' && !is_product_taxonomy() && swpf_get_post('is_prod_taxonomy') != 'yes' && swpf_get_var('is_prod_taxonomy') != 'yes' && isset($this->settings['config']['lo_specific_cat']) && !empty($this->settings['config']['lo_specific_cat'])) {
+                $selected_lo_specific_cat_ids = $this->settings['config']['lo_specific_cat'];
+            }
+
             if (count($selected_lo_specific_cat_ids) != 0) {
                 $add_tax_query['relation'] = 'AND';
                 $add_tax_query[] = array(

@@ -383,6 +383,7 @@ class SuperWooProductFilter {
             posid = mainWrap.config.posid,
             current_page_id = mainWrap.config.current_page_id,
             is_prod_taxonomy = mainWrap.config.is_prod_taxonomy,
+            is_shop = mainWrap.config.is_shop,
             page_cat_id = mainWrap.config.page_cat_id,
             page_tax_name = mainWrap.config.page_tax_name,
             page_term_name = mainWrap.config.page_term_name;
@@ -402,6 +403,7 @@ class SuperWooProductFilter {
                 posid: posid,
                 current_page_id: current_page_id,
                 is_prod_taxonomy: is_prod_taxonomy,
+                is_shop: is_shop,
                 page_cat_id: page_cat_id,
                 page_tax_name: page_tax_name,
                 page_term_name: page_term_name,

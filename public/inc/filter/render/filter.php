@@ -48,6 +48,8 @@ $config = [
 
 if (wp_doing_ajax()) {
     $is_product_taxonomy = swpf_get_post('is_prod_taxonomy');
+    $swpf_is_shop = swpf_get_post('is_shop');
+    $config['is_shop'] = $swpf_is_shop == 'yes' ? 'yes' : 'no';
     $config['is_prod_taxonomy'] = $is_product_taxonomy == 'yes' ? 'yes' : 'no';
     $config['page_cat_id'] = $is_product_taxonomy == 'yes' ? swpf_get_post('page_cat_id', 'absint') : null;
     $config['page_tax_name'] = $is_product_taxonomy == 'yes' ? swpf_get_post('page_tax_name') : null;
@@ -65,6 +67,7 @@ if (wp_doing_ajax()) {
         $config['page_tax_name'] = is_product_taxonomy() ? get_queried_object()->taxonomy : null;
         $config['page_term_name'] = is_product_taxonomy() ? get_queried_object()->slug : null;
     }
+    $config['is_shop'] = is_shop() ? 'yes' : 'no';
 }
 $config = wp_json_encode($config);
 $auto_submit = $settings['config']['autosubmit'] == 'on' ? true : false;
@@ -80,8 +83,7 @@ $button_skin = isset($settings['button']['skin']) ? array_push($form_class, $set
 $toggle_skin = isset($settings['toggle']['skin']) ? array_push($form_class, $settings['toggle']['skin']) : array_push($form_class, 'swpf-toggle-skin-1');
 $button_size = isset($settings['button']['size']) ? array_push($form_class, $settings['button']['size']) : array_push($form_class, 'swpf-medium');
 $enablebottomborder = isset($settings['filterbox']['enablebottomborder']) && $settings['filterbox']['enablebottomborder'] == 'on' ? array_push($form_class, 'swpf-enablebottomborder') : '';
-$enable_ajax = (($settings['config']['ajax'] == 'on' || $settings['display_option'] == 'display-with-shortcode' || $settings['display_option'] == 'display-as-offcanvas-menu') || $elementor_page) ? true : false;
-$ajax_load = apply_filters('swpf_ajax_initial_filter', (!(is_shop() || is_product_category() || is_product_taxonomy()) && $enable_ajax) || $elementor_page);
+$ajax_load = apply_filters('swpf_ajax_initial_filter', (!(is_shop() || is_product_category() || is_product_taxonomy())) || $elementor_page);
 
 $main_wrap_classes = array(
     'swpf-main-wrap',
