@@ -10,7 +10,7 @@
             $('.swpf-settings-footer .button').addClass('swpf-button-loader');
 
             // This is the post.php url we localized (via php) above
-            var url = swpf_admin_js_obj.posturl
+            var url = swpf_admin_metabox_obj.posturl
             // Serialize form data
             var data = $('form#post').serializeArray();                 // Tell PHP what we're doing
             // NOTE: "name" and "value" are the array keys. This is important. I use int(1) for the value to make sure we don't get a string server-side.

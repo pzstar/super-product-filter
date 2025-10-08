@@ -14,7 +14,7 @@
             formData.append('action', 'swpf_general_settings_save');
 
             $.ajax({
-                url: swpf_admin_js_obj.ajaxurl,
+                url: swpf_admin_general_obj.ajaxurl,
                 type: 'POST',
                 data: formData,
                 processData: false,

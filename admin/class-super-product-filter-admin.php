@@ -97,14 +97,14 @@ class Super_Product_Filter_Admin {
 
         if ('swpf-product-filter' == $post_type) {
             wp_enqueue_script('swpf-metabox-settings', SWPF_URL . 'admin/js/swpf-metabox.js', array('jquery'), $this->version, true);
-            wp_localize_script('swpf-metabox-settings', 'swpf_admin_js_obj', array(
+            wp_localize_script('swpf-metabox-settings', 'swpf_admin_metabox_obj', array(
                 'posturl' => admin_url('post.php')
             ));
         }
 
         if ($current_screen->id == 'swpf-product-filter_page_swpf-general-settings') {
             wp_enqueue_script('swpf-general-settings', SWPF_URL . 'admin/js/swpf-general.js', array('jquery'), $this->version, true);
-            wp_localize_script('swpf-general-settings', 'swpf_admin_js_obj', array(
+            wp_localize_script('swpf-general-settings', 'swpf_admin_general_obj', array(
                 'ajaxurl' => admin_url('admin-ajax.php')
             ));
         }
