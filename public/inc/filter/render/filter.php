@@ -69,6 +69,7 @@ if (wp_doing_ajax()) {
     }
     $config['is_shop'] = is_shop() ? 'yes' : 'no';
 }
+$is_prod_taxonomy = $config['is_prod_taxonomy'];
 $config = wp_json_encode($config);
 $auto_submit = $settings['config']['autosubmit'] == 'on' ? true : false;
 $form_class = ['apply_ajax'];
@@ -154,7 +155,9 @@ $main_wrap_classes = array(
                             wp_reset_postdata();
                             $post_count = $term_cquery->post_count;
 
-                            $this->render_fields($settings, $taxonomy, $tax_name, $config, $current_filter_option, $count);
+                            if ($tax_name != 'product_cat' || ($tax_name == 'product_cat' && $is_prod_taxonomy != 'yes')) {
+                                $this->render_fields($settings, $taxonomy, $tax_name, $config, $current_filter_option, $count);
+                            }
                         }
                         $count++;
                     }

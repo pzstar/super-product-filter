@@ -392,57 +392,61 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
             }
         }
 
+        $page_tax_name = '';
+
         // When on taxonomy->term archive page 
         if (wp_doing_ajax()) {
             if (is_array($config)) {
                 if ($config['is_prod_taxonomy'] == 'yes') {
-                    $get_related_term = $this->get_related_term($config['page_tax_name'], $config['page_term_name'], $tax_name, $settings, $korder, $korderby);
+                    $page_tax_name = $config['page_tax_name'];
+                    $page_term_slug = $config['page_term_name'];
                 }
             } else {
                 $config = (array) json_decode($config);
                 if ($config['is_prod_taxonomy'] == 'yes') {
-                    $get_related_term = $this->get_related_term($config['page_tax_name'], $config['page_term_name'], $tax_name, $settings, $korder, $korderby);
+                    $page_tax_name = $config['page_tax_name'];
+                    $page_term_slug = $config['page_term_name'];
                 }
             }
         } elseif (!wp_doing_ajax() && is_product_taxonomy()) {
-            if (!is_array($config)) {
-                $config = (array) json_decode($config);
-            }
-            $get_related_term = $this->get_related_term(get_queried_object()->taxonomy, get_queried_object()->slug, $tax_name, $settings, $korder, $korderby);
+            $page_tax_name = get_queried_object()->taxonomy;
+            $page_term_slug = get_queried_object()->slug;
         } else {
             if (!is_array($config)) {
                 $config = (array) json_decode($config);
             }
             if ($config['is_prod_taxonomy'] == 'yes') {
-                $get_related_term = $this->get_related_term($config['page_tax_name'], $config['page_term_name'], $tax_name, $settings, $korder, $korderby);
+                $page_tax_name = $config['page_tax_name'];
+                $page_term_slug = $config['page_term_name'];
             }
         }
 
-        if (isset($get_related_term)) {
-            $terms = $get_related_term;
-        } else {
-            $terms_attr = array(
-                'taxonomy' => $tax_name,
-                'orderby' => $korderby,
-                'order' => $korder,
-                'hide_empty' => false,
-                'hierarchical' => true,
-            );
+        $terms_attr = array(
+            'taxonomy' => $tax_name,
+            'orderby' => $korderby,
+            'order' => $korder,
+            'hide_empty' => false,
+            'hierarchical' => true,
+        );
 
-            // Include or exclude terms by taxonomys
-            if (isset($settings['include_exclude_filter'][$tax_name]) && $settings['include_exclude_filter'][$tax_name] == 'exclude-terms') {
-                if (isset($settings['exclude_terms'][$tax_name]) && !empty($settings['exclude_terms'][$tax_name])) {
-                    $terms_attr['exclude'] = $settings['exclude_terms'][$tax_name];
-                }
-            }
-
-            if (isset($settings['include_exclude_filter'][$tax_name]) && $settings['include_exclude_filter'][$tax_name] == 'include-terms') {
-                if (isset($settings['include_terms'][$tax_name]) && !empty($settings['include_terms'][$tax_name])) {
-                    $terms_attr['include'] = $settings['include_terms'][$tax_name];
-                }
-            }
-            $terms = get_terms($terms_attr);
+        if ($page_tax_name == $tax_name) {
+            $terms_attr['slug'] = $page_term_slug;
         }
+
+        // Include or exclude terms by taxonomys
+        if (isset($settings['include_exclude_filter'][$tax_name]) && $settings['include_exclude_filter'][$tax_name] == 'exclude-terms') {
+            if (isset($settings['exclude_terms'][$tax_name]) && !empty($settings['exclude_terms'][$tax_name])) {
+                $terms_attr['exclude'] = $settings['exclude_terms'][$tax_name];
+            }
+        }
+
+        if (isset($settings['include_exclude_filter'][$tax_name]) && $settings['include_exclude_filter'][$tax_name] == 'include-terms') {
+            if (isset($settings['include_terms'][$tax_name]) && !empty($settings['include_terms'][$tax_name])) {
+                $terms_attr['include'] = $settings['include_terms'][$tax_name];
+            }
+        }
+
+        $terms = get_terms($terms_attr);
 
         if (!$hide_field) {
             ?>

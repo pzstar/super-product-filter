@@ -96,66 +96,6 @@ class Super_Product_Filter_Init extends Super_Product_Filter_General {
         include SWPF_PATH . 'public/inc/filter/render/init.php';
     }
 
-    public function get_related_term($page_taxnmy, $page_term_slug, $current_filter_taxname, $settings, $order, $orderby) {
-        $query_args = array(
-            $page_taxnmy => $page_term_slug,
-            'post_type' => 'product',
-            'posts_per_page' => -1 //Grabs ALL post
-        );
-
-        // Include or exclude terms by taxonomys
-        if (isset($settings['include_exclude_filter'][$current_filter_taxname]) && $settings['include_exclude_filter'][$current_filter_taxname] == 'exclude-terms') {
-            if (isset($settings['exclude_terms'][$current_filter_taxname]) && !empty($settings['exclude_terms'][$current_filter_taxname])) {
-                $exclude_arr = $settings['exclude_terms'][$current_filter_taxname];
-            }
-        }
-
-        if (isset($settings['include_exclude_filter'][$current_filter_taxname]) && $settings['include_exclude_filter'][$current_filter_taxname] == 'include-terms') {
-            if (isset($settings['include_terms'][$current_filter_taxname]) && !empty($settings['include_terms'][$current_filter_taxname])) {
-                $include_arr = $settings['include_terms'][$current_filter_taxname];
-            }
-        }
-
-        $query = new WP_Query($query_args);
-        $term_arr = array();
-        $term_uniq = array();
-
-        if ($query->have_posts()):
-            while ($query->have_posts()):
-                $query->the_post();
-                $ter = get_the_terms(get_the_ID(), $current_filter_taxname);
-                if (!empty($ter) && !is_wp_error($ter)) {
-                    foreach ($ter as $tkey => $tval) {
-                        $show = isset($include_arr) ? false : true;
-                        $tvalue = (array) $tval;
-                        if (isset($exclude_arr) && in_array($tvalue['term_id'], $exclude_arr)) {
-                            $show = false;
-                        }
-                        if (isset($include_arr) && !in_array($tvalue['term_id'], $include_arr)) {
-                            $show = true;
-                        }
-                        if (in_array($tvalue['slug'], $term_uniq) || !$show) {
-                            continue;
-                        }
-                        $term_uniq[] = $tvalue['slug']; // current term slug is added because its unique
-                        $term_arr[] = $tvalue['term_id']; // Insert Current terms all details into arr
-                    }
-                }
-            endwhile;
-        endif;
-        wp_reset_postdata();
-        $terms_attr = array(
-            'orderby' => $orderby,
-            'order' => $order,
-            'hide_empty' => $swpf_settings['config']['hide_empty'] == 'on' ? true : false,
-            'hierarchical' => true,
-            'include' => $term_arr
-        );
-
-        return get_terms($terms_attr);
-    }
-
-
     public function replacing_template_loop_product_thumbnail() {
         // Remove product images from the shop loop
         remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
