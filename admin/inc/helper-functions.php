@@ -983,7 +983,12 @@ function swpf_get_vars_query_args($current_filter_option, $settings, $tax, $term
         }
     }
 
-    $selected_lo_specific_cat_ids = isset($settings['config']['lo_specific_cat']) && !empty($settings['config']['lo_specific_cat']) ? $settings['config']['lo_specific_cat'] : [];
+
+    $selected_lo_specific_cat_ids = [];
+
+    if (!is_shop() && swpf_get_post('is_shop') != 'yes' && !is_product_taxonomy() && swpf_get_post('is_prod_taxonomy') != 'yes' && swpf_get_var('is_prod_taxonomy') != 'yes' && isset($this->settings['config']['lo_specific_cat']) && !empty($this->settings['config']['lo_specific_cat'])) {
+        $selected_lo_specific_cat_ids = $this->settings['config']['lo_specific_cat'];
+    }
     if (count($selected_lo_specific_cat_ids) != 0) {
         $add_tax_query['relation'] = 'AND';
         $add_tax_query[] = array(
@@ -1116,7 +1121,12 @@ function swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax) {
         }
     }
 
-    $selected_lo_specific_cat_ids = isset($settings['config']['lo_specific_cat']) && !empty($settings['config']['lo_specific_cat']) ? $settings['config']['lo_specific_cat'] : [];
+    $selected_lo_specific_cat_ids = [];
+
+    if (!is_shop() && swpf_get_post('is_shop') != 'yes' && !is_product_taxonomy() && swpf_get_post('is_prod_taxonomy') != 'yes' && swpf_get_var('is_prod_taxonomy') != 'yes' && isset($this->settings['config']['lo_specific_cat']) && !empty($this->settings['config']['lo_specific_cat'])) {
+        $selected_lo_specific_cat_ids = $this->settings['config']['lo_specific_cat'];
+    }
+
     if (count($selected_lo_specific_cat_ids) != 0) {
         $add_tax_query['relation'] = 'AND';
         $add_tax_query[] = array(
@@ -1127,6 +1137,7 @@ function swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax) {
         $add_tax_query[] = $tax_query;
         $tax_query = $add_tax_query;
     }
+
     $args = array(
         'post_type' => 'product',
         'wc_query' => 'product_query',
@@ -1136,6 +1147,7 @@ function swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax) {
         'fields' => 'ids',
         'posts_per_page' => -1
     );
+
     return $args;
 }
 
