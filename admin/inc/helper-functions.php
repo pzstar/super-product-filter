@@ -986,8 +986,8 @@ function swpf_get_vars_query_args($current_filter_option, $settings, $tax, $term
 
     $selected_lo_specific_cat_ids = [];
 
-    if (!is_shop() && swpf_get_post('is_shop') != 'yes' && !is_product_taxonomy() && swpf_get_post('is_prod_taxonomy') != 'yes' && swpf_get_var('is_prod_taxonomy') != 'yes' && isset($this->settings['config']['lo_specific_cat']) && !empty($this->settings['config']['lo_specific_cat'])) {
-        $selected_lo_specific_cat_ids = $this->settings['config']['lo_specific_cat'];
+    if (!is_shop() && swpf_get_post('is_shop') != 'yes' && !is_product_taxonomy() && swpf_get_post('is_prod_taxonomy') != 'yes' && swpf_get_var('is_prod_taxonomy') != 'yes' && isset($settings['config']['lo_specific_cat']) && !empty($settings['config']['lo_specific_cat'])) {
+        $selected_lo_specific_cat_ids = $settings['config']['lo_specific_cat'];
     }
     if (count($selected_lo_specific_cat_ids) != 0) {
         $add_tax_query['relation'] = 'AND';
@@ -1123,8 +1123,8 @@ function swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax) {
 
     $selected_lo_specific_cat_ids = [];
 
-    if (!is_shop() && swpf_get_post('is_shop') != 'yes' && !is_product_taxonomy() && swpf_get_post('is_prod_taxonomy') != 'yes' && swpf_get_var('is_prod_taxonomy') != 'yes' && isset($this->settings['config']['lo_specific_cat']) && !empty($this->settings['config']['lo_specific_cat'])) {
-        $selected_lo_specific_cat_ids = $this->settings['config']['lo_specific_cat'];
+    if (!is_shop() && swpf_get_post('is_shop') != 'yes' && !is_product_taxonomy() && swpf_get_post('is_prod_taxonomy') != 'yes' && swpf_get_var('is_prod_taxonomy') != 'yes' && isset($settings['config']['lo_specific_cat']) && !empty($settings['config']['lo_specific_cat'])) {
+        $selected_lo_specific_cat_ids = $settings['config']['lo_specific_cat'];
     }
 
     if (count($selected_lo_specific_cat_ids) != 0) {
