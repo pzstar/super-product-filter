@@ -632,7 +632,7 @@ if (!class_exists('SWPF_WebFont_Loader')) {
 
             // If dealing with a root-relative URL.
             if (0 === stripos($url, '/')) {
-                $parsed_url = parse_url($this->remote_url);
+                $parsed_url = wp_parse_url($this->remote_url);
                 return $parsed_url['scheme'] . '://' . $parsed_url['hostname'] . $url;
             }
 

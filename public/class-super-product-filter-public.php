@@ -41,7 +41,7 @@ class Super_Product_Filter_Public {
         wp_enqueue_style('swpf-animate', SWPF_URL . 'public/css/animate.css', array(), $this->version);
 
         wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/style.css', array(), $this->version);
-        wp_add_inline_style($this->plugin_name, strip_tags(self::swpf_dynamic_styles()));
+        wp_add_inline_style($this->plugin_name, wp_strip_all_tags(self::swpf_dynamic_styles()));
 
         wp_enqueue_style('swpf-fonts', swpf_fonts_url(), array(), NULL);
     }

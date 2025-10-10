@@ -55,7 +55,7 @@ if ($current_filter_option) {
                     <div class="swpf-group-activated-filter swpf-activated-attribute">
                         <span class="swpf-active-filter-title">
                             <i class="icofont-tick-boxed"></i>
-                            <?php echo wc_attribute_label($attribute_slug); ?>
+                            <?php echo esc_html(wc_attribute_label($attribute_slug)); ?>
                         </span>
                         <?php
                         if ($option_slugs) {
@@ -112,7 +112,7 @@ if ($current_filter_option) {
                         $term = get_term_by('slug', $brand_slug, 'product_brand');
                         ?>
                         <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[brands][<?php echo esc_attr($brand_slug); ?>]" value="<?php echo esc_attr($brand_slug); ?>">
-                            <?php echo ucwords(esc_html(isset($term->name) ? $term->name : $brand_slug)); ?><span class="swpf-remove-filter-icon"></span>
+                            <?php echo esc_html(ucwords(esc_html(isset($term->name) ? $term->name : $brand_slug))); ?><span class="swpf-remove-filter-icon"></span>
                         </button>
                         <?php
                     }

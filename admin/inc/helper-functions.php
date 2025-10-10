@@ -683,7 +683,7 @@ if (!function_exists('swpf_terms_dropdown')) {
             $args['selected_cats'] = explode(',', $selected_cats);
         }
 
-        $categories = $terms ? $terms : (array) get_terms($taxonomy, array('get' => 'all'));
+        $categories = $terms ? $terms : (array) get_terms($taxonomy, array('hide_empty' => false));
 
         if ($checked_ontop) {
             // Post process $categories rather than adding an exclude to the get_terms() query to keep the query the same across all posts (for any query cache)

@@ -52,7 +52,7 @@ function super_product_filter_run() {
                 esc_html__('%1$sSuper Product Filter for WooCommerce %2$s requires WooCommerce Plugin. Please install and activate %3$sWooCommerce%4$s.', 'super-product-filter'), '<strong>', '</strong>', '<a href="' . esc_url(admin_url('plugin-install.php?s=woocommerce&tab=search&type=term')) . '">', '</a>'
             );
 
-            echo sprintf('<div class="error"><p>%s</p></div>', $message);
+            echo sprintf('<div class="error"><p>%s</p></div>', $message); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         });
     }
 }

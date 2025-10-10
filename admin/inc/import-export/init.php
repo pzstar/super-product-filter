@@ -41,7 +41,7 @@ class Super_Product_Filter_Import_Export {
             echo wp_json_encode($settings);
             exit;
         } else {
-            wp_die(__('Please update post before you export', 'super-product-filter'));
+            wp_die(esc_html__('Please update post before you export', 'super-product-filter'));
         }
     }
 
@@ -61,13 +61,13 @@ class Super_Product_Filter_Import_Export {
         $extension = end($extension);
 
         if ($extension != 'json') {
-            wp_die(__('Please upload a valid .json file', 'super-product-filter'));
+            wp_die(esc_html__('Please upload a valid .json file', 'super-product-filter'));
         }
 
         $import_file = sanitize_text_field($_FILES['swpf_import_file']['tmp_name']);
 
         if (empty($import_file)) {
-            wp_die(__('Please upload a file to import', 'super-product-filter'));
+            wp_die(esc_html__('Please upload a file to import', 'super-product-filter'));
         }
 
         // Retrieve the settings from the file and convert the json object to an array.
@@ -86,7 +86,7 @@ class Super_Product_Filter_Import_Export {
             wp_safe_redirect($location . '&swpfalert=Settings%20Imported%20Successfully');
             exit();
         } else {
-            wp_die(__('Please update post before you import', 'super-product-filter'));
+            wp_die(esc_html__('Please update post before you import', 'super-product-filter'));
         }
     }
 
@@ -152,7 +152,7 @@ class Super_Product_Filter_Import_Export {
 
             // If error storing permanently, unlink.
             if (is_wp_error($id)) {
-                @unlink($file_array['tmp_name']);
+                wp_delete_file($file_array['tmp_name']);
                 return $id;
             }
 

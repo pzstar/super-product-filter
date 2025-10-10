@@ -58,7 +58,7 @@ if ($tax_name == 'product_visibility') {
     if (isset($current_filter_option['categories'])) {
         $selected_cats = is_array($current_filter_option['categories']) ? implode(',', $current_filter_option['categories']) : $current_filter_option['categories'];
     }
-    echo '<div class="swpf-multiselect-wrap" data-placeholder="' . (isset($settings['placeholder_txt'][$tax_name]) ? esc_attr($settings['placeholder_txt'][$tax_name]) : esc_html__('Search', 'super-woocommerce-product-filter')) . '">';
+    echo '<div class="swpf-multiselect-wrap" data-placeholder="' . (isset($settings['placeholder_txt'][$tax_name]) ? esc_attr($settings['placeholder_txt'][$tax_name]) : esc_html__('Search', 'super-product-filter')) . '">';
     ?>
     <div class="swpf-multiselect-wrap">
         <select class="swpf-multiselect" name="categories[]" multiple>

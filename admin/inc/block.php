@@ -73,7 +73,7 @@ class Super_Product_Filter_Block {
             $categories, array(
                 array(
                     'slug' => 'swpf-blocks',
-                    'title' => esc_html__('Super Product Filter', 'smart-blocks')
+                    'title' => esc_html__('Super Product Filter', 'super-product-filter')
                 )
             )
         );
