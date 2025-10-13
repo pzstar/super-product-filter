@@ -1,4 +1,4 @@
-=== Super Product Filter ===
+=== Super Product Filter for WooCommerce ===
 Contributors: hashthemes
 Tags: ajax filter, ajax product filter, product filter, woocommerce ajax filter, woocommerce filter
 Requires at least: 6.3
@@ -12,7 +12,7 @@ Enhance your shopping experience by using a product filter that streamlines the 
 
 == Description ==
 
-The Super Product Filter is a powerful WordPress plugin developed to enhance the shopping experience on WooCommerce-powered websites. This plugin allows customers to quickly and easily filter products by various attributes such as categories, price range, color, size, brand, and more. 
+The Super Product Filter for WooCommerce is a powerful WordPress plugin developed to enhance the shopping experience on WooCommerce-powered websites. This plugin allows customers to quickly and easily filter products by various attributes such as categories, price range, color, size, brand, and more. 
 
 With its user-friendly interface, the plugin integrates seamlessly into any WooCommerce store, providing real-time filtering that updates product listings instantly as users adjust their preferences.
 

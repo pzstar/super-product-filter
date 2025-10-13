@@ -56,7 +56,7 @@ class Super_Product_Filter_Import_Export {
         if (!current_user_can('manage_options'))
             return;
 
-        $filename = sanitize_file_name($_FILES['swpf_import_file']['name']);
+        $filename = isset($_FILES['swpf_import_file']['name']) ? sanitize_file_name($_FILES['swpf_import_file']['name']) : '';
         $extension = explode('.', $filename);
         $extension = end($extension);
 
@@ -64,7 +64,7 @@ class Super_Product_Filter_Import_Export {
             wp_die(esc_html__('Please upload a valid .json file', 'super-product-filter'));
         }
 
-        $import_file = sanitize_text_field($_FILES['swpf_import_file']['tmp_name']);
+        $import_file = isset($_FILES['swpf_import_file']['tmp_name']) ? sanitize_text_field($_FILES['swpf_import_file']['tmp_name']) : '';
 
         if (empty($import_file)) {
             wp_die(esc_html__('Please upload a file to import', 'super-product-filter'));
@@ -82,7 +82,7 @@ class Super_Product_Filter_Import_Export {
             $settings = Super_Product_Filter_Admin::sanitize_array($settings, self::sanitize_settings_rules());
             update_post_meta($filter_id, 'swpf_settings', $settings);
 
-            $location = sanitize_text_field($_SERVER['HTTP_REFERER']);
+            $location = isset($_SERVER['HTTP_REFERER']) ? sanitize_text_field($_SERVER['HTTP_REFERER']) : '';
             wp_safe_redirect($location . '&swpfalert=Settings%20Imported%20Successfully');
             exit();
         } else {

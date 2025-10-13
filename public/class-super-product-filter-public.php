@@ -43,7 +43,7 @@ class Super_Product_Filter_Public {
         wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/style.css', array(), $this->version);
         wp_add_inline_style($this->plugin_name, wp_strip_all_tags(self::swpf_dynamic_styles()));
 
-        wp_enqueue_style('swpf-fonts', swpf_fonts_url(), array(), NULL);
+        wp_enqueue_style('swpf-fonts', swpf_fonts_url(), array(), $this->version);
     }
 
     public function enqueue_scripts() {
@@ -55,7 +55,7 @@ class Super_Product_Filter_Public {
         /* enable this only when woo range slider is enabled */
 
         /* Enqueue jQuery Chosen */
-        wp_enqueue_script('chosen-script', SWPF_URL . 'public/vendor/chosen/chosen.jquery.js', array('jquery'), $this->version);
+        wp_enqueue_script('chosen-script', SWPF_URL . 'public/vendor/chosen/chosen.jquery.js', array('jquery'), $this->version, true);
 
         $js_obj = array(
             'plugin_url' => WP_PLUGIN_URL,

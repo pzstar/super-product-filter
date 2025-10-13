@@ -64,7 +64,7 @@ class Super_Product_Filter_Admin {
             wp_enqueue_media();
             wp_enqueue_script('wp-color-picker');
 
-            wp_enqueue_script('selectize', SWPF_URL . 'public/vendor/selectize/selectize.js', array('jquery'), $this->version);
+            wp_enqueue_script('selectize', SWPF_URL . 'public/vendor/selectize/selectize.js', array('jquery'), $this->version, true);
 
             /* Select2 */
             wp_enqueue_script('jquery-select2', SWPF_URL . 'admin/js/select2.min.js', array('jquery'), $this->version, true);
@@ -73,12 +73,12 @@ class Super_Product_Filter_Admin {
             wp_enqueue_code_editor(array('type' => 'text/html'));
 
             /* Enqueue jQuery Chosen */
-            wp_enqueue_script('chosen-script', SWPF_URL . 'public/vendor/chosen/chosen.jquery.js', array('jquery'), $this->version);
+            wp_enqueue_script('chosen-script', SWPF_URL . 'public/vendor/chosen/chosen.jquery.js', array('jquery'), $this->version, true);
 
-            wp_enqueue_script('wp-color-picker-alpha-min', SWPF_URL . 'public/vendor/wp-color-picker-alpha/wp-color-picker-alpha.min.js', array('wp-color-picker'), $this->version);
+            wp_enqueue_script('wp-color-picker-alpha-min', SWPF_URL . 'public/vendor/wp-color-picker-alpha/wp-color-picker-alpha.min.js', array('wp-color-picker'), $this->version, true);
 
             /* Jquery Condition */
-            wp_enqueue_script('jquery-condition', SWPF_URL . 'admin/js/jquery-condition.js', array('jquery'), $this->version);
+            wp_enqueue_script('jquery-condition', SWPF_URL . 'admin/js/jquery-condition.js', array('jquery'), $this->version, true);
 
             wp_enqueue_script($this->plugin_name, SWPF_URL . 'admin/js/admin.js', array('jquery', 'jquery-ui-core', 'jquery-ui-sortable', 'jquery-ui-slider'), $this->version, false);
 
