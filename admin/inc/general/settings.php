@@ -22,7 +22,7 @@ defined('ABSPATH') || die();
                 <input type="checkbox" name="swpf_general_settings[load_fonts_locally]" <?php checked($general_settings['load_fonts_locally'], 'on', true); ?>>
                 <strong><?php esc_html_e('Load Google Fonts Locally', 'super-product-filter'); ?></strong>
             </label>
-            <p class="swpf-desc"><?php esc_html_e('It is required to load the Google Fonts locally in order to comply with GDPR. However, if your website is not required to comply with GDPR then you can check this field off. Loading the Fonts locally with lots of different Google fonts can decrease the speed of the website slightly.', 'super-product-filter'); ?></p>
+            <p class="swpf-desc"><?php esc_html_e('Google Fonts must be loaded locally to meet GDPR standards. If your website does not need to comply with GDPR, you can turn this option off. Keep in mind that hosting multiple Google Fonts locally may slightly slow down your website.', 'super-product-filter'); ?></p>
         </div>
 
         <div class="swpf-save-settings swpf-general-settings-btn">

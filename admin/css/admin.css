@@ -35,6 +35,7 @@ body.post-type-swpf-product-filter #post-body-content {
     background: #FFF;
     left: 0;
     right: 0;
+    z-index: 9;
 }
 
 .swpf-settings-footer .button {
@@ -48,6 +49,7 @@ body.post-type-swpf-product-filter #post-body-content {
     display: flex;
     align-items: center;
     gap: 6px;
+    z-index: 9;
 }
 
 .swpf-general-settings .button.swpf-button-loader:after,
@@ -214,7 +216,7 @@ body.post-type-swpf-product-filter #post-body-content {
 }
 
 .swpf-filters-wrap::-webkit-scrollbar {
-    width: 5px;
+    width: 3px;
 }
 
 /* Track */
@@ -288,13 +290,14 @@ body.post-type-swpf-product-filter #post-body-content {
 
 .swpf-icon-box-wrap .swpf-icon-box {
     display: none;
+    margin-top: 5px;
 }
 
 .swpf-icon-box-wrap .swpf-selected-icon {
     height: 36px;
     line-height: 36px;
     text-align: center;
-    border: 1px solid #CCC;
+    border: 1px solid #8c8f94;
     position: relative;
     margin-right: 44px;
     cursor: pointer;
@@ -312,7 +315,7 @@ body.post-type-swpf-product-filter #post-body-content {
     top: -1px;
     height: 36px;
     width: 36px;
-    border: 1px solid #CCC;
+    border: 1px solid #8c8f94;
     font-size: 16px;
     display: flex;
     align-items: center;
@@ -330,11 +333,22 @@ body.post-type-swpf-product-filter #post-body-content {
     margin-top: -3px;
 }
 
+.swpf-icon-box-wrap .swpf-selected-icon span.swpf-icon-reset {
+    border-radius: 4px;
+    right: -80px;
+    color: #666;
+    font-size: 13px;
+}
+
 .swpf-icon-box-wrap .swpf-icon-search {
     display: flex;
     align-items: center;
     padding: 10px;
     background: #f7f7ff;
+    border: 1px solid #8c8f94;
+    border-bottom: 0;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
 }
 
 .swpf-icon-box-wrap .swpf-icon-search select {
@@ -351,13 +365,15 @@ body.post-type-swpf-product-filter #post-body-content {
     height: 215px;
     overflow-y: scroll;
     font-size: 18px;
-    border: 1px solid #f7f7ff;
+    border: 1px solid #8c8f94;
     background: #fff;
     padding: 4px;
     margin: 0;
     display: none;
     cursor: pointer;
     box-sizing: border-box;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
     -ms-overflow-style: none;
     /* IE and Edge */
     scrollbar-width: none;
@@ -478,16 +494,17 @@ body.post-type-swpf-product-filter #post-body-content {
 .swpf-field-wrap input[type=week],
 .swpf-field-wrap select {
     min-height: 36px;
-    border-color: #CCC;
+    border-color: #8c8f94;
 }
 
 .swpf-field-wrap input[type=number] {
+    min-width: 60px;
     width: 60px;
     padding-right: 0;
     text-align: center;
 }
 
-.swpf-field-wrap button {
+.swpf-field-wrap button.button:not(.wp-color-result) {
     min-height: 36px !important;
 }
 
@@ -505,7 +522,7 @@ body.post-type-swpf-product-filter #post-body-content {
 }
 
 #swpf-settings-metabox .selectize-input {
-    border-color: #CCC;
+    border-color: #8c8f94;
     max-width: 300px;
 }
 
@@ -527,7 +544,7 @@ body.post-type-swpf-product-filter #post-body-content {
 .swpf-toggle span {
     padding: 2px;
     background: #fff;
-    border: 2px solid #CCC;
+    border: 2px solid #8c8f94;
     border-radius: 20px;
     display: block;
     width: 44px;
@@ -540,7 +557,7 @@ body.post-type-swpf-product-filter #post-body-content {
 .swpf-toggle span:after {
     content: "";
     transition: all 0.3s ease;
-    background: #CCC;
+    background: #8c8f94;
     border-radius: 1em;
     position: relative;
     display: block;
@@ -612,6 +629,25 @@ body.post-type-swpf-product-filter #post-body-content {
     overflow: hidden auto;
 }
 
+.swpf-custom-terms-field-outer-wrap::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.swpf-custom-terms-field-outer-wrap::-webkit-scrollbar-track {
+    background: #EEE;
+}
+
+/* Handle */
+.swpf-custom-terms-field-outer-wrap::-webkit-scrollbar-thumb {
+    background: #DDD;
+}
+
+/* Handle on hover */
+.swpf-custom-terms-field-outer-wrap::-webkit-scrollbar-thumb:hover {
+    background: #BBB;
+}
+
 .swpf-custom-terms-field-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -623,7 +659,7 @@ body.post-type-swpf-product-filter #post-body-content {
     bottom: 0;
     background: #FFF;
     padding: 10px;
-    border: 1px solid #d7d7d7;
+    border: 1px solid #AAA;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -684,7 +720,7 @@ body.post-type-swpf-product-filter #post-body-content {
 }
 
 .swpf-custom-terms-options .swpf-custom-term-field-wrap {
-    border: 1px solid #d7d7d7;
+    border: 1px solid #AAA;
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -699,7 +735,7 @@ body.post-type-swpf-product-filter #post-body-content {
 .swpf-custom-terms-options .swpf-custom-term-field-wrap h4 {
     margin: 0 -15px 0;
     padding: 0 15px 10px;
-    border-bottom: 1px solid #d7d7d7;
+    border-bottom: 1px solid #AAA;
 }
 
 .swpf-custom-term-field.swpf-field-wrap > label {
@@ -763,7 +799,7 @@ body.post-type-swpf-product-filter #post-body-content {
 .swpf-custom-menu-image-icon {
     height: 50px;
     width: 50px;
-    border: 1px solid #CCC;
+    border: 1px solid #8c8f94;
     border-radius: 4px;
     margin-bottom: 10px;
     overflow: hidden;
@@ -829,7 +865,7 @@ body.post-type-swpf-product-filter #post-body-content {
     font-size: 14px;
     line-height: 36px;
     color: #2c3338;
-    border-color: #CCC;
+    border-color: #8c8f94;
     box-shadow: none;
     border-radius: 3px;
     background: #fff url(data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E) no-repeat right 5px top 50% !important;
@@ -853,7 +889,7 @@ body.post-type-swpf-product-filter #post-body-content {
     box-shadow: none;
 }
 
-.swpf-typography-font-style.swpf-typography-loading {
+.swpf-typography-font-style-wrap.swpf-typography-loading {
     opacity: 0.6;
     pointer-events: none;
 }
@@ -880,12 +916,17 @@ body.post-type-swpf-product-filter #post-body-content {
 
 .swpf-range-slider.ui-slider .ui-slider-range {
     background: #88ddfb;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
 }
 
 .swpf-range-slider.ui-slider .ui-slider-handle {
+    position: absolute;
     height: 14px;
     width: 14px;
-    background: #88ddfb;
+    background: #88ddfb !important;
     border: none;
     border-radius: 100%;
     margin-left: -7px;
@@ -932,8 +973,6 @@ body.post-type-swpf-product-filter #post-body-content {
 }
 
 
-
-
 /* Alert */
 .swpf-alert {
     width: 300px;
@@ -944,7 +983,7 @@ body.post-type-swpf-product-filter #post-body-content {
     color: #FFF;
     border-radius: 4px;
     font-size: 16px;
-    z-index: 9999;
+    z-index: 99999;
     transition: all 0.2s ease;
     visibility: hidden;
     background: #EEE;
@@ -976,6 +1015,10 @@ body.post-type-swpf-product-filter #post-body-content {
 }
 
 /* Multiple Select */
+.swpf-toggle-tab-body .select2-container {
+    width: 100% !important;
+}
+
 .swpf-toggle-tab-body .select2-container--default .select2-selection--multiple .select2-selection__clear {
     position: absolute;
     right: 0;
@@ -1050,31 +1093,50 @@ body.post-type-swpf-product-filter #post-body-content {
     font-size: 14px;
 }
 
-.swpf-list-box ul {
+.swpf-toggle-tab-body {
+    border: 1px solid #EEE;
+    padding: 10px;
+    max-height: 230px;
+    overflow: hidden auto;
+}
+
+.swpf-toggle-tab-body::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+.swpf-toggle-tab-body::-webkit-scrollbar-track {
+    background: #EEE;
+}
+
+/* Handle */
+.swpf-toggle-tab-body::-webkit-scrollbar-thumb {
+    background: #DDD;
+}
+
+/* Handle on hover */
+.swpf-toggle-tab-body::-webkit-scrollbar-thumb:hover {
+    background: #BBB;
+}
+
+ul.swpf-listing {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.swpf-list-box > ul {
-    height: 230px;
-    overflow: hidden auto;
-    border: 1px solid #EEE;
-    padding: 10px;
-}
-
-.swpf-list-box ul li {
+ul.swpf-listing li {
     padding: 0;
-    margin: 0 0 10px;
+    margin: 0 0 6px;
 }
 
-.swpf-list-box ul li:last-child {
+ul.swpf-listing li:last-child {
     margin-bottom: 0;
 }
 
-.swpf-list-box ul ul {
+ul.swpf-listing ul {
     margin-left: 15px;
-    margin-top: 10px;
+    margin-top: 6px;
 }
 
 .swpf-list-box h4 {
@@ -1132,8 +1194,13 @@ body.post-type-swpf-product-filter #post-body-content {
     width: 190px !important;
 }
 
+.swpf-settings-input-field .wp-picker-container .wp-color-result.button {
+    min-height: 32px !important;
+}
+
 .swpf-settings-input-field .wp-color-result-text {
-    padding: 3px 6px;
+    padding: 0 6px;
+    line-height: 34px;
 }
 
 /* Shadow */
@@ -1193,7 +1260,7 @@ body.post-type-swpf-product-filter #post-body-content {
     color: #2c3338;
     min-height: 36px;
     width: 50px;
-    background-color: #a4afb7;
+    background-color: #8c8f94;
     color: #fff;
 }
 
@@ -1287,9 +1354,10 @@ body.post-type-swpf-product-filter #post-body-content {
     display: none;
 }
 
-.swpf-sub-panel h3 {
-    font-size: 18px;
-    margin: 0 0 15px;
+.swpf-sub-panel h3.swpf-sub-title {
+    font-size: 16px;
+    margin: -6px 0;
+    text-transform: uppercase;
 }
 
 .swpf-sub-panel h4 {
@@ -1307,10 +1375,6 @@ body.post-type-swpf-product-filter #post-body-content {
 
 .swpf-separator {
     border-bottom: 1px solid #EEE;
-}
-
-.swpf-sub-panel .swpf-separator {
-    margin-bottom: 30px;
 }
 
 #swpf-design-settings {
@@ -1340,19 +1404,27 @@ body.post-type-swpf-product-filter #post-body-content {
 }
 
 .swpf-general-settings .swpf-success-notice {
-    border: 1px solid green;
-    padding: 10px;
-    color: green;
+    padding: 15px;
+    color: #4BB543;
+    border-top: 3px solid #4BB543;
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
 }
 
 .swpf-general-settings .swpf-error-notice {
-    border: 1px solid red;
-    padding: 10px;
-    color: red;
+    padding: 15px;
+    color: #ff0033;
+    border-top: 3px solid #ff0033;
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
 }
 
 .swpf-general-settings .swpf-success-notice p {
@@ -1365,13 +1437,33 @@ body.post-type-swpf-product-filter #post-body-content {
     color: #FFF;
     margin: 0 0 25px;
     font-size: 16px;
-    font-weight: normal;
-    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
+.swpf-general-settings .swpf-field-wrap {
+    margin-bottom: 25px;
+}
 
+.swpf-general-settings .swpf-field-wrap input[type="text"] {
+    width: 100%;
+    max-width: 100%;
+}
 
+.swpf-license-activation-notice p {
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+}
 
+.swpf-license-activation-notice p.swpf-license-activate {
+    color: #4BB543;
+}
+
+.swpf-license-activation-notice p.swpf-license-inactive {
+    color: #ff0033;
+}
 
 
 .swpf-filter-list .swpf-filters-title {
@@ -1443,7 +1535,7 @@ body.post-type-swpf-product-filter #post-body-content {
 }
 
 .swpf-preview-zone {
-    border: 1px dashed #CCC;
+    border: 1px dashed #8c8f94;
     max-width: 500px;
     margin-bottom: 5px;
     position: relative;
@@ -1507,6 +1599,8 @@ form.swpf-custom-terms-options.swpf-field-settings-display-type-image .swpf-cust
     display: flex;
     gap: 8px;
     align-items: center;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .swpf-save-settings {
@@ -1542,7 +1636,7 @@ form.swpf-custom-terms-options.swpf-field-settings-display-type-image .swpf-cust
 
 .swpf-setting-metafield-lists .swpf-remove-metafield {
     position: absolute;
-    background: #d11a2a;
+    background: #ff2f41;
     height: 35px;
     width: 35px;
     color: #FFF;
@@ -1603,7 +1697,7 @@ form.swpf-custom-terms-options.swpf-field-settings-display-type-image .swpf-cust
     position: absolute;
     left: 0;
     top: 0;
-    border: 1px solid #CCC;
+    border: 1px solid #8c8f94;
     height: 34px;
     width: 34px;
     display: flex;
@@ -1694,4 +1788,24 @@ form.swpf-custom-terms-options.swpf-field-settings-display-type-image .swpf-cust
     #swpf-design-settings:before {
         display: none;
     }
+}
+
+.swpf-desc span.swpf-code {
+    background-color: #e9f1fe;
+    padding: 2px;
+}
+
+
+
+
+.swpf_import_template_form {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+
+#swpf_temp_import,
+#swpf_temp_view_demo {
+    display: inline-flex;
+    gap: 6px;
 }
