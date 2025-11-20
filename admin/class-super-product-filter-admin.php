@@ -153,6 +153,7 @@ class Super_Product_Filter_Admin {
 
     public function register_submenu_page() {
         add_submenu_page('edit.php?post_type=swpf-product-filter', esc_html__('Documentation', 'super-product-filter'), esc_html__('Documentation', 'super-product-filter'), 'manage_options', esc_url_raw('https://hashthemes.com/documentation/super-woocommerce-product-filter-documentation/'));
+        add_submenu_page('edit.php?post_type=swpf-product-filter', esc_html__('Upgrade To PRO', 'super-product-filter'), esc_html__('Upgrade To PRO', 'super-product-filter'), 'manage_options', esc_url_raw('https://demo.hashthemes.com/super-woocommerce-product-filter/'));
     }
 
     public static function recursive_parse_args($args, $defaults) {
