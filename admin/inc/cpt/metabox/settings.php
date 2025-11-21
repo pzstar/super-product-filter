@@ -29,6 +29,7 @@ $text_decorations = swpf_get_text_decoration_choices();
                 <li class="swpf-tab" data-tab="swpf-display-settings" data-tohide="tab-content"><?php esc_html_e('Display Settings', 'super-product-filter'); ?></li>
                 <li class="swpf-tab" data-tab="swpf-design-settings" data-tohide="tab-content"><?php esc_html_e('Designs', 'super-product-filter'); ?></li>
                 <li class="swpf-tab" data-tab="import-export-settings" data-tohide="tab-content"><?php esc_html_e('Import/Export', 'super-product-filter'); ?></li>
+                <li class="swpf-tab" data-tab="free-vs-pro-settings" data-tohide="tab-content"><?php esc_html_e('Free Vs Pro', 'super-product-filter'); ?></li>
             </ul>
         </div>
 
@@ -39,10 +40,12 @@ $text_decorations = swpf_get_text_decoration_choices();
         include SWPF_PATH . 'admin/inc/cpt/metabox/boxes/custom-code.php';
         include SWPF_PATH . 'admin/inc/cpt/metabox/boxes/display.php';
         include SWPF_PATH . 'admin/inc/cpt/metabox/boxes/import-export.php';
+        include SWPF_PATH . 'admin/inc/cpt/metabox/boxes/free-vs-pro.php';
         ?>
     </div>
 
     <div class="swpf-settings-footer">
+        <a href="https://demo.hashthemes.com/super-woocommerce-product-filter/" target="_blank" class="button button-primary swpf-upgrade-to-pro"><?php echo esc_html__('Upgrade to Pro', 'super-product-filter'); ?></a>
         <button type="submit" class="button button-primary"><?php echo esc_html__('Save Settings', 'super-product-filter'); ?></button>
     </div>
 </div>

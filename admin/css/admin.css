@@ -28,7 +28,7 @@ body.post-type-swpf-product-filter #post-body-content {
 .swpf-settings-footer {
     padding: 12px 30px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     border-top: 1px solid #e4eaff;
     position: sticky;
     bottom: 0;
@@ -50,6 +50,11 @@ body.post-type-swpf-product-filter #post-body-content {
     align-items: center;
     gap: 6px;
     z-index: 9;
+}
+
+.swpf-settings-footer .button.swpf-upgrade-to-pro {
+    background: #ff0000;
+    border-color: #ff0000;
 }
 
 .swpf-general-settings .button.swpf-button-loader:after,
@@ -1808,4 +1813,102 @@ form.swpf-custom-terms-options.swpf-field-settings-display-type-image .swpf-cust
 #swpf_temp_view_demo {
     display: inline-flex;
     gap: 6px;
+}
+
+
+/* Free VS Pro Comparison table*/
+.swpf-compare-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.swpf-compare-table th {
+    background: #2271b1;
+    color: #fff;
+    padding: 14px;
+    font-size: 14px;
+    text-align: left;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.swpf-compare-table td {
+    border: 1px solid #ddd;
+    padding: 14px;
+    font-size: 14px;
+}
+
+.swpf-compare-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.swpf-compare-table .swpf-yes {
+    color: #28a745;
+}
+
+.swpf-compare-table .swpf-no {
+    color: #dc3545;
+}
+
+.swpf-compare-table .swpf-yes i,
+.swpf-compare-table .swpf-no i {
+    color: #FFF;
+    height: 20px;
+    width: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+.swpf-compare-table .swpf-yes i {
+    background: #28a745;
+}
+
+.swpf-compare-table .swpf-no i {
+    background: #dc3545;
+}
+
+.swpf-compare-table .swpf-pro {
+    font-weight: bold;
+}
+
+.swpf-compare-table .swpf-feature a {
+    background: #000;
+    color: #FFF;
+    text-decoration: none;
+    font-size: 12px;
+    border-radius: 3px;
+    padding: 5px 8px;
+    line-height: 1;
+    display: inline-block;
+    margin-left: 6px;
+    outline: 0;
+    box-shadow: none;
+}
+
+.swpf-compare-table .swpf-feature a:hover {
+    background: #2271b1;
+}
+
+.swpf-compare-table .swpf-compare-button a{
+    padding: 13px 20px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1;
+    outline: 0 !important;
+    box-shadow: none !important;
+    background-color: #ff0000;
+    border-color: #ff0000;
+    color: #FFF;
+}
+
+.swpf-compare-table .swpf-compare-button a:hover,
+.swpf-compare-table .swpf-compare-button a:focus{
+    background-color: #000;
+    border-color: #000;
+    color: #FFF;
 }
