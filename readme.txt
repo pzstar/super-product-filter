@@ -4,7 +4,7 @@ Tags: ajax filter, ajax product filter, product filter, woocommerce ajax filter,
 Requires at least: 6.3
 Requires PHP: 7.4
 Tested up to: 6.8
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -133,6 +133,9 @@ For premium upgrade, please click below link <br>
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/9e5fc0e0-3f66-4ffb-a43f-45bbd384b31e)
 
 == Changelog ==
+= 1.0.6 - 21 Nov, 2025 =
+* Major Updates
+
 = 1.0.5 - 12 Mar, 2025 =
 * Product ordering bug - fixed
 * Number sanitization fixed

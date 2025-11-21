@@ -51,7 +51,7 @@ defined('ABSPATH') || die();
                 </select>
                 <p class="swpf-desc">
                     <?php esc_html_e('Instant filtering on selection, no submit button required.', 'super-product-filter'); ?>
-                    <?php echo sprintf(esc_html__('Find in detail %shere%s', 'super-woocommerce-product-filter'), '<a href="https://hashthemes.com/documentation/super-woocommerce-product-filter-documentation/#AutoSubmit" target="_blank">', '</a>'); ?>
+                    <?php echo sprintf(esc_html__('Find in detail %shere%s', 'super-product-filter'), '<a href="https://hashthemes.com/documentation/super-woocommerce-product-filter-documentation/#AutoSubmit" target="_blank">', '</a>'); ?>
                 </p>
             </div>
         </div>
@@ -104,7 +104,7 @@ defined('ABSPATH') || die();
                 <input type="text" name="swpf_settings[config][product_selector]" value="<?php echo esc_attr($settings['config']['product_selector']); ?>">
                 <p class="swpf-desc">
                     <?php
-                    echo esc_html__('Enter the selector that wraps the entire product list on the page where this filter is used.', 'super-woocommerce-product-filter');
+                    echo esc_html__('Enter the selector that wraps the entire product list on the page where this filter is used.', 'super-product-filter');
                     ?>
                 </p>
             </div>
@@ -116,7 +116,7 @@ defined('ABSPATH') || die();
                 <input type="text" name="swpf_settings[config][product_count_selector]" value="<?php echo esc_attr($settings['config']['product_count_selector']); ?>">
                 <p class="swpf-desc">
                     <?php
-                    echo esc_html__('Enter the selector that wraps the product counter on the page where this filter is used.', 'super-woocommerce-product-filter');
+                    echo esc_html__('Enter the selector that wraps the product counter on the page where this filter is used.', 'super-product-filter');
                     ?>
                 </p>
             </div>
@@ -128,7 +128,7 @@ defined('ABSPATH') || die();
                 <input type="text" name="swpf_settings[config][pagination_selector]" value="<?php echo esc_attr($settings['config']['pagination_selector']); ?>">
                 <p class="swpf-desc">
                     <?php
-                    echo esc_html__('Enter the selector that wraps the pagination on the page where this filter is used.', 'super-woocommerce-product-filter');
+                    echo esc_html__('Enter the selector that wraps the pagination on the page where this filter is used.', 'super-product-filter');
                     ?>
                 </p>
             </div>
@@ -169,7 +169,7 @@ defined('ABSPATH') || die();
                         <span></span>
                     </label>
                 </div>
-                <p class="swpf-desc"><?php esc_html_e('Automatically scrolls the page to the top after filters are applied.', 'super-woocommerce-product-filter'); ?></p>
+                <p class="swpf-desc"><?php esc_html_e('Automatically scrolls the page to the top after filters are applied.', 'super-product-filter'); ?></p>
             </div>
         </div>
 
@@ -183,8 +183,8 @@ defined('ABSPATH') || die();
                     </label>
                 </div>
                 <p class="swpf-desc">
-                    <?php esc_html_e('Open/Close each filter by clicking on button.', 'super-woocommerce-product-filter'); ?>
-                    <?php echo sprintf(esc_html__('Find in detail %shere%s', 'super-woocommerce-product-filter'), '<a href="https://hashthemes.com/documentation/super-woocommerce-product-filter-documentation/#Show/HideEachFilter" target="_blank">', '</a>'); ?>
+                    <?php esc_html_e('Open/Close each filter by clicking on button.', 'super-product-filter'); ?>
+                    <?php echo sprintf(esc_html__('Find in detail %shere%s', 'super-product-filter'), '<a href="https://hashthemes.com/documentation/super-woocommerce-product-filter-documentation/#Show/HideEachFilter" target="_blank">', '</a>'); ?>
                 </p>
             </div>
         </div>
