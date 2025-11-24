@@ -374,8 +374,8 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
     }
 
     public function render_fields($settings, $taxonomy, $tax_name, $config, $current_filter_option = [], $count = 0) {
-        $sc_id = $this->filter_shortcode_id;
-        $sc_title = get_the_title($sc_id);
+        $swpf_sc_id = $this->filter_shortcode_id;
+        $swpf_sc_title = get_the_title($swpf_sc_id);
         $hide_field = false;
         $order = isset($settings['order'][$tax_name]) ? $settings['order'][$tax_name] : '';
         $orderby = isset($settings['orderby'][$tax_name]) ? $settings['orderby'][$tax_name] : '';
@@ -457,7 +457,7 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
                     <div class="swpf-filter-title">
                         <h4 class="swpf-filter-title-heading">
                             <?php
-                            echo esc_html(apply_filters('swpf_translate_string', $settings['title_label'][$tax_name], 'Super Product Filter', esc_html($sc_title) . ' - Taxonomy Name ' . $tax_name));
+                            echo esc_html(apply_filters('swpf_translate_string', $settings['title_label'][$tax_name], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Taxonomy Name ' . $tax_name));
                             ?>
                         </h4>
                         <?php if ($settings['config']['show_filter_list_toggle'] == 'on') { ?>
@@ -474,7 +474,7 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
                         ?>
                         <div class="swpf-tax-list-wrapper <?php echo !empty($orientationClass) ? esc_attr(implode(' ', $orientationClass)) : ''; ?>">
                             <?php
-                            $swpf_sc_title = $sc_title;
+                            $swpf_sc_title = $swpf_sc_title;
 
                             if (isset($settings['search_filter'][$tax_name]) && ($settings['search_filter'][$tax_name] == 'on') && $settings['display_type'][$tax_name] != 'dropdown' && $settings['display_type'][$tax_name] != 'multi_select') {
                                 ?>

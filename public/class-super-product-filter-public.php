@@ -50,8 +50,8 @@ class Super_Product_Filter_Public {
         global $wp_query;
 
         /* enable this only when woo range slider is enabled */
-        wp_enqueue_script('wc-jquery-ui-touchpunch', array('jquery-ui-core', 'jquery-ui-slider'));
-        wp_enqueue_script('wc-price-slider', array('jquery-ui-slider', 'wc-jquery-ui-touchpunch'));
+        wp_enqueue_script('wc-jquery-ui-touchpunch');
+        wp_enqueue_script('wc-price-slider');
         /* enable this only when woo range slider is enabled */
 
         /* Enqueue jQuery Chosen */

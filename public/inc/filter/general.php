@@ -151,7 +151,7 @@ class Super_Product_Filter_General {
 
     public static function get_filtered_price($tax_query = array(), $meta_query = array()) {
         global $wpdb, $wp_the_query;
-        $args = $wp_the_query->query_vars;
+        $swpf_args = $wp_the_query->query_vars;
 
         $meta_query = new WP_Meta_Query($meta_query);
         $tax_query = new WP_Tax_Query($tax_query);
@@ -162,9 +162,7 @@ class Super_Product_Filter_General {
         $price_meta_keys = apply_filters( 'woocommerce_price_filter_meta_keys', array( '_price' ) );
         $key_placeholders = implode( ',', array_fill( 0, count( $price_meta_keys ), '%s' ) );
 
-        $sql = "SELECT min(FLOOR(price_meta.meta_value + 0.0)) as min_price, max(CEILING(price_meta.meta_value + 0.0)) as max_price  FROM {$wpdb->posts} LEFT JOIN {$wpdb->postmeta} as price_meta ON {$wpdb->posts}.ID = price_meta.post_id {$tax_query_sql['join']} {$meta_query_sql['join']} WHERE {$wpdb->posts}.post_type = 'product' AND {$wpdb->posts}.post_status = 'publish' AND price_meta.meta_key IN ({$key_placeholders}) AND price_meta.meta_value > '' {$tax_query_sql['where']} {$meta_query_sql['where']}";
-
-        $prices = $wpdb->get_row($wpdb->prepare($sql, ...$price_meta_keys));
+        $prices = $wpdb->get_row($wpdb->prepare("SELECT min(FLOOR(price_meta.meta_value + 0.0)) as min_price, max(CEILING(price_meta.meta_value + 0.0)) as max_price  FROM {$wpdb->posts} LEFT JOIN {$wpdb->postmeta} as price_meta ON {$wpdb->posts}.ID = price_meta.post_id {$tax_query_sql['join']} {$meta_query_sql['join']} WHERE {$wpdb->posts}.post_type = 'product' AND {$wpdb->posts}.post_status = 'publish' AND price_meta.meta_key IN ({$key_placeholders}) AND price_meta.meta_value > '' {$tax_query_sql['where']} {$meta_query_sql['where']}", ...$price_meta_keys));
         return $prices;
     }
 

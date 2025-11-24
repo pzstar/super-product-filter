@@ -31,21 +31,21 @@ remove_action('woocommerce_product_query', array($this, 'filter_posts'), 11);
 
 $qry = $this->filter_posts(new WP_Query(), $post_data);
 wp_reset_postdata();
-$args = [];
-$args['post_type'] = 'product';
-$args['paged'] = !empty($post_data['paged']) ? intval($post_data['paged']) : 1;
-$args['posts_per_page'] = $post_per_page;
-$args['meta_query'] = $qry->get('meta_query');
-$args['tax_query'] = $qry->get('tax_query');
-$args['wc_query'] = 'product_query';
-$args['post__in'] = $qry->get('post__in');
-$args['orderby'] = $qry->get('orderby');
-$args['order'] = $qry->get('order');
+$swpf_args = [];
+$swpf_args['post_type'] = 'product';
+$swpf_args['paged'] = !empty($post_data['paged']) ? intval($post_data['paged']) : 1;
+$swpf_args['posts_per_page'] = $post_per_page;
+$swpf_args['meta_query'] = $qry->get('meta_query');
+$swpf_args['tax_query'] = $qry->get('tax_query');
+$swpf_args['wc_query'] = 'product_query';
+$swpf_args['post__in'] = $qry->get('post__in');
+$swpf_args['orderby'] = $qry->get('orderby');
+$swpf_args['order'] = $qry->get('order');
 if ($qry->get('meta_key')) {
-    $args['meta_key'] = $qry->get('meta_key');
+    $swpf_args['meta_key'] = $qry->get('meta_key');
 }
 
-$wp_query = new WP_Query($args);
+$wp_query = new WP_Query($swpf_args);
 $total_posts_found = $wp_query->found_posts;
 wp_reset_postdata();
 
@@ -67,7 +67,7 @@ wc_get_template('loop/result-count.php', array(
     'total' => $total_posts_found,
     'per_page' => $post_per_page,
     'current' => wc_get_loop_prop('current_page'),
-    'orderedby' => $args['orderby']
+    'orderedby' => $swpf_args['orderby']
 ));
 $html_result_count_content = ob_get_clean();
 

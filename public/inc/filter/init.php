@@ -40,12 +40,12 @@ class Super_Product_Filter_Init extends Super_Product_Filter_General {
     public function render_result() {
         $total_posts_found = $filtered_data = '';
         $settings = array();
-        $sc_id = swpf_get_var('swpf_filter_sc');
+        $swpf_sc_id = swpf_get_var('swpf_filter_sc');
         if (isset($this->settings) && !empty($this->settings)) {
             $settings = $this->settings;
-        } elseif ($sc_id) {
-            $this->filter_shortcode_id = $sc_id;
-            $settings = get_post_meta($sc_id, 'swpf_settings', true);
+        } elseif ($swpf_sc_id) {
+            $this->filter_shortcode_id = $swpf_sc_id;
+            $settings = get_post_meta($swpf_sc_id, 'swpf_settings', true);
             if (!$settings) {
                 $settings = Super_Product_Filter_Metabox::default_settings_values();
             } else {
@@ -72,9 +72,9 @@ class Super_Product_Filter_Init extends Super_Product_Filter_General {
         <?php
     }
 
-    public function add_numerical_order($terms, $taxonomies, $args, $term_query) {
-        if (isset($args['orderby']) && $args['orderby'] == 'number') {
-            $order = isset($args['order']) ? $args['order'] : 'ASC';
+    public function add_numerical_order($terms, $taxonomies, $swpf_args, $term_query) {
+        if (isset($swpf_args['orderby']) && $swpf_args['orderby'] == 'number') {
+            $order = isset($swpf_args['order']) ? $swpf_args['order'] : 'ASC';
 
             if ($order == 'ASC') {
                 array_multisort(array_column($terms, 'name'), SORT_ASC, SORT_NATURAL, $terms);

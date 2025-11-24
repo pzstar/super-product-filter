@@ -497,7 +497,7 @@ if (!class_exists('SWPF_Walker_Category_Color_Image_Checkbox')) {
                 $output .= "\n<li class='swpf-filter-item swpf-{$taxonomy}-{$category->{$value_field} }'>";
                 $output .= '<label class="swpf-filter-label">';
                 $output .= '<input class="swpf-chkbox-term" value="' . $category->{$value_field} . '" type="checkbox" name="' . $name . '[]" id="in-' . $taxonomy . '-' . $category->{$value_field} . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . '/>';
-                $output .= '<span class="swpf-' . esc_attr($type) . '-box" ' . ($type == "color" ? 'style="background-color:' . esc_attr($term_preview_array[$category->term_id]['color']) . '"' : "") . '>';
+                $output .= '<span class="swpf-' . esc_attr($type) . '-box" ' . ($type == "color" && isset($term_preview_array[$category->term_id]['color']) ? 'style="background-color:' . esc_attr($term_preview_array[$category->term_id]['color']) . '"' : "") . '>';
                 if ($type == 'image') {
                     $output .= '<span class="swpf-image-url"  style="background-image: url(' . esc_url($term_preview_array[$category->term_id]['image']) . ')"></span>';
                 }
@@ -677,13 +677,15 @@ if (!function_exists('swpf_terms_dropdown')) {
 
         if (is_array($selected_cats)) {
             $args['selected_cats'] = $selected_cats;
+
         } elseif ($post_id) {
             $args['selected_cats'] = wp_get_object_terms($post_id, $taxonomy, array_merge($args, array('fields' => 'ids')));
+
         } else {
             $args['selected_cats'] = explode(',', $selected_cats);
         }
 
-        $categories = $terms ? $terms : (array) get_terms($taxonomy, array('hide_empty' => false));
+        $categories = $terms ? $terms : (array) get_terms(array('taxonomy' => $taxonomy, 'hide_empty' => false));
 
         if ($checked_ontop) {
             // Post process $categories rather than adding an exclude to the get_terms() query to keep the query the same across all posts (for any query cache)
@@ -698,10 +700,12 @@ if (!function_exists('swpf_terms_dropdown')) {
             }
 
             // Put checked cats on top
-            echo call_user_func_array(array(&$walker, 'walk'), array($checked_categories, 0, $args));
+            $temp_val = call_user_func_array(array(&$walker, 'walk'), array($checked_categories, 0, $args));
+            echo $temp_val ? wp_kses($temp_val, ['option' => ['value' => true, 'selected' => true, 'class' => true, 'id' => true]]) : '';
         }
         // Then the rest of them
-        echo call_user_func_array(array(&$walker, 'walk'), array($categories, 0, $args));
+        $temp_val = call_user_func_array(array(&$walker, 'walk'), array($categories, 0, $args));
+        echo $temp_val ? wp_kses($temp_val, ['option' => ['value' => true, 'selected' => true, 'class' => true, 'id' => true]]) : '';
     }
 
 }

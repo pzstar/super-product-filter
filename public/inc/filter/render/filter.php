@@ -150,10 +150,10 @@ $main_wrap_classes = array(
                             </div>
                             <?php
                         } elseif (isset($settings['enable'][$tax_name]) && $settings['enable'][$tax_name] == 'on') {
-                            $args = swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax_name);
-                            $term_cquery = new WP_Query($args);
+                            $swpf_args = swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax_name);
+                            $swpf_term_cquery = new WP_Query($swpf_args);
                             wp_reset_postdata();
-                            $post_count = $term_cquery->post_count;
+                            $swpf_post_count = $swpf_term_cquery->post_count;
 
                             if ($tax_name != 'product_cat' || ($tax_name == 'product_cat' && $is_prod_taxonomy != 'yes')) {
                                 $this->render_fields($settings, $taxonomy, $tax_name, $config, $current_filter_option, $count);

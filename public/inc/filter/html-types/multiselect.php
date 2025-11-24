@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') || die();
 
-$tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_count'][$tax_name] == 'on') ? true : false;
+$swpf_tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_count'][$tax_name] == 'on') ? true : false;
 
 if ($tax_name == 'product_visibility') {
     ?>
@@ -12,16 +12,16 @@ if ($tax_name == 'product_visibility') {
                 foreach ($terms as $key => $term) {
                     $selected = false;
 
-                    if ($tax_show_count) {
-                        $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
-                        $term_cquery = new WP_Query($args);
-                        $post_count = $term_cquery->post_count;
+                    if ($swpf_tax_show_count) {
+                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
+                        $swpf_term_cquery = new WP_Query($swpf_args);
+                        $swpf_post_count = $swpf_term_cquery->post_count;
 
-                        $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
-                        $term_cquery = new WP_Query($args);
-                        $post_count_ckk = $term_cquery->post_count;
+                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
+                        $swpf_term_cquery = new WP_Query($swpf_args);
+                        $swpf_post_count_ckk = $swpf_term_cquery->post_count;
                         wp_reset_postdata();
-                        $post_count = min($post_count, $post_count_ckk, $term->count);
+                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $term->count);
                     }
 
                     if (isset($current_filter_option['visibility']) && !empty($current_filter_option['visibility']) && is_array($current_filter_option['visibility'])) {
@@ -31,14 +31,14 @@ if ($tax_name == 'product_visibility') {
                     <option data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php selected($selected, true); ?>>
                         <?php
                         if (isset($settings['terms_customize'][$tax_name][$term->term_id]['term_name']) && !empty($settings['terms_customize'][$tax_name][$term->term_id]['term_name'])) {
-                            echo esc_html(apply_filters('swpf_translate_string', $settings['terms_customize'][$tax_name][$term->term_id]['term_name'], 'Super Product Filter', esc_html($sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($term->term_id)));
+                            echo esc_html(apply_filters('swpf_translate_string', $settings['terms_customize'][$tax_name][$term->term_id]['term_name'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($term->term_id)));
                         } else {
                             echo esc_html(ucwords(str_replace('-', ' ', $term->name)));
                         }
 
-                        if ($tax_show_count) {
+                        if ($swpf_tax_show_count) {
                             ?>
-                            <span class="swpf-count">&nbsp;(<?php echo esc_attr($post_count); ?>)</span>
+                            <span class="swpf-count">&nbsp;(<?php echo esc_attr($swpf_post_count); ?>)</span>
                             <?php
                         }
                         ?>
@@ -66,7 +66,7 @@ if ($tax_name == 'product_visibility') {
             if (isset($settings['config']['indent_cat']) && $settings['config']['indent_cat'] == 'on') {
                 $all_terms = $settings['terms_customize'][$tax_name];
                 $term_name_array = [];
-                $term_count_array = [];
+                $swpf_term_count_array = [];
                 $hide_terms = [];
 
                 if ($all_terms) {
@@ -74,32 +74,34 @@ if ($tax_name == 'product_visibility') {
                         $term_name_array[$key] = (isset($aterm['term_name']) && !empty($aterm['term_name'])) ? esc_html(apply_filters('swpf_translate_string', $aterm['term_name'], 'Super WooCommerce Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($key))) : esc_html(ucwords(str_replace('-', ' ', get_term($key)->name)));
                         if (isset($settings['show_count']['product_cat']) && $settings['show_count']['product_cat'] == 'on') {
                             $term = get_term($key);
-                            $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
-                            $swpf_term_cquery = new WP_Query($args);
-                            $post_count = $swpf_term_cquery->post_count;
+                            $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
+                            $swpf_term_cquery = new WP_Query($swpf_args);
+                            $swpf_post_count = $swpf_term_cquery->post_count;
 
-                            $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
-                            $swpf_term_cquery = new WP_Query($args);
-                            $post_count_ckk = $swpf_term_cquery->post_count;
+                            $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
+                            $swpf_term_cquery = new WP_Query($swpf_args);
+                            $swpf_post_count_ckk = $swpf_term_cquery->post_count;
                             wp_reset_postdata();
-                            $post_count = min($post_count, $post_count_ckk, $term->count);
+                            $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $term->count);
 
-                            $term_count_array[$key] = $post_count;
+                            $swpf_term_count_array[$key] = $swpf_post_count;
                         }
                     }
                 }
-                echo swpf_terms_dropdown(0, array(
+
+                swpf_terms_dropdown(0, array(
                     'taxonomy' => 'product_cat',
                     'name' => 'categories',
                     'value_field' => 'slug',
                     'selected_cats' => $selected_cats,
-                    'show_count' => $tax_show_count,
+                    'show_count' => $swpf_tax_show_count,
                     'term_name_array' => $term_name_array,
-                    'term_count_array' => $term_count_array,
+                    'term_count_array' => $swpf_term_count_array,
                     'hide_empty' => false,
                     'hide_terms' => $hide_terms,
                     "multiple" => true
                 ), $terms);
+
             } else if ($terms) {
                 foreach ($terms as $key => $term) {
                     $selected = false;
@@ -107,16 +109,16 @@ if ($tax_name == 'product_visibility') {
                         $selected = in_array($term->slug, $current_filter_option['categories']) ? true : false;
                     }
 
-                    if ($tax_show_count) {
-                        $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
-                        $swpf_term_cquery = new WP_Query($args);
-                        $post_count = $swpf_term_cquery->post_count;
+                    if ($swpf_tax_show_count) {
+                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
+                        $swpf_term_cquery = new WP_Query($swpf_args);
+                        $swpf_post_count = $swpf_term_cquery->post_count;
 
-                        $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
-                        $swpf_term_cquery = new WP_Query($args);
-                        $post_count_ckk = $swpf_term_cquery->post_count;
+                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
+                        $swpf_term_cquery = new WP_Query($swpf_args);
+                        $swpf_post_count_ckk = $swpf_term_cquery->post_count;
                         wp_reset_postdata();
-                        $post_count = min($post_count, $post_count_ckk, $term->count);
+                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $term->count);
                     }
 
                     ?>
@@ -128,9 +130,9 @@ if ($tax_name == 'product_visibility') {
                             echo esc_html(ucwords(str_replace('-', ' ', $term->name)));
                         }
 
-                        if ($tax_show_count) {
+                        if ($swpf_tax_show_count) {
                             ?>
-                            <span class="swpf-count">&nbsp;(<?php echo esc_attr($post_count); ?>)</span>
+                            <span class="swpf-count">&nbsp;(<?php echo esc_attr($swpf_post_count); ?>)</span>
                         <?php
                         }
                         ?>
@@ -153,16 +155,16 @@ if ($tax_name == 'product_visibility') {
                 foreach ($terms as $key => $term) {
                     $selected = false;
 
-                    if ($tax_show_count) {
-                        $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
-                        $term_cquery = new WP_Query($args);
-                        $post_count = $term_cquery->post_count;
+                    if ($swpf_tax_show_count) {
+                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
+                        $swpf_term_cquery = new WP_Query($swpf_args);
+                        $swpf_post_count = $swpf_term_cquery->post_count;
 
-                        $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
-                        $term_cquery = new WP_Query($args);
-                        $post_count_ckk = $term_cquery->post_count;
+                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
+                        $swpf_term_cquery = new WP_Query($swpf_args);
+                        $swpf_post_count_ckk = $swpf_term_cquery->post_count;
                         wp_reset_postdata();
-                        $post_count = min($post_count, $post_count_ckk, $term->count);
+                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $term->count);
                     }
 
                     if (isset($current_filter_option['tags']) && !empty($current_filter_option['tags']) && is_array($current_filter_option['tags'])) {
@@ -172,14 +174,14 @@ if ($tax_name == 'product_visibility') {
                     <option data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php selected($selected, true); ?>>
                         <?php
                         if (isset($settings['terms_customize'][$tax_name][$term->term_id]['term_name']) && !empty($settings['terms_customize'][$tax_name][$term->term_id]['term_name'])) {
-                            echo esc_html(apply_filters('swpf_translate_string', $settings['terms_customize'][$tax_name][$term->term_id]['term_name'], 'Super Product Filter', esc_html($sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($term->term_id)));
+                            echo esc_html(apply_filters('swpf_translate_string', $settings['terms_customize'][$tax_name][$term->term_id]['term_name'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($term->term_id)));
                         } else {
                             echo esc_html(ucwords(str_replace('-', ' ', $term->name)));
                         }
 
-                        if ($tax_show_count) {
+                        if ($swpf_tax_show_count) {
                             ?>
-                            <span class="swpf-count">&nbsp;(<?php echo esc_attr($post_count); ?>)</span>
+                            <span class="swpf-count">&nbsp;(<?php echo esc_attr($swpf_post_count); ?>)</span>
                             <?php
                         }
                         ?>
@@ -201,16 +203,16 @@ if ($tax_name == 'product_visibility') {
                 foreach ($terms as $key => $term) {
                     $selected = false;
 
-                    if ($tax_show_count) {
-                        $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
-                        $term_cquery = new WP_Query($args);
-                        $post_count = $term_cquery->post_count;
+                    if ($swpf_tax_show_count) {
+                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
+                        $swpf_term_cquery = new WP_Query($swpf_args);
+                        $swpf_post_count = $swpf_term_cquery->post_count;
 
-                        $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
-                        $term_cquery = new WP_Query($args);
-                        $post_count_ckk = $term_cquery->post_count;
+                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
+                        $swpf_term_cquery = new WP_Query($swpf_args);
+                        $swpf_post_count_ckk = $swpf_term_cquery->post_count;
                         wp_reset_postdata();
-                        $post_count = min($post_count, $post_count_ckk, swpf_get_brand_count($term->term_id));
+                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, swpf_get_brand_count($term->term_id));
                     }
 
                     if (isset($current_filter_option['brands']) && !empty($current_filter_option['brands']) && is_array($current_filter_option['brands'])) {
@@ -220,14 +222,14 @@ if ($tax_name == 'product_visibility') {
                     <option data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php selected($selected, true); ?>>
                         <?php
                         if (isset($settings['terms_customize'][$tax_name][$term->term_id]['term_name']) && !empty($settings['terms_customize'][$tax_name][$term->term_id]['term_name'])) {
-                            echo esc_html(apply_filters('swpf_translate_string', $settings['terms_customize'][$tax_name][$term->term_id]['term_name'], 'Super Product Filter', esc_html($sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($term->term_id)));
+                            echo esc_html(apply_filters('swpf_translate_string', $settings['terms_customize'][$tax_name][$term->term_id]['term_name'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($term->term_id)));
                         } else {
                             echo esc_html(ucwords(str_replace('-', ' ', $term->name)));
                         }
 
-                        if ($tax_show_count) {
+                        if ($swpf_tax_show_count) {
                             ?>
-                            <span class="swpf-count">&nbsp;(<?php echo esc_attr($post_count); ?>)</span>
+                            <span class="swpf-count">&nbsp;(<?php echo esc_attr($swpf_post_count); ?>)</span>
                             <?php
                         }
                         ?>
@@ -249,16 +251,16 @@ if ($tax_name == 'product_visibility') {
                 foreach ($terms as $key => $term) {
                     $selected = false;
 
-                    if ($tax_show_count) {
-                        $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
-                        $term_cquery = new WP_Query($args);
-                        $post_count = $term_cquery->post_count;
+                    if ($swpf_tax_show_count) {
+                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
+                        $swpf_term_cquery = new WP_Query($swpf_args);
+                        $swpf_post_count = $swpf_term_cquery->post_count;
 
-                        $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
-                        $term_cquery = new WP_Query($args);
-                        $post_count_ckk = $term_cquery->post_count;
+                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
+                        $swpf_term_cquery = new WP_Query($swpf_args);
+                        $swpf_post_count_ckk = $swpf_term_cquery->post_count;
                         wp_reset_postdata();
-                        $post_count = min($post_count, $post_count_ckk, $term->count);
+                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $term->count);
                     }
 
                     if (isset($current_filter_option['attribute'][$tax_name]) && !empty($current_filter_option['attribute'][$tax_name]) && is_array($current_filter_option['attribute'][$tax_name])) {
@@ -268,14 +270,14 @@ if ($tax_name == 'product_visibility') {
                     <option data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php selected($selected, true); ?>>
                         <?php
                         if (isset($settings['terms_customize'][$tax_name][$term->term_id]['term_name']) && !empty($settings['terms_customize'][$tax_name][$term->term_id]['term_name'])) {
-                            echo esc_html(apply_filters('swpf_translate_string', $settings['terms_customize'][$tax_name][$term->term_id]['term_name'], 'Super Product Filter', esc_html($sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($term->term_id)));
+                            echo esc_html(apply_filters('swpf_translate_string', $settings['terms_customize'][$tax_name][$term->term_id]['term_name'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($term->term_id)));
                         } else {
                             echo esc_html(ucwords(str_replace('-', ' ', $term->name)));
                         }
 
-                        if ($tax_show_count) {
+                        if ($swpf_tax_show_count) {
                             ?>
-                            <span class="swpf-count">&nbsp;(<?php echo esc_attr($post_count); ?>)</span>
+                            <span class="swpf-count">&nbsp;(<?php echo esc_attr($swpf_post_count); ?>)</span>
                             <?php
                         }
                         ?>
@@ -297,16 +299,16 @@ if ($tax_name == 'product_visibility') {
                 foreach ($terms as $key => $term) {
                     $selected = false;
 
-                    if ($tax_show_count) {
-                        $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
-                        $term_cquery = new WP_Query($args);
-                        $post_count = $term_cquery->post_count;
+                    if ($swpf_tax_show_count) {
+                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
+                        $swpf_term_cquery = new WP_Query($swpf_args);
+                        $swpf_post_count = $swpf_term_cquery->post_count;
 
-                        $args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
-                        $term_cquery = new WP_Query($args);
-                        $post_count_ckk = $term_cquery->post_count;
+                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
+                        $swpf_term_cquery = new WP_Query($swpf_args);
+                        $swpf_post_count_ckk = $swpf_term_cquery->post_count;
                         wp_reset_postdata();
-                        $post_count = min($post_count, $post_count_ckk, $term->count);
+                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $term->count);
                     }
 
                     if (isset($current_filter_option['attribute'][$tax_name]) && !empty($current_filter_option['attribute'][$tax_name]) && is_array($current_filter_option['attribute'][$tax_name])) {
@@ -316,14 +318,14 @@ if ($tax_name == 'product_visibility') {
                     <option data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php selected($selected, true); ?>>
                         <?php
                         if (isset($settings['terms_customize'][$tax_name][$term->term_id]['term_name']) && !empty($settings['terms_customize'][$tax_name][$term->term_id]['term_name'])) {
-                            echo esc_html(apply_filters('swpf_translate_string', $settings['terms_customize'][$tax_name][$term->term_id]['term_name'], 'Super Product Filter', esc_html($sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($term->term_id)));
+                            echo esc_html(apply_filters('swpf_translate_string', $settings['terms_customize'][$tax_name][$term->term_id]['term_name'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($term->term_id)));
                         } else {
                             echo esc_html(ucwords(str_replace('-', ' ', $term->name)));
                         }
 
-                        if ($tax_show_count) {
+                        if ($swpf_tax_show_count) {
                             ?>
-                            <span class="swpf-count">&nbsp;(<?php echo esc_attr($post_count); ?>)</span>
+                            <span class="swpf-count">&nbsp;(<?php echo esc_attr($swpf_post_count); ?>)</span>
                             <?php
                         }
                         ?>

@@ -4,11 +4,11 @@ defined('ABSPATH') || die();
 
 <div class="swpf-general-settings">
     <?php
-    $general_settings = get_option('swpf_general_settings');
-    if (!$general_settings) {
-        $general_settings = self::default_general_settings_values();
+    $swpf_general_settings = get_option('swpf_general_settings');
+    if (!$swpf_general_settings) {
+        $swpf_general_settings = self::default_general_settings_values();
     } else {
-        $general_settings = Super_Product_Filter_Admin::recursive_parse_args($general_settings, self::default_general_settings_values());
+        $swpf_general_settings = Super_Product_Filter_Admin::recursive_parse_args($swpf_general_settings, self::default_general_settings_values());
     }
     ?>
 
@@ -19,7 +19,7 @@ defined('ABSPATH') || die();
 
         <div class="swpf-settings-row">
             <label>
-                <input type="checkbox" name="swpf_general_settings[load_fonts_locally]" <?php checked($general_settings['load_fonts_locally'], 'on', true); ?>>
+                <input type="checkbox" name="swpf_general_settings[load_fonts_locally]" <?php checked($swpf_general_settings['load_fonts_locally'], 'on', true); ?>>
                 <strong><?php esc_html_e('Load Google Fonts Locally', 'super-product-filter'); ?></strong>
             </label>
             <p class="swpf-desc"><?php esc_html_e('Google Fonts must be loaded locally to meet GDPR standards. If your website does not need to comply with GDPR, you can turn this option off. Keep in mind that hosting multiple Google Fonts locally may slightly slow down your website.', 'super-product-filter'); ?></p>

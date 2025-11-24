@@ -82,7 +82,7 @@ class Super_Product_Filter_Import_Export {
             $settings = Super_Product_Filter_Admin::sanitize_array($settings, self::sanitize_settings_rules());
             update_post_meta($filter_id, 'swpf_settings', $settings);
 
-            $location = isset($_SERVER['HTTP_REFERER']) ? sanitize_text_field($_SERVER['HTTP_REFERER']) : '';
+            $location = isset($_SERVER['HTTP_REFERER']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_REFERER'])) : '';
             wp_safe_redirect($location . '&swpfalert=Settings%20Imported%20Successfully');
             exit();
         } else {

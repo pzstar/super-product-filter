@@ -1,14 +1,14 @@
 <?php
 defined('ABSPATH') || die();
 
-$sc_id = $this->filter_shortcode_id;
-$sc_title = get_the_title($sc_id);
+$swpf_sc_id = $this->filter_shortcode_id;
+$swpf_sc_title = get_the_title($swpf_sc_id);
 
 if (isset($settings['title_label']['in_stock']) && !empty($settings['title_label']['in_stock'])) {
     ?>
     <div class="swpf-filter-title">
         <h4 class="swpf-filter-title-heading">
-            <?php echo esc_html(apply_filters('swpf_translate_string', $settings['title_label']['in_stock'], 'Super Product Filter', esc_html($sc_title) . ' - Taxonomy Name in_stock')); ?>
+            <?php echo esc_html(apply_filters('swpf_translate_string', $settings['title_label']['in_stock'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Taxonomy Name in_stock')); ?>
         </h4>
         <?php
         if ($settings['config']['show_filter_list_toggle'] == 'on') {
