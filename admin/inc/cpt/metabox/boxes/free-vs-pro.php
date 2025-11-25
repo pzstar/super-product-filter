@@ -53,7 +53,12 @@ defined('ABSPATH') || die();
             <td class="swpf-yes"><i class="mdi-check"></i><?php esc_html_e('Yes', 'super-product-filter'); ?></td>
         </tr>
         <tr>
-            <td class="swpf-feature">Show Product Count <a href="https://demo.hashthemes.com/super-woocommerce-product-filter/filter-with-product-count/" target="_blank">Demo</a></td>
+            <td class="swpf-feature">
+                <?php
+                /* translators: 1: Link open, 2: Link close */
+                echo sprintf(esc_html__('Show Product Count %1$sDemo%2$s', 'super-product-filter'), '<a href="https://demo.hashthemes.com/super-woocommerce-product-filter/filter-with-product-count/" target="_blank">', '</a>');
+                ?>
+            </td>
             <td class="swpf-yes"><i class="mdi-check"></i><?php esc_html_e('Yes', 'super-product-filter'); ?></td>
             <td class="swpf-yes"><i class="mdi-check"></i><?php esc_html_e('Yes', 'super-product-filter'); ?></td>
         </tr>

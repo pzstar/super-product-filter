@@ -370,50 +370,50 @@ class Super_Product_Filter_Public {
                     )
                 );
 
-                foreach ($swpf_colors as $key => $val) {
+                foreach ($swpf_colors as $swpf_key => $val) {
                     if (is_array($val)) {
                         foreach ($val as $new_val) {
-                            if ($swpf_settings[$key][$new_val]) {
-                                $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $key) . '-' . str_replace('_', '-', $new_val) . ":{$swpf_settings[$key][$new_val]};";
+                            if ($swpf_settings[$swpf_key][$new_val]) {
+                                $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $swpf_key) . '-' . str_replace('_', '-', $new_val) . ":{$swpf_settings[$swpf_key][$new_val]};";
                             }
                         }
                     } else {
-                        if ($swpf_settings[$key][$val]) {
-                            $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $key) . '-' . str_replace('_', '-', $val) . ":{$swpf_settings[$key][$val]};";
+                        if ($swpf_settings[$swpf_key][$val]) {
+                            $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $swpf_key) . '-' . str_replace('_', '-', $val) . ":{$swpf_settings[$swpf_key][$val]};";
                         }
                     }
                 }
 
-                foreach ($swpf_px_size as $key => $val) {
+                foreach ($swpf_px_size as $swpf_key => $val) {
                     if (is_array($val)) {
                         foreach ($val as $new_val) {
-                            if ($swpf_settings[$key][$new_val]) {
-                                $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $key) . '-' . str_replace('_', '-', $new_val) . ":{$swpf_settings[$key][$new_val]}px;";
+                            if ($swpf_settings[$swpf_key][$new_val]) {
+                                $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $swpf_key) . '-' . str_replace('_', '-', $new_val) . ":{$swpf_settings[$swpf_key][$new_val]}px;";
                             }
                         }
                     } else {
-                        if ($swpf_settings[$key][$val]) {
-                            $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $key) . '-' . $val . ":{$swpf_settings[$key][$val]}px;";
+                        if ($swpf_settings[$swpf_key][$val]) {
+                            $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $swpf_key) . '-' . $val . ":{$swpf_settings[$swpf_key][$val]}px;";
                         }
                     }
                 }
 
-                foreach ($swpf_dimension as $key => $val) {
+                foreach ($swpf_dimension as $swpf_key => $val) {
                     foreach (array('top', 'right', 'bottom', 'left') as $side) {
-                        if ($swpf_settings[$key][$val][$side]) {
-                            $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $key) . "-" . str_replace('_', '-', $val) . "-" . $side . ":{$swpf_settings[$key][$val][$side]}px;";
+                        if ($swpf_settings[$swpf_key][$val][$side]) {
+                            $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $swpf_key) . "-" . str_replace('_', '-', $val) . "-" . $side . ":{$swpf_settings[$swpf_key][$val][$side]}px;";
                         }
                     }
                 }
 
-                foreach ($swpf_typo as $key => $val) {
+                foreach ($swpf_typo as $swpf_key => $val) {
                     foreach ($val as $params) {
-                        if ($swpf_settings[$key][$params]) {
+                        if ($swpf_settings[$swpf_key][$params]) {
                             $unit = '';
                             if (in_array($params, array('size', 'letter_spacing'))) {
                                 $unit = 'px';
                             }
-                            $value = $swpf_settings[$key][$params];
+                            $value = $swpf_settings[$swpf_key][$params];
 
                             if ($params == 'style') {
                                 if ($value == 'inherit') {
@@ -426,19 +426,19 @@ class Super_Product_Filter_Public {
                                         $style_value = 'normal';
                                     }
                                 }
-                                $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $key) . "-weight:{$weight_value};";
-                                $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $key) . "-style:{$style_value};";
+                                $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $swpf_key) . "-weight:{$weight_value};";
+                                $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $swpf_key) . "-style:{$style_value};";
                             } else {
-                                $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $key) . "-" . str_replace('_', '-', $params) . ":{$value}{$unit};";
+                                $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $swpf_key) . "-" . str_replace('_', '-', $params) . ":{$value}{$unit};";
                             }
                         }
                     }
                 }
 
-                foreach ($swpf_select_type as $key) {
-                    $colorshape = $swpf_settings[$key]['shape'];
+                foreach ($swpf_select_type as $swpf_key) {
+                    $colorshape = $swpf_settings[$swpf_key]['shape'];
                     if ($colorshape == 'swpf-round') {
-                        $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $key) . "-borderradius:50%;";
+                        $swpf_css_vars .= "--swpf-" . str_replace('_', '-', $swpf_key) . "-borderradius:50%;";
                     }
                 }
 

@@ -11,17 +11,17 @@ $swpf_sc_title = get_the_title($swpf_sc_id);
 
 <div class="swpf-pricerange swpf-filter-pricerange-wrap swpf-filter-byprice slider-price">
     <?php
-    if (isset($settings['title_label']['price_range']) && !empty($settings['title_label']['price_range'])) {
+    if (isset($swpf_settings['title_label']['price_range']) && !empty($swpf_settings['title_label']['price_range'])) {
         ?>
         <div class="swpf-filter-title">
             <h4 class="swpf-filter-title-heading">
                 <?php
-                echo esc_html(apply_filters('swpf_translate_string', $settings['title_label']['price_range'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Taxonomy Name price_range'));
+                echo esc_html(apply_filters('swpf_translate_string', $swpf_settings['title_label']['price_range'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Taxonomy Name price_range'));
                 ?>
             </h4>
 
             <?php
-            if ($settings['config']['show_filter_list_toggle'] == 'on') {
+            if ($swpf_settings['config']['show_filter_list_toggle'] == 'on') {
                 ?>
                 <i class="swpf-filter-title-toggle swpf-minus-icon"></i>
                 <?php
@@ -34,10 +34,10 @@ $swpf_sc_title = get_the_title($swpf_sc_id);
 
     <div class="swpf-filter-content">
         <?php
-        $swpf_price_min = $min_price;
-        $swpf_price_max = $max_price;
-        $swpf_price_from = isset($current_filter_option['price']['min_price']) ? $current_filter_option['price']['min_price'] : '';
-        $swpf_price_to = isset($current_filter_option['price']['max_price']) ? $current_filter_option['price']['max_price'] : '';
+        $swpf_price_min = $swpf_min_price;
+        $swpf_price_max = $swpf_max_price;
+        $swpf_price_from = isset($swpf_current_filter_option['price']['min_price']) ? $swpf_current_filter_option['price']['min_price'] : '';
+        $swpf_price_to = isset($swpf_current_filter_option['price']['max_price']) ? $swpf_current_filter_option['price']['max_price'] : '';
 
         ?>
         <div class="swpf-range-slider"></div>

@@ -1,12 +1,12 @@
 <?php
 defined('ABSPATH') || die();
 
-if ($current_filter_option) {
-    foreach ($current_filter_option as $key => $value) {
-        if ($key == 'price') {
-            $min_max_price = Super_Product_Filter_General::get_filtered_price();
-            $from = isset($current_filter_option['price']['min_price']) && $current_filter_option['price']['min_price'] ? $current_filter_option['price']['min_price'] : floor($min_max_price->min_price ?: 0);
-            $to = isset($current_filter_option['price']['max_price']) && $current_filter_option['price']['max_price'] ? $current_filter_option['price']['max_price'] : ceil($min_max_price->max_price ?: 0);
+if ($swpf_current_filter_option) {
+    foreach ($swpf_current_filter_option as $swpf_key => $swpf_value) {
+        if ($swpf_key == 'price') {
+            $swpf_min_max_price = Super_Product_Filter_General::get_filtered_price();
+            $swpf_from = isset($swpf_current_filter_option['price']['min_price']) && $swpf_current_filter_option['price']['min_price'] ? $swpf_current_filter_option['price']['min_price'] : floor($swpf_min_max_price->min_price ?: 0);
+            $swpf_to = isset($swpf_current_filter_option['price']['max_price']) && $swpf_current_filter_option['price']['max_price'] ? $swpf_current_filter_option['price']['max_price'] : ceil($swpf_min_max_price->max_price ?: 0);
             ?>
 
             <div class="swpf-group-activated-filter swpf-activated-price">
@@ -17,55 +17,55 @@ if ($current_filter_option) {
 
                 <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[price]" value="1">
                     <?php
-                    $this->render_price($from);
+                    $this->render_price($swpf_from);
                     echo (" - ");
-                    $this->render_price($to)
+                    $this->render_price($swpf_to)
                         ?>
                     <span class="swpf-remove-filter-icon"></span>
                 </button>
             </div>
             <?php
-        } elseif ($key === 'range') {
-            if ($value) {
-                foreach ($value as $active_filter_tax => $active_filter_range) {
-                    $range_taxonomy = get_taxonomy($active_filter_tax);
-                    if (!$range_taxonomy) {
+        } elseif ($swpf_key === 'range') {
+            if ($swpf_value) {
+                foreach ($swpf_value as $swpf_active_filter_tax => $swpf_active_filter_range) {
+                    $swpf_range_taxonomy = get_taxonomy($swpf_active_filter_tax);
+                    if (!$swpf_range_taxonomy) {
                         continue;
                     }
                     ?>
                     <div class="swpf-group-activated-filter swpf-activated-range">
                         <span class="swpf-active-filter-title">
                             <i class="icofont-tick-boxed"></i>
-                            <?php echo esc_html($range_taxonomy->labels->singular_name); ?>
+                            <?php echo esc_html($swpf_range_taxonomy->labels->singular_name); ?>
                         </span>
 
-                        <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[range_<?php echo esc_attr($active_filter_tax) ?>]" value="1">
-                            <?php echo esc_attr($active_filter_range['min']) . ' - ' . esc_attr($active_filter_range['max']) ?>
+                        <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[range_<?php echo esc_attr($swpf_active_filter_tax) ?>]" value="1">
+                            <?php echo esc_attr($swpf_active_filter_range['min']) . ' - ' . esc_attr($swpf_active_filter_range['max']) ?>
                             <span class="swpf-remove-filter-icon"></span>
                         </button>
                     </div>
                     <?php
                 }
             }
-        } elseif ($key == 'attribute') {
-            $attributes = $value;
-            if ($attributes) {
-                foreach ($attributes as $attribute_slug => $option_slugs) {
+        } elseif ($swpf_key == 'attribute') {
+            $swpf_attributes = $swpf_value;
+            if ($swpf_attributes) {
+                foreach ($swpf_attributes as $swpf_attribute_slug => $swpf_option_slugs) {
                     ?>
                     <div class="swpf-group-activated-filter swpf-activated-attribute">
                         <span class="swpf-active-filter-title">
                             <i class="icofont-tick-boxed"></i>
-                            <?php echo esc_html(wc_attribute_label($attribute_slug)); ?>
+                            <?php echo esc_html(wc_attribute_label($swpf_attribute_slug)); ?>
                         </span>
                         <?php
-                        if ($option_slugs) {
-                            foreach ($option_slugs as $slug) {
-                                $str = '';
-                                $term = get_term_by('slug', $slug, $attribute_slug);
-                                $str .= $term->name;
+                        if ($swpf_option_slugs) {
+                            foreach ($swpf_option_slugs as $swpf_slug) {
+                                $swpf_str = '';
+                                $term = get_term_by('slug', $swpf_slug, $swpf_attribute_slug);
+                                $swpf_str .= $term->name;
                                 ?>
-                                <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[attribute][<?php echo esc_attr($attribute_slug); ?>]" value="<?php echo esc_attr($slug); ?>">
-                                    <?php echo esc_html($str); ?><span class="swpf-remove-filter-icon"></span>
+                                <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[attribute][<?php echo esc_attr($swpf_attribute_slug); ?>]" value="<?php echo esc_attr($swpf_slug); ?>">
+                                    <?php echo esc_html($swpf_str); ?><span class="swpf-remove-filter-icon"></span>
                                 </button>
                                 <?php
                             }
@@ -75,8 +75,8 @@ if ($current_filter_option) {
                     <?php
                 }
             }
-        } elseif ($key == 'tags') {
-            $tags = $value;
+        } elseif ($swpf_key == 'tags') {
+            $swpf_tags = $swpf_value;
             ?>
             <div class="swpf-group-activated-filter swpf-activated-attribute">
                 <span class="swpf-active-filter-title">
@@ -84,11 +84,11 @@ if ($current_filter_option) {
                     <?php esc_html_e('Tags', 'super-product-filter'); ?>
                 </span>
                 <?php
-                if ($tags) {
-                    foreach ($tags as $tag_slug) {
-                        $term = get_term_by('slug', $tag_slug, 'product_tag');
+                if ($swpf_tags) {
+                    foreach ($swpf_tags as $swpf_tag_slug) {
+                        $term = get_term_by('slug', $swpf_tag_slug, 'product_tag');
                         ?>
-                        <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[tags][<?php echo esc_attr($tag_slug); ?>]" value="<?php echo esc_attr($tag_slug); ?>">
+                        <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[tags][<?php echo esc_attr($swpf_tag_slug); ?>]" value="<?php echo esc_attr($swpf_tag_slug); ?>">
                             <?php echo esc_html(ucwords($term->name)); ?><span class="swpf-remove-filter-icon"></span>
                         </button>
                         <?php
@@ -98,8 +98,8 @@ if ($current_filter_option) {
 
             </div>
             <?php
-        } elseif ($key == 'brands') {
-            $brands = $value;
+        } elseif ($swpf_key == 'brands') {
+            $swpf_brands = $swpf_value;
             ?>
             <div class="swpf-group-activated-filter swpf-activated-attribute">
                 <span class="swpf-active-filter-title">
@@ -107,12 +107,12 @@ if ($current_filter_option) {
                     <?php esc_html_e('Brands', 'super-product-filter'); ?>
                 </span>
                 <?php
-                if ($brands) {
-                    foreach ($brands as $brand_slug) {
-                        $term = get_term_by('slug', $brand_slug, 'product_brand');
+                if ($swpf_brands) {
+                    foreach ($swpf_brands as $swpf_brand_slug) {
+                        $term = get_term_by('slug', $swpf_brand_slug, 'product_brand');
                         ?>
-                        <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[brands][<?php echo esc_attr($brand_slug); ?>]" value="<?php echo esc_attr($brand_slug); ?>">
-                            <?php echo esc_html(ucwords(esc_html(isset($term->name) ? $term->name : $brand_slug))); ?><span class="swpf-remove-filter-icon"></span>
+                        <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[brands][<?php echo esc_attr($swpf_brand_slug); ?>]" value="<?php echo esc_attr($swpf_brand_slug); ?>">
+                            <?php echo esc_html(ucwords(esc_html(isset($term->name) ? $term->name : $swpf_brand_slug))); ?><span class="swpf-remove-filter-icon"></span>
                         </button>
                         <?php
                     }
@@ -121,8 +121,8 @@ if ($current_filter_option) {
 
             </div>
             <?php
-        } elseif ($key == 'visibility') {
-            $visibility = $value;
+        } elseif ($swpf_key == 'visibility') {
+            $swpf_visibility = $swpf_value;
             ?>
             <div class="swpf-group-activated-filter swpf-activated-attribute">
                 <span class="swpf-active-filter-title">
@@ -130,11 +130,11 @@ if ($current_filter_option) {
                     <?php esc_html_e('Visibility', 'super-product-filter'); ?>
                 </span>
                 <?php
-                if ($visibility) {
-                    foreach ($visibility as $visibility_slug) {
-                        $term = get_term_by('slug', $visibility_slug, 'product_visibility');
+                if ($swpf_visibility) {
+                    foreach ($swpf_visibility as $swpf_visibility_slug) {
+                        $term = get_term_by('slug', $swpf_visibility_slug, 'product_visibility');
                         ?>
-                        <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[visibility][<?php echo esc_attr($visibility_slug); ?>]" value="<?php echo esc_attr($visibility_slug); ?>">
+                        <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[visibility][<?php echo esc_attr($swpf_visibility_slug); ?>]" value="<?php echo esc_attr($swpf_visibility_slug); ?>">
                             <?php echo esc_html(ucwords($term->name)); ?><span class="swpf-remove-filter-icon"></span>
                         </button>
                         <?php
@@ -143,14 +143,14 @@ if ($current_filter_option) {
                 ?>
             </div>
             <?php
-        } elseif ($key == 'categories') {
-            $category_slugs = $value;
+        } elseif ($swpf_key == 'categories') {
+            $swpf_category_slugs = $swpf_value;
             ?>
             <div class="swpf-group-activated-filter  swpf-activated-categories">
                 <span class="swpf-active-filter-title">
                     <i class="icofont-tick-boxed"></i>
                     <?php
-                    if (count($category_slugs) > 1) {
+                    if (count($swpf_category_slugs) > 1) {
                         esc_html_e('Categories', 'super-product-filter');
                     } else {
                         esc_html_e('Category', 'super-product-filter');
@@ -158,12 +158,12 @@ if ($current_filter_option) {
                     ?>
                 </span>
                 <?php
-                if ($category_slugs) {
-                    foreach ($category_slugs as $category_slug) {
-                        if ($category_slug) {
-                            $cat = get_term_by('slug', $category_slug, 'product_cat');
+                if ($swpf_category_slugs) {
+                    foreach ($swpf_category_slugs as $swpf_category_slug) {
+                        if ($swpf_category_slug) {
+                            $cat = get_term_by('slug', $swpf_category_slug, 'product_cat');
                             ?>
-                            <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[categories]" value="<?php echo esc_attr($category_slug); ?>">
+                            <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[categories]" value="<?php echo esc_attr($swpf_category_slug); ?>">
                                 <?php echo esc_html($cat->name) ?><span class="swpf-remove-filter-icon"></span>
                             </button>
                             <?php
@@ -173,7 +173,7 @@ if ($current_filter_option) {
                 ?>
             </div>
             <?php
-        } elseif ($key == 'on-sale' && $value == '1') {
+        } elseif ($swpf_key == 'on-sale' && $swpf_value == '1') {
             ?>
             <div class="swpf-group-activated-filter swpf-activated-on-sale">
                 <span class="swpf-active-filter-title">
@@ -187,7 +187,7 @@ if ($current_filter_option) {
                 </button>
             </div>
             <?php
-        } elseif ($key == 'in-stock' && $value == '1') {
+        } elseif ($swpf_key == 'in-stock' && $swpf_value == '1') {
             ?>
             <div class="swpf-group-activated-filter swpf-activated-in-stock">
                 <span class="swpf-active-filter-title">
@@ -201,7 +201,7 @@ if ($current_filter_option) {
                 </button>
             </div>
             <?php
-        } elseif ($key == 'review') {
+        } elseif ($swpf_key == 'review') {
             ?>
             <div class="swpf-group-activated-filter swpf-activated-review">
                 <span class="swpf-active-filter-title">
@@ -210,13 +210,13 @@ if ($current_filter_option) {
                 </span>
 
                 <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[review-from]" value="1">
-                    <?php echo esc_attr($value['review_from']); ?>
-                    <?php $value['review_from'] > 1 ? esc_html_e(' reviews', 'super-product-filter') : esc_html_e(' review', 'super-product-filter'); ?>
+                    <?php echo esc_attr($swpf_value['review_from']); ?>
+                    <?php $swpf_value['review_from'] > 1 ? esc_html_e(' reviews', 'super-product-filter') : esc_html_e(' review', 'super-product-filter'); ?>
                     <span class="swpf-remove-filter-icon"></span>
                 </button>
             </div>
             <?php
-        } elseif ($key == 'rating-from') {
+        } elseif ($swpf_key == 'rating-from') {
             ?>
             <div class="swpf-group-activated-filter swpf-activated-rating">
                 <span class="swpf-active-filter-title">
@@ -225,12 +225,12 @@ if ($current_filter_option) {
                 </span>
 
                 <?php
-                if ($value) {
-                    foreach ($value as $rating) {
+                if ($swpf_value) {
+                    foreach ($swpf_value as $swpf_rating) {
                         ?>
                         <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[rating-from]" value="1">
-                            <?php echo esc_attr($rating); ?>
-                            <?php $rating > 1 ? esc_html_e(' stars', 'super-product-filter') : esc_html_e(' star', 'super-product-filter'); ?>
+                            <?php echo esc_attr($swpf_rating); ?>
+                            <?php $swpf_rating > 1 ? esc_html_e(' stars', 'super-product-filter') : esc_html_e(' star', 'super-product-filter'); ?>
                             <span class="swpf-remove-filter-icon"></span>
                         </button>
                         <?php

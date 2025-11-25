@@ -22,15 +22,15 @@ class Super_Product_Filter_Init extends Super_Product_Filter_General {
 
             if (isset($product_columns) && $product_columns > 0) {
                 if (isset($this->settings['config']['product_rows']) && !empty($this->settings['config']['product_rows'])) {
-                    $product_rows = absint($this->settings['config']['product_rows']);
+                    $swpf_product_rows = absint($this->settings['config']['product_rows']);
                 }
 
                 $this->product_columns = $product_columns;
                 add_filter('loop_shop_columns', array($this, 'loop_columns'), 999);
 
-                if (isset($product_rows) && $product_rows > 0) {
-                    $post_per_page = $product_columns * $product_rows;
-                    $this->post_per_page = $post_per_page;
+                if (isset($swpf_product_rows) && $swpf_product_rows > 0) {
+                    $swpf_post_per_page = $product_columns * $swpf_product_rows;
+                    $this->post_per_page = $swpf_post_per_page;
                     add_filter('loop_shop_per_page', array($this, 'product_per_page'), 30);
                 }
             }
@@ -38,27 +38,27 @@ class Super_Product_Filter_Init extends Super_Product_Filter_General {
     }
 
     public function render_result() {
-        $total_posts_found = $filtered_data = '';
-        $settings = array();
+        $swpf_total_posts_found = $swpf_filtered_data = '';
+        $swpf_settings = array();
         $swpf_sc_id = swpf_get_var('swpf_filter_sc');
         if (isset($this->settings) && !empty($this->settings)) {
-            $settings = $this->settings;
+            $swpf_settings = $this->settings;
         } elseif ($swpf_sc_id) {
             $this->filter_shortcode_id = $swpf_sc_id;
-            $settings = get_post_meta($swpf_sc_id, 'swpf_settings', true);
-            if (!$settings) {
-                $settings = Super_Product_Filter_Metabox::default_settings_values();
+            $swpf_settings = get_post_meta($swpf_sc_id, 'swpf_settings', true);
+            if (!$swpf_settings) {
+                $swpf_settings = Super_Product_Filter_Metabox::default_settings_values();
             } else {
-                $settings = Super_Product_Filter_Admin::recursive_parse_args($settings, Super_Product_Filter_Metabox::default_settings_values());
+                $swpf_settings = Super_Product_Filter_Admin::recursive_parse_args($swpf_settings, Super_Product_Filter_Metabox::default_settings_values());
             }
-            $this->settings = $settings;
+            $this->settings = $swpf_settings;
         }
 
         $filter_id = 0;
         $filter_class = array('swpf-header-filters');
-        $filter_class[] = isset($settings['filterbox']['enablebottomborder']) && $settings['filterbox']['enablebottomborder'] == 'on' ? 'swpf-enablebottomborder' : '';
-        if (isset($settings['shortcode'])) {
-            $shortcode = $settings['shortcode'];
+        $filter_class[] = isset($swpf_settings['filterbox']['enablebottomborder']) && $swpf_settings['filterbox']['enablebottomborder'] == 'on' ? 'swpf-enablebottomborder' : '';
+        if (isset($swpf_settings['shortcode'])) {
+            $shortcode = $swpf_settings['shortcode'];
             $id_pos_start = strpos($shortcode, 'id=', 0) + 4;
             $id_pos_end = strpos($shortcode, '"', $id_pos_start);
             $filter_id = intval(substr($shortcode, $id_pos_start, $id_pos_end));
@@ -66,24 +66,24 @@ class Super_Product_Filter_Init extends Super_Product_Filter_General {
         }
         ?>
         <div class="<?php echo esc_attr(implode(' ', $filter_class)); ?>">
-            <div class="swpf-shown-items"><?php echo esc_html($total_posts_found); ?></div>
-            <div class="swpf-shown-filters"><?php echo wp_kses_post($filtered_data); ?></div>
+            <div class="swpf-shown-items"><?php echo esc_html($swpf_total_posts_found); ?></div>
+            <div class="swpf-shown-filters"><?php echo wp_kses_post($swpf_filtered_data); ?></div>
         </div>
         <?php
     }
 
-    public function add_numerical_order($terms, $taxonomies, $swpf_args, $term_query) {
+    public function add_numerical_order($swpf_terms, $taxonomies, $swpf_args, $term_query) {
         if (isset($swpf_args['orderby']) && $swpf_args['orderby'] == 'number') {
             $order = isset($swpf_args['order']) ? $swpf_args['order'] : 'ASC';
 
             if ($order == 'ASC') {
-                array_multisort(array_column($terms, 'name'), SORT_ASC, SORT_NATURAL, $terms);
+                array_multisort(array_column($swpf_terms, 'name'), SORT_ASC, SORT_NATURAL, $swpf_terms);
             } else {
-                array_multisort(array_column($terms, 'name'), SORT_DESC, SORT_NATURAL, $terms);
+                array_multisort(array_column($swpf_terms, 'name'), SORT_DESC, SORT_NATURAL, $swpf_terms);
             }
         }
 
-        return $terms;
+        return $swpf_terms;
     }
 
     public function remove_actions() {
@@ -123,12 +123,12 @@ class Super_Product_Filter_Init extends Super_Product_Filter_General {
             $rate = array();
             if (count($need_array)) {
                 $variations = $product->get_available_variations();
-                foreach ($variations as $key => $variant) {
+                foreach ($variations as $swpf_key => $variant) {
                     if (isset($variant['attributes'])) {
-                        $rate[$key] = 0;
+                        $rate[$swpf_key] = 0;
                         foreach ($need_array as $attr_name => $values) {
                             if (isset($variant['attributes']["attribute_" . $attr_name]) && in_array($variant['attributes']["attribute_" . $attr_name], $values)) {
-                                $rate[$key]++;
+                                $rate[$swpf_key]++;
                             }
                         }
                     }

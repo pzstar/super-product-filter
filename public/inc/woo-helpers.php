@@ -2,11 +2,11 @@
 defined('ABSPATH') || die();
 
 function swpf_get_shop_page_url() {
-    $shop_page_id = (int) wc_get_page_id('shop');
-    if ($shop_page_id <= 0) {
+    $swpf_shop_page_id = (int) wc_get_page_id('shop');
+    if ($swpf_shop_page_id <= 0) {
         $shop_page = get_post_type_archive_link('product');
     } else {
-        $shop_page = urldecode(get_permalink($shop_page_id));
+        $shop_page = urldecode(get_permalink($swpf_shop_page_id));
     }
     return $shop_page;
 }

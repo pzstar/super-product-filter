@@ -7,15 +7,15 @@ $swpf_sc_title = get_the_title($swpf_sc_id);
 
 <div class="swpf-filter-rating-wrap">
     <?php
-    if (isset($settings['title_label']['ratings']) && !empty($settings['title_label']['ratings'])) {
+    if (isset($swpf_settings['title_label']['ratings']) && !empty($swpf_settings['title_label']['ratings'])) {
         ?>
         <div class="swpf-filter-title">
             <h4 class="swpf-filter-title-heading">
-                <?php echo esc_html(apply_filters('swpf_translate_string', $settings['title_label']['ratings'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Taxonomy Name ratings')); ?>
+                <?php echo esc_html(apply_filters('swpf_translate_string', $swpf_settings['title_label']['ratings'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Taxonomy Name ratings')); ?>
             </h4>
 
             <?php
-            if ($settings['config']['show_filter_list_toggle'] == 'on') {
+            if ($swpf_settings['config']['show_filter_list_toggle'] == 'on') {
                 ?>
                 <i class="swpf-filter-title-toggle swpf-minus-icon"></i>
                 <?php
@@ -29,8 +29,8 @@ $swpf_sc_title = get_the_title($swpf_sc_id);
     <div class="swpf-filter-content">
         <?php
         $swpf_selected_val = [];
-        if (isset($current_filter_option['rating-from']) && !empty($current_filter_option['rating-from'])) {
-            $swpf_selected_val = $current_filter_option['rating-from'];
+        if (isset($swpf_current_filter_option['rating-from']) && !empty($swpf_current_filter_option['rating-from'])) {
+            $swpf_selected_val = $swpf_current_filter_option['rating-from'];
         }
         ?>
         <div class="swpf-filter-item-list swpf-list-rating">

@@ -253,15 +253,15 @@ if (!class_exists('SWPF_WebFont_Loader')) {
             }
 
             // Get the response.
-            $response = wp_remote_get($this->remote_url, array('user-agent' => $user_agent));
+            $swpf_response = wp_remote_get($this->remote_url, array('user-agent' => $user_agent));
 
             // Early exit if there was an error.
-            if (is_wp_error($response)) {
+            if (is_wp_error($swpf_response)) {
                 return '';
             }
 
             // Get the CSS from our response.
-            $contents = wp_remote_retrieve_body($response);
+            $contents = wp_remote_retrieve_body($swpf_response);
 
             return $contents;
         }

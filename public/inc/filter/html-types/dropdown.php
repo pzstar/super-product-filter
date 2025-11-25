@@ -1,16 +1,16 @@
 <?php
 defined('ABSPATH') || die();
 
-$swpf_tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['show_count'][$tax_name] == 'on') ? true : false;
+$swpf_tax_show_count = (isset($swpf_settings['show_count'][$swpf_tax_name]) && $swpf_settings['show_count'][$swpf_tax_name] == 'on') ? true : false;
 ?>
 
 <div class="swpf-filter-select">
     <?php
-    if ($tax_name == 'product_visibility') {
+    if ($swpf_tax_name == 'product_visibility') {
         ?>
         <select class="swpf-filter-type-dropdown" name="visibility">
             <?php
-            if (isset($settings['skins']['dropdown']) && $settings['skins']['dropdown'] == 'swpf-dropdown-skin-2') {
+            if (isset($swpf_settings['skins']['dropdown']) && $swpf_settings['skins']['dropdown'] == 'swpf-dropdown-skin-2') {
                 ?>
                 <option data-display="Select"><?php esc_html_e('Select', 'super-product-filter'); ?></option>
                 <?php
@@ -18,32 +18,32 @@ $swpf_tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['
             ?>
             <option value=""><?php esc_html_e('None', 'super-product-filter'); ?></option>
             <?php
-            if ($terms) {
-                foreach ($terms as $key => $term) {
-                    $selected = false;
+            if ($swpf_terms) {
+                foreach ($swpf_terms as $swpf_key => $swpf_term) {
+                    $swpf_selected = false;
 
                     if ($swpf_tax_show_count) {
-                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
+                        $swpf_args = swpf_get_vars_query_args($swpf_current_filter_option, $swpf_settings, $swpf_tax_name, $swpf_term->slug);
                         $swpf_term_cquery = new WP_Query($swpf_args);
                         $swpf_post_count = $swpf_term_cquery->post_count;
 
-                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
+                        $swpf_args = swpf_get_vars_query_args($swpf_current_filter_option, $swpf_settings, $swpf_tax_name, $swpf_term->slug, null, true);
                         $swpf_term_cquery = new WP_Query($swpf_args);
                         $swpf_post_count_ckk = $swpf_term_cquery->post_count;
                         wp_reset_postdata();
-                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $term->count);
+                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $swpf_term->count);
                     }
 
-                    if (isset($current_filter_option['visibility']) && !empty($current_filter_option['visibility']) && is_array($current_filter_option['visibility'])) {
-                        $selected = in_array($term->slug, $current_filter_option['visibility']) ? true : false;
+                    if (isset($swpf_current_filter_option['visibility']) && !empty($swpf_current_filter_option['visibility']) && is_array($swpf_current_filter_option['visibility'])) {
+                        $swpf_selected = in_array($swpf_term->slug, $swpf_current_filter_option['visibility']) ? true : false;
                     }
                     ?>
-                    <option data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php selected($selected, true); ?>>
+                    <option data-termurl="<?php echo esc_url(get_term_link($swpf_term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($swpf_term->taxonomy); ?>" data-termid="<?php echo esc_attr($swpf_term->term_id); ?>" value="<?php echo esc_attr($swpf_term->slug); ?>" <?php selected($swpf_selected, true); ?>>
                         <?php
-                        if (isset($settings['terms_customize'][$tax_name][$term->term_id]['term_name']) && !empty($settings['terms_customize'][$tax_name][$term->term_id]['term_name'])) {
-                            echo esc_html(apply_filters('swpf_translate_string', $settings['terms_customize'][$tax_name][$term->term_id]['term_name'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($term->term_id)));
+                        if (isset($swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name']) && !empty($swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name'])) {
+                            echo esc_html(apply_filters('swpf_translate_string', $swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($swpf_tax_name) . ' ' . absint($swpf_term->term_id)));
                         } else {
-                            echo esc_html(ucwords(str_replace('-', ' ', $term->name)));
+                            echo esc_html(ucwords(str_replace('-', ' ', $swpf_term->name)));
                         }
 
                         if ($swpf_tax_show_count) {
@@ -59,40 +59,40 @@ $swpf_tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['
             ?>
         </select>
         <?php
-    } elseif ($tax_name == 'product_cat') {
-        $exclude_terms = $settings['include_exclude_filter']['product_cat'] == 'exclude-terms' ? $settings['exclude_terms']['product_cat'] : [];
-        $include_terms = $settings['include_exclude_filter']['product_cat'] == 'include-terms' ? $settings['include_terms']['product_cat'] : [];
-        $selected_cats = '';
-        $hide_terms = [];
+    } elseif ($swpf_tax_name == 'product_cat') {
+        $swpf_exclude_terms = $swpf_settings['include_exclude_filter']['product_cat'] == 'exclude-terms' ? $swpf_settings['exclude_terms']['product_cat'] : [];
+        $swpf_include_terms = $swpf_settings['include_exclude_filter']['product_cat'] == 'include-terms' ? $swpf_settings['include_terms']['product_cat'] : [];
+        $swpf_selected_cats = '';
+        $swpf_hide_terms = [];
 
-        if (isset($current_filter_option['categories'])) {
-            $selected_cats = is_array($current_filter_option['categories']) ? implode(',', $current_filter_option['categories']) : $current_filter_option['categories'];
+        if (isset($swpf_current_filter_option['categories'])) {
+            $swpf_selected_cats = is_array($swpf_current_filter_option['categories']) ? implode(',', $swpf_current_filter_option['categories']) : $swpf_current_filter_option['categories'];
         }
         ?>
         <select class="swpf-filter-type-dropdown" name="categories">
             <option value="">None</option>
             <?php
-            if (isset($settings['config']['indent_cat']) && $settings['config']['indent_cat'] == 'on') {
-                $all_terms = $settings['terms_customize'][$tax_name];
-                $term_name_array = [];
+            if (isset($swpf_settings['config']['indent_cat']) && $swpf_settings['config']['indent_cat'] == 'on') {
+                $swpf_all_terms = $swpf_settings['terms_customize'][$swpf_tax_name];
+                $swpf_term_name_array = [];
                 $swpf_term_count_array = [];
 
-                if ($all_terms) {
-                    foreach ($all_terms as $key => $aterm) {
-                        $term_name_array[$key] = (isset($aterm['term_name']) && !empty($aterm['term_name'])) ? esc_html(apply_filters('swpf_translate_string', $aterm['term_name'], 'Super WooCommerce Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($key))) : esc_html(ucwords(str_replace('-', ' ', get_term($key)->name)));
-                        if (isset($settings['show_count']['product_cat']) && $settings['show_count']['product_cat'] == 'on') {
-                            $term = get_term($key);
-                            $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
+                if ($swpf_all_terms) {
+                    foreach ($swpf_all_terms as $swpf_key => $swpf_aterm) {
+                        $swpf_term_name_array[$swpf_key] = (isset($swpf_aterm['term_name']) && !empty($swpf_aterm['term_name'])) ? esc_html(apply_filters('swpf_translate_string', $swpf_aterm['term_name'], 'Super WooCommerce Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($swpf_tax_name) . ' ' . absint($swpf_key))) : esc_html(ucwords(str_replace('-', ' ', get_term($swpf_key)->name)));
+                        if (isset($swpf_settings['show_count']['product_cat']) && $swpf_settings['show_count']['product_cat'] == 'on') {
+                            $swpf_term = get_term($swpf_key);
+                            $swpf_args = swpf_get_vars_query_args($swpf_current_filter_option, $swpf_settings, $swpf_tax_name, $swpf_term->slug);
                             $swpf_term_cquery = new WP_Query($swpf_args);
                             $swpf_post_count = $swpf_term_cquery->post_count;
 
-                            $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
+                            $swpf_args = swpf_get_vars_query_args($swpf_current_filter_option, $swpf_settings, $swpf_tax_name, $swpf_term->slug, null, true);
                             $swpf_term_cquery = new WP_Query($swpf_args);
                             $swpf_post_count_ckk = $swpf_term_cquery->post_count;
                             wp_reset_postdata();
-                            $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $term->count);
+                            $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $swpf_term->count);
 
-                            $swpf_term_count_array[$key] = $swpf_post_count;
+                            $swpf_term_count_array[$swpf_key] = $swpf_post_count;
                         }
                     }
                 }
@@ -100,38 +100,38 @@ $swpf_tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['
                     'taxonomy' => 'product_cat',
                     'name' => 'categories',
                     'value_field' => 'slug',
-                    'selected_cats' => $selected_cats,
+                    'selected_cats' => $swpf_selected_cats,
                     'show_count' => $swpf_tax_show_count,
-                    'term_name_array' => $term_name_array,
+                    'term_name_array' => $swpf_term_name_array,
                     'term_count_array' => $swpf_term_count_array,
                     'hide_empty' => false,
-                    'hide_terms' => $hide_terms
-                ), $terms);
-            } else if ($terms) {
-                foreach ($terms as $key => $term) {
-                    $selected = false;
-                    if (isset($current_filter_option['categories']) && !empty($current_filter_option['categories']) && is_array($current_filter_option['categories'])) {
-                        $selected = in_array($term->slug, $current_filter_option['categories']) ? true : false;
+                    'hide_terms' => $swpf_hide_terms
+                ), $swpf_terms);
+            } else if ($swpf_terms) {
+                foreach ($swpf_terms as $swpf_key => $swpf_term) {
+                    $swpf_selected = false;
+                    if (isset($swpf_current_filter_option['categories']) && !empty($swpf_current_filter_option['categories']) && is_array($swpf_current_filter_option['categories'])) {
+                        $swpf_selected = in_array($swpf_term->slug, $swpf_current_filter_option['categories']) ? true : false;
                     }
 
                     if ($swpf_tax_show_count) {
-                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
+                        $swpf_args = swpf_get_vars_query_args($swpf_current_filter_option, $swpf_settings, $swpf_tax_name, $swpf_term->slug);
                         $swpf_term_cquery = new WP_Query($swpf_args);
                         $swpf_post_count = $swpf_term_cquery->post_count;
 
-                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
+                        $swpf_args = swpf_get_vars_query_args($swpf_current_filter_option, $swpf_settings, $swpf_tax_name, $swpf_term->slug, null, true);
                         $swpf_term_cquery = new WP_Query($swpf_args);
                         $swpf_post_count_ckk = $swpf_term_cquery->post_count;
                         wp_reset_postdata();
-                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $term->count);
+                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $swpf_term->count);
                     }
                     ?>
-                    <option data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php selected($selected, true); ?>>
+                    <option data-termurl="<?php echo esc_url(get_term_link($swpf_term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($swpf_term->taxonomy); ?>" data-termid="<?php echo esc_attr($swpf_term->term_id); ?>" value="<?php echo esc_attr($swpf_term->slug); ?>" <?php selected($swpf_selected, true); ?>>
                         <?php
-                        if (isset($settings['terms_customize'][$tax_name][$term->term_id]['term_name']) && !empty($settings['terms_customize'][$tax_name][$term->term_id]['term_name'])) {
-                            echo esc_html(apply_filters('swpf_translate_string', $settings['terms_customize'][$tax_name][$term->term_id]['term_name'], 'Super WooCommerce Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($term->term_id)));
+                        if (isset($swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name']) && !empty($swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name'])) {
+                            echo esc_html(apply_filters('swpf_translate_string', $swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name'], 'Super WooCommerce Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($swpf_tax_name) . ' ' . absint($swpf_term->term_id)));
                         } else {
-                            echo esc_html(ucwords(str_replace('-', ' ', $term->name)));
+                            echo esc_html(ucwords(str_replace('-', ' ', $swpf_term->name)));
                         }
 
                         if ($swpf_tax_show_count) {
@@ -147,37 +147,37 @@ $swpf_tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['
             ?>
         </select>
         <?php
-    } elseif ($tax_name == 'product_tag') {
+    } elseif ($swpf_tax_name == 'product_tag') {
         ?>
         <select class="swpf-filter-type-dropdown" name="tags">
             <option value=""><?php esc_html_e('None', 'super-product-filter'); ?></option>
             <?php
-            if ($terms) {
-                foreach ($terms as $key => $term) {
-                    $selected = false;
+            if ($swpf_terms) {
+                foreach ($swpf_terms as $swpf_key => $swpf_term) {
+                    $swpf_selected = false;
 
                     if ($swpf_tax_show_count) {
-                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
+                        $swpf_args = swpf_get_vars_query_args($swpf_current_filter_option, $swpf_settings, $swpf_tax_name, $swpf_term->slug);
                         $swpf_term_cquery = new WP_Query($swpf_args);
                         $swpf_post_count = $swpf_term_cquery->post_count;
 
-                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
+                        $swpf_args = swpf_get_vars_query_args($swpf_current_filter_option, $swpf_settings, $swpf_tax_name, $swpf_term->slug, null, true);
                         $swpf_term_cquery = new WP_Query($swpf_args);
                         $swpf_post_count_ckk = $swpf_term_cquery->post_count;
                         wp_reset_postdata();
-                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $term->count);
+                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $swpf_term->count);
                     }
 
-                    if (isset($current_filter_option['tags']) && !empty($current_filter_option['tags']) && is_array($current_filter_option['tags'])) {
-                        $selected = in_array($term->slug, $current_filter_option['tags']) ? true : false;
+                    if (isset($swpf_current_filter_option['tags']) && !empty($swpf_current_filter_option['tags']) && is_array($swpf_current_filter_option['tags'])) {
+                        $swpf_selected = in_array($swpf_term->slug, $swpf_current_filter_option['tags']) ? true : false;
                     }
                     ?>
-                    <option data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php selected($selected, true); ?>>
+                    <option data-termurl="<?php echo esc_url(get_term_link($swpf_term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($swpf_term->taxonomy); ?>" data-termid="<?php echo esc_attr($swpf_term->term_id); ?>" value="<?php echo esc_attr($swpf_term->slug); ?>" <?php selected($swpf_selected, true); ?>>
                         <?php
-                        if (isset($settings['terms_customize'][$tax_name][$term->term_id]['term_name']) && !empty($settings['terms_customize'][$tax_name][$term->term_id]['term_name'])) {
-                            echo esc_html(apply_filters('swpf_translate_string', $settings['terms_customize'][$tax_name][$term->term_id]['term_name'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($term->term_id)));
+                        if (isset($swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name']) && !empty($swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name'])) {
+                            echo esc_html(apply_filters('swpf_translate_string', $swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($swpf_tax_name) . ' ' . absint($swpf_term->term_id)));
                         } else {
-                            echo esc_html(ucwords(str_replace('-', ' ', $term->name)));
+                            echo esc_html(ucwords(str_replace('-', ' ', $swpf_term->name)));
                         }
 
                         if ($swpf_tax_show_count) {
@@ -193,37 +193,37 @@ $swpf_tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['
             ?>
         </select>
         <?php
-    } elseif ($tax_name == 'product_brand') {
+    } elseif ($swpf_tax_name == 'product_brand') {
         ?>
         <select class="swpf-filter-type-dropdown" name="brands">
             <option value=""><?php esc_html_e('None', 'super-product-filter'); ?></option>
             <?php
-            if ($terms) {
-                foreach ($terms as $key => $term) {
-                    $selected = false;
+            if ($swpf_terms) {
+                foreach ($swpf_terms as $swpf_key => $swpf_term) {
+                    $swpf_selected = false;
 
                     if ($swpf_tax_show_count) {
-                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
+                        $swpf_args = swpf_get_vars_query_args($swpf_current_filter_option, $swpf_settings, $swpf_tax_name, $swpf_term->slug);
                         $swpf_term_cquery = new WP_Query($swpf_args);
                         $swpf_post_count = $swpf_term_cquery->post_count;
 
-                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
+                        $swpf_args = swpf_get_vars_query_args($swpf_current_filter_option, $swpf_settings, $swpf_tax_name, $swpf_term->slug, null, true);
                         $swpf_term_cquery = new WP_Query($swpf_args);
                         $swpf_post_count_ckk = $swpf_term_cquery->post_count;
                         wp_reset_postdata();
-                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, swpf_get_brand_count($term->term_id));
+                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, swpf_get_brand_count($swpf_term->term_id));
                     }
 
-                    if (isset($current_filter_option['brands']) && !empty($current_filter_option['brands']) && is_array($current_filter_option['brands'])) {
-                        $selected = in_array($term->slug, $current_filter_option['brands']) ? true : false;
+                    if (isset($swpf_current_filter_option['brands']) && !empty($swpf_current_filter_option['brands']) && is_array($swpf_current_filter_option['brands'])) {
+                        $swpf_selected = in_array($swpf_term->slug, $swpf_current_filter_option['brands']) ? true : false;
                     }
                     ?>
-                    <option data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php selected($selected, true); ?>>
+                    <option data-termurl="<?php echo esc_url(get_term_link($swpf_term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($swpf_term->taxonomy); ?>" data-termid="<?php echo esc_attr($swpf_term->term_id); ?>" value="<?php echo esc_attr($swpf_term->slug); ?>" <?php selected($swpf_selected, true); ?>>
                         <?php
-                        if (isset($settings['terms_customize'][$tax_name][$term->term_id]['term_name']) && !empty($settings['terms_customize'][$tax_name][$term->term_id]['term_name'])) {
-                            echo esc_html(apply_filters('swpf_translate_string', $settings['terms_customize'][$tax_name][$term->term_id]['term_name'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($term->term_id)));
+                        if (isset($swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name']) && !empty($swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name'])) {
+                            echo esc_html(apply_filters('swpf_translate_string', $swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($swpf_tax_name) . ' ' . absint($swpf_term->term_id)));
                         } else {
-                            echo esc_html(ucwords(str_replace('-', ' ', $term->name)));
+                            echo esc_html(ucwords(str_replace('-', ' ', $swpf_term->name)));
                         }
 
                         if ($swpf_tax_show_count) {
@@ -239,37 +239,37 @@ $swpf_tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['
             ?>
         </select>
         <?php
-    } elseif ((substr($tax_name, 0, 3) === 'pa_')) {
+    } elseif ((substr($swpf_tax_name, 0, 3) === 'pa_')) {
         ?>
-        <select class="swpf-filter-type-dropdown" name="attribute[<?php echo esc_attr($tax_name); ?>][]">
+        <select class="swpf-filter-type-dropdown" name="attribute[<?php echo esc_attr($swpf_tax_name); ?>][]">
             <option value=""><?php esc_html_e('None', 'super-product-filter'); ?></option>
             <?php
-            if ($terms) {
-                foreach ($terms as $key => $term) {
-                    $selected = false;
+            if ($swpf_terms) {
+                foreach ($swpf_terms as $swpf_key => $swpf_term) {
+                    $swpf_selected = false;
 
                     if ($swpf_tax_show_count) {
-                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
+                        $swpf_args = swpf_get_vars_query_args($swpf_current_filter_option, $swpf_settings, $swpf_tax_name, $swpf_term->slug);
                         $swpf_term_cquery = new WP_Query($swpf_args);
                         $swpf_post_count = $swpf_term_cquery->post_count;
 
-                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
+                        $swpf_args = swpf_get_vars_query_args($swpf_current_filter_option, $swpf_settings, $swpf_tax_name, $swpf_term->slug, null, true);
                         $swpf_term_cquery = new WP_Query($swpf_args);
                         $swpf_post_count_ckk = $swpf_term_cquery->post_count;
                         wp_reset_postdata();
-                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $term->count);
+                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $swpf_term->count);
                     }
 
-                    if (isset($current_filter_option['attribute'][$tax_name]) && !empty($current_filter_option['attribute'][$tax_name]) && is_array($current_filter_option['attribute'][$tax_name])) {
-                        $selected = in_array($term->slug, $current_filter_option['attribute'][$tax_name]) ? true : false;
+                    if (isset($swpf_current_filter_option['attribute'][$swpf_tax_name]) && !empty($swpf_current_filter_option['attribute'][$swpf_tax_name]) && is_array($swpf_current_filter_option['attribute'][$swpf_tax_name])) {
+                        $swpf_selected = in_array($swpf_term->slug, $swpf_current_filter_option['attribute'][$swpf_tax_name]) ? true : false;
                     }
                     ?>
-                    <option data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php selected($selected, true); ?>>
+                    <option data-termurl="<?php echo esc_url(get_term_link($swpf_term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($swpf_term->taxonomy); ?>" data-termid="<?php echo esc_attr($swpf_term->term_id); ?>" value="<?php echo esc_attr($swpf_term->slug); ?>" <?php selected($swpf_selected, true); ?>>
                         <?php
-                        if (isset($settings['terms_customize'][$tax_name][$term->term_id]['term_name']) && !empty($settings['terms_customize'][$tax_name][$term->term_id]['term_name'])) {
-                            echo esc_html(apply_filters('swpf_translate_string', $settings['terms_customize'][$tax_name][$term->term_id]['term_name'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($term->term_id)));
+                        if (isset($swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name']) && !empty($swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name'])) {
+                            echo esc_html(apply_filters('swpf_translate_string', $swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($swpf_tax_name) . ' ' . absint($swpf_term->term_id)));
                         } else {
-                            echo esc_html(ucwords(str_replace('-', ' ', $term->name)));
+                            echo esc_html(ucwords(str_replace('-', ' ', $swpf_term->name)));
                         }
 
                         if ($swpf_tax_show_count) {
@@ -285,38 +285,38 @@ $swpf_tax_show_count = (isset($settings['show_count'][$tax_name]) && $settings['
             ?>
         </select>
         <?php
-    } elseif ($tax_name) {
+    } elseif ($swpf_tax_name) {
         ?>
-        <select class="swpf-filter-type-dropdown" name="attribute[<?php echo esc_attr($tax_name); ?>][]">
+        <select class="swpf-filter-type-dropdown" name="attribute[<?php echo esc_attr($swpf_tax_name); ?>][]">
             <option value=""><?php esc_html_e('None', 'super-product-filter'); ?></option>
             <?php
-            if ($terms) {
-                foreach ($terms as $key => $term) {
-                    $selected = false;
+            if ($swpf_terms) {
+                foreach ($swpf_terms as $swpf_key => $swpf_term) {
+                    $swpf_selected = false;
 
                     if ($swpf_tax_show_count) {
-                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug);
+                        $swpf_args = swpf_get_vars_query_args($swpf_current_filter_option, $swpf_settings, $swpf_tax_name, $swpf_term->slug);
                         $swpf_term_cquery = new WP_Query($swpf_args);
                         $swpf_post_count = $swpf_term_cquery->post_count;
 
-                        $swpf_args = swpf_get_vars_query_args($current_filter_option, $settings, $tax_name, $term->slug, null, true);
+                        $swpf_args = swpf_get_vars_query_args($swpf_current_filter_option, $swpf_settings, $swpf_tax_name, $swpf_term->slug, null, true);
                         $swpf_term_cquery = new WP_Query($swpf_args);
                         $swpf_post_count_ckk = $swpf_term_cquery->post_count;
                         wp_reset_postdata();
-                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $term->count);
+                        $swpf_post_count = min($swpf_post_count, $swpf_post_count_ckk, $swpf_term->count);
                     }
 
-                    if (isset($current_filter_option['attribute'][$tax_name]) && !empty($current_filter_option['attribute'][$tax_name]) && is_array($current_filter_option['attribute'][$tax_name])) {
-                        $selected = in_array($term->slug, $current_filter_option['attribute'][$tax_name]) ? true : false;
+                    if (isset($swpf_current_filter_option['attribute'][$swpf_tax_name]) && !empty($swpf_current_filter_option['attribute'][$swpf_tax_name]) && is_array($swpf_current_filter_option['attribute'][$swpf_tax_name])) {
+                        $swpf_selected = in_array($swpf_term->slug, $swpf_current_filter_option['attribute'][$swpf_tax_name]) ? true : false;
                     }
                     ?>
 
-                    <option data-termurl="<?php echo esc_url(get_term_link($term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>" data-termid="<?php echo esc_attr($term->term_id); ?>" value="<?php echo esc_attr($term->slug); ?>" <?php selected($selected, true); ?>>
+                    <option data-termurl="<?php echo esc_url(get_term_link($swpf_term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($swpf_term->taxonomy); ?>" data-termid="<?php echo esc_attr($swpf_term->term_id); ?>" value="<?php echo esc_attr($swpf_term->slug); ?>" <?php selected($swpf_selected, true); ?>>
                         <?php
-                        if (isset($settings['terms_customize'][$tax_name][$term->term_id]['term_name']) && !empty($settings['terms_customize'][$tax_name][$term->term_id]['term_name'])) {
-                            echo esc_html(apply_filters('swpf_translate_string', $settings['terms_customize'][$tax_name][$term->term_id]['term_name'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($tax_name) . ' ' . absint($term->term_id)));
+                        if (isset($swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name']) && !empty($swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name'])) {
+                            echo esc_html(apply_filters('swpf_translate_string', $swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($swpf_tax_name) . ' ' . absint($swpf_term->term_id)));
                         } else {
-                            echo esc_html(ucwords(str_replace('-', ' ', $term->name)));
+                            echo esc_html(ucwords(str_replace('-', ' ', $swpf_term->name)));
                         }
 
                         if ($swpf_tax_show_count) {
