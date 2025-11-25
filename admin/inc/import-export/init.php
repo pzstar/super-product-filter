@@ -12,19 +12,24 @@ class Super_Product_Filter_Import_Export {
 
     public function process_settings_export() {
 
-        if (empty(swpf_get_post('swpf_imex_action')) || 'export_settings' != swpf_get_post('swpf_imex_action') || empty(swpf_get_post('swpf_filter_id')))
+        if (empty(swpf_get_post('swpf_imex_action')) || 'export_settings' != swpf_get_post('swpf_imex_action') || empty(swpf_get_post('swpf_filter_id'))) {
             return;
+        }
 
-        if (!wp_verify_nonce(swpf_get_post('swpf_imex_export_nonce'), 'swpf_imex_export_nonce'))
+        if (!wp_verify_nonce(swpf_get_post('swpf_imex_export_nonce'), 'swpf_imex_export_nonce')) {
             return;
+        }
 
-        if (!current_user_can('manage_options'))
+        if (!current_user_can('manage_options')) {
             return;
+        }
+
         $filter_id = swpf_get_post('swpf_filter_id');
 
         if ('publish' == get_post_status($filter_id) || 'draft' == get_post_status($filter_id)) {
             $settings = get_post_meta($filter_id, 'swpf_settings', true);
             $unset_array = array('enable', 'title_label', 'list_order', 'show_count', 'hide_term_name', 'search_filter', 'placeholder_txt', 'multiselect_logic_operator', 'include_exclude_filter', 'field_orientation', 'terms_customize', 'orderby', 'order_type', 'display_option', 'shortcode', 'display');
+
             foreach ($unset_array as $key) {
                 unset($settings[$key]);
             }
@@ -40,6 +45,7 @@ class Super_Product_Filter_Import_Export {
 
             echo wp_json_encode($settings);
             exit;
+
         } else {
             wp_die(esc_html__('Please update post before you export', 'super-product-filter'));
         }
@@ -47,14 +53,17 @@ class Super_Product_Filter_Import_Export {
 
     public function process_settings_import() {
 
-        if (empty(swpf_get_post('swpf_imex_action')) || 'import_settings' != swpf_get_post('swpf_imex_action') || empty(swpf_get_post('swpf_filter_id')))
+        if (empty(swpf_get_post('swpf_imex_action')) || 'import_settings' != swpf_get_post('swpf_imex_action') || empty(swpf_get_post('swpf_filter_id'))) {
             return;
+        }
 
-        if (!wp_verify_nonce(swpf_get_post('swpf_imex_import_nonce'), 'swpf_imex_import_nonce'))
+        if (!wp_verify_nonce(swpf_get_post('swpf_imex_import_nonce'), 'swpf_imex_import_nonce')) {
             return;
+        }
 
-        if (!current_user_can('manage_options'))
+        if (!current_user_can('manage_options')) {
             return;
+        }
 
         $filename = isset($_FILES['swpf_import_file']['name']) ? sanitize_file_name($_FILES['swpf_import_file']['name']) : '';
         $extension = explode('.', $filename);
@@ -79,7 +88,7 @@ class Super_Product_Filter_Import_Export {
             $old_settings = get_post_meta($filter_id, 'swpf_settings', true);
             $settings = self::import_images($imdat);
             $settings = Super_Product_Filter_Admin::recursive_parse_args($settings, $old_settings);
-            $settings = Super_Product_Filter_Admin::sanitize_array($settings, self::sanitize_settings_rules());
+            $settings = Super_Product_Filter_Admin::sanitize_array($settings, Super_Product_Filter_Metabox::sanitize_settings_rules());
             update_post_meta($filter_id, 'swpf_settings', $settings);
 
             $location = isset($_SERVER['HTTP_REFERER']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_REFERER'])) : '';
@@ -168,3 +177,5 @@ class Super_Product_Filter_Import_Export {
         return $data;
     }
 }
+
+new Super_Product_Filter_Import_Export();

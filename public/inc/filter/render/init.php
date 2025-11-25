@@ -21,14 +21,14 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
         }
     }
 
-    public function filter_posts($wp_query, $post_data = false) {
+    public function filter_posts($wp_query, $swpf_post_data = false) {
         if ((isset($GLOBALS['current_screen']) && $GLOBALS['current_screen']->in_admin()) || is_customize_preview()) {
             return $wp_query;
         }
 
-        $swpf_current_filter_option = self::get_current_filter_options($post_data);
+        $swpf_current_filter_option = self::get_current_filter_options($swpf_post_data);
 
-        if (empty($post_data)) {
+        if (empty($swpf_post_data)) {
             $swpf_current_filter_option = self::get_current_filter_options_vars();
         }
 
@@ -45,14 +45,14 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
             die();
         }
 
-        if (isset($post_data['pagination_link'])) {
+        if (isset($swpf_post_data['pagination_link'])) {
             add_filter('woocommerce_pagination_args', array($this, 'pagination_args'), 10, 1);
         }
 
         $filter_shortcode_id = swpf_get_var('swpf_filter_sc');
 
-        if (!empty($post_data['swpf_filter_sc'])) {
-            $this->filter_shortcode_id = absint($post_data['swpf_filter_sc']);
+        if (!empty($swpf_post_data['swpf_filter_sc'])) {
+            $this->filter_shortcode_id = absint($swpf_post_data['swpf_filter_sc']);
             $this->settings = get_post_meta($this->filter_shortcode_id, 'swpf_settings', true);
         } elseif ($filter_shortcode_id) {
             $this->filter_shortcode_id = absint($filter_shortcode_id);
@@ -254,10 +254,10 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
     }
 
     public function pagination_args($arg) {
-        $post_data = swpf_get_post_data('swpf_form_data');
+        $swpf_post_data = swpf_get_post_data('swpf_form_data');
 
-        if (!empty($post_data)) {
-            $pagination_link = ($post_data['pagination_link']);
+        if (!empty($swpf_post_data)) {
+            $pagination_link = ($swpf_post_data['pagination_link']);
             $arg['base'] = $pagination_link;
         }
 
@@ -280,10 +280,10 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
         }
 
         $query_arg = $wp_query->query;
-        $post_data = self::get_current_filter_options_vars();
+        $swpf_post_data = self::get_current_filter_options_vars();
 
-        if ($post_data) {
-            $query_arg = $post_data;
+        if ($swpf_post_data) {
+            $query_arg = $swpf_post_data;
         }
 
         if (isset($wp_query->query_vars['product_cat']) && empty($query_arg['categories'])) {

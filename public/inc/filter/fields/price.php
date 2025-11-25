@@ -5,8 +5,7 @@ if (wp_is_mobile()) {
     wp_enqueue_script('touch-punch');
 }
 
-$swpf_sc_id = $this->shortcode_id;
-$swpf_sc_title = get_the_title($swpf_sc_id);
+$swpf_sc_title = get_the_title($swpf_shortcode_id);
 ?>
 
 <div class="swpf-pricerange swpf-filter-pricerange-wrap swpf-filter-byprice slider-price">

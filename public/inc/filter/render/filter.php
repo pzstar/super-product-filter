@@ -17,7 +17,7 @@ $swpf_shop_page_id = get_option('woocommerce_shop_page_id');
 $swpf_elementor_page = get_post_meta($swpf_shop_page_id, '_elementor_edit_mode', true);
 
 if (defined('DOING_AJAX') && DOING_AJAX) {
-    $swpf_current_filter_option = self::get_current_filter_options($post_data);
+    $swpf_current_filter_option = self::get_current_filter_options($swpf_post_data);
     $swpf_unique_id = swpf_get_post('unique_id');
     $swpf_current_page_id = swpf_get_post('current_page_id');
     $swpf_prevposid = isset($swpf_posid) ? absint($swpf_posid) : null;
@@ -76,6 +76,14 @@ $swpf_form_class = ['apply_ajax'];
 if ($swpf_auto_submit) {
     array_push($swpf_form_class, 'swpf-instant-filtering');
 }
+
+$checkbox_skin = isset($swpf_settings['checkboxradio']['skin']) ? array_push($swpf_form_class, $swpf_settings['checkboxradio']['skin']) : array_push($swpf_form_class, 'swpf-checkboxradio-skin-1');
+$dropdown_skin = isset($swpf_settings['dropdown']['skin']) ? array_push($swpf_form_class, $swpf_settings['dropdown']['skin']) : array_push($swpf_form_class, 'swpf-dropdown-skin-1');
+$multiselect_skin = isset($swpf_settings['multiselect']['skin']) ? array_push($swpf_form_class, $swpf_settings['multiselect']['skin']) : array_push($swpf_form_class, 'swpf-multiselect-skin-1');
+$rangeslider_skin = isset($swpf_settings['pricerangeslider']['skin']) ? array_push($swpf_form_class, $swpf_settings['pricerangeslider']['skin']) : array_push($swpf_form_class, 'swpf-pricerangeslider-skin-1');
+$button_skin = isset($swpf_settings['button']['skin']) ? array_push($swpf_form_class, $swpf_settings['button']['skin']) : array_push($swpf_form_class, 'swpf-button-skin-1');
+$toggle_skin = isset($swpf_settings['toggle']['skin']) ? array_push($swpf_form_class, $swpf_settings['toggle']['skin']) : array_push($swpf_form_class, 'swpf-toggle-skin-1');
+$button_size = isset($swpf_settings['button']['size']) ? array_push($swpf_form_class, $swpf_settings['button']['size']) : array_push($swpf_form_class, 'swpf-medium');
 
 $swpf_enablebottomborder = isset($swpf_settings['filterbox']['enablebottomborder']) && $swpf_settings['filterbox']['enablebottomborder'] == 'on' ? array_push($swpf_form_class, 'swpf-enablebottomborder') : '';
 $swpf_ajax_load = apply_filters('swpf_ajax_initial_filter', (!(is_shop() || is_product_category() || is_product_taxonomy())) || $swpf_elementor_page);
