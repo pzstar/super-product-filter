@@ -77,13 +77,13 @@ if ($swpf_auto_submit) {
     array_push($swpf_form_class, 'swpf-instant-filtering');
 }
 
-$checkbox_skin = isset($swpf_settings['checkboxradio']['skin']) ? array_push($swpf_form_class, $swpf_settings['checkboxradio']['skin']) : array_push($swpf_form_class, 'swpf-checkboxradio-skin-1');
-$dropdown_skin = isset($swpf_settings['dropdown']['skin']) ? array_push($swpf_form_class, $swpf_settings['dropdown']['skin']) : array_push($swpf_form_class, 'swpf-dropdown-skin-1');
-$multiselect_skin = isset($swpf_settings['multiselect']['skin']) ? array_push($swpf_form_class, $swpf_settings['multiselect']['skin']) : array_push($swpf_form_class, 'swpf-multiselect-skin-1');
-$rangeslider_skin = isset($swpf_settings['pricerangeslider']['skin']) ? array_push($swpf_form_class, $swpf_settings['pricerangeslider']['skin']) : array_push($swpf_form_class, 'swpf-pricerangeslider-skin-1');
-$button_skin = isset($swpf_settings['button']['skin']) ? array_push($swpf_form_class, $swpf_settings['button']['skin']) : array_push($swpf_form_class, 'swpf-button-skin-1');
-$toggle_skin = isset($swpf_settings['toggle']['skin']) ? array_push($swpf_form_class, $swpf_settings['toggle']['skin']) : array_push($swpf_form_class, 'swpf-toggle-skin-1');
-$button_size = isset($swpf_settings['button']['size']) ? array_push($swpf_form_class, $swpf_settings['button']['size']) : array_push($swpf_form_class, 'swpf-medium');
+isset($swpf_settings['checkboxradio']['skin']) ? array_push($swpf_form_class, $swpf_settings['checkboxradio']['skin']) : array_push($swpf_form_class, 'swpf-checkboxradio-skin-1');
+isset($swpf_settings['dropdown']['skin']) ? array_push($swpf_form_class, $swpf_settings['dropdown']['skin']) : array_push($swpf_form_class, 'swpf-dropdown-skin-1');
+isset($swpf_settings['multiselect']['skin']) ? array_push($swpf_form_class, $swpf_settings['multiselect']['skin']) : array_push($swpf_form_class, 'swpf-multiselect-skin-1');
+isset($swpf_settings['pricerangeslider']['skin']) ? array_push($swpf_form_class, $swpf_settings['pricerangeslider']['skin']) : array_push($swpf_form_class, 'swpf-pricerangeslider-skin-1');
+isset($swpf_settings['button']['skin']) ? array_push($swpf_form_class, $swpf_settings['button']['skin']) : array_push($swpf_form_class, 'swpf-button-skin-1');
+isset($swpf_settings['toggle']['skin']) ? array_push($swpf_form_class, $swpf_settings['toggle']['skin']) : array_push($swpf_form_class, 'swpf-toggle-skin-1');
+isset($swpf_settings['button']['size']) ? array_push($swpf_form_class, $swpf_settings['button']['size']) : array_push($swpf_form_class, 'swpf-medium');
 
 $swpf_enablebottomborder = isset($swpf_settings['filterbox']['enablebottomborder']) && $swpf_settings['filterbox']['enablebottomborder'] == 'on' ? array_push($swpf_form_class, 'swpf-enablebottomborder') : '';
 $swpf_ajax_load = apply_filters('swpf_ajax_initial_filter', (!(is_shop() || is_product_category() || is_product_taxonomy())) || $swpf_elementor_page);

@@ -52,8 +52,6 @@ if ($swpf_tax_name == 'product_visibility') {
     <?php
 
 } elseif ($swpf_tax_name == 'product_cat') {
-    $swpf_exclude_terms = isset($swpf_settings['exclude_terms']['product_cat']) && $swpf_settings['include_exclude_filter']['product_cat'] == 'exclude-terms' ? $swpf_settings['exclude_terms']['product_cat'] : [];
-    $swpf_include_terms = isset($swpf_settings['include_terms']['product_cat']) && $swpf_settings['include_exclude_filter']['product_cat'] == 'include-terms' ? $swpf_settings['include_terms']['product_cat'] : [];
     $swpf_selected_cats = '';
     if (isset($swpf_current_filter_option['categories'])) {
         $swpf_selected_cats = is_array($swpf_current_filter_option['categories']) ? implode(',', $swpf_current_filter_option['categories']) : $swpf_current_filter_option['categories'];

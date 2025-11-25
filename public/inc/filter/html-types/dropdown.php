@@ -60,8 +60,6 @@ $swpf_tax_show_count = (isset($swpf_settings['show_count'][$swpf_tax_name]) && $
         </select>
         <?php
     } elseif ($swpf_tax_name == 'product_cat') {
-        $swpf_exclude_terms = $swpf_settings['include_exclude_filter']['product_cat'] == 'exclude-terms' ? $swpf_settings['exclude_terms']['product_cat'] : [];
-        $swpf_include_terms = $swpf_settings['include_exclude_filter']['product_cat'] == 'include-terms' ? $swpf_settings['include_terms']['product_cat'] : [];
         $swpf_selected_cats = '';
         $swpf_hide_terms = [];
 
