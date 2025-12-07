@@ -2,9 +2,9 @@
 Contributors: hashthemes
 Tags: ajax filter, ajax product filter, product filter, woocommerce ajax filter, woocommerce filter
 Requires at least: 6.3
-Requires PHP: 7.4
-Tested up to: 6.8
-Stable tag: 1.0.7
+Requires PHP: 7.2
+Tested up to: 6.9
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,12 +127,10 @@ For premium upgrade, please click below link <br>
 <li>Search for "Super Product Filter" and install the plugin</li>
 <li>Activate the plugin through the 'Plugins' menu in WordPress</li>
 
-== Frequently Asked Questions ==
-= How can I report security bugs? =
-
-You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/9e5fc0e0-3f66-4ffb-a43f-45bbd384b31e)
-
 == Changelog ==
+= 1.0.8 - 6 Dec, 2025 =
+* Compatibility test with WordPress version 6.9
+
 = 1.0.7 - 26 Nov, 2025 =
 * Plugin Check Error fixes
 
