@@ -1,6 +1,7 @@
 <?php
 
 class Super_Product_Filter_Render extends Super_Product_Filter_General {
+    public $settings;
 
     public function __construct() {
 
