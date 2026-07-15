@@ -1,7 +1,7 @@
 <?php
 
 class Super_Product_Filter_General {
-    public $swpf_settings = array();
+    public $settings = array();
     public $filter_shortcode_id = null;
     public $product_columns = null;
     public $swpf_post_per_page = null;

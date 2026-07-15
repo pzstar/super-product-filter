@@ -14,6 +14,7 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
         // Shortcode
         add_shortcode('swpf_shortcode', array($this, 'add_shortcode'));
         add_shortcode('swpf_elem_shortcode', array($this, 'add_shortcode'));
+        
     }
 
     public function get_product_list() {
