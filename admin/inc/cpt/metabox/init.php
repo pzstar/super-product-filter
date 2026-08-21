@@ -29,6 +29,10 @@ class Super_Product_Filter_Metabox {
     }
 
     public function save_metabox_settings($post_id) {
+        if (!current_user_can('edit_post', $post_id)) {
+            return;
+        }
+
         if (wp_verify_nonce(swpf_get_post('swpf_settings_nonce'), 'swpf-settings-nonce')) {
             $settings = get_post_meta($post_id, 'swpf_settings', true);
             $terms_customize = isset($settings['terms_customize']) ? $settings['terms_customize'] : array();

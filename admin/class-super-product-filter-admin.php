@@ -171,17 +171,36 @@ class Super_Product_Filter_Admin {
         return $new_args;
     }
 
-    public static function sanitize_array($array = array(), $sanitize_rule = array()) {
+    /**
+     * Recursively sanitize an array against a rule map.
+     *
+     * Any key without an explicit rule falls back to $default_rule rather than
+     * being stored raw. Pass an empty $default_rule to opt a call out entirely.
+     *
+     * @param array        $array         Values to sanitize.
+     * @param array        $sanitize_rule Rule map mirroring the shape of $array.
+     * @param string       $default_rule  Callback used for keys the map does not cover.
+     * @return array
+     */
+    public static function sanitize_array($array = array(), $sanitize_rule = array(), $default_rule = 'sanitize_text_field') {
         $new_args = (array) $array;
+
+        // Only an array can be used as a lookup table for the level below.
+        if (!is_array($sanitize_rule)) {
+            $sanitize_rule = array();
+        }
 
         if ($array) {
             foreach ($array as $key => $value) {
+                $rule = isset($sanitize_rule[$key]) ? $sanitize_rule[$key] : null;
+
                 if (is_array($value)) {
-                    $new_args[$key] = self::sanitize_array($value, isset($sanitize_rule[$key]) ? $sanitize_rule[$key] : 'sanitize_text_field');
+                    $new_args[$key] = self::sanitize_array($value, is_array($rule) ? $rule : array(), $default_rule);
                 } else {
-                    if (isset($sanitize_rule[$key]) && !empty($sanitize_rule[$key]) && function_exists($sanitize_rule[$key])) {
-                        $sanitize_type = $sanitize_rule[$key];
-                        $new_args[$key] = $sanitize_type($value);
+                    $callback = (is_string($rule) && !empty($rule)) ? $rule : $default_rule;
+
+                    if (!empty($callback) && function_exists($callback)) {
+                        $new_args[$key] = $callback($value);
                     } else {
                         $new_args[$key] = $value;
                     }

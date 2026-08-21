@@ -730,13 +730,13 @@ function swpf_get_post($param, $sanitize = 'sanitize_text_field', $default = '')
     return swpf_sanitize_value($sanitize, $value);
 }
 
-function swpf_get_post_data($param) {
+function swpf_get_post_data($param, $sanitize = 'sanitize_text_field') {
     $post_data = array();
-    if (isset($_POST[$param])) {
-        parse_str($_POST[$param], $post_data);
+    if (isset($_POST[$param]) && is_string($_POST[$param])) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+        parse_str($_POST[$param], $post_data); // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
     }
 
-    return Super_Product_Filter_Admin::sanitize_array($post_data);
+    return Super_Product_Filter_Admin::sanitize_array($post_data, array(), $sanitize);
 }
 
 function swpf_get_post_data_arr($param) {
@@ -749,11 +749,11 @@ function swpf_get_post_data_arr($param) {
 
 function swpf_get_request_data($param, $sanitize = 'sanitize_text_field', $default = '') {
     $post_data = array();
-    if (isset($_REQUEST[$param])) {
-        parse_str($_REQUEST[$param], $post_data);
+    if (isset($_REQUEST[$param]) && is_string($_REQUEST[$param])) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        parse_str($_REQUEST[$param], $post_data); // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
     }
 
-    return Super_Product_Filter_Admin::sanitize_array($post_data);
+    return Super_Product_Filter_Admin::sanitize_array($post_data, array(), $sanitize);
 }
 
 function swpf_css_strip_whitespace($css) {
