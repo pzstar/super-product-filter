@@ -1012,11 +1012,120 @@ function swpf_get_current_filter_options_vars() {
     return $filter_array;
 }
 
+/**
+ * The file to render for one of the filter's templates.
+ *
+ * Looks in the active theme first, so a site can replace any part of the filter
+ * markup without editing the plugin, and falls back to the version that ships
+ * here. Overrides live in a folder named after the plugin, matching how
+ * WooCommerce templates are overridden:
+ *
+ *     yourtheme/super-product-filter/fields/price.php
+ *
+ * The path is returned rather than included, because the templates run inside
+ * their caller and go on using the variables that caller has already set up.
+ *
+ * @param string $template Path below the plugin's filter directory, such as
+ *                         'fields/price.php' or 'html-types/checkbox.php'.
+ * @return string Absolute path to include.
+ */
+function swpf_locate_template($template) {
+    $template = ltrim($template, '/');
+    $default = SWPF_PATH . 'public/inc/filter/' . $template;
+
+    /**
+     * Filter the folder a theme keeps its overrides in.
+     *
+     * @param string $folder Folder name, relative to the theme root.
+     */
+    $folder = trailingslashit(apply_filters('swpf_template_folder', 'super-product-filter'));
+
+    // Child theme first, then parent, which is what locate_template does.
+    $found = locate_template(array($folder . $template));
+
+    if (!$found || !file_exists($found)) {
+        $found = $default;
+    }
+
+    /**
+     * Filter the template that will be rendered.
+     *
+     * @param string $found    Path settled on.
+     * @param string $template Template being looked up.
+     * @param string $default  Path to the version shipped with the plugin.
+     */
+    return apply_filters('swpf_locate_template', $found, $template, $default);
+}
+
+/**
+ * Apply the filters that are not taxonomy terms to a term count query.
+ *
+ * The count beside a term answers "how many products would I see if I ticked
+ * this", so it has to respect everything else the shopper has already chosen.
+ * The taxonomy parts are handled by each caller; these are the rest, matched to
+ * how the product query applies them so the number and the result agree.
+ *
+ * @param string $swpf_key        Filter key from the current selection.
+ * @param mixed  $swpf_option     Its value.
+ * @param array  $swpf_meta_query Meta query being built, by reference.
+ * @param mixed  $swpf_post_in    Post ids the count must be limited to, by reference.
+ * @return bool Whether this key belonged here.
+ */
+function swpf_count_query_extra_filter($swpf_key, $swpf_option, &$swpf_meta_query, &$swpf_post_in) {
+    if ('rating-from' === $swpf_key) {
+        $swpf_rating = is_array($swpf_option) ? reset($swpf_option) : $swpf_option;
+        if ('' !== $swpf_rating && null !== $swpf_rating) {
+            $swpf_meta_query[] = array(
+                'key' => '_wc_average_rating',
+                'value' => floatval($swpf_rating),
+                'compare' => '>=',
+                'type' => 'DECIMAL(3,2)',
+            );
+        }
+
+        return true;
+    }
+
+    if ('review' === $swpf_key) {
+        if (isset($swpf_option['review_from'])) {
+            $swpf_meta_query[] = array(
+                'key' => '_wc_review_count',
+                'value' => intval($swpf_option['review_from']),
+                'compare' => '>=',
+                'type' => 'NUMERIC',
+            );
+        }
+
+        return true;
+    }
+
+    if ('in-stock' === $swpf_key && '1' == $swpf_option) {
+        $swpf_meta_query[] = array(
+            'key' => '_stock_status',
+            'value' => 'instock',
+            'compare' => '=',
+        );
+
+        return true;
+    }
+
+    if ('on-sale' === $swpf_key && '1' == $swpf_option) {
+        // The zero keeps the list non empty, so nothing on sale means no results
+        // rather than the limit being ignored.
+        $swpf_post_in = array_merge(array(0), wc_get_product_ids_on_sale());
+
+        return true;
+    }
+
+    return false;
+}
+
 function swpf_get_vars_query_args($current_filter_option, $settings, $tax, $term, $type = null, $exclude_curtax = false) {
 
     $krelation = 'AND';
 
     $tax_query = $meta_query = [];
+    $swpf_count_post_in = null;
     $relation = isset($settings['config']['logic_operator']) && !empty($settings['config']['logic_operator']) ? $settings['config']['logic_operator'] : 'AND';
     $tax_query['relation'] = $relation;
 
@@ -1116,6 +1225,8 @@ function swpf_get_vars_query_args($current_filter_option, $settings, $tax, $term
                 'compare' => 'BETWEEN',
                 'type' => 'DECIMAL'
             );
+        } elseif (swpf_count_query_extra_filter($key, $option, $meta_query, $swpf_count_post_in)) {
+            continue;
         }
     }
 
@@ -1180,12 +1291,17 @@ function swpf_get_vars_query_args($current_filter_option, $settings, $tax, $term
         'fields' => 'ids',
         'posts_per_page' => -1
     );
+
+    if (null !== $swpf_count_post_in) {
+        $args['post__in'] = $swpf_count_post_in;
+    }
     return $args;
 }
 
 function swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax) {
 
     $tax_query = $meta_query = [];
+    $swpf_count_post_in = null;
     $relation = isset($settings['config']['logic_operator']) && !empty($settings['config']['logic_operator']) ? $settings['config']['logic_operator'] : 'AND';
     $tax_query['relation'] = $relation;
 
@@ -1264,6 +1380,8 @@ function swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax) {
                 'compare' => 'BETWEEN',
                 'type' => 'DECIMAL'
             );
+        } elseif (swpf_count_query_extra_filter($key, $option, $meta_query, $swpf_count_post_in)) {
+            continue;
         }
     }
 
@@ -1319,6 +1437,10 @@ function swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax) {
         'fields' => 'ids',
         'posts_per_page' => -1
     );
+
+    if (null !== $swpf_count_post_in) {
+        $args['post__in'] = $swpf_count_post_in;
+    }
 
     return $args;
 }

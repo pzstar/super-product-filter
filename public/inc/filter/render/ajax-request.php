@@ -67,7 +67,7 @@ if ($swpf_loop_columns > 1) {
 }
 
 ob_start();
-require SWPF_PATH . 'public/inc/filter/render/ajax-product-list.php';
+require swpf_locate_template('render/ajax-product-list.php');
 $swpf_html_ul_products_content = ob_get_clean();
 
 ob_start();
@@ -87,7 +87,7 @@ ob_start();
 $swpf_min_max_price = Super_Product_Filter_General::get_filtered_price($swpf_qry->get('tax_query'));
 $swpf_min_price = floor($swpf_min_max_price->min_price ?: 0);
 $swpf_max_price = ceil($swpf_min_max_price->max_price ?: 0);
-include SWPF_PATH . 'public/inc/filter/render/filter.php';
+include swpf_locate_template('render/filter.php');
 $swpf_filter_panel = ob_get_clean();
 
 $swpf_response = [];
