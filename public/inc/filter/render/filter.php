@@ -21,7 +21,13 @@ if (defined('DOING_AJAX') && DOING_AJAX) {
     $swpf_unique_id = swpf_get_post('unique_id');
     $swpf_current_page_id = swpf_get_post('current_page_id');
     $swpf_prevposid = isset($swpf_posid) ? absint($swpf_posid) : null;
-    $swpf_posid = swpf_get_post('posid', 'absint', $swpf_prevposid);
+    /*
+     * The id comes from the browser, so it only replaces the preset already in
+     * scope when it really names one. Anything else keeps the current settings
+     * rather than reading meta off an unrelated post.
+     */
+    $swpf_requested_posid = swpf_get_preset_id();
+    $swpf_posid = $swpf_requested_posid ? $swpf_requested_posid : $swpf_prevposid;
     if ($swpf_prevposid != $swpf_posid) {
         $swpf_settings = get_post_meta($swpf_posid, 'swpf_settings', true);
         $swpf_settings = Super_Product_Filter_Admin::recursive_parse_args($swpf_settings, Super_Product_Filter_Metabox::default_settings_values());
@@ -98,9 +104,18 @@ $swpf_main_wrap_classes = array(
 <div class="<?php echo esc_attr(implode(' ', $swpf_main_wrap_classes)) ?>" id="swpf-filter-preset-<?php echo esc_attr($swpf_unique_id); ?>">
     <form id="swpf-form-<?php echo esc_attr($swpf_unique_id); ?>" class="swpf-form <?php echo esc_attr(implode(' ', $swpf_form_class)); ?>" action="<?php echo esc_url(get_permalink(wc_get_page_id('shop'))); ?>" method="post" data-config="<?php echo esc_attr($swpf_config); ?>">
         <div class="swpf-filters">
+        <?php
+        /**
+         * Fires just inside the filter form, before any field is rendered.
+         *
+         * @param array $swpf_settings              Preset settings.
+         * @param array $swpf_current_filter_option Filters currently applied.
+         */
+        do_action('swpf_before_filter_fields', $swpf_settings, $swpf_current_filter_option);
+        ?>
             <?php
             /* Show Active Filters Position at The Start */
-            include SWPF_PATH . 'public/inc/filter/render/active-filters.php';
+            include swpf_locate_template('render/active-filters.php');
 
             if ($swpf_settings) {
                 $swpf_order_lists = isset($swpf_settings['list_order']) ? $swpf_settings['list_order'] : array();
@@ -111,11 +126,20 @@ $swpf_main_wrap_classes = array(
                 $swpf_max_price = isset($swpf_max_price) ? $swpf_max_price : ceil($swpf_min_max_price->max_price ?: 0);
                 if ($swpf_order_lists) {
                     foreach ($swpf_order_lists as $swpf_tax_name) {
+                        /**
+                         * Fires before one filter field is rendered.
+                         *
+                         * @param string $swpf_tax_name              Field key, such as product_cat or price_range.
+                         * @param array  $swpf_settings              Preset settings.
+                         * @param array  $swpf_current_filter_option Filters currently applied.
+                         */
+                        do_action('swpf_before_filter_field', $swpf_tax_name, $swpf_settings, $swpf_current_filter_option);
+
                         if ($swpf_tax_name == 'price_range' && $swpf_settings['enable']['price_range'] == 'on') {
                             ?>
                             <div class="swpf-filter-item-wrap swpf-<?php echo esc_attr($swpf_tax_name) ?>-wrap swpf-tax-count-<?php echo esc_attr($swpf_count); ?>">
                                 <?php
-                                include SWPF_PATH . 'public/inc/filter/fields/price.php';
+                                include swpf_locate_template('fields/price.php');
                                 ?>
                             </div>
                             <?php
@@ -124,7 +148,7 @@ $swpf_main_wrap_classes = array(
                             ?>
                             <div class="swpf-filter-item-wrap swpf-<?php echo esc_attr($swpf_tax_name) ?>-wrap swpf-tax-count-<?php echo esc_attr($swpf_count); ?>">
                                 <?php
-                                include SWPF_PATH . 'public/inc/filter/fields/order-by.php';
+                                include swpf_locate_template('fields/order-by.php');
                                 ?>
                             </div>
                             <?php
@@ -132,7 +156,7 @@ $swpf_main_wrap_classes = array(
                             ?>
                             <div class="swpf-filter-item-wrap swpf-<?php echo esc_attr($swpf_tax_name) ?>-wrap swpf-tax-count-<?php echo esc_attr($swpf_count); ?>">
                                 <?php
-                                include SWPF_PATH . 'public/inc/filter/fields/search-text.php';
+                                include swpf_locate_template('fields/search-text.php');
                                 ?>
                             </div>
                             <?php
@@ -140,7 +164,7 @@ $swpf_main_wrap_classes = array(
                             ?>
                             <div class="swpf-filter-item-wrap swpf-<?php echo esc_attr($swpf_tax_name) ?>-wrap swpf-tax-count-<?php echo esc_attr($swpf_count); ?>">
                                 <?php
-                                include SWPF_PATH . 'public/inc/filter/fields/reviews.php';
+                                include swpf_locate_template('fields/reviews.php');
                                 ?>
                             </div>
                             <?php
@@ -148,7 +172,7 @@ $swpf_main_wrap_classes = array(
                             ?>
                             <div class="swpf-filter-item-wrap swpf-<?php echo esc_attr($swpf_tax_name) ?>-wrap swpf-tax-count-<?php echo esc_attr($swpf_count); ?>">
                                 <?php
-                                include SWPF_PATH . 'public/inc/filter/fields/ratings.php';
+                                include swpf_locate_template('fields/ratings.php');
                                 ?>
                             </div>
                             <?php
@@ -156,7 +180,7 @@ $swpf_main_wrap_classes = array(
                             ?>
                             <div class="swpf-filter-item-wrap swpf-<?php echo esc_attr($swpf_tax_name) ?>-wrap swpf-tax-count-<?php echo esc_attr($swpf_count); ?>">
                                 <?php
-                                include SWPF_PATH . 'public/inc/filter/fields/on-sale.php';
+                                include swpf_locate_template('fields/on-sale.php');
                                 ?>
                             </div>
                             <?php
@@ -164,7 +188,7 @@ $swpf_main_wrap_classes = array(
                             ?>
                             <div class="swpf-filter-item-wrap swpf-<?php echo esc_attr($swpf_tax_name) ?>-wrap swpf-tax-count-<?php echo esc_attr($swpf_count); ?>">
                                 <?php
-                                include SWPF_PATH . 'public/inc/filter/fields/in-stock.php';
+                                include swpf_locate_template('fields/in-stock.php');
                                 ?>
                             </div>
                             <?php
@@ -178,6 +202,8 @@ $swpf_main_wrap_classes = array(
                                 $this->render_fields($swpf_settings, $taxonomy, $swpf_tax_name, $swpf_config, $swpf_current_filter_option, $swpf_count);
                             }
                         }
+                        /** This action mirrors swpf_before_filter_field. */
+                        do_action('swpf_after_filter_field', $swpf_tax_name, $swpf_settings, $swpf_current_filter_option);
                         $swpf_count++;
                     }
                 }
@@ -219,6 +245,15 @@ $swpf_main_wrap_classes = array(
             <?php
         }
         wp_nonce_field('apply_filter', 'swpf_nonce_setting');
+        ?>
+        <?php
+        /**
+         * Fires just before the filter form closes, after every field.
+         *
+         * @param array $swpf_settings              Preset settings.
+         * @param array $swpf_current_filter_option Filters currently applied.
+         */
+        do_action('swpf_after_filter_fields', $swpf_settings, $swpf_current_filter_option);
         ?>
     </form>
     <!-- swpf-main-wrap ends -->

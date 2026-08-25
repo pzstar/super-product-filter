@@ -41,6 +41,7 @@ class Super_Product_Filter_General_Settings {
             'load_fonts_locally' => 'off',
             'noindex_filtered' => 'off',
             'compat_mode' => 'off',
+            'delete_data_on_uninstall' => 'off',
         );
     }
 
@@ -61,6 +62,7 @@ class Super_Product_Filter_General_Settings {
             'load_fonts_locally' => 'swpf_sanitize_checkbox',
             'noindex_filtered' => 'swpf_sanitize_checkbox',
             'compat_mode' => 'swpf_sanitize_checkbox',
+            'delete_data_on_uninstall' => 'swpf_sanitize_checkbox',
         );
     }
 
@@ -69,6 +71,7 @@ class Super_Product_Filter_General_Settings {
             'load_fonts_locally' => 'off',
             'noindex_filtered' => 'on',
             'compat_mode' => 'off',
+            'delete_data_on_uninstall' => 'off',
         );
     }
 }

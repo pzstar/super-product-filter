@@ -11,6 +11,10 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       super-product-filter
  * Domain Path:       /languages
+ * Requires at least: 6.3
+ * Requires PHP:      7.2
+ * WC requires at least: 8.0
+ * WC tested up to:   11.0
  */
 // If this file is called directly, abort.
 if (!defined('WPINC')) {

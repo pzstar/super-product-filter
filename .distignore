@@ -1,0 +1,21 @@
+# Files that belong in the repository but not in the distributed plugin.
+# Used by `wp dist-archive`. WordPress.org rejects hidden files, so anything
+# listed here that starts with a dot is the reason this file exists.
+
+.distignore
+.gitignore
+.git
+.github
+.DS_Store
+.editorconfig
+.vscode
+.idea
+.claude
+
+node_modules
+vendor/bin
+
+*.log
+*.zip
+*.sql
+*.bak

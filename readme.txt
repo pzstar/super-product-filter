@@ -137,7 +137,12 @@ For premium upgrade, please click below link <br>
 <li>Activate the plugin through the 'Plugins' menu in WordPress</li>
 
 == Changelog ==
-= 1.0.9 - 21 Aug, 2026 =
+= 1.0.9 - 25 Aug, 2026 =
+* Added - Template overrides. Copy any filter template into yourtheme/super-product-filter/ to change its markup without editing the plugin, the same way WooCommerce templates are overridden
+* Added - swpf_before_filter_fields, swpf_after_filter_fields, swpf_before_filter_field and swpf_after_filter_field actions, plus swpf_template_folder and swpf_locate_template filters
+* Fixed - Term counts now take account of the on sale, rating, review and stock filters, so the number beside a term matches what selecting it returns
+* Fixed - Colour swatches rendered blank, both because the swatch style was stripped before output and because the preview data was passed in a shape the renderer did not read
+* Added - Option to remove every filter and setting when the plugin is deleted, under Settings. Off by default, so deactivating or reinstalling never loses your filters
 * Added - Sorting filter, letting shoppers reorder results by price, date, title, popularity or at random
 * Added - Product search filter for filtering results by keyword
 * Added - Theme Compatibility Mode. When products look wrong after filtering, the filtered page is requested from the site instead of being rebuilt from WooCommerce's default templates, so products come back in the theme's own markup

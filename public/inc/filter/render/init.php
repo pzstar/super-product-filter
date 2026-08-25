@@ -22,9 +22,14 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
     }
 
     public function get_product_list() {
-        if (wp_verify_nonce(swpf_get_post('ajax_nonce'), 'swpf-frontend-ajax-nonce')) {
-            include SWPF_PATH . 'public/inc/filter/render/ajax-request.php';
-        }
+        /*
+         * Deliberately no nonce check here. This endpoint renders product data
+         * that is already public and touches nothing belonging to the visitor,
+         * so a forged request has no action to trigger. A nonce would instead
+         * break filtering on any page cached site, where the cached HTML keeps
+         * serving a nonce long after it has expired.
+         */
+        include SWPF_PATH . 'public/inc/filter/render/ajax-request.php';
     }
 
     public function filter_posts($wp_query, $swpf_post_data = false) {
@@ -412,7 +417,7 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
             ?>
 
             <?php
-            include SWPF_PATH . 'public/inc/filter/render/filter.php';
+            include swpf_locate_template('render/filter.php');
             ?>
         </div>
         <?php
@@ -535,39 +540,39 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
                             }
                             switch ($display_type) {
                                 case 'checkbox':
-                                    include SWPF_PATH . 'public/inc/filter/html-types/checkbox.php';
+                                    include swpf_locate_template('html-types/checkbox.php');
                                     break;
 
                                 case 'toggle':
-                                    include SWPF_PATH . 'public/inc/filter/html-types/toggle.php';
+                                    include swpf_locate_template('html-types/toggle.php');
                                     break;
 
                                 case 'dropdown':
-                                    include SWPF_PATH . 'public/inc/filter/html-types/dropdown.php';
+                                    include swpf_locate_template('html-types/dropdown.php');
                                     break;
 
                                 case 'multi_select':
-                                    include SWPF_PATH . 'public/inc/filter/html-types/multiselect.php';
+                                    include swpf_locate_template('html-types/multiselect.php');
                                     break;
 
                                 case 'radio':
-                                    include SWPF_PATH . 'public/inc/filter/html-types/radio.php';
+                                    include swpf_locate_template('html-types/radio.php');
                                     break;
 
                                 case 'button':
-                                    include SWPF_PATH . 'public/inc/filter/html-types/button.php';
+                                    include swpf_locate_template('html-types/button.php');
                                     break;
 
                                 case 'image':
-                                    include SWPF_PATH . 'public/inc/filter/html-types/image-checkbox-select.php';
+                                    include swpf_locate_template('html-types/image-checkbox-select.php');
                                     break;
 
                                 case 'color':
-                                    include SWPF_PATH . 'public/inc/filter/html-types/color-checkbox-select.php';
+                                    include swpf_locate_template('html-types/color-checkbox-select.php');
                                     break;
 
                                 default:
-                                    include SWPF_PATH . 'public/inc/filter/html-types/checkbox.php';
+                                    include swpf_locate_template('html-types/checkbox.php');
                                     break;
                             }
                             ?>

@@ -55,7 +55,7 @@ if (!empty($swpf_current_filter_option)) {
     <div class="swpf-activated-filter-wrap">
         <?php
         if (isset($swpf_current_filter_option) && isset($swpf_filters_count)) {
-            include SWPF_PATH . 'public/inc/filter/render/active-filter-items.php';
+            include swpf_locate_template('render/active-filter-items.php');
         }
         ?>
     </div>

@@ -60,25 +60,38 @@ function swpf_get_taxonomies() {
 }
 
 function swpf_get_checkbox_allowed_protocols() {
+    /*
+     * Exactly what the filter walkers emit. The inline styles carry the colour
+     * and image swatches, so leaving style out here renders those filters blank.
+     * wp_kses still runs its own CSS filter over the value, which is what stops
+     * a url(javascript:...) getting through.
+     */
     return array(
         'ul' => array(
-            'class' => array()
+            'class' => array(),
+            'style' => array(),
         ),
         'li' => array(
-            'class' => array()
+            'class' => array(),
+            'data-id' => array(),
         ),
         'input' => array(
             'id' => array(),
+            'class' => array(),
             'type' => array(),
             'name' => array(),
             'checked' => array(),
             'value' => array(),
         ),
-        'span' => array(
-            'class' => array()
-        ),
         'label' => array(
-            'class' => array()
+            'class' => array(),
+        ),
+        'span' => array(
+            'class' => array(),
+            'style' => array(),
+        ),
+        'div' => array(
+            'class' => array(),
         ),
     );
 }
@@ -119,9 +132,11 @@ if (!class_exists('SWPF_Walker_Category_Checklist')) {
                 }
             }
             if (!in_array($category->term_id, $hide_terms)) {
-                $output .= "\n<li class='swpf-filter-item swpf-{$taxonomy}-{$category->{$value_field} }'>";
+                $term_value = esc_attr($category->{$value_field});
+                $term_taxonomy = esc_attr($taxonomy);
+                $output .= "\n<li class='swpf-filter-item swpf-{$term_taxonomy}-{$term_value}'>";
                 $output .= '<label class="swpf-filter-label">';
-                $output .= '<input value="' . $category->{$value_field} . '" type="checkbox" name="' . $name . '[]" id="in-' . $taxonomy . '-' . $category->{$value_field} . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . '/>';
+                $output .= '<input value="' . $term_value . '" type="checkbox" name="' . esc_attr($name) . '[]" id="in-' . $term_taxonomy . '-' . $term_value . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . '/>';
                 $output .= '<span class="swpf-title">';
                 $output .= '<span class="swpf-term">';
                 $output .= isset($term_name_array[$category->term_id]) ? esc_html($term_name_array[$category->term_id]) : esc_html($category->name);
@@ -242,9 +257,11 @@ if (!class_exists('SWPF_Walker_Category_Radiolist')) {
             }
 
             if (!in_array($category->term_id, $hide_terms)) {
-                $output .= "\n<li class='swpf-filter-item swpf-{$taxonomy}-{$category->{$value_field} }'>";
+                $term_value = esc_attr($category->{$value_field});
+                $term_taxonomy = esc_attr($taxonomy);
+                $output .= "\n<li class='swpf-filter-item swpf-{$term_taxonomy}-{$term_value}'>";
                 $output .= '<label class="swpf-filter-label">';
-                $output .= '<input value="' . $category->{$value_field} . '" type="radio" name="' . $name . '" id="in-' . $taxonomy . '-' . $category->{$value_field} . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . ' /> ';
+                $output .= '<input value="' . $term_value . '" type="radio" name="' . esc_attr($name) . '" id="in-' . $term_taxonomy . '-' . $term_value . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . ' /> ';
                 $output .= '<span class="swpf-title">';
                 $output .= '<span class="swpf-term">';
                 $output .= isset($term_name_array[$category->term_id]) ? esc_html($term_name_array[$category->term_id]) : esc_html($category->name);
@@ -366,10 +383,12 @@ if (!class_exists('SWPF_Walker_Category_Toggle')) {
             }
 
             if (!in_array($category->term_id, $hide_terms)) {
-                $output .= "\n<li class='swpf-filter-item swpf-{$taxonomy}-{$category->{$value_field} }'>";
+                $term_value = esc_attr($category->{$value_field});
+                $term_taxonomy = esc_attr($taxonomy);
+                $output .= "\n<li class='swpf-filter-item swpf-{$term_taxonomy}-{$term_value}'>";
                 $output .= '<label class="swpf-filter-label">';
                 $output .= '<span class="swpf-toggle-wrap">';
-                $output .= '<input value="' . $category->{$value_field} . '" type="checkbox" name="' . $name . '[]" id="in-' . $taxonomy . '-' . $category->{$value_field} . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . '/>';
+                $output .= '<input value="' . $term_value . '" type="checkbox" name="' . esc_attr($name) . '[]" id="in-' . $term_taxonomy . '-' . $term_value . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . '/>';
                 $output .= '<span class="swpf-toggle-knob"></span>';
                 $output .= '</span>';
                 $output .= '<span class="swpf-title">';
@@ -494,9 +513,11 @@ if (!class_exists('SWPF_Walker_Category_Color_Image_Checkbox')) {
                 }
             }
             if (!in_array($category->term_id, $hide_terms)) {
-                $output .= "\n<li class='swpf-filter-item swpf-{$taxonomy}-{$category->{$value_field} }'>";
+                $term_value = esc_attr($category->{$value_field});
+                $term_taxonomy = esc_attr($taxonomy);
+                $output .= "\n<li class='swpf-filter-item swpf-{$term_taxonomy}-{$term_value}'>";
                 $output .= '<label class="swpf-filter-label">';
-                $output .= '<input class="swpf-chkbox-term" value="' . $category->{$value_field} . '" type="checkbox" name="' . $name . '[]" id="in-' . $taxonomy . '-' . $category->{$value_field} . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . '/>';
+                $output .= '<input class="swpf-chkbox-term" value="' . $term_value . '" type="checkbox" name="' . esc_attr($name) . '[]" id="in-' . $term_taxonomy . '-' . $term_value . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . '/>';
                 $output .= '<span class="swpf-' . esc_attr($type) . '-box" ' . ($type == "color" && isset($term_preview_array[$category->term_id]['color']) ? 'style="background-color:' . esc_attr($term_preview_array[$category->term_id]['color']) . '"' : "") . '>';
                 if ($type == 'image') {
                     $output .= '<span class="swpf-image-url"  style="background-image: url(' . esc_url($term_preview_array[$category->term_id]['image']) . ')"></span>';
@@ -617,10 +638,10 @@ if (!class_exists('SWPF_Walker_Category_Dropdown')) {
                 }
             }
             if (!in_array($category->term_id, $hide_terms)) {
-                $output .= '<option class="level-' . $depth . '" value="' . $category->{$value_field} . '" id="in-' . $taxonomy . '-' . $category->{$value_field} . '"' . selected(in_array($category->{$value_field}, $selected_cats), true, false) . '>';
+                $term_value = esc_attr($category->{$value_field});
+                $output .= '<option class="level-' . absint($depth) . '" value="' . $term_value . '" id="in-' . esc_attr($taxonomy) . '-' . $term_value . '"' . selected(in_array($category->{$value_field}, $selected_cats), true, false) . '>';
                 $indent = str_repeat("&nbsp;", $depth * 5);
                 $output .= $indent;
-                $output .= $category->name;
                 $output .= $hide_term_name ? '' : (isset($term_name_array[$category->term_id]) ? esc_html($term_name_array[$category->term_id]) : esc_html($category->name));
                 if ($show_count) {
                     $output .= '&nbsp;(';
@@ -728,6 +749,27 @@ function swpf_get_post($param, $sanitize = 'sanitize_text_field', $default = '')
     }
 
     return swpf_sanitize_value($sanitize, $value);
+}
+
+/**
+ * The filter preset a request is asking to render.
+ *
+ * The id arrives from the browser, so it is only trusted once it turns out to
+ * name a filter preset. Any other post id resolves to 0 instead, which leaves
+ * the caller rendering default settings rather than reading the meta of a post
+ * that has nothing to do with this plugin.
+ *
+ * @param string $param Request key holding the id.
+ * @return int Preset id, or 0 when the id names anything else.
+ */
+function swpf_get_preset_id($param = 'posid') {
+    $swpf_posid = absint(swpf_get_post($param));
+
+    if (!$swpf_posid || 'swpf-product-filter' !== get_post_type($swpf_posid)) {
+        return 0;
+    }
+
+    return $swpf_posid;
 }
 
 /**
@@ -970,11 +1012,120 @@ function swpf_get_current_filter_options_vars() {
     return $filter_array;
 }
 
+/**
+ * The file to render for one of the filter's templates.
+ *
+ * Looks in the active theme first, so a site can replace any part of the filter
+ * markup without editing the plugin, and falls back to the version that ships
+ * here. Overrides live in a folder named after the plugin, matching how
+ * WooCommerce templates are overridden:
+ *
+ *     yourtheme/super-product-filter/fields/price.php
+ *
+ * The path is returned rather than included, because the templates run inside
+ * their caller and go on using the variables that caller has already set up.
+ *
+ * @param string $template Path below the plugin's filter directory, such as
+ *                         'fields/price.php' or 'html-types/checkbox.php'.
+ * @return string Absolute path to include.
+ */
+function swpf_locate_template($template) {
+    $template = ltrim($template, '/');
+    $default = SWPF_PATH . 'public/inc/filter/' . $template;
+
+    /**
+     * Filter the folder a theme keeps its overrides in.
+     *
+     * @param string $folder Folder name, relative to the theme root.
+     */
+    $folder = trailingslashit(apply_filters('swpf_template_folder', 'super-product-filter'));
+
+    // Child theme first, then parent, which is what locate_template does.
+    $found = locate_template(array($folder . $template));
+
+    if (!$found || !file_exists($found)) {
+        $found = $default;
+    }
+
+    /**
+     * Filter the template that will be rendered.
+     *
+     * @param string $found    Path settled on.
+     * @param string $template Template being looked up.
+     * @param string $default  Path to the version shipped with the plugin.
+     */
+    return apply_filters('swpf_locate_template', $found, $template, $default);
+}
+
+/**
+ * Apply the filters that are not taxonomy terms to a term count query.
+ *
+ * The count beside a term answers "how many products would I see if I ticked
+ * this", so it has to respect everything else the shopper has already chosen.
+ * The taxonomy parts are handled by each caller; these are the rest, matched to
+ * how the product query applies them so the number and the result agree.
+ *
+ * @param string $swpf_key        Filter key from the current selection.
+ * @param mixed  $swpf_option     Its value.
+ * @param array  $swpf_meta_query Meta query being built, by reference.
+ * @param mixed  $swpf_post_in    Post ids the count must be limited to, by reference.
+ * @return bool Whether this key belonged here.
+ */
+function swpf_count_query_extra_filter($swpf_key, $swpf_option, &$swpf_meta_query, &$swpf_post_in) {
+    if ('rating-from' === $swpf_key) {
+        $swpf_rating = is_array($swpf_option) ? reset($swpf_option) : $swpf_option;
+        if ('' !== $swpf_rating && null !== $swpf_rating) {
+            $swpf_meta_query[] = array(
+                'key' => '_wc_average_rating',
+                'value' => floatval($swpf_rating),
+                'compare' => '>=',
+                'type' => 'DECIMAL(3,2)',
+            );
+        }
+
+        return true;
+    }
+
+    if ('review' === $swpf_key) {
+        if (isset($swpf_option['review_from'])) {
+            $swpf_meta_query[] = array(
+                'key' => '_wc_review_count',
+                'value' => intval($swpf_option['review_from']),
+                'compare' => '>=',
+                'type' => 'NUMERIC',
+            );
+        }
+
+        return true;
+    }
+
+    if ('in-stock' === $swpf_key && '1' == $swpf_option) {
+        $swpf_meta_query[] = array(
+            'key' => '_stock_status',
+            'value' => 'instock',
+            'compare' => '=',
+        );
+
+        return true;
+    }
+
+    if ('on-sale' === $swpf_key && '1' == $swpf_option) {
+        // The zero keeps the list non empty, so nothing on sale means no results
+        // rather than the limit being ignored.
+        $swpf_post_in = array_merge(array(0), wc_get_product_ids_on_sale());
+
+        return true;
+    }
+
+    return false;
+}
+
 function swpf_get_vars_query_args($current_filter_option, $settings, $tax, $term, $type = null, $exclude_curtax = false) {
 
     $krelation = 'AND';
 
     $tax_query = $meta_query = [];
+    $swpf_count_post_in = null;
     $relation = isset($settings['config']['logic_operator']) && !empty($settings['config']['logic_operator']) ? $settings['config']['logic_operator'] : 'AND';
     $tax_query['relation'] = $relation;
 
@@ -1074,6 +1225,8 @@ function swpf_get_vars_query_args($current_filter_option, $settings, $tax, $term
                 'compare' => 'BETWEEN',
                 'type' => 'DECIMAL'
             );
+        } elseif (swpf_count_query_extra_filter($key, $option, $meta_query, $swpf_count_post_in)) {
+            continue;
         }
     }
 
@@ -1138,12 +1291,17 @@ function swpf_get_vars_query_args($current_filter_option, $settings, $tax, $term
         'fields' => 'ids',
         'posts_per_page' => -1
     );
+
+    if (null !== $swpf_count_post_in) {
+        $args['post__in'] = $swpf_count_post_in;
+    }
     return $args;
 }
 
 function swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax) {
 
     $tax_query = $meta_query = [];
+    $swpf_count_post_in = null;
     $relation = isset($settings['config']['logic_operator']) && !empty($settings['config']['logic_operator']) ? $settings['config']['logic_operator'] : 'AND';
     $tax_query['relation'] = $relation;
 
@@ -1222,6 +1380,8 @@ function swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax) {
                 'compare' => 'BETWEEN',
                 'type' => 'DECIMAL'
             );
+        } elseif (swpf_count_query_extra_filter($key, $option, $meta_query, $swpf_count_post_in)) {
+            continue;
         }
     }
 
@@ -1277,6 +1437,10 @@ function swpf_get_vars_query_args_tax($current_filter_option, $settings, $tax) {
         'fields' => 'ids',
         'posts_per_page' => -1
     );
+
+    if (null !== $swpf_count_post_in) {
+        $args['post__in'] = $swpf_count_post_in;
+    }
 
     return $args;
 }

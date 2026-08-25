@@ -15,7 +15,8 @@ $swpf_tax_show_count = (isset($swpf_settings['show_count'][$swpf_tax_name]) && $
 
             if ($swpf_all_terms) {
                 foreach ($swpf_all_terms as $swpf_key => $swpf_aterm) {
-                    $swpf_term_preview_array[$swpf_key] = $swpf_aterm['term_color'];
+                    $swpf_term_preview_array[$swpf_key]['color'] = $swpf_aterm['term_color'];
+                    $swpf_term_preview_array[$swpf_key]['image'] = isset($swpf_aterm['term_image']) ? $swpf_aterm['term_image'] : '';
                 }
             }
 

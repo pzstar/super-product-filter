@@ -1,868 +1,227 @@
-#, fuzzy
+# Copyright (C) 2026 HashThemes
+# This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Super Product Filter\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-26 14:38+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Project-Id-Version: Super Product Filter for WooCommerce 1.0.9\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/super-product-filter\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: \n"
-"Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.6.6; wp-6.4.1\n"
-"X-Domain: super-product-filter"
+"POT-Creation-Date: 2026-08-25T10:15:16+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: super-product-filter\n"
 
-#: public/inc/filter/render/active-filter-items.php:214
-msgid " review"
+#. Plugin Name of the plugin
+#: super-product-filter.php
+msgid "Super Product Filter for WooCommerce"
 msgstr ""
 
-#: public/inc/filter/render/active-filter-items.php:214
-msgid " reviews"
-msgstr ""
-
-#: public/inc/filter/render/active-filter-items.php:233
-msgid " star"
-msgstr ""
-
-#: public/inc/filter/render/active-filter-items.php:233
-msgid " stars"
-msgstr ""
-
-#. Placeholders: %1$s and %2$s are <strong> tags. %3$s and %4$s are <a> tags
-#: super-product-filter.php:52
-#, php-format
-msgid ""
-"%1$sSuper Product Filter for WooCommerce %2$s requires WooCommerce Plugin. "
-"Please install and activate %3$sWooCommerce%4$s."
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:119
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:124
-msgid "11 Styles"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:285
-msgid "16 Styles"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:134
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:139
-msgid "5 Styles"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:38
-msgid "7 Slider Styles"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:129
-msgid "7 Styles"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:99
-msgid "A scroll bar will appear if the height of the filter exceed Max Height."
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:105
-msgid "ACF / Custom Field Support"
-msgstr ""
-
-#: public/inc/filter/render/active-filters.php:47
-msgid "Active Filters"
-msgstr ""
-
-#: admin/inc/cpt/init.php:32
-msgid "Add New Filter"
-msgstr ""
-
-#: admin/inc/cpt/init.php:30
-msgctxt "add new on admin bar"
-msgid "Super Product Filter"
-msgstr ""
-
-#. To add an additional character subset specific to your language,
-#. translate this to 'greek', 'cyrillic', 'devanagari' or 'vietnamese'. Do not translate into your own language.
-#: admin/inc/google-fonts-list.php:289
-msgctxt "Add new subset (greek, cyrillic, devanagari, vietnamese)"
-msgid "no-subset"
-msgstr ""
-
-#: admin/inc/cpt/init.php:29
-msgctxt "admin menu"
-msgid "Super Product Filter"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:331
-msgid "Advanced"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:201
-msgid "Advanced Auto-Apply"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:70
-msgid "Advanced Control"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:348
-msgid "Advanced Export"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:80
-msgid "Advanced Options"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:33
-msgid "Advanced Styles"
+#. Plugin URI of the plugin
+#: super-product-filter.php
+msgid "https://demo.hashthemes.com/super-woocommerce-product-filter/"
 msgstr ""
 
 #. Description of the plugin
-msgid ""
-"Ajax Filter For WooCommerce Products - Simplify your Search, Save your Time."
+#: super-product-filter.php
+msgid "Ajax Filter For WooCommerce Products - Simplify your Search, Save your Time."
 msgstr ""
 
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:16
-msgid "AJAX Filtering"
+#. Author of the plugin
+#: super-product-filter.php
+msgid "HashThemes"
 msgstr ""
 
-#. 1: Link open, 2: Link close
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:251
-#, php-format
-msgid "AJAX Pagination %1$sDemo%2$s"
-msgstr ""
-
-#: admin/inc/cpt/init.php:36
-msgid "All Filter Preset"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:347
-#: admin/inc/cpt/metabox/boxes/appearance.php:78
-msgid "AND"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:82
-msgid "AND refers all the fiters should be matched."
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:340
-msgid "Animating Blob"
-msgstr ""
-
-#: admin/inc/cpt/metabox/init.php:82 public/inc/filter/render/filter.php:187
-msgid "Apply"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:372
-msgid "Ascending"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:31
-msgid "Attribute Filters"
-msgstr ""
-
-#. 1: Link open, 2: Link close
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:197
-#, php-format
-msgid "Auto Apply Filters %1$sDemo%2$s"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:48
-msgid "Auto Submit"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:181
-msgid "Automatically scrolls the page to the top after filters are applied."
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:470
-msgid "Background Color"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:477
-msgid "Background Color (Hover)"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:32
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:37
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:79
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:118
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:123
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:128
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:133
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:138
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:143
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:148
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:153
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:158
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:200
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:237
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:330
-msgid "Basic"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:243
-msgid "Basic Pagination"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:319
-msgid "Better Mobile UX"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:402
-msgid "Bottom Left"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:60
-msgid "Bottom Margin"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:403
-msgid "Bottom Middle"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:404
-msgid "Bottom Right"
-msgstr ""
-
-#: public/inc/filter/render/active-filter-items.php:107
-msgid "Brands"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:304
-msgid "Button"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:132
-msgid "Button Filter Skins"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:334
-msgid "Button Shape"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:449
-msgid "Button Size"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:324
-msgid "Button Type"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:386
-msgid "Buy Now"
-msgstr ""
-
-#: admin/inc/google-fonts-list.php:182
-msgid "Capitalize"
-msgstr ""
-
-#: public/inc/filter/render/active-filter-items.php:154
-msgid "Categories"
-msgstr ""
-
-#: public/inc/filter/render/active-filter-items.php:156
-msgid "Category"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:21
-msgid "Category Filter"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:301
-msgid "Checkbox"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:117
-msgid "Checkbox Styles"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/import-export.php:38
-msgid "Choose an json file or drag it here"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:383
-msgid "Choose Close Trigger Icon"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:372
-msgid "Choose Open Trigger Icon"
-msgstr ""
-
-#: public/inc/filter/render/active-filters.php:50
-msgid "Clear All"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:311
-msgid "Click on the \"Configure Term Options\" Button to configure Color."
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:314
-msgid "Click on the \"Configure Term Options\" Button to configure Image."
-msgstr ""
-
-#: admin/inc/cpt/metabox/init.php:774
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:306
-msgid "Color"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:152
-msgid "Color Swatches"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:373
-msgid "Community Support"
-msgstr ""
-
-#. 1: Link open, 2: Link close
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:88
-#, php-format
-msgid "Conditional Filters %1$sDemo%2$s"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:496
-msgid "Configure Term Options"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:217
-msgid "Content Typography"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/display.php:19
-msgid "Convert Filters to OffCanvas (Responsive)"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:362
-msgid "Count"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:334
-msgid "Custom CSS Field"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:236
-msgid "Custom Product Selector"
-msgstr ""
-
-#. 1: Link open, 2: Link close
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:303
-#, php-format
-msgid "Custom Shop Layout %1$sDemo%2$s"
-msgstr ""
-
-#: admin/inc/cpt/init.php:65
-msgid "Date"
-msgstr ""
-
-#: admin/class-super-product-filter-admin.php:276
-#: admin/inc/google-fonts-list.php:178 admin/inc/google-fonts-list.php:188
-msgid "Default"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:373
-msgid "Descending"
-msgstr ""
-
-#: admin/inc/cpt/init.php:45
-msgid "Description"
-msgstr ""
-
-#: admin/inc/cpt/metabox/settings.php:24
-msgid "Designs"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:385
-msgid "Detail Comparison"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:388
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:454
-msgid "Display All"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:385
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:451
-msgid "Display Option"
-msgstr ""
-
-#: admin/inc/cpt/metabox/settings.php:23
-msgid "Display Settings"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:297
-msgid "Display Type"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:38
-msgid ""
-"Displays only the products that belong to the selected category when "
-"filtering. Leave blank to include all categories."
+#. Author URI of the plugin
+#: super-product-filter.php
+msgid "https://hashthemes.com"
 msgstr ""
 
 #: admin/class-super-product-filter-admin.php:155
 msgid "Documentation"
 msgstr ""
 
-#: admin/inc/cpt/metabox/boxes/design.php:327
-msgid "Don't Display"
+#: admin/class-super-product-filter-admin.php:156
+msgid "Upgrade To PRO"
 msgstr ""
 
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:231
-msgid "Drag & Drop Filter Ordering"
+#: admin/class-super-product-filter-admin.php:246
+#: public/inc/filter/render/init.php:537
+msgid "Type to filter"
 msgstr ""
 
-#: admin/inc/cpt/metabox/boxes/design.php:576
-msgid "Drag Bar Color"
+#: admin/class-super-product-filter-admin.php:295
+#: admin/inc/google-fonts-list.php:178
+#: admin/inc/google-fonts-list.php:188
+msgid "Default"
 msgstr ""
 
-#: admin/inc/cpt/metabox/boxes/design.php:569
-msgid "Drag Rail Color"
+#: admin/class-super-product-filter-admin.php:296
+msgid "Latest"
 msgstr ""
 
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:302
-msgid "Dropdown"
+#: admin/class-super-product-filter-admin.php:297
+msgid "Oldest"
 msgstr ""
 
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:142
-msgid "Dropdown Styles"
+#: admin/class-super-product-filter-admin.php:298
+msgid "Price: Low to High"
 msgstr ""
 
-#: admin/inc/cpt/init.php:34
-msgid "Edit Filter Preset"
+#: admin/class-super-product-filter-admin.php:299
+msgid "Price: High to Low"
 msgstr ""
 
-#: admin/inc/icon-manager.php:52
-msgid "Elegant Icon"
+#: admin/class-super-product-filter-admin.php:300
+msgid "Title: A to Z"
 msgstr ""
 
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:38
-msgid "Enable/Disable the filters. Click on the title to highlight the filter."
+#: admin/class-super-product-filter-admin.php:301
+msgid "Title: Z to A"
 msgstr ""
 
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:355
-msgid "Enhanced"
+#: admin/class-super-product-filter-admin.php:302
+msgid "Random"
 msgstr ""
 
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:18
-msgid "Enhanced & Faster"
+#: admin/inc/block.php:41
+#: admin/inc/block.php:76
+#: admin/inc/cpt/metabox/init.php:28
+#: admin/inc/elementor/widgets/swpf-product-filter.php:20
+#: admin/inc/elementor/widgets/swpf-product-filter.php:36
+msgid "Super Product Filter"
 msgstr ""
 
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:154
-msgid "Enhanced Layout Options"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:360
-msgid "Enhanced With Custom Selectors"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:116
-msgid ""
-"Enter the selector that wraps the entire product list on the page where this "
-"filter is used."
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:140
-msgid ""
-"Enter the selector that wraps the pagination on the page where this filter "
-"is used."
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:128
-msgid ""
-"Enter the selector that wraps the product counter on the page where this "
-"filter is used."
-msgstr ""
-
-#: admin/inc/icon-manager.php:60
-msgid "Essential Icon"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:390
-msgid "Exclude"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:412
-msgid "Exclude Terms"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/import-export.php:17
-msgid "Export Filter Settings"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/import-export.php:10
-msgid "Export Settings"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:9
-msgid "Feature"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:483
-msgid "Field Orientation"
-msgstr ""
-
-#: admin/inc/block.php:49
-msgid "Filter"
+#: admin/inc/block.php:42
+msgid "Select and display one of your filters."
 msgstr ""
 
 #: admin/inc/block.php:44
 msgid "filter"
 msgstr ""
 
-#: admin/inc/cpt/metabox/boxes/design.php:16
-#: admin/inc/cpt/metabox/boxes/design.php:34
-msgid "Filter Box"
+#: admin/inc/block.php:45
+msgid "woocommerce"
 msgstr ""
 
-#: admin/inc/cpt/metabox/boxes/design.php:48
-msgid "Filter Box Heading"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:68
-msgid "Filter Logic (AND/OR)"
-msgstr ""
-
-#. 1: Link open, 2: Link close
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:177
-#, php-format
-msgid "Filter Placement %1$sDemo%2$s"
+#: admin/inc/block.php:47
+msgid "Select a Filter"
 msgstr ""
 
 #: admin/inc/block.php:48
 msgid "Filter Settings"
 msgstr ""
 
-#: admin/inc/cpt/metabox/settings.php:21
-msgid "Filters"
+#: admin/inc/block.php:49
+msgid "Filter"
 msgstr ""
 
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:33
-msgid "Filters to Display"
+#: admin/inc/cpt/init.php:31
+msgctxt "post type general name"
+msgid "Super Product Filter"
 msgstr ""
 
-#. 1: Link open, 2: Link close
-#: admin/inc/cpt/metabox/boxes/appearance.php:41
-#: admin/inc/cpt/metabox/boxes/appearance.php:59
-#: admin/inc/cpt/metabox/boxes/appearance.php:86
-#: admin/inc/cpt/metabox/boxes/appearance.php:198
-#, php-format
-msgid "Find in detail %1$shere%2$s"
-msgstr ""
-
-#. 1: Link open, 2: Link close
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:222
-#, php-format
-msgid "Fixed Height Filters %1$sDemo%2$s"
-msgstr ""
-
-#: admin/inc/icon-manager.php:28
-msgid "Font Awesome Icon"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:109
-#: admin/inc/cpt/metabox/boxes/design.php:220
-msgid "Font Family"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:328
-msgid "Font Icon"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:204
-#: admin/inc/cpt/metabox/boxes/design.php:309
-msgid "Font Size"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:140
-#: admin/inc/cpt/metabox/boxes/design.php:247
-msgid "Font Style"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:379
-msgid "FREE"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:10
-msgid "Free Version"
-msgstr ""
-
-#: admin/inc/cpt/metabox/settings.php:26
-msgid "Free Vs Pro"
-msgstr ""
-
-#: public/inc/filter/fields/reviews.php:43
-msgid "From"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:312
-msgid "Full Control"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:238
-msgid "Fully Customizable"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:367
-msgid "Fully Optimized UX"
-msgstr ""
-
-#: admin/inc/general/settings.php:18
-msgid "General Settings"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/shortcode-settings.php:6
-msgid "Get Shortcode"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:359
-msgid "Good"
-msgstr ""
-
-#: admin/inc/general/settings.php:25
-msgid ""
-"Google Fonts must be loaded locally to meet GDPR standards. If your website "
-"does not need to comply with GDPR, you can turn this option off. Keep in "
-"mind that hosting multiple Google Fonts locally may slightly slow down your "
-"website."
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:339
-msgid "Google Fonts Optimization"
-msgstr ""
-
-#. Author of the plugin
-msgid "HashThemes"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:106
-msgid "Heading Typography"
-msgstr ""
-
-#: admin/inc/elementor/widgets/swpf-product-filter.php:42
-msgid "here"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:285
-msgid "Hide Term Name"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:487
-msgid "Horizontal"
-msgstr ""
-
-#. URI of the plugin
-msgid "https://demo.hashthemes.com/super-woocommerce-product-filter/"
-msgstr ""
-
-#. Author URI of the plugin
-msgid "https://hashthemes.com"
-msgstr ""
-
-#: admin/inc/icon-manager.php:44
-msgid "Icofont"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:484
-msgid "Icon Color"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:491
-msgid "Icon Color (Hover)"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:456
-msgid "Icon Size"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:360
-msgid "ID"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:307
-msgid "Image"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:157
-msgid "Image Swatches"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/import-export.php:42
-msgid "Import"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:346
-msgid "Import / Export"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/import-export.php:24
-msgid "Import Settings"
-msgstr ""
-
-#: admin/inc/cpt/metabox/settings.php:25
-msgid "Import/Export"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/import-export.php:6
-msgid "Import/Export Settings"
-msgstr ""
-
-#: admin/inc/cpt/metabox/init.php:77
-#: public/inc/filter/render/active-filter-items.php:199
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:89
-msgid "In Stock"
-msgstr ""
-
-#: public/inc/filter/render/active-filter-items.php:195
-msgid "In Stock Product Only"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:227
-msgid "In Stock Products"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:389
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:455
-msgid "Include"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:396
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:461
-msgid "Include Terms"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:432
-msgid "Indent Category"
-msgstr ""
-
-#. 1: Link open, 2: Link close
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:271
-#, php-format
-msgid "Infinite Scroll %1$sDemo%2$s"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:57
-msgid "Instant filtering on selection, no submit button required."
-msgstr ""
-
-#: public/inc/filter/render/ajax-request.php:10
-msgid "Invalid request data!"
-msgstr ""
-
-#: public/inc/filter/render/ajax-request.php:91
-msgid "Item Found"
-msgid_plural "Items Found"
-msgstr[0] ""
-msgstr[1] ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:82
-msgid "Item Spacing"
-msgstr ""
-
-#: admin/class-super-product-filter-admin.php:277
-msgid "Latest"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:515
-msgid "Left"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:194
-#: admin/inc/cpt/metabox/boxes/design.php:299
-msgid "Letter Spacing"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:366
-msgid "Lightweight"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:284
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:335
-msgid "Limited"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:184
-#: admin/inc/cpt/metabox/boxes/design.php:289
-msgid "Line Height"
-msgstr ""
-
-#: admin/inc/google-fonts-list.php:191
-msgid "Line-through"
-msgstr ""
-
-#: admin/inc/general/settings.php:23
-msgid "Load Google Fonts Locally"
-msgstr ""
-
-#. 1: Link open, 2: Link close
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:261
-#, php-format
-msgid "Load More Button %1$sDemo%2$s"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:344
-#: admin/inc/cpt/metabox/boxes/appearance.php:75
-msgid "Logic Operator"
-msgstr ""
-
-#: admin/inc/google-fonts-list.php:181
-msgid "Lowercase"
-msgstr ""
-
-#: admin/inc/icon-manager.php:36
-msgid "MaterialDesign"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:92
-msgid "Max Height of Filter"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:405
-msgid "Middle Left"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:406
-msgid "Middle Right"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:322
-msgid "Mobile Off-Canvas"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:159
-msgid "More Layout Options"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:303
-msgid "Multi Select"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:147
-msgid "Multi Select Skins"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:204
-msgid "Multi-column Layout"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:144
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:149
-msgid "Multiple Advanced Styles"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:361
-msgid "Name"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:363
-msgid "Name (Numeric)"
+#: admin/inc/cpt/init.php:32
+msgctxt "post type singular name"
+msgid "Super Product Filter"
 msgstr ""
 
 #: admin/inc/cpt/init.php:33
+msgctxt "admin menu"
+msgid "Super Product Filter"
+msgstr ""
+
+#: admin/inc/cpt/init.php:34
+msgctxt "add new on admin bar"
+msgid "Super Product Filter"
+msgstr ""
+
+#: admin/inc/cpt/init.php:35
+msgctxt "Super Product Filter"
+msgid "Add New"
+msgstr ""
+
+#: admin/inc/cpt/init.php:36
+msgid "Add New Filter"
+msgstr ""
+
+#: admin/inc/cpt/init.php:37
 msgid "New Filter Preset"
 msgstr ""
 
+#: admin/inc/cpt/init.php:38
+msgid "Edit Filter Preset"
+msgstr ""
+
+#: admin/inc/cpt/init.php:39
+msgid "View Filter Preset"
+msgstr ""
+
+#: admin/inc/cpt/init.php:40
+msgid "All Filter Preset"
+msgstr ""
+
+#: admin/inc/cpt/init.php:41
+msgid "Search Filter Preset"
+msgstr ""
+
+#: admin/inc/cpt/init.php:42
+msgid "Parent Filter Preset"
+msgstr ""
+
+#: admin/inc/cpt/init.php:43
+msgid "No Filter Preset found."
+msgstr ""
+
+#: admin/inc/cpt/init.php:44
+msgid "No Filter Preset found in Trash."
+msgstr ""
+
+#: admin/inc/cpt/init.php:49
+msgid "Description"
+msgstr ""
+
+#: admin/inc/cpt/init.php:87
+msgid "Shortcodes"
+msgstr ""
+
+#: admin/inc/cpt/init.php:88
+msgid "Template Include"
+msgstr ""
+
+#: admin/inc/cpt/init.php:90
+msgid "Date"
+msgstr ""
+
+#: admin/inc/cpt/init.php:110
+#: admin/inc/cpt/metabox/settings.php:22
+#: admin/inc/general/init.php:17
+msgid "Settings"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:8
+msgid "Show Only (Categories)"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:38
+msgid "Displays only the products that belong to the selected category when filtering. Leave blank to include all categories."
+msgstr ""
+
+#. translators: 1: Link open, 2: Link close
+#: admin/inc/cpt/metabox/boxes/appearance.php:41
+#: admin/inc/cpt/metabox/boxes/appearance.php:59
+#: admin/inc/cpt/metabox/boxes/appearance.php:86
+#: admin/inc/cpt/metabox/boxes/appearance.php:182
+msgid "Find in detail %1$shere%2$s"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:48
+msgid "Auto Submit"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:52
 #: admin/inc/cpt/metabox/boxes/free-vs-pro.php:91
 #: admin/inc/cpt/metabox/boxes/free-vs-pro.php:101
 #: admin/inc/cpt/metabox/boxes/free-vs-pro.php:106
@@ -881,715 +240,10 @@ msgstr ""
 #: admin/inc/cpt/metabox/boxes/free-vs-pro.php:311
 #: admin/inc/cpt/metabox/boxes/free-vs-pro.php:323
 #: admin/inc/cpt/metabox/boxes/free-vs-pro.php:340
-#: admin/inc/cpt/metabox/boxes/appearance.php:52
 msgid "No"
 msgstr ""
 
-#: admin/inc/cpt/init.php:40
-msgid "No Filter Preset found in Trash."
-msgstr ""
-
-#: admin/inc/cpt/init.php:39
-msgid "No Filter Preset found."
-msgstr ""
-
-#: admin/inc/google-fonts-list.php:179 admin/inc/google-fonts-list.php:189
-#: admin/inc/elementor/widgets/swpf-product-filter.php:70
-#: public/inc/filter/html-types/dropdown.php:19
-#: public/inc/filter/html-types/dropdown.php:151
-#: public/inc/filter/html-types/dropdown.php:197
-#: public/inc/filter/html-types/dropdown.php:243
-#: public/inc/filter/html-types/dropdown.php:289
-#: admin/inc/cpt/metabox/boxes/appearance.php:210
-msgid "None"
-msgstr ""
-
-#. 1: Link open, 2: Link close
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:187
-#, php-format
-msgid "Off-Canvas Filters %1$sDemo%2$s"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:181
-msgid "Off-Canvas, Header, Advanced Positions"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:17
-msgid "OffCanvas Menu"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:511
-msgid "OffCanvas Panel"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:500
-msgid "OffCanvas Panel Trigger Class"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:421
-msgid "Offset from Bottom"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:428
-msgid "Offset from Left"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:435
-msgid "Offset from Right"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:414
-msgid "Offset from Top"
-msgstr ""
-
-#: admin/class-super-product-filter-admin.php:278
-msgid "Oldest"
-msgstr ""
-
-#: admin/inc/cpt/metabox/init.php:76
-#: public/inc/filter/render/active-filter-items.php:185
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:77
-msgid "On Sale"
-msgstr ""
-
-#: public/inc/filter/render/active-filter-items.php:181
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:203
-msgid "On Sale Products"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:196
-msgid "Open/Close each filter by clicking on button."
-msgstr ""
-
-#. 1: Link open, 2: Link close
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:212
-#, php-format
-msgid "Open/Close Filters %1$sDemo%2$s"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:348
-#: admin/inc/cpt/metabox/boxes/appearance.php:79
-msgid "OR"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:83
-msgid "OR refers if any one of the fiter is matched."
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:357
-#: admin/inc/cpt/metabox/boxes/appearance.php:93
-msgid "Order By"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:369
-msgid "Order Type"
-msgstr ""
-
-#: admin/inc/google-fonts-list.php:192
-msgid "Overline"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:353
-msgid "Page Builder Support"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:380
-msgid "Paid"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:537
-msgid "Panel Background Color"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:512
-msgid "Panel Position"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:525
-msgid "Panel Width"
-msgstr ""
-
-#: admin/inc/cpt/init.php:38
-msgid "Parent Filter Preset"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:365
-msgid "Performance"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:319
-msgid "Placeholder Text"
-msgstr ""
-
-#: admin/inc/cpt/metabox/init.php:815
-msgid "Please save the settings for any changes."
-msgstr ""
-
-#: admin/inc/import-export/init.php:50
-msgid "Please update post before you export"
-msgstr ""
-
-#: admin/inc/import-export/init.php:98
-msgid "Please update post before you import"
-msgstr ""
-
-#: admin/inc/import-export/init.php:79
-msgid "Please upload a file to import"
-msgstr ""
-
-#: admin/inc/import-export/init.php:73
-msgid "Please upload a valid .json file"
-msgstr ""
-
-#: admin/inc/cpt/init.php:27
-msgctxt "post type general name"
-msgid "Super Product Filter"
-msgstr ""
-
-#: admin/inc/cpt/init.php:28
-msgctxt "post type singular name"
-msgid "Super Product Filter"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:346
-msgid "Predefined Icon Style"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:211
-msgid "Preloader 1"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:212
-msgid "Preloader 2"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:213
-msgid "Preloader 3"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:283
-msgid "Preloader Styles"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:207
-msgid "Preloaders"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:374
-msgid "Premium Support"
-msgstr ""
-
-#: admin/inc/cpt/metabox/init.php:73
-#: public/inc/filter/render/active-filter-items.php:15
-#: public/inc/filter/fields/price.php:48
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:378
-msgid "Price"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:41
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:131
-msgid "Price Range"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:36
-msgid "Price Range Slider"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:127
-msgid "Price Slider Styles"
-msgstr ""
-
-#: admin/class-super-product-filter-admin.php:280
-msgid "Price: High to Low"
-msgstr ""
-
-#: admin/class-super-product-filter-admin.php:279
-msgid "Price: Low to High"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:26
-msgid "Primary Color"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:11
-msgid "Pro Version"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:149
-msgid "Product Columns"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:310
-msgid "Product Grid Control"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:160
-msgid "Product Rows"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:123
-msgid "Products Count Div Selector Class"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:135
-msgid "Products Pagination Div Selector Class"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:111
-msgid "Products Wrapper Selector Class"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:300
-msgid "Radio"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:122
-msgid "Radio Styles"
-msgstr ""
-
-#: admin/class-super-product-filter-admin.php:283
-msgid "Random"
-msgstr ""
-
-#: public/inc/filter/render/active-filter-items.php:224
-msgid "Rating By"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:41
-msgid "Rating Filter"
-msgstr ""
-
-#: admin/inc/cpt/metabox/init.php:75
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:65
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:179
-msgid "Ratings"
-msgstr ""
-
-#: admin/inc/cpt/metabox/init.php:795
-msgid "Remove"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:317
-msgid "Responsive Layout"
-msgstr ""
-
-#: public/inc/filter/render/active-filter-items.php:209
-msgid "Review From"
-msgstr ""
-
-#: admin/inc/cpt/metabox/init.php:74
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:53
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:155
-msgid "Reviews"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:519
-msgid "Right"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:338
-msgid "Round"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:339
-msgid "Rounded Square"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:51
-msgid "Sale Filter"
-msgstr ""
-
-#: admin/inc/general/settings.php:29 admin/inc/cpt/metabox/init.php:816
-#: admin/inc/cpt/metabox/settings.php:42
-msgid "Save Settings"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:557
-msgid "Scroll Bar Width"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:278
-msgid "Scroll to Top After Filter"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:173
-msgid "Scroll to Top After Filtering"
-msgstr ""
-
-#: public/inc/filter/html-types/multiselect.php:59
-msgid "Search"
-msgstr ""
-
-#: admin/inc/cpt/init.php:37
-msgid "Search Filter Preset"
-msgstr ""
-
-#: public/inc/filter/html-types/dropdown.php:15
-msgid "Select"
-msgstr ""
-
-#: admin/inc/block.php:47
-msgid "Select a Filter"
-msgstr ""
-
-#: admin/inc/block.php:42
-msgid "Select and display one of your filters."
-msgstr ""
-
-#: admin/inc/elementor/widgets/swpf-product-filter.php:41
-msgid "Select Filter Preset"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:98
-msgid "Set 0 for auto height."
-msgstr ""
-
-#: admin/inc/cpt/init.php:85 admin/inc/general/init.php:13
-#: admin/inc/general/init.php:13 admin/inc/cpt/metabox/settings.php:22
-msgid "Settings"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/import-export.php:19
-msgid ""
-"Settings in Filters Tab is not exported. Settings Tab, Display Setting Tab, "
-"Designs Tab, and Custom Code Tab are exported."
-msgstr ""
-
-#: admin/inc/general/init.php:31
-msgid "Settings Saved!"
-msgstr ""
-
-#. 1: Link open, 2: Link close
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:293
-#, php-format
-msgid "Shop Builder %1$sDemo%2$s"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/shortcode-settings.php:10
-#: admin/inc/cpt/metabox/boxes/display.php:9
-msgid "Shortcode"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:164
-msgid "Shortcode Support"
-msgstr ""
-
-#: admin/inc/cpt/init.php:62
-msgid "Shortcodes"
-msgstr ""
-
-#: public/inc/filter/fields/in-stock.php:32
-msgid "Show In Stock Only"
-msgstr ""
-
-#: public/inc/filter/fields/on-sale.php:32
-msgid "Show On Sale only"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:8
-msgid "Show Only (Categories)"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:273
-msgid "Show Product Count"
-msgstr ""
-
-#. 1: Link open, 2: Link close
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:59
-#, php-format
-msgid "Show Product Count %1$sDemo%2$s"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:544
-msgid "Show Scroll Bar"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:186
-msgid "Show/Hide Each Filter"
-msgstr ""
-
-#. 1: Link open, 2: Link close
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:76
-#, php-format
-msgid "Show/Hide Empty Terms %1$sDemo%2$s"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:180
-msgid "Sidebar / Inline"
-msgstr ""
-
-#: admin/inc/cpt/metabox/init.php:808
-msgid "Sorry, Currently there are no any terms available."
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:72
-msgid "Spacing Between Filters"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:337
-msgid "Square"
-msgstr ""
-
-#. 1: Link open, 2: Link close
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:98
-#, php-format
-msgid "Step-by-Step Filtering %1$sDemo%2$s"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:46
-msgid "Stock Status Filter"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:349
-msgid "Style 1"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:358
-msgid "Style 10"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:359
-msgid "Style 11"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:360
-msgid "Style 12"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:361
-msgid "Style 13"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:362
-msgid "Style 14"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:363
-msgid "Style 15"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:364
-msgid "Style 16"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:350
-msgid "Style 2"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:351
-msgid "Style 3"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:352
-msgid "Style 4"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:353
-msgid "Style 5"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:354
-msgid "Style 6"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:355
-msgid "Style 7"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:356
-msgid "Style 8"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:357
-msgid "Style 9"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:329
-msgid "Styling Options"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/appearance.php:66
-msgid "Submit Button Text"
-msgstr ""
-
-#: admin/inc/block.php:41 admin/inc/block.php:76
-#: admin/inc/cpt/metabox/init.php:24
-#: admin/inc/elementor/widgets/swpf-product-filter.php:20
-#: admin/inc/elementor/widgets/swpf-product-filter.php:36
-msgid "Super Product Filter"
-msgstr ""
-
-#: admin/inc/cpt/init.php:31
-msgctxt "Super Product Filter"
-msgid "Add New"
-msgstr ""
-
-#: admin/inc/elementor/loader.php:24
-msgid "Super Product Filter Elements"
-msgstr ""
-
-#. Name of the plugin
-msgid "Super Product Filter for WooCommerce"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:372
-msgid "Support"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/display.php:25
-msgid ""
-"Switches filters to an OffCanvas layout when the screen width drops below "
-"the specified value."
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:26
-msgid "Tag Filter"
-msgstr ""
-
-#: public/inc/filter/render/active-filter-items.php:84
-msgid "Tags"
-msgstr ""
-
-#: admin/inc/cpt/init.php:63
-msgid "Template Include"
-msgstr ""
-
-#: admin/inc/cpt/metabox/init.php:769
-msgid "Term Name"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:38
-#: admin/inc/cpt/metabox/boxes/design.php:52
-msgid "Text Color"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:171
-msgid "Text Decoration"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:158
-#: admin/inc/cpt/metabox/boxes/design.php:268
-msgid "Text Transform"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:358
-msgid "Theme Compatibility"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:142
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:166
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:190
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:214
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:238
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:264
-msgid "Title"
-msgstr ""
-
-#: admin/class-super-product-filter-admin.php:281
-msgid "Title: A to Z"
-msgstr ""
-
-#: admin/class-super-product-filter-admin.php:282
-msgid "Title: Z to A"
-msgstr ""
-
-#: admin/inc/elementor/widgets/swpf-product-filter.php:42
-msgid "To edit the filter settings click "
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:305
-msgid "Toggle"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:137
-msgid "Toggle Styles"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:399
-msgid "Top Left"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:400
-msgid "Top Middle"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:401
-msgid "Top Right"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:321
-msgid "Trigger Button"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:467
-msgid "Trigger Button Colors"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:396
-msgid "Trigger Button Position"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:446
-msgid "Trigger Button Size"
-msgstr ""
-
-#: admin/class-super-product-filter-admin.php:227
-#: public/inc/filter/render/init.php:508
-msgid "Type to filter"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/design.php:18
-msgid "Typography"
-msgstr ""
-
-#: admin/inc/google-fonts-list.php:190
-msgid "Underline"
-msgstr ""
-
-#: admin/class-super-product-filter-admin.php:156
-msgid "Upgrade To PRO"
-msgstr ""
-
-#: admin/inc/cpt/metabox/settings.php:41
-msgid "Upgrade to Pro"
-msgstr ""
-
-#: admin/inc/cpt/metabox/init.php:796
-msgid "Upload"
-msgstr ""
-
-#: admin/inc/cpt/metabox/init.php:779
-msgid "Upload Custom Image"
-msgstr ""
-
-#: admin/inc/google-fonts-list.php:180
-msgid "Uppercase"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:110
-msgid "Variation Image Support"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/swpf-filters.php:486
-msgid "Vertical"
-msgstr ""
-
-#: admin/inc/cpt/init.php:35
-msgid "View Filter Preset"
-msgstr ""
-
-#: public/inc/filter/render/active-filter-items.php:130
-msgid "Visibility"
-msgstr ""
-
-#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:169
-msgid "Widget Support"
-msgstr ""
-
-#: admin/inc/block.php:45
-msgid "woocommerce"
-msgstr ""
-
+#: admin/inc/cpt/metabox/boxes/appearance.php:53
 #: admin/inc/cpt/metabox/boxes/free-vs-pro.php:17
 #: admin/inc/cpt/metabox/boxes/free-vs-pro.php:22
 #: admin/inc/cpt/metabox/boxes/free-vs-pro.php:23
@@ -1631,12 +285,1381 @@ msgstr ""
 #: admin/inc/cpt/metabox/boxes/free-vs-pro.php:341
 #: admin/inc/cpt/metabox/boxes/free-vs-pro.php:347
 #: admin/inc/cpt/metabox/boxes/free-vs-pro.php:354
-#: admin/inc/cpt/metabox/boxes/appearance.php:53
 msgid "Yes"
 msgstr ""
 
+#: admin/inc/cpt/metabox/boxes/appearance.php:57
+msgid "Instant filtering on selection, no submit button required."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:66
+msgid "Submit Button Text"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:75
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:416
+msgid "Logic Operator"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:78
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:419
+msgid "AND"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:79
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:420
+msgid "OR"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:82
+msgid "AND refers all the fiters should be matched."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:83
+msgid "OR refers if any one of the fiter is matched."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:93
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:429
+#: admin/inc/cpt/metabox/init.php:83
+msgid "Order By"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:111
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:331
+msgid "Advanced"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:113
+msgid "These are only needed when the filter cannot work out where your theme puts the product list. Leave them empty unless filtering is not updating part of the page."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:116
+msgid "Products Wrapper Selector Class"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:118
+#: admin/inc/cpt/metabox/boxes/appearance.php:126
+#: admin/inc/cpt/metabox/boxes/appearance.php:134
+msgid "Detected automatically"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:119
+msgid "The selector wrapping the product list. Leave empty to detect it automatically."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:124
+msgid "Products Count Div Selector Class"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:127
+msgid "The selector wrapping the result count. Leave empty to detect it automatically."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:132
+msgid "Products Pagination Div Selector Class"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:135
+msgid "The selector wrapping the pagination. Leave empty to detect it automatically."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:144
+msgid "Product Columns and Rows"
+msgstr ""
+
+#. translators: 1: Link open, 2: Link close
+#: admin/inc/cpt/metabox/boxes/appearance.php:149
+msgid "Set these under %1$sAppearance > Customize > WooCommerce > Product Catalog%2$s. A product list added by a shortcode or a page builder uses its own columns and limit instead."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:157
+msgid "Scroll to Top After Filtering"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:165
+msgid "Automatically scrolls the page to the top after filters are applied."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:170
+msgid "Show/Hide Each Filter"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:180
+msgid "Open/Close each filter by clicking on button."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:191
+msgid "Preloaders"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:194
+#: admin/inc/elementor/widgets/swpf-product-filter.php:70
+#: admin/inc/google-fonts-list.php:179
+#: admin/inc/google-fonts-list.php:189
+#: public/inc/filter/fields/order-by.php:29
+#: public/inc/filter/html-types/dropdown.php:19
+#: public/inc/filter/html-types/dropdown.php:151
+#: public/inc/filter/html-types/dropdown.php:197
+#: public/inc/filter/html-types/dropdown.php:243
+#: public/inc/filter/html-types/dropdown.php:289
+msgid "None"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:195
+msgid "Preloader 1"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:196
+msgid "Preloader 2"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/appearance.php:197
+msgid "Preloader 3"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:16
+#: admin/inc/cpt/metabox/boxes/design.php:34
+msgid "Filter Box"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:17
+msgid "OffCanvas Menu"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:18
+msgid "Typography"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:26
+msgid "Primary Color"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:38
+#: admin/inc/cpt/metabox/boxes/design.php:52
+msgid "Text Color"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:48
+msgid "Filter Box Heading"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:60
+msgid "Bottom Margin"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:72
+msgid "Spacing Between Filters"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:82
+msgid "Item Spacing"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:92
+msgid "Max Height of Filter"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:98
+msgid "Set 0 for auto height."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:99
+msgid "A scroll bar will appear if the height of the filter exceed Max Height."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:106
+msgid "Heading Typography"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:109
+#: admin/inc/cpt/metabox/boxes/design.php:220
+msgid "Font Family"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:140
+#: admin/inc/cpt/metabox/boxes/design.php:247
+msgid "Font Style"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:158
+#: admin/inc/cpt/metabox/boxes/design.php:268
+msgid "Text Transform"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:171
+msgid "Text Decoration"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:184
+#: admin/inc/cpt/metabox/boxes/design.php:289
+msgid "Line Height"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:194
+#: admin/inc/cpt/metabox/boxes/design.php:299
+msgid "Letter Spacing"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:204
+#: admin/inc/cpt/metabox/boxes/design.php:309
+msgid "Font Size"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:217
+msgid "Content Typography"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:321
+msgid "Trigger Button"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:324
+msgid "Button Type"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:327
+msgid "Don't Display"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:328
+msgid "Font Icon"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:334
+msgid "Button Shape"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:337
+msgid "Square"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:338
+msgid "Round"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:339
+msgid "Rounded Square"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:340
+msgid "Animating Blob"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:346
+msgid "Predefined Icon Style"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:349
+msgid "Style 1"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:350
+msgid "Style 2"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:351
+msgid "Style 3"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:352
+msgid "Style 4"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:353
+msgid "Style 5"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:354
+msgid "Style 6"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:355
+msgid "Style 7"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:356
+msgid "Style 8"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:357
+msgid "Style 9"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:358
+msgid "Style 10"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:359
+msgid "Style 11"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:360
+msgid "Style 12"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:361
+msgid "Style 13"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:362
+msgid "Style 14"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:363
+msgid "Style 15"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:364
+msgid "Style 16"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:372
+msgid "Choose Open Trigger Icon"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:383
+msgid "Choose Close Trigger Icon"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:396
+msgid "Trigger Button Position"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:399
+msgid "Top Left"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:400
+msgid "Top Middle"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:401
+msgid "Top Right"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:402
+msgid "Bottom Left"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:403
+msgid "Bottom Middle"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:404
+msgid "Bottom Right"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:405
+msgid "Middle Left"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:406
+msgid "Middle Right"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:414
+msgid "Offset from Top"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:421
+msgid "Offset from Bottom"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:428
+msgid "Offset from Left"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:435
+msgid "Offset from Right"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:446
+msgid "Trigger Button Size"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:449
+msgid "Button Size"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:456
+msgid "Icon Size"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:467
+msgid "Trigger Button Colors"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:470
+msgid "Background Color"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:477
+msgid "Background Color (Hover)"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:484
+msgid "Icon Color"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:491
+msgid "Icon Color (Hover)"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:500
+msgid "OffCanvas Panel Trigger Class"
+msgstr ""
+
 #: admin/inc/cpt/metabox/boxes/design.php:504
-msgid ""
-"You can use the above class name to trigger the OffCanvas Panel with any "
-"link, icon or button."
+msgid "You can use the above class name to trigger the OffCanvas Panel with any link, icon or button."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:511
+msgid "OffCanvas Panel"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:512
+msgid "Panel Position"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:515
+msgid "Left"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:519
+msgid "Right"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:525
+msgid "Panel Width"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:537
+msgid "Panel Background Color"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:544
+msgid "Show Scroll Bar"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:557
+msgid "Scroll Bar Width"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:569
+msgid "Drag Rail Color"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/design.php:576
+msgid "Drag Bar Color"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/display.php:9
+#: admin/inc/cpt/metabox/boxes/shortcode-settings.php:10
+msgid "Shortcode"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/display.php:19
+msgid "Convert Filters to OffCanvas (Responsive)"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/display.php:25
+msgid "Switches filters to an OffCanvas layout when the screen width drops below the specified value."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:9
+msgid "Feature"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:10
+msgid "Free Version"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:11
+msgid "Pro Version"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:16
+msgid "AJAX Filtering"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:18
+msgid "Enhanced & Faster"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:21
+msgid "Category Filter"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:26
+msgid "Tag Filter"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:31
+msgid "Attribute Filters"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:32
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:37
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:79
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:118
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:123
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:128
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:133
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:138
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:143
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:148
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:153
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:158
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:200
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:237
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:330
+msgid "Basic"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:33
+msgid "Advanced Styles"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:36
+msgid "Price Range Slider"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:38
+msgid "7 Slider Styles"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:41
+msgid "Rating Filter"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:46
+msgid "Stock Status Filter"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:51
+msgid "Sale Filter"
+msgstr ""
+
+#. translators: 1: Link open, 2: Link close
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:59
+msgid "Show Product Count %1$sDemo%2$s"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:68
+msgid "Filter Logic (AND/OR)"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:70
+msgid "Advanced Control"
+msgstr ""
+
+#. translators: 1: Link open, 2: Link close
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:76
+msgid "Show/Hide Empty Terms %1$sDemo%2$s"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:80
+msgid "Advanced Options"
+msgstr ""
+
+#. translators: 1: Link open, 2: Link close
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:88
+msgid "Conditional Filters %1$sDemo%2$s"
+msgstr ""
+
+#. translators: 1: Link open, 2: Link close
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:98
+msgid "Step-by-Step Filtering %1$sDemo%2$s"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:105
+msgid "ACF / Custom Field Support"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:110
+msgid "Variation Image Support"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:117
+msgid "Checkbox Styles"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:119
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:124
+msgid "11 Styles"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:122
+msgid "Radio Styles"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:127
+msgid "Price Slider Styles"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:129
+msgid "7 Styles"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:132
+msgid "Button Filter Skins"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:134
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:139
+msgid "5 Styles"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:137
+msgid "Toggle Styles"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:142
+msgid "Dropdown Styles"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:144
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:149
+msgid "Multiple Advanced Styles"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:147
+msgid "Multi Select Skins"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:152
+msgid "Color Swatches"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:154
+msgid "Enhanced Layout Options"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:157
+msgid "Image Swatches"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:159
+msgid "More Layout Options"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:164
+msgid "Shortcode Support"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:169
+msgid "Widget Support"
+msgstr ""
+
+#. translators: 1: Link open, 2: Link close
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:177
+msgid "Filter Placement %1$sDemo%2$s"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:180
+msgid "Sidebar / Inline"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:181
+msgid "Off-Canvas, Header, Advanced Positions"
+msgstr ""
+
+#. translators: 1: Link open, 2: Link close
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:187
+msgid "Off-Canvas Filters %1$sDemo%2$s"
+msgstr ""
+
+#. translators: 1: Link open, 2: Link close
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:197
+msgid "Auto Apply Filters %1$sDemo%2$s"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:201
+msgid "Advanced Auto-Apply"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:204
+msgid "Multi-column Layout"
+msgstr ""
+
+#. translators: 1: Link open, 2: Link close
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:212
+msgid "Open/Close Filters %1$sDemo%2$s"
+msgstr ""
+
+#. translators: 1: Link open, 2: Link close
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:222
+msgid "Fixed Height Filters %1$sDemo%2$s"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:231
+msgid "Drag & Drop Filter Ordering"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:236
+msgid "Custom Product Selector"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:238
+msgid "Fully Customizable"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:243
+msgid "Basic Pagination"
+msgstr ""
+
+#. translators: 1: Link open, 2: Link close
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:251
+msgid "AJAX Pagination %1$sDemo%2$s"
+msgstr ""
+
+#. translators: 1: Link open, 2: Link close
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:261
+msgid "Load More Button %1$sDemo%2$s"
+msgstr ""
+
+#. translators: 1: Link open, 2: Link close
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:271
+msgid "Infinite Scroll %1$sDemo%2$s"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:278
+msgid "Scroll to Top After Filter"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:283
+msgid "Preloader Styles"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:284
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:335
+msgid "Limited"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:285
+msgid "16 Styles"
+msgstr ""
+
+#. translators: 1: Link open, 2: Link close
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:293
+msgid "Shop Builder %1$sDemo%2$s"
+msgstr ""
+
+#. translators: 1: Link open, 2: Link close
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:303
+msgid "Custom Shop Layout %1$sDemo%2$s"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:310
+msgid "Product Grid Control"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:312
+msgid "Full Control"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:317
+msgid "Responsive Layout"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:319
+msgid "Better Mobile UX"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:322
+msgid "Mobile Off-Canvas"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:329
+msgid "Styling Options"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:334
+msgid "Custom CSS Field"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:339
+msgid "Google Fonts Optimization"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:346
+msgid "Import / Export"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:348
+msgid "Advanced Export"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:353
+msgid "Page Builder Support"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:355
+msgid "Enhanced"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:358
+msgid "Theme Compatibility"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:359
+msgid "Good"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:360
+msgid "Enhanced With Custom Selectors"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:365
+msgid "Performance"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:366
+msgid "Lightweight"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:367
+msgid "Fully Optimized UX"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:372
+msgid "Support"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:373
+msgid "Community Support"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:374
+msgid "Premium Support"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:378
+#: admin/inc/cpt/metabox/init.php:85
+#: public/inc/filter/fields/price.php:48
+#: public/inc/filter/render/active-filter-items.php:15
+msgid "Price"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:379
+msgid "FREE"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:380
+msgid "Paid"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:385
+msgid "Detail Comparison"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/free-vs-pro.php:386
+msgid "Buy Now"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/import-export.php:6
+msgid "Import/Export Settings"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/import-export.php:10
+msgid "Export Settings"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/import-export.php:17
+msgid "Export Filter Settings"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/import-export.php:19
+msgid "Settings in Filters Tab is not exported. Settings Tab, Display Setting Tab, Designs Tab, and Custom Code Tab are exported."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/import-export.php:24
+msgid "Import Settings"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/import-export.php:38
+msgid "Choose an json file or drag it here"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/import-export.php:42
+msgid "Import"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/shortcode-settings.php:6
+msgid "Get Shortcode"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:33
+msgid "Filters to Display"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:38
+msgid "Enable/Disable the filters. Click on the title to highlight the filter."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:41
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:179
+msgid "Sorting"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:53
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:203
+#: admin/inc/cpt/metabox/init.php:84
+#: public/inc/filter/html-types/multiselect.php:59
+msgid "Search"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:65
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:155
+msgid "Price Range"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:77
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:227
+#: admin/inc/cpt/metabox/init.php:86
+msgid "Reviews"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:89
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:251
+#: admin/inc/cpt/metabox/init.php:87
+msgid "Ratings"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:101
+#: admin/inc/cpt/metabox/init.php:88
+#: public/inc/filter/render/active-filter-items.php:185
+msgid "On Sale"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:113
+#: admin/inc/cpt/metabox/init.php:89
+#: public/inc/filter/render/active-filter-items.php:199
+msgid "In Stock"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:166
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:190
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:214
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:238
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:262
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:286
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:310
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:336
+msgid "Title"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:275
+#: public/inc/filter/render/active-filter-items.php:181
+msgid "On Sale Products"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:299
+msgid "In Stock Products"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:345
+msgid "Show Product Count"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:357
+msgid "Hide Term Name"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:369
+msgid "Display Type"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:372
+msgid "Radio"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:373
+msgid "Checkbox"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:374
+msgid "Dropdown"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:375
+msgid "Multi Select"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:376
+msgid "Button"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:377
+msgid "Toggle"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:378
+#: admin/inc/cpt/metabox/init.php:795
+msgid "Color"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:379
+msgid "Image"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:383
+msgid "Click on the \"Configure Term Options\" Button to configure Color."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:386
+msgid "Click on the \"Configure Term Options\" Button to configure Image."
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:391
+msgid "Placeholder Text"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:432
+msgid "ID"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:433
+msgid "Name"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:434
+msgid "Count"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:435
+msgid "Name (Numeric)"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:441
+msgid "Order Type"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:444
+msgid "Ascending"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:445
+msgid "Descending"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:457
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:523
+msgid "Display Option"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:460
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:526
+msgid "Display All"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:461
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:527
+msgid "Include"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:462
+msgid "Exclude"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:468
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:533
+msgid "Include Terms"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:484
+msgid "Exclude Terms"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:504
+msgid "Indent Category"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:555
+msgid "Field Orientation"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:558
+msgid "Vertical"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:559
+msgid "Horizontal"
+msgstr ""
+
+#: admin/inc/cpt/metabox/boxes/swpf-filters.php:568
+msgid "Configure Term Options"
+msgstr ""
+
+#: admin/inc/cpt/metabox/init.php:94
+#: public/inc/filter/render/filter.php:222
+msgid "Apply"
+msgstr ""
+
+#: admin/inc/cpt/metabox/init.php:790
+msgid "Term Name"
+msgstr ""
+
+#: admin/inc/cpt/metabox/init.php:800
+msgid "Upload Custom Image"
+msgstr ""
+
+#: admin/inc/cpt/metabox/init.php:816
+msgid "Remove"
+msgstr ""
+
+#: admin/inc/cpt/metabox/init.php:817
+msgid "Upload"
+msgstr ""
+
+#: admin/inc/cpt/metabox/init.php:829
+msgid "Sorry, Currently there are no any terms available."
+msgstr ""
+
+#: admin/inc/cpt/metabox/init.php:836
+msgid "Please save the settings for any changes."
+msgstr ""
+
+#: admin/inc/cpt/metabox/init.php:837
+#: admin/inc/cpt/metabox/settings.php:42
+#: admin/inc/general/settings.php:53
+msgid "Save Settings"
+msgstr ""
+
+#: admin/inc/cpt/metabox/settings.php:21
+msgid "Filters"
+msgstr ""
+
+#: admin/inc/cpt/metabox/settings.php:23
+msgid "Display Settings"
+msgstr ""
+
+#: admin/inc/cpt/metabox/settings.php:24
+msgid "Designs"
+msgstr ""
+
+#: admin/inc/cpt/metabox/settings.php:25
+msgid "Import/Export"
+msgstr ""
+
+#: admin/inc/cpt/metabox/settings.php:26
+msgid "Free Vs Pro"
+msgstr ""
+
+#: admin/inc/cpt/metabox/settings.php:41
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: admin/inc/elementor/loader.php:24
+msgid "Super Product Filter Elements"
+msgstr ""
+
+#: admin/inc/elementor/widgets/swpf-product-filter.php:41
+msgid "Select Filter Preset"
+msgstr ""
+
+#: admin/inc/elementor/widgets/swpf-product-filter.php:42
+msgid "To edit the filter settings click "
+msgstr ""
+
+#: admin/inc/elementor/widgets/swpf-product-filter.php:42
+msgid "here"
+msgstr ""
+
+#: admin/inc/general/init.php:35
+msgid "Settings Saved!"
+msgstr ""
+
+#: admin/inc/general/settings.php:18
+msgid "General Settings"
+msgstr ""
+
+#: admin/inc/general/settings.php:23
+msgid "Load Google Fonts Locally"
+msgstr ""
+
+#: admin/inc/general/settings.php:25
+msgid "Google Fonts must be loaded locally to meet GDPR standards. If your website does not need to comply with GDPR, you can turn this option off. Keep in mind that hosting multiple Google Fonts locally may slightly slow down your website."
+msgstr ""
+
+#: admin/inc/general/settings.php:31
+msgid "Keep Filtered Results Out of Search Engines"
+msgstr ""
+
+#: admin/inc/general/settings.php:33
+msgid "Filtered views show products that already have their own category and product pages. Letting search engines index every combination of filters creates near duplicate pages and uses up the crawl budget your real pages need. With this on, a filtered view is marked \"noindex, follow\", so it stays out of search results while links on the page are still followed. Recommended for most stores."
+msgstr ""
+
+#: admin/inc/general/settings.php:39
+msgid "Theme Compatibility Mode"
+msgstr ""
+
+#: admin/inc/general/settings.php:41
+msgid "Turn this on if your products look wrong after filtering. Normally the filter rebuilds the product list using WooCommerce's default templates, which does not match themes and page builders that render their own product cards. In this mode the filtered page is requested from your site instead, so products come back in exactly the markup your theme already uses. It is slightly slower because the whole page is rendered, so leave it off unless you need it. This applies to shop and category pages, where the filter drives the product list. A loop added by a shortcode or a page builder widget runs its own query, so those keep using the standard method."
+msgstr ""
+
+#: admin/inc/general/settings.php:47
+msgid "Delete All Data on Uninstall"
+msgstr ""
+
+#: admin/inc/general/settings.php:49
+msgid "Removes every filter and setting this plugin created when you delete it from the Plugins screen. This cannot be undone, and deactivating alone never removes anything. Leave this off if you might reinstall later or are only moving to another server, and your filters will still be here."
+msgstr ""
+
+#: admin/inc/google-fonts-list.php:180
+msgid "Uppercase"
+msgstr ""
+
+#: admin/inc/google-fonts-list.php:181
+msgid "Lowercase"
+msgstr ""
+
+#: admin/inc/google-fonts-list.php:182
+msgid "Capitalize"
+msgstr ""
+
+#: admin/inc/google-fonts-list.php:190
+msgid "Underline"
+msgstr ""
+
+#: admin/inc/google-fonts-list.php:191
+msgid "Line-through"
+msgstr ""
+
+#: admin/inc/google-fonts-list.php:192
+msgid "Overline"
+msgstr ""
+
+#. Translators: To add an additional character subset specific to your language, translate this to 'greek', 'cyrillic', 'devanagari' or 'vietnamese'. Do not translate into your own language.
+#: admin/inc/google-fonts-list.php:289
+msgctxt "Add new subset (greek, cyrillic, devanagari, vietnamese)"
+msgid "no-subset"
+msgstr ""
+
+#: admin/inc/icon-manager.php:28
+msgid "Font Awesome Icon"
+msgstr ""
+
+#: admin/inc/icon-manager.php:36
+msgid "MaterialDesign"
+msgstr ""
+
+#: admin/inc/icon-manager.php:44
+msgid "Icofont"
+msgstr ""
+
+#: admin/inc/icon-manager.php:52
+msgid "Elegant Icon"
+msgstr ""
+
+#: admin/inc/icon-manager.php:60
+msgid "Essential Icon"
+msgstr ""
+
+#: admin/inc/import-export/init.php:54
+msgid "Please update post before you export"
+msgstr ""
+
+#: admin/inc/import-export/init.php:77
+msgid "Please upload a valid .json file"
+msgstr ""
+
+#: admin/inc/import-export/init.php:83
+msgid "Please upload a file to import"
+msgstr ""
+
+#: admin/inc/import-export/init.php:102
+msgid "Please update post before you import"
+msgstr ""
+
+#: public/inc/filter/fields/in-stock.php:32
+msgid "Show In Stock Only"
+msgstr ""
+
+#: public/inc/filter/fields/on-sale.php:32
+msgid "Show On Sale only"
+msgstr ""
+
+#: public/inc/filter/fields/reviews.php:43
+msgid "From"
+msgstr ""
+
+#: public/inc/filter/fields/search-text.php:37
+msgid "Search products&hellip;"
+msgstr ""
+
+#: public/inc/filter/html-types/dropdown.php:15
+msgid "Select"
+msgstr ""
+
+#: public/inc/filter/render/active-filter-items.php:84
+msgid "Tags"
+msgstr ""
+
+#: public/inc/filter/render/active-filter-items.php:107
+msgid "Brands"
+msgstr ""
+
+#: public/inc/filter/render/active-filter-items.php:130
+msgid "Visibility"
+msgstr ""
+
+#: public/inc/filter/render/active-filter-items.php:154
+msgid "Categories"
+msgstr ""
+
+#: public/inc/filter/render/active-filter-items.php:156
+msgid "Category"
+msgstr ""
+
+#: public/inc/filter/render/active-filter-items.php:195
+msgid "In Stock Product Only"
+msgstr ""
+
+#: public/inc/filter/render/active-filter-items.php:209
+msgid "Review From"
+msgstr ""
+
+#: public/inc/filter/render/active-filter-items.php:214
+msgid " reviews"
+msgstr ""
+
+#: public/inc/filter/render/active-filter-items.php:214
+msgid " review"
+msgstr ""
+
+#: public/inc/filter/render/active-filter-items.php:224
+msgid "Rating By"
+msgstr ""
+
+#: public/inc/filter/render/active-filter-items.php:233
+msgid " stars"
+msgstr ""
+
+#: public/inc/filter/render/active-filter-items.php:233
+msgid " star"
+msgstr ""
+
+#: public/inc/filter/render/active-filters.php:47
+msgid "Active Filters"
+msgstr ""
+
+#: public/inc/filter/render/active-filters.php:50
+msgid "Clear All"
+msgstr ""
+
+#: public/inc/filter/render/ajax-request.php:10
+msgid "Invalid request data!"
+msgstr ""
+
+#: public/inc/filter/render/ajax-request.php:99
+msgid "Item Found"
+msgid_plural "Items Found"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: Placeholders: %1$s and %2$s are <strong> tags. %3$s and %4$s are <a> tags
+#: super-product-filter.php:52
+msgid "%1$sSuper Product Filter for WooCommerce %2$s requires WooCommerce Plugin. Please install and activate %3$sWooCommerce%4$s."
 msgstr ""
