@@ -11,7 +11,7 @@ if ($swpf_current_filter_option) {
 
             <div class="swpf-group-activated-filter swpf-activated-price">
                 <span class="swpf-active-filter-title">
-                    <i class="icofont-tick-boxed"></i>
+                    <i class="swpf-icon swpf-icon-tick"></i>
                     <?php esc_html_e('Price', 'super-product-filter'); ?>
                 </span>
 
@@ -35,7 +35,7 @@ if ($swpf_current_filter_option) {
                     ?>
                     <div class="swpf-group-activated-filter swpf-activated-range">
                         <span class="swpf-active-filter-title">
-                            <i class="icofont-tick-boxed"></i>
+                            <i class="swpf-icon swpf-icon-tick"></i>
                             <?php echo esc_html($swpf_range_taxonomy->labels->singular_name); ?>
                         </span>
 
@@ -54,7 +54,7 @@ if ($swpf_current_filter_option) {
                     ?>
                     <div class="swpf-group-activated-filter swpf-activated-attribute">
                         <span class="swpf-active-filter-title">
-                            <i class="icofont-tick-boxed"></i>
+                            <i class="swpf-icon swpf-icon-tick"></i>
                             <?php echo esc_html(wc_attribute_label($swpf_attribute_slug)); ?>
                         </span>
                         <?php
@@ -80,7 +80,7 @@ if ($swpf_current_filter_option) {
             ?>
             <div class="swpf-group-activated-filter swpf-activated-attribute">
                 <span class="swpf-active-filter-title">
-                    <i class="icofont-tick-boxed"></i>
+                    <i class="swpf-icon swpf-icon-tick"></i>
                     <?php esc_html_e('Tags', 'super-product-filter'); ?>
                 </span>
                 <?php
@@ -103,7 +103,7 @@ if ($swpf_current_filter_option) {
             ?>
             <div class="swpf-group-activated-filter swpf-activated-attribute">
                 <span class="swpf-active-filter-title">
-                    <i class="icofont-tick-boxed"></i>
+                    <i class="swpf-icon swpf-icon-tick"></i>
                     <?php esc_html_e('Brands', 'super-product-filter'); ?>
                 </span>
                 <?php
@@ -126,7 +126,7 @@ if ($swpf_current_filter_option) {
             ?>
             <div class="swpf-group-activated-filter swpf-activated-attribute">
                 <span class="swpf-active-filter-title">
-                    <i class="icofont-tick-boxed"></i>
+                    <i class="swpf-icon swpf-icon-tick"></i>
                     <?php esc_html_e('Visibility', 'super-product-filter'); ?>
                 </span>
                 <?php
@@ -148,7 +148,7 @@ if ($swpf_current_filter_option) {
             ?>
             <div class="swpf-group-activated-filter  swpf-activated-categories">
                 <span class="swpf-active-filter-title">
-                    <i class="icofont-tick-boxed"></i>
+                    <i class="swpf-icon swpf-icon-tick"></i>
                     <?php
                     if (count($swpf_category_slugs) > 1) {
                         esc_html_e('Categories', 'super-product-filter');
@@ -177,7 +177,7 @@ if ($swpf_current_filter_option) {
             ?>
             <div class="swpf-group-activated-filter swpf-activated-on-sale">
                 <span class="swpf-active-filter-title">
-                    <i class="icofont-tick-boxed"></i>
+                    <i class="swpf-icon swpf-icon-tick"></i>
                     <?php esc_html_e('On Sale Products', 'super-product-filter'); ?>
                 </span>
                 ?>
@@ -191,7 +191,7 @@ if ($swpf_current_filter_option) {
             ?>
             <div class="swpf-group-activated-filter swpf-activated-in-stock">
                 <span class="swpf-active-filter-title">
-                    <i class="icofont-tick-boxed"></i>
+                    <i class="swpf-icon swpf-icon-tick"></i>
                     <?php esc_html_e('In Stock Product Only', 'super-product-filter'); ?>
                 </span>
 
@@ -205,7 +205,7 @@ if ($swpf_current_filter_option) {
             ?>
             <div class="swpf-group-activated-filter swpf-activated-review">
                 <span class="swpf-active-filter-title">
-                    <i class="icofont-tick-boxed"></i>
+                    <i class="swpf-icon swpf-icon-tick"></i>
                     <?php esc_html_e('Review From', 'super-product-filter'); ?>
                 </span>
 
@@ -220,7 +220,7 @@ if ($swpf_current_filter_option) {
             ?>
             <div class="swpf-group-activated-filter swpf-activated-rating">
                 <span class="swpf-active-filter-title">
-                    <i class="icofont-tick-boxed"></i>
+                    <i class="swpf-icon swpf-icon-tick"></i>
                     <?php esc_html_e('Rating By', 'super-product-filter'); ?>
                 </span>
 

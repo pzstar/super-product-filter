@@ -280,6 +280,7 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
 
         if (!empty($atts['id'])) {
             $this->filter_shortcode_id = absint($atts['id']);
+            swpf_enqueue_preset_icons($this->filter_shortcode_id);
             $swpf_settings = get_post_meta($this->filter_shortcode_id, 'swpf_settings', true);
             if (!$swpf_settings) {
                 $swpf_settings = Super_Product_Filter_Metabox::default_settings_values();
@@ -365,7 +366,7 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
             }
             ?>
             <div class="swpf-sidemenu-panel swpf-side-menu">
-                <a class="swpf-panel-close swpf-pos-right" href="#"><i class="mdi-close"></i></a>
+                <a class="swpf-panel-close swpf-pos-right" href="#"><i class="swpf-icon swpf-icon-close"></i></a>
                 <div class="swpf-sidemenu-panel-scroller">
                     <div class="swpf-sidemenu-panel-content">
                         <div class="swpf-responsive-filter-wrap" data-filter-id="<?php echo absint($this->filter_shortcode_id); ?>" data-responsive-width="<?php echo absint($this->settings['responsive_width']) ?>"></div>

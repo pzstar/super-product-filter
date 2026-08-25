@@ -731,13 +731,6 @@ function swpf_get_post($param, $sanitize = 'sanitize_text_field', $default = '')
 }
 
 /**
- * Query keys the filter reads from the URL.
- *
- * Shared by the filter parser and the SEO controls so the two cannot drift apart.
- *
- * @return array
- */
-/**
  * The value to show in a region selector override field.
  *
  * Presets saved before automatic detection carry the old stock selector, which
@@ -754,6 +747,89 @@ function swpf_selector_override_value($value, $stock) {
     return in_array($value, (array) $stock, true) ? '' : $value;
 }
 
+/**
+ * Enqueue the icon fonts one preset needs, at the point it renders.
+ *
+ * Scanning every preset on the site means a shop with many presets loads every
+ * family on every page. Doing it as each preset renders keeps a page to the
+ * fonts it genuinely shows. Styles requested this late print in the footer.
+ *
+ * @param int $preset_id Filter preset.
+ * @return void
+ */
+function swpf_enqueue_preset_icons($preset_id) {
+    static $done = array();
+
+    $preset_id = absint($preset_id);
+
+    if (!$preset_id || isset($done[$preset_id])) {
+        return;
+    }
+
+    $done[$preset_id] = true;
+
+    $settings = get_post_meta($preset_id, 'swpf_settings', true);
+
+    if (!is_array($settings)) {
+        return;
+    }
+
+    foreach (swpf_detect_icon_families($settings) as $handle) {
+        wp_enqueue_style($handle);
+    }
+}
+
+/**
+ * Icon font handles referenced by one settings array.
+ *
+ * @param array $settings Preset settings.
+ * @return array Style handles.
+ */
+function swpf_detect_icon_families($settings) {
+    $families = array();
+
+    $elegant = array();
+    if (class_exists('SWPF_Icon_Manager')) {
+        $manager = SWPF_Icon_Manager::instance();
+        if (method_exists($manager, 'elegant_icon_array')) {
+            $elegant = (array) $manager->elegant_icon_array();
+        }
+    }
+
+    array_walk_recursive($settings, function ($value) use (&$families, $elegant) {
+        if (!is_string($value) || '' === $value) {
+            return;
+        }
+
+        if (0 === strpos($value, 'mdi-')) {
+            $families['materialdesignicons'] = true;
+        } elseif (0 === strpos($value, 'icofont-')) {
+            $families['icofont'] = true;
+        } elseif (0 === strpos($value, 'essentialicon-')) {
+            $families['essentialicon'] = true;
+        } elseif (false !== strpos($value, 'fa-')) {
+            $families['fontawesome-6.3.0'] = true;
+        } elseif ($elegant && in_array($value, $elegant, true)) {
+            $families['eleganticons'] = true;
+        }
+    });
+
+    /**
+     * Filter the icon font handles a preset is considered to need.
+     *
+     * @param array $families Style handles.
+     * @param array $settings Preset settings.
+     */
+    return (array) apply_filters('swpf_preset_icon_families', array_keys($families), $settings);
+}
+
+/**
+ * Query keys the filter reads from the URL.
+ *
+ * Shared by the filter parser and the SEO controls so the two cannot drift apart.
+ *
+ * @return array
+ */
 function swpf_get_filter_query_keys() {
     $keys = array(
         'categories',

@@ -214,7 +214,7 @@ $swpf_main_wrap_classes = array(
             ?>
             <button class="swpf-form-submit" type="submit">
                 <?php echo isset($swpf_settings['config']['submit_btn_text']) ? esc_html($swpf_settings['config']['submit_btn_text']) : esc_html__('Apply', 'super-product-filter'); ?>
-                <i class="far fa-spinner"></i>
+                <i class="swpf-icon swpf-icon-spinner"></i>
             </button>
             <?php
         }

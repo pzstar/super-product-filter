@@ -31,11 +31,21 @@ class Super_Product_Filter_Public {
         wp_enqueue_style('swpf-loaders', SWPF_URL . 'public/css/loaders.css', array(), $this->version);
         wp_enqueue_style('swpf-hover', SWPF_URL . 'public/css/hover-min.css', array(), $this->version);
 
-        wp_enqueue_style('fontawesome-6.3.0', SWPF_URL . 'public/css/fontawesome-6.3.0.css', array(), $this->version);
-        wp_enqueue_style('eleganticons', SWPF_URL . 'public/css/eleganticons.css', array(), $this->version);
-        wp_enqueue_style('essentialicon', SWPF_URL . 'public/css/essentialicon.css', array(), $this->version);
-        wp_enqueue_style('icofont', SWPF_URL . 'public/css/icofont.css', array(), $this->version);
-        wp_enqueue_style('materialdesignicons', SWPF_URL . 'public/css/materialdesignicons.css', array(), $this->version);
+        /*
+         * Registered, not enqueued. Each preset pulls in only the families it
+         * uses as it renders; the filter's own chrome needs none of them.
+         */
+        $swpf_icon_css = array(
+            'fontawesome-6.3.0' => 'public/css/fontawesome-6.3.0.css',
+            'eleganticons' => 'public/css/eleganticons.css',
+            'essentialicon' => 'public/css/essentialicon.css',
+            'icofont' => 'public/css/icofont.css',
+            'materialdesignicons' => 'public/css/materialdesignicons.css',
+        );
+
+        foreach ($swpf_icon_css as $swpf_handle => $swpf_path) {
+            wp_register_style($swpf_handle, SWPF_URL . $swpf_path, array(), $this->version);
+        }
 
         wp_enqueue_style('jquery-ui-slider', SWPF_URL . 'public/vendor/slider-ui/slider-ui.css', array(), $this->version, 'all');
         wp_enqueue_style('chosen', SWPF_URL . 'public/vendor/chosen/chosen.css', '', $this->version);

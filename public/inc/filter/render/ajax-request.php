@@ -98,7 +98,6 @@ $swpf_response['html_filter_panel'] = $swpf_filter_panel;
 $swpf_response['html_filtered_data'] = $swpf_filtered_data;
 $swpf_response['html_post_count'] = $swpf_total_posts_found . ' ' . _n('Item Found', 'Items Found', $swpf_total_posts_found, 'super-product-filter');
 $swpf_response['html_columns'] = $swpf_product_columns;
-$swpf_response['qry'] = $wp_query;
 $swpf_response['posid'] = $swpf_posid;
 wp_send_json($swpf_response);
 wp_die();
