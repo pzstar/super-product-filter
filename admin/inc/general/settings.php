@@ -41,6 +41,14 @@ defined('ABSPATH') || die();
             <p class="swpf-desc"><?php esc_html_e('Turn this on if your products look wrong after filtering. Normally the filter rebuilds the product list using WooCommerce\'s default templates, which does not match themes and page builders that render their own product cards. In this mode the filtered page is requested from your site instead, so products come back in exactly the markup your theme already uses. It is slightly slower because the whole page is rendered, so leave it off unless you need it. This applies to shop and category pages, where the filter drives the product list. A loop added by a shortcode or a page builder widget runs its own query, so those keep using the standard method.', 'super-product-filter'); ?></p>
         </div>
 
+        <div class="swpf-settings-row">
+            <label>
+                <input type="checkbox" name="swpf_general_settings[delete_data_on_uninstall]" <?php checked($swpf_general_settings['delete_data_on_uninstall'], 'on', true); ?>>
+                <strong><?php esc_html_e('Delete All Data on Uninstall', 'super-product-filter'); ?></strong>
+            </label>
+            <p class="swpf-desc"><?php esc_html_e('Removes every filter and setting this plugin created when you delete it from the Plugins screen. This cannot be undone, and deactivating alone never removes anything. Leave this off if you might reinstall later or are only moving to another server, and your filters will still be here.', 'super-product-filter'); ?></p>
+        </div>
+
         <div class="swpf-save-settings swpf-general-settings-btn">
             <button type="submit" name="submit" class="button button-primary"><?php esc_html_e('Save Settings', 'super-product-filter'); ?></button>
         </div>

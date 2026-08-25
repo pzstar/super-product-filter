@@ -60,25 +60,38 @@ function swpf_get_taxonomies() {
 }
 
 function swpf_get_checkbox_allowed_protocols() {
+    /*
+     * Exactly what the filter walkers emit. The inline styles carry the colour
+     * and image swatches, so leaving style out here renders those filters blank.
+     * wp_kses still runs its own CSS filter over the value, which is what stops
+     * a url(javascript:...) getting through.
+     */
     return array(
         'ul' => array(
-            'class' => array()
+            'class' => array(),
+            'style' => array(),
         ),
         'li' => array(
-            'class' => array()
+            'class' => array(),
+            'data-id' => array(),
         ),
         'input' => array(
             'id' => array(),
+            'class' => array(),
             'type' => array(),
             'name' => array(),
             'checked' => array(),
             'value' => array(),
         ),
-        'span' => array(
-            'class' => array()
-        ),
         'label' => array(
-            'class' => array()
+            'class' => array(),
+        ),
+        'span' => array(
+            'class' => array(),
+            'style' => array(),
+        ),
+        'div' => array(
+            'class' => array(),
         ),
     );
 }
@@ -119,9 +132,11 @@ if (!class_exists('SWPF_Walker_Category_Checklist')) {
                 }
             }
             if (!in_array($category->term_id, $hide_terms)) {
-                $output .= "\n<li class='swpf-filter-item swpf-{$taxonomy}-{$category->{$value_field} }'>";
+                $term_value = esc_attr($category->{$value_field});
+                $term_taxonomy = esc_attr($taxonomy);
+                $output .= "\n<li class='swpf-filter-item swpf-{$term_taxonomy}-{$term_value}'>";
                 $output .= '<label class="swpf-filter-label">';
-                $output .= '<input value="' . $category->{$value_field} . '" type="checkbox" name="' . $name . '[]" id="in-' . $taxonomy . '-' . $category->{$value_field} . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . '/>';
+                $output .= '<input value="' . $term_value . '" type="checkbox" name="' . esc_attr($name) . '[]" id="in-' . $term_taxonomy . '-' . $term_value . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . '/>';
                 $output .= '<span class="swpf-title">';
                 $output .= '<span class="swpf-term">';
                 $output .= isset($term_name_array[$category->term_id]) ? esc_html($term_name_array[$category->term_id]) : esc_html($category->name);
@@ -242,9 +257,11 @@ if (!class_exists('SWPF_Walker_Category_Radiolist')) {
             }
 
             if (!in_array($category->term_id, $hide_terms)) {
-                $output .= "\n<li class='swpf-filter-item swpf-{$taxonomy}-{$category->{$value_field} }'>";
+                $term_value = esc_attr($category->{$value_field});
+                $term_taxonomy = esc_attr($taxonomy);
+                $output .= "\n<li class='swpf-filter-item swpf-{$term_taxonomy}-{$term_value}'>";
                 $output .= '<label class="swpf-filter-label">';
-                $output .= '<input value="' . $category->{$value_field} . '" type="radio" name="' . $name . '" id="in-' . $taxonomy . '-' . $category->{$value_field} . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . ' /> ';
+                $output .= '<input value="' . $term_value . '" type="radio" name="' . esc_attr($name) . '" id="in-' . $term_taxonomy . '-' . $term_value . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . ' /> ';
                 $output .= '<span class="swpf-title">';
                 $output .= '<span class="swpf-term">';
                 $output .= isset($term_name_array[$category->term_id]) ? esc_html($term_name_array[$category->term_id]) : esc_html($category->name);
@@ -366,10 +383,12 @@ if (!class_exists('SWPF_Walker_Category_Toggle')) {
             }
 
             if (!in_array($category->term_id, $hide_terms)) {
-                $output .= "\n<li class='swpf-filter-item swpf-{$taxonomy}-{$category->{$value_field} }'>";
+                $term_value = esc_attr($category->{$value_field});
+                $term_taxonomy = esc_attr($taxonomy);
+                $output .= "\n<li class='swpf-filter-item swpf-{$term_taxonomy}-{$term_value}'>";
                 $output .= '<label class="swpf-filter-label">';
                 $output .= '<span class="swpf-toggle-wrap">';
-                $output .= '<input value="' . $category->{$value_field} . '" type="checkbox" name="' . $name . '[]" id="in-' . $taxonomy . '-' . $category->{$value_field} . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . '/>';
+                $output .= '<input value="' . $term_value . '" type="checkbox" name="' . esc_attr($name) . '[]" id="in-' . $term_taxonomy . '-' . $term_value . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . '/>';
                 $output .= '<span class="swpf-toggle-knob"></span>';
                 $output .= '</span>';
                 $output .= '<span class="swpf-title">';
@@ -494,9 +513,11 @@ if (!class_exists('SWPF_Walker_Category_Color_Image_Checkbox')) {
                 }
             }
             if (!in_array($category->term_id, $hide_terms)) {
-                $output .= "\n<li class='swpf-filter-item swpf-{$taxonomy}-{$category->{$value_field} }'>";
+                $term_value = esc_attr($category->{$value_field});
+                $term_taxonomy = esc_attr($taxonomy);
+                $output .= "\n<li class='swpf-filter-item swpf-{$term_taxonomy}-{$term_value}'>";
                 $output .= '<label class="swpf-filter-label">';
-                $output .= '<input class="swpf-chkbox-term" value="' . $category->{$value_field} . '" type="checkbox" name="' . $name . '[]" id="in-' . $taxonomy . '-' . $category->{$value_field} . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . '/>';
+                $output .= '<input class="swpf-chkbox-term" value="' . $term_value . '" type="checkbox" name="' . esc_attr($name) . '[]" id="in-' . $term_taxonomy . '-' . $term_value . '"' . checked(in_array($category->{$value_field}, $selected_cats), true, false) . '/>';
                 $output .= '<span class="swpf-' . esc_attr($type) . '-box" ' . ($type == "color" && isset($term_preview_array[$category->term_id]['color']) ? 'style="background-color:' . esc_attr($term_preview_array[$category->term_id]['color']) . '"' : "") . '>';
                 if ($type == 'image') {
                     $output .= '<span class="swpf-image-url"  style="background-image: url(' . esc_url($term_preview_array[$category->term_id]['image']) . ')"></span>';
@@ -617,10 +638,10 @@ if (!class_exists('SWPF_Walker_Category_Dropdown')) {
                 }
             }
             if (!in_array($category->term_id, $hide_terms)) {
-                $output .= '<option class="level-' . $depth . '" value="' . $category->{$value_field} . '" id="in-' . $taxonomy . '-' . $category->{$value_field} . '"' . selected(in_array($category->{$value_field}, $selected_cats), true, false) . '>';
+                $term_value = esc_attr($category->{$value_field});
+                $output .= '<option class="level-' . absint($depth) . '" value="' . $term_value . '" id="in-' . esc_attr($taxonomy) . '-' . $term_value . '"' . selected(in_array($category->{$value_field}, $selected_cats), true, false) . '>';
                 $indent = str_repeat("&nbsp;", $depth * 5);
                 $output .= $indent;
-                $output .= $category->name;
                 $output .= $hide_term_name ? '' : (isset($term_name_array[$category->term_id]) ? esc_html($term_name_array[$category->term_id]) : esc_html($category->name));
                 if ($show_count) {
                     $output .= '&nbsp;(';
@@ -728,6 +749,27 @@ function swpf_get_post($param, $sanitize = 'sanitize_text_field', $default = '')
     }
 
     return swpf_sanitize_value($sanitize, $value);
+}
+
+/**
+ * The filter preset a request is asking to render.
+ *
+ * The id arrives from the browser, so it is only trusted once it turns out to
+ * name a filter preset. Any other post id resolves to 0 instead, which leaves
+ * the caller rendering default settings rather than reading the meta of a post
+ * that has nothing to do with this plugin.
+ *
+ * @param string $param Request key holding the id.
+ * @return int Preset id, or 0 when the id names anything else.
+ */
+function swpf_get_preset_id($param = 'posid') {
+    $swpf_posid = absint(swpf_get_post($param));
+
+    if (!$swpf_posid || 'swpf-product-filter' !== get_post_type($swpf_posid)) {
+        return 0;
+    }
+
+    return $swpf_posid;
 }
 
 /**

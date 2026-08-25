@@ -137,7 +137,8 @@ For premium upgrade, please click below link <br>
 <li>Activate the plugin through the 'Plugins' menu in WordPress</li>
 
 == Changelog ==
-= 1.0.9 - 21 Aug, 2026 =
+= 1.0.9 - 25 Aug, 2026 =
+* Added - Option to remove every filter and setting when the plugin is deleted, under Settings. Off by default, so deactivating or reinstalling never loses your filters
 * Added - Sorting filter, letting shoppers reorder results by price, date, title, popularity or at random
 * Added - Product search filter for filtering results by keyword
 * Added - Theme Compatibility Mode. When products look wrong after filtering, the filtered page is requested from the site instead of being rebuilt from WooCommerce's default templates, so products come back in the theme's own markup

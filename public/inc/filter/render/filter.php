@@ -21,7 +21,13 @@ if (defined('DOING_AJAX') && DOING_AJAX) {
     $swpf_unique_id = swpf_get_post('unique_id');
     $swpf_current_page_id = swpf_get_post('current_page_id');
     $swpf_prevposid = isset($swpf_posid) ? absint($swpf_posid) : null;
-    $swpf_posid = swpf_get_post('posid', 'absint', $swpf_prevposid);
+    /*
+     * The id comes from the browser, so it only replaces the preset already in
+     * scope when it really names one. Anything else keeps the current settings
+     * rather than reading meta off an unrelated post.
+     */
+    $swpf_requested_posid = swpf_get_preset_id();
+    $swpf_posid = $swpf_requested_posid ? $swpf_requested_posid : $swpf_prevposid;
     if ($swpf_prevposid != $swpf_posid) {
         $swpf_settings = get_post_meta($swpf_posid, 'swpf_settings', true);
         $swpf_settings = Super_Product_Filter_Admin::recursive_parse_args($swpf_settings, Super_Product_Filter_Metabox::default_settings_values());

@@ -10,7 +10,7 @@ if (empty($swpf_post_data)) {
     wp_send_json_error(esc_html__('Invalid request data!', 'super-product-filter'));
 }
 
-$swpf_posid = swpf_get_post('posid');
+$swpf_posid = swpf_get_preset_id();
 $swpf_settings = get_post_meta($swpf_posid, 'swpf_settings', true);
 $swpf_settings = Super_Product_Filter_Admin::recursive_parse_args($swpf_settings, Super_Product_Filter_Metabox::default_settings_values());
 /*
