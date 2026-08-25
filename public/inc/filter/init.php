@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
+}
+
 class Super_Product_Filter_Init extends Super_Product_Filter_General {
 
     public function __construct() {
@@ -15,26 +19,14 @@ class Super_Product_Filter_Init extends Super_Product_Filter_General {
 
         add_filter('get_terms', array($this, 'add_numerical_order'), 10, 4);
 
-        if ($this->filter_shortcode_id && !empty($this->settings)) {
-            if (isset($this->settings['config']['product_columns']) && !empty($this->settings['config']['product_columns'])) {
-                $product_columns = absint($this->settings['config']['product_columns']);
-            }
-
-            if (isset($product_columns) && $product_columns > 0) {
-                if (isset($this->settings['config']['product_rows']) && !empty($this->settings['config']['product_rows'])) {
-                    $swpf_product_rows = absint($this->settings['config']['product_rows']);
-                }
-
-                $this->product_columns = $product_columns;
-                add_filter('loop_shop_columns', array($this, 'loop_columns'), 999);
-
-                if (isset($swpf_product_rows) && $swpf_product_rows > 0) {
-                    $swpf_post_per_page = $product_columns * $swpf_product_rows;
-                    $this->post_per_page = $swpf_post_per_page;
-                    add_filter('loop_shop_per_page', array($this, 'product_per_page'), 30);
-                }
-            }
-        }
+        /*
+         * Columns and rows per page are WooCommerce's own settings, under
+         * Appearance > Customize > WooCommerce > Product Catalog. This plugin
+         * used to filter loop_shop_columns and loop_shop_per_page from here,
+         * but by the time a filter renders WooCommerce has already read both
+         * values, so it never took effect. Worse, merely registering those
+         * filters makes WooCommerce hide its own controls in the Customizer.
+         */
     }
 
     public function render_result() {
@@ -169,16 +161,6 @@ class Super_Product_Filter_Init extends Super_Product_Filter_General {
         return $wpml_translation;
     }
 
-    public function product_per_page($products) {
-        $products = isset($this->product_per_page) ? absint($this->product_per_page) : absint($products);
-        return $products;
-    }
-
-    public function loop_columns() {
-        $default = get_option('woocommerce_catalog_columns', 4);
-        $cols = isset($this->product_columns) ? absint($this->product_columns) : absint($default);
-        return $cols;
-    }
 }
 
 new Super_Product_Filter_Init();

@@ -730,6 +730,56 @@ function swpf_get_post($param, $sanitize = 'sanitize_text_field', $default = '')
     return swpf_sanitize_value($sanitize, $value);
 }
 
+/**
+ * Query keys the filter reads from the URL.
+ *
+ * Shared by the filter parser and the SEO controls so the two cannot drift apart.
+ *
+ * @return array
+ */
+/**
+ * The value to show in a region selector override field.
+ *
+ * Presets saved before automatic detection carry the old stock selector, which
+ * is what detection finds anyway. Showing it would read as a deliberate
+ * override, so it is displayed empty and clears itself on the next save.
+ *
+ * @param string $value Stored value.
+ * @param string $stock The selector that used to be the default.
+ * @return string
+ */
+function swpf_selector_override_value($value, $stock) {
+    $value = is_string($value) ? trim($value) : '';
+
+    return in_array($value, (array) $stock, true) ? '' : $value;
+}
+
+function swpf_get_filter_query_keys() {
+    $keys = array(
+        'categories',
+        'tags',
+        'visibility',
+        'min_price',
+        'max_price',
+        'review-from',
+        'review-to',
+        'rating-from',
+        'on-sale',
+        'in-stock',
+        'orderby',
+        'relation',
+        's',
+    );
+
+    if (function_exists('wc_get_attribute_taxonomies')) {
+        foreach (wc_get_attribute_taxonomies() as $swpf_attribute) {
+            $keys[] = 'pa_' . $swpf_attribute->attribute_name;
+        }
+    }
+
+    return apply_filters('swpf_filter_query_keys', $keys);
+}
+
 function swpf_get_post_data($param, $sanitize = 'sanitize_text_field') {
     $post_data = array();
     if (isset($_POST[$param]) && is_string($_POST[$param])) { // phpcs:ignore WordPress.Security.NonceVerification.Missing

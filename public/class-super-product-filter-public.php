@@ -21,6 +21,8 @@ class Super_Product_Filter_Public {
     }
 
     public function includes() {
+        include SWPF_PATH . 'public/inc/region-markers.php';
+        include SWPF_PATH . 'public/inc/seo.php';
         include SWPF_PATH . 'public/inc/filter/general.php';
         include SWPF_PATH . 'public/inc/filter/init.php';
     }
@@ -60,6 +62,15 @@ class Super_Product_Filter_Public {
         $js_obj = array(
             'plugin_url' => WP_PLUGIN_URL,
         );
+        /*
+         * The side menu scrollbar option renders swpf-scrollbar-on and the script
+         * calls mCustomScrollbar, but the library was only ever localized, never
+         * registered, so the call threw on every page load.
+         */
+        wp_enqueue_style('jquery-mCustomScrollbar', SWPF_URL . 'public/vendor/mcscrollbar/jquery.mCustomScrollbar.css', array(), $this->version);
+        wp_enqueue_script('jquery-mousewheel', SWPF_URL . 'public/vendor/mcscrollbar/jquery.mousewheel.min.js', array('jquery'), $this->version, true);
+        wp_enqueue_script('jquery-mCustomScrollbar', SWPF_URL . 'public/vendor/mcscrollbar/jquery.mCustomScrollbar.js', array('jquery', 'jquery-mousewheel'), $this->version, true);
+
         wp_localize_script('jquery-mCustomScrollbar', 'swpf_js_obj', $js_obj);
 
         $front_var = array(
@@ -67,7 +78,8 @@ class Super_Product_Filter_Public {
             'ajax_url' => esc_url(admin_url('admin-ajax.php')),
             'wcLinks' => get_option('woocommerce_permalinks'),
             'shopUrl' => wc_get_page_permalink('shop'),
-            'queryVars' => $GLOBALS['wp_query']->query_vars
+            'queryVars' => $GLOBALS['wp_query']->query_vars,
+            'compat_mode' => Super_Product_Filter_General_Settings::is_compat_mode() ? 1 : 0
         );
 
         if ($wp_query->is_tax()) {

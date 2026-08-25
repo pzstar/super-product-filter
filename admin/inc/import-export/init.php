@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
+}
+
 class Super_Product_Filter_Import_Export {
 	public function __construct() {
 
@@ -126,11 +130,19 @@ class Super_Product_Filter_Import_Export {
     }
 
     private static function is_image_url($url) {
-        if (is_string($url) && preg_match('/\.(jpg|jpeg|png|gif)/i', $url)) {
-            return true;
+        if (!is_string($url) || '' === $url) {
+            return false;
         }
 
-        return false;
+        // Require an absolute http(s) URL whose path ends in an image extension,
+        // so arbitrary strings containing ".jpg" are not sideloaded.
+        if (!preg_match('#^https?://#i', $url)) {
+            return false;
+        }
+
+        $path = wp_parse_url($url, PHP_URL_PATH);
+
+        return $path && preg_match('/\.(jpe?g|png|gif)$/i', $path);
     }
 
     private static function media_handle_sideload($file) {

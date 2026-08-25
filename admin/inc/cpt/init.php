@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
+}
+
 class Super_Product_Filter_CPT {
 	public function __construct() {
         $this->include_files();
@@ -53,7 +57,28 @@ class Super_Product_Filter_CPT {
             'has_archive' => true,
             'hierarchical' => false,
             'menu_position' => null,
-            'supports' => array('title')
+            'supports' => array('title'),
+            /*
+             * Filter presets are site configuration, not content. Without this the
+             * post type inherits capability_type 'post', which lets any Contributor
+             * or Author create and edit them. map_meta_cap resolves edit_post /
+             * delete_post / read_post against the primitives below.
+             */
+            'capability_type' => 'post',
+            'map_meta_cap' => true,
+            'capabilities' => array(
+                'create_posts' => 'manage_options',
+                'edit_posts' => 'manage_options',
+                'edit_others_posts' => 'manage_options',
+                'edit_private_posts' => 'manage_options',
+                'edit_published_posts' => 'manage_options',
+                'publish_posts' => 'manage_options',
+                'read_private_posts' => 'manage_options',
+                'delete_posts' => 'manage_options',
+                'delete_others_posts' => 'manage_options',
+                'delete_private_posts' => 'manage_options',
+                'delete_published_posts' => 'manage_options',
+            )
         );
         register_post_type('swpf-product-filter', $args);
     }

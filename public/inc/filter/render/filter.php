@@ -119,6 +119,23 @@ $swpf_main_wrap_classes = array(
                                 ?>
                             </div>
                             <?php
+                        } elseif ($swpf_tax_name == 'order_by' && $swpf_settings['enable']['order_by'] == 'on') {
+                            $swpf_has_orderby_field = true;
+                            ?>
+                            <div class="swpf-filter-item-wrap swpf-<?php echo esc_attr($swpf_tax_name) ?>-wrap swpf-tax-count-<?php echo esc_attr($swpf_count); ?>">
+                                <?php
+                                include SWPF_PATH . 'public/inc/filter/fields/order-by.php';
+                                ?>
+                            </div>
+                            <?php
+                        } elseif ($swpf_tax_name == 'search_text' && $swpf_settings['enable']['search_text'] == 'on') {
+                            ?>
+                            <div class="swpf-filter-item-wrap swpf-<?php echo esc_attr($swpf_tax_name) ?>-wrap swpf-tax-count-<?php echo esc_attr($swpf_count); ?>">
+                                <?php
+                                include SWPF_PATH . 'public/inc/filter/fields/search-text.php';
+                                ?>
+                            </div>
+                            <?php
                         } elseif ($swpf_tax_name == 'reviews' && $swpf_settings['enable']['reviews'] == 'on') {
                             ?>
                             <div class="swpf-filter-item-wrap swpf-<?php echo esc_attr($swpf_tax_name) ?>-wrap swpf-tax-count-<?php echo esc_attr($swpf_count); ?>">
@@ -171,14 +188,26 @@ $swpf_main_wrap_classes = array(
             ?>
         </div>
 
-        <input type="hidden" name="paged" value="<?php echo esc_attr($wp_query->query_vars['paged']) ?>">
+        <input type="hidden" name="paged" value="<?php echo isset($wp_query->query_vars['paged']) ? esc_attr($wp_query->query_vars['paged']) : ''; ?>">
         <input type="hidden" name="posts_per_page" value="<?php echo absint(get_query_var('posts_per_page')); ?>">
         <input type="hidden" name="hide_empty" value="<?php echo esc_attr($swpf_hide_empty); ?>">
         <input type="hidden" name="pagination_link" value="<?php echo esc_url(str_replace(999999999, '%#%', remove_query_arg('add-to-cart', get_pagenum_link(999999999, false)))); ?>">
         <input type="hidden" name="filter_list_id" value="<?php echo esc_attr($swpf_unique_id); ?>">
         <input type="hidden" name="swpf_filter" value="1">
         <input type="hidden" name="swpf_filter_sc" value="<?php echo esc_attr($swpf_shortcode_id); ?>">
-        <input type="hidden" name="orderby" value="<?php echo esc_attr($orderby); ?>">
+        <?php
+        /*
+         * The Sorting filter renders its own orderby control. Emitting this
+         * hidden field as well would put two inputs of the same name in the
+         * form, and the later one wins when the payload is parsed, so the
+         * shopper's choice would be silently replaced by the default.
+         */
+        if (empty($swpf_has_orderby_field)) {
+            ?>
+            <input type="hidden" name="orderby" value="<?php echo esc_attr($orderby); ?>">
+            <?php
+        }
+        ?>
 
         <?php
         if (!$swpf_auto_submit) {

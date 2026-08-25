@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
+}
+
 class Super_Product_Filter_Metabox {
     public function __construct() {
         add_action('add_meta_boxes', array($this, 'settings_metabox'));
@@ -67,6 +71,8 @@ class Super_Product_Filter_Metabox {
         $taxonomies_keys = array_keys($taxonomies);
         $return = array(
             'enable' => array(
+                'order_by' => 'off',
+                'search_text' => 'off',
                 'price_range' => 'off',
                 'reviews' => 'off',
                 'ratings' => 'off',
@@ -74,6 +80,8 @@ class Super_Product_Filter_Metabox {
                 'in_stock' => 'off',
             ),
             'title_label' => array(
+                'order_by' => esc_html__('Order By', 'super-product-filter'),
+                'search_text' => esc_html__('Search', 'super-product-filter'),
                 'price_range' => esc_html__('Price', 'super-product-filter'),
                 'reviews' => esc_html__('Reviews', 'super-product-filter'),
                 'ratings' => esc_html__('Ratings', 'super-product-filter'),
@@ -88,9 +96,11 @@ class Super_Product_Filter_Metabox {
                 'lo_specific_cat' => array(),
                 'orderby' => 'ID',
                 'show_filter_list_toggle' => 'on',
-                'product_selector' => 'ul.products',
-                'product_count_selector' => '.woocommerce-result-count',
-                'pagination_selector' => '.woocommerce-pagination',
+                // Blank means the region is detected automatically. A value here
+                // is treated as a deliberate override and always wins.
+                'product_selector' => '',
+                'product_count_selector' => '',
+                'pagination_selector' => '',
                 'product_columns' => '',
                 'product_rows' => '',
                 'preloaders' => 'preloader1',
@@ -353,6 +363,8 @@ class Super_Product_Filter_Metabox {
     public static function sanitize_settings_rules() {
         $return = array(
             'enable' => array(
+                'order_by' => 'swpf_sanitize_checkbox',
+                'search_text' => 'swpf_sanitize_checkbox',
                 'price_range' => 'swpf_sanitize_checkbox',
                 'reviews' => 'swpf_sanitize_checkbox',
                 'ratings' => 'swpf_sanitize_checkbox',
@@ -360,6 +372,8 @@ class Super_Product_Filter_Metabox {
                 'in_stock' => 'swpf_sanitize_checkbox',
             ),
             'title_label' => array(
+                'order_by' => 'sanitize_text_field',
+                'search_text' => 'sanitize_text_field',
                 'price_range' => 'sanitize_text_field',
                 'reviews' => 'sanitize_text_field',
                 'ratings' => 'sanitize_text_field',
@@ -368,6 +382,7 @@ class Super_Product_Filter_Metabox {
             ),
             'list_order' => array(
                 'order_by' => 'sanitize_text_field',
+                'search_text' => 'sanitize_text_field',
                 'price_range' => 'sanitize_text_field',
                 'reviews' => 'sanitize_text_field',
                 'ratings' => 'sanitize_text_field',
@@ -707,6 +722,8 @@ class Super_Product_Filter_Metabox {
     public static function checkbox_settings() {
         $return = array(
             'enable' => array(
+                'order_by' => 'off',
+                'search_text' => 'off',
                 'price_range' => 'off',
                 'reviews' => 'off',
                 'ratings' => 'off',

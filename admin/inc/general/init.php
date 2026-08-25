@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
+}
+
 class Super_Product_Filter_General_Settings {
     public function __construct() {
         // Create a Setting Page
@@ -35,18 +39,36 @@ class Super_Product_Filter_General_Settings {
     public static function checkbox_general_settings() {
         return array(
             'load_fonts_locally' => 'off',
+            'noindex_filtered' => 'off',
+            'compat_mode' => 'off',
         );
+    }
+
+    /**
+     * Whether results should be taken from a normal page render instead of being
+     * rebuilt from WooCommerce's default templates.
+     *
+     * @return bool
+     */
+    public static function is_compat_mode() {
+        $settings = get_option('swpf_general_settings');
+
+        return is_array($settings) && isset($settings['compat_mode']) && 'on' === $settings['compat_mode'];
     }
 
     public static function sanitize_general_setting_rules() {
         return array(
             'load_fonts_locally' => 'swpf_sanitize_checkbox',
+            'noindex_filtered' => 'swpf_sanitize_checkbox',
+            'compat_mode' => 'swpf_sanitize_checkbox',
         );
     }
 
     public static function default_general_settings_values() {
         return array(
             'load_fonts_locally' => 'off',
+            'noindex_filtered' => 'on',
+            'compat_mode' => 'off',
         );
     }
 }

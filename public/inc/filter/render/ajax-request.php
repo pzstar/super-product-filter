@@ -13,18 +13,25 @@ if (empty($swpf_post_data)) {
 $swpf_posid = swpf_get_post('posid');
 $swpf_settings = get_post_meta($swpf_posid, 'swpf_settings', true);
 $swpf_settings = Super_Product_Filter_Admin::recursive_parse_args($swpf_settings, Super_Product_Filter_Metabox::default_settings_values());
-$swpf_post_per_page = get_option('posts_per_page');
+/*
+ * The page tells us the grid it is showing, which covers shortcodes and page
+ * builders that set their own columns and limit as well as ordinary shop pages.
+ * When it cannot be read, fall back to WooCommerce's own catalog settings
+ * rather than the generic posts per page option, so filtered results match what
+ * the page would have rendered on its own.
+ */
+$swpf_post_per_page = swpf_get_post('current_per_page', 'absint');
 
-if (isset($swpf_settings['config']['product_columns']) && !empty($swpf_settings['config']['product_columns'])) {
-    $swpf_product_columns = absint($swpf_settings['config']['product_columns']);
+if (!$swpf_post_per_page) {
+    $swpf_post_per_page = function_exists('wc_get_default_products_per_row')
+        ? wc_get_default_products_per_row() * wc_get_default_product_rows_per_page()
+        : absint(get_option('posts_per_page'));
 }
 
-if (isset($swpf_settings['config']['product_rows']) && !empty($swpf_settings['config']['product_rows'])) {
-    $swpf_product_rows = absint($swpf_settings['config']['product_rows']);
-}
+$swpf_loop_columns = swpf_get_post('current_columns', 'absint');
 
-if (isset($swpf_product_columns) && isset($swpf_product_rows)) {
-    $swpf_post_per_page = $swpf_product_columns * $swpf_product_rows;
+if (!$swpf_loop_columns && function_exists('wc_get_default_products_per_row')) {
+    $swpf_loop_columns = wc_get_default_products_per_row();
 }
 
 remove_action('woocommerce_product_query', array($this, 'filter_posts'), 11);
@@ -51,7 +58,8 @@ wp_reset_postdata();
 
 $swpf_filtered_data = '';
 
-if (isset($swpf_product_columns) && $swpf_product_columns > 1) {
+if ($swpf_loop_columns > 1) {
+    $swpf_product_columns = $swpf_loop_columns;
     add_filter('loop_shop_columns', function () {
         global $swpf_product_columns;
         return absint($swpf_product_columns);
@@ -69,7 +77,7 @@ wc_get_template('loop/result-count.php', array(
     'current' => wc_get_loop_prop('current_page'),
     'orderedby' => $swpf_args['orderby']
 ));
-$swpf_html_result_count_content = ob_get_clean();
+$swpf_html_result_count_content = Super_Product_Filter_Region_Markers::mark(ob_get_clean(), 'result-count');
 
 ob_start();
 wc_get_template('loop/pagination.php');

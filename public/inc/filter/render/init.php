@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
+}
+
 class Super_Product_Filter_Render extends Super_Product_Filter_General {
     public $settings;
 
@@ -201,6 +205,10 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
 
             $wp_query->set('orderby', $order_by_query);
 
+            if (isset($swpf_current_filter_option['s']) && is_string($swpf_current_filter_option['s']) && '' !== $swpf_current_filter_option['s']) {
+                $wp_query->set('s', $swpf_current_filter_option['s']);
+            }
+
             if (isset($meta_key)) {
                 $wp_query->set('meta_key', $meta_key);
             }
@@ -271,7 +279,7 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
         global $wp_query;
 
         if (!empty($atts['id'])) {
-            $this->filter_shortcode_id = $atts['id'];
+            $this->filter_shortcode_id = absint($atts['id']);
             $swpf_settings = get_post_meta($this->filter_shortcode_id, 'swpf_settings', true);
             if (!$swpf_settings) {
                 $swpf_settings = Super_Product_Filter_Metabox::default_settings_values();
@@ -381,7 +389,20 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
                 ?>
                 <div class="swpf-ajax-loader">
                     <div class="swpf-preloader-wrap">
-                        <?php include SWPF_PATH . 'public/inc/preloader/' . sanitize_text_field($preloader) . '.php' ?>
+                        <?php
+                        /*
+                         * A preset imported from the premium build can name a
+                         * preloader this plugin does not ship, and sanitize_file_name
+                         * also keeps the value from walking out of the directory.
+                         */
+                        $swpf_preloader_file = SWPF_PATH . 'public/inc/preloader/' . sanitize_file_name($preloader) . '.php';
+
+                        if (!file_exists($swpf_preloader_file)) {
+                            $swpf_preloader_file = SWPF_PATH . 'public/inc/preloader/preloader1.php';
+                        }
+
+                        include $swpf_preloader_file;
+                        ?>
                     </div>
                 </div>
                 <?php

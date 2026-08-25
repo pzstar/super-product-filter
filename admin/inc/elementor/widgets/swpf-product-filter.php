@@ -51,7 +51,7 @@ class SwpfProductFilter extends Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
         if (isset($settings['swpf_filter_preset']) && !empty($settings['swpf_filter_preset']) && (get_post_status($settings['swpf_filter_preset']) == 'publish')) {
-            echo do_shortcode('[swpf_elem_shortcode id="' . $settings['swpf_filter_preset'] . '"]');
+            echo do_shortcode('[swpf_elem_shortcode id="' . absint($settings['swpf_filter_preset']) . '"]');
         }
     }
 

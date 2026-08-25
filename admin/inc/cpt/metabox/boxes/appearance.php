@@ -107,66 +107,50 @@ defined('ABSPATH') || die();
 
         <div class="swpf-separator"></div>
 
-        <div class="swpf-field-wrap">
-            <label><?php esc_html_e('Products Wrapper Selector Class', 'super-product-filter'); ?></label>
-            <div class="swpf-settings-input-field">
-                <input type="text" name="swpf_settings[config][product_selector]" value="<?php echo esc_attr($swpf_settings['config']['product_selector']); ?>">
-                <p class="swpf-desc">
-                    <?php
-                    echo esc_html__('Enter the selector that wraps the entire product list on the page where this filter is used.', 'super-product-filter');
-                    ?>
-                </p>
-            </div>
-        </div>
+        <details class="swpf-advanced-settings">
+            <summary><?php esc_html_e('Advanced', 'super-product-filter'); ?></summary>
 
-        <div class="swpf-field-wrap">
-            <label><?php esc_html_e('Products Count Div Selector Class', 'super-product-filter'); ?></label>
-            <div class="swpf-settings-input-field">
-                <input type="text" name="swpf_settings[config][product_count_selector]" value="<?php echo esc_attr($swpf_settings['config']['product_count_selector']); ?>">
-                <p class="swpf-desc">
-                    <?php
-                    echo esc_html__('Enter the selector that wraps the product counter on the page where this filter is used.', 'super-product-filter');
-                    ?>
-                </p>
-            </div>
-        </div>
+            <p class="swpf-desc"><?php esc_html_e('These are only needed when the filter cannot work out where your theme puts the product list. Leave them empty unless filtering is not updating part of the page.', 'super-product-filter'); ?></p>
 
-        <div class="swpf-field-wrap">
-            <label><?php esc_html_e('Products Pagination Div Selector Class', 'super-product-filter'); ?></label>
-            <div class="swpf-settings-input-field">
-                <input type="text" name="swpf_settings[config][pagination_selector]" value="<?php echo esc_attr($swpf_settings['config']['pagination_selector']); ?>">
-                <p class="swpf-desc">
-                    <?php
-                    echo esc_html__('Enter the selector that wraps the pagination on the page where this filter is used.', 'super-product-filter');
-                    ?>
-                </p>
+            <div class="swpf-field-wrap">
+                <label><?php esc_html_e('Products Wrapper Selector Class', 'super-product-filter'); ?></label>
+                <div class="swpf-settings-input-field">
+                    <input type="text" name="swpf_settings[config][product_selector]" value="<?php echo esc_attr(swpf_selector_override_value($swpf_settings['config']['product_selector'], array('ul.products', '.woocommerce .products'))); ?>" placeholder="<?php esc_attr_e('Detected automatically', 'super-product-filter'); ?>">
+                    <p class="swpf-desc"><?php esc_html_e('The selector wrapping the product list. Leave empty to detect it automatically.', 'super-product-filter'); ?></p>
+                </div>
             </div>
-        </div>
+
+            <div class="swpf-field-wrap">
+                <label><?php esc_html_e('Products Count Div Selector Class', 'super-product-filter'); ?></label>
+                <div class="swpf-settings-input-field">
+                    <input type="text" name="swpf_settings[config][product_count_selector]" value="<?php echo esc_attr(swpf_selector_override_value($swpf_settings['config']['product_count_selector'], '.woocommerce-result-count')); ?>" placeholder="<?php esc_attr_e('Detected automatically', 'super-product-filter'); ?>">
+                    <p class="swpf-desc"><?php esc_html_e('The selector wrapping the result count. Leave empty to detect it automatically.', 'super-product-filter'); ?></p>
+                </div>
+            </div>
+
+            <div class="swpf-field-wrap">
+                <label><?php esc_html_e('Products Pagination Div Selector Class', 'super-product-filter'); ?></label>
+                <div class="swpf-settings-input-field">
+                    <input type="text" name="swpf_settings[config][pagination_selector]" value="<?php echo esc_attr(swpf_selector_override_value($swpf_settings['config']['pagination_selector'], '.woocommerce-pagination')); ?>" placeholder="<?php esc_attr_e('Detected automatically', 'super-product-filter'); ?>">
+                    <p class="swpf-desc"><?php esc_html_e('The selector wrapping the pagination. Leave empty to detect it automatically.', 'super-product-filter'); ?></p>
+                </div>
+            </div>
+
+        </details>
 
         <div class="swpf-separator"></div>
 
         <div class="swpf-field-wrap">
-            <label><?php esc_html_e('Product Columns', 'super-product-filter'); ?></label>
-
+            <label><?php esc_html_e('Product Columns and Rows', 'super-product-filter'); ?></label>
             <div class="swpf-settings-input-field">
-                <div class="swpf-range-slider-field">
-                    <div class="swpf-range-slider"></div>
-                    <input type="number" name="swpf_settings[config][product_columns]" value="<?php echo esc_attr($swpf_settings['config']['product_columns']); ?>" class="swpf-range-input" min="1" max="6" step="1">
-                </div>
+                <p class="swpf-desc">
+                    <?php
+                    /* translators: 1: Link open, 2: Link close */
+                    echo sprintf(esc_html__('Set these under %1$sAppearance > Customize > WooCommerce > Product Catalog%2$s. A product list added by a shortcode or a page builder uses its own columns and limit instead.', 'super-product-filter'), '<a href="' . esc_url(admin_url('customize.php?autofocus[section]=woocommerce_product_catalog')) . '" target="_blank">', '</a>');
+                    ?>
+                </p>
             </div>
         </div>
-
-        <div class="swpf-field-wrap">
-            <label><?php esc_html_e('Product Rows', 'super-product-filter'); ?></label>
-
-            <div class="swpf-settings-input-field">
-                <div class="swpf-range-slider-field">
-                    <div class="swpf-range-slider"></div>
-                    <input type="number" name="swpf_settings[config][product_rows]" value="<?php echo esc_attr($swpf_settings['config']['product_rows']); ?>" class="swpf-range-input" min="1" max="10" step="1">
-                </div>
-            </div>
-        </div>
-
         <div class="swpf-separator"></div>
 
         <div class="swpf-field-wrap">

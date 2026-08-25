@@ -7,7 +7,7 @@ $swpf_taxonomies_keys = array_keys($swpf_taxonomies); // get only the taxo name 
 
 if (isset($swpf_settings['list_order']) && !empty($swpf_settings['list_order'])) {
     $swpf_items_order = $swpf_settings['list_order'];
-    $swpf_meta_items = ['price_range', 'reviews', 'ratings', 'on_sale', 'in_stock'];
+    $swpf_meta_items = ['order_by', 'search_text', 'price_range', 'reviews', 'ratings', 'on_sale', 'in_stock'];
     $swpf_tax_items = array_diff($swpf_items_order, $swpf_meta_items); // only tax_items from db
     $swpf_new_tax_items = array_diff($swpf_taxonomies_keys, $swpf_tax_items); // new added tax_items not available in db
     // check if new_tax_items are registered then append it to the current database items list
@@ -21,7 +21,7 @@ if (isset($swpf_settings['list_order']) && !empty($swpf_settings['list_order']))
         }
     }
 } else {
-    $swpf_meta_items = ['price_range', 'reviews', 'ratings', 'on_sale', 'in_stock'];
+    $swpf_meta_items = ['order_by', 'search_text', 'price_range', 'reviews', 'ratings', 'on_sale', 'in_stock'];
     $swpf_items_order = array_merge($swpf_meta_items, $swpf_taxonomies_keys); // add other metas to the existing taxonomy array
 }
 
@@ -37,6 +37,30 @@ $swpf_index = 1;
         <div class="swpf-filters-listing">
             <p><?php esc_html_e('Enable/Disable the filters. Click on the title to highlight the filter.', 'super-product-filter') ?></p>
             <div class="swpf-filters-wrap">
+                <div class="swpf-filter-show-hide">
+                    <label><a class="swpf-filter-scroll-to-section" href="#order_by"><?php esc_html_e('Sorting', 'super-product-filter'); ?></a></label>
+                    <div class="swpf-settings-input-field">
+                        <div class="swpf-toggle-wrap">
+                            <label class="swpf-toggle">
+                                <input type="checkbox" name="swpf_settings[enable][order_by]" <?php isset($swpf_settings['enable']['order_by']) ? checked($swpf_settings['enable']['order_by'], 'on') : ''; ?> class="swpf-filter-enable" id="swpf-filters-show-hide-order-by" data-condition="toggle">
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swpf-filter-show-hide">
+                    <label><a class="swpf-filter-scroll-to-section" href="#search_text"><?php esc_html_e('Search', 'super-product-filter'); ?></a></label>
+                    <div class="swpf-settings-input-field">
+                        <div class="swpf-toggle-wrap">
+                            <label class="swpf-toggle">
+                                <input type="checkbox" name="swpf_settings[enable][search_text]" <?php isset($swpf_settings['enable']['search_text']) ? checked($swpf_settings['enable']['search_text'], 'on') : ''; ?> class="swpf-filter-enable" id="swpf-filters-show-hide-search-text" data-condition="toggle">
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="swpf-filter-show-hide">
                     <label><a class="swpf-filter-scroll-to-section" href="#price_range"><?php esc_html_e('Price Range', 'super-product-filter'); ?></a></label>
                     <div class="swpf-settings-input-field">
@@ -137,6 +161,54 @@ $swpf_index = 1;
 
                     <div class="swpf-option-fields-inner-wrap">
                         <input type="hidden" name="swpf_settings[list_order][price_range]" value="<?php echo esc_attr($swpf_item_key); ?>">
+                        <div class="swpf-row">
+                            <div class="swpf-field-wrap">
+                                <label><?php esc_html_e('Title', 'super-product-filter'); ?></label>
+                                <div class="swpf-settings-input-field">
+                                    <input type="text" name="swpf_settings[title_label][<?php echo esc_attr($swpf_item_key); ?>]" value="<?php echo esc_attr($swpf_settings['title_label'][$swpf_item_key]); ?>">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            } elseif ($swpf_item_key == 'order_by') {
+                ?>
+                <div class="swpf-orderby-options-fields swpf-each-items-wrap" data-condition-toggle="swpf-filters-show-hide-order-by" id="order_by">
+                    <div class="swpf-tax-heading-wrap">
+                        <h4><?php esc_html_e('Sorting', 'super-product-filter'); ?></h4>
+                        <div class="swpf-tab-action">
+                            <span class="swpf-each-actions swpf-sortable-box icofont-drag"></span>
+                            <span class="swpf-each-actions swpf-toggle-box icofont-caret-down"></span>
+                        </div>
+                    </div>
+
+                    <div class="swpf-option-fields-inner-wrap">
+                        <input type="hidden" name="swpf_settings[list_order][order_by]" value="<?php echo esc_attr($swpf_item_key); ?>">
+                        <div class="swpf-row">
+                            <div class="swpf-field-wrap">
+                                <label><?php esc_html_e('Title', 'super-product-filter'); ?></label>
+                                <div class="swpf-settings-input-field">
+                                    <input type="text" name="swpf_settings[title_label][<?php echo esc_attr($swpf_item_key); ?>]" value="<?php echo esc_attr($swpf_settings['title_label'][$swpf_item_key]); ?>">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            } elseif ($swpf_item_key == 'search_text') {
+                ?>
+                <div class="swpf-searchtext-options-fields swpf-each-items-wrap" data-condition-toggle="swpf-filters-show-hide-search-text" id="search_text">
+                    <div class="swpf-tax-heading-wrap">
+                        <h4><?php esc_html_e('Search', 'super-product-filter'); ?></h4>
+                        <div class="swpf-tab-action">
+                            <span class="swpf-each-actions swpf-sortable-box icofont-drag"></span>
+                            <span class="swpf-each-actions swpf-toggle-box icofont-caret-down"></span>
+                        </div>
+                    </div>
+
+                    <div class="swpf-option-fields-inner-wrap">
+                        <input type="hidden" name="swpf_settings[list_order][search_text]" value="<?php echo esc_attr($swpf_item_key); ?>">
                         <div class="swpf-row">
                             <div class="swpf-field-wrap">
                                 <label><?php esc_html_e('Title', 'super-product-filter'); ?></label>

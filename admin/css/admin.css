@@ -1912,3 +1912,28 @@ form.swpf-custom-terms-options.swpf-field-settings-display-type-image .swpf-cust
     border-color: #000;
     color: #FFF;
 }
+/* Advanced disclosure holding the region selector overrides */
+.swpf-advanced-settings {
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    padding: 0 16px;
+    margin: 8px 0 20px;
+    background: #fbfbfc;
+}
+
+.swpf-advanced-settings > summary {
+    cursor: pointer;
+    padding: 12px 0;
+    font-weight: 600;
+    list-style: revert;
+    color: #1d2327;
+}
+
+.swpf-advanced-settings[open] > summary {
+    border-bottom: 1px solid #dcdcde;
+    margin-bottom: 14px;
+}
+
+.swpf-advanced-settings > p.swpf-desc {
+    margin-top: 0;
+}

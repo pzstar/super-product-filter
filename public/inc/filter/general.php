@@ -17,25 +17,7 @@ class Super_Product_Filter_General {
 
     public static function get_current_filter_options_vars() {
         $filter_array = array();
-        $attributes = wc_get_attribute_taxonomies();
-        $url_filter_options_array = array(
-            'categories',
-            'tags',
-            'visibility',
-            'min_price',
-            'max_price',
-            'review-from',
-            'review-to',
-            'rating-from',
-            'on-sale',
-            'in-stock',
-            'orderby',
-            'relation'
-        );
-
-        foreach ($attributes as $attr) {
-            $url_filter_options_array[] = 'pa_' . $attr->attribute_name;
-        }
+        $url_filter_options_array = swpf_get_filter_query_keys();
 
         foreach ($url_filter_options_array as $swpf_key) {
             $val = swpf_get_var($swpf_key);
@@ -66,6 +48,9 @@ class Super_Product_Filter_General {
                     if ($swpf_key === 'orderby') {
                         $filter_array['orderby'] = $val;
                     }
+                    if ($swpf_key === 's' && is_string($val)) {
+                        $filter_array['s'] = $val;
+                    }
                     if ($swpf_key === 'relation' && is_string($val)) {
                         $filter_array['relation'] = strtoupper($val);
                     }
@@ -78,6 +63,11 @@ class Super_Product_Filter_General {
 
     public function get_current_filter_options($current_filter = []) {
         $filter_array = array();
+
+        // filter_posts() passes false when there is no posted form data.
+        if (!is_array($current_filter)) {
+            $current_filter = array();
+        }
 
         if (defined('DOING_AJAX') && DOING_AJAX) {
             foreach ($current_filter as $swpf_key => $swpf_option) {
@@ -106,6 +96,8 @@ class Super_Product_Filter_General {
                 } elseif ($swpf_key == 'on-sale' && $swpf_option == '1') {
                     $filter_array[$swpf_key] = $swpf_option;
                 } elseif ($swpf_key === 'orderby') {
+                    $filter_array[$swpf_key] = $swpf_option;
+                } elseif ($swpf_key === 's' && is_string($swpf_option) && '' !== $swpf_option) {
                     $filter_array[$swpf_key] = $swpf_option;
                 }
             }
@@ -138,6 +130,9 @@ class Super_Product_Filter_General {
                         if ($swpf_key === 'orderby') {
                             $filter_array['orderby'] = $val;
                         }
+                        if ($swpf_key === 's' && is_string($val)) {
+                            $filter_array['s'] = $val;
+                        }
                         if ($swpf_key === 'relation' && is_string($val)) {
                             $filter_array['relation'] = strtoupper($val);
                         }
@@ -162,6 +157,13 @@ class Super_Product_Filter_General {
         $price_meta_keys = apply_filters( 'woocommerce_price_filter_meta_keys', array( '_price' ) );
         $swpf_key_placeholders = implode( ',', array_fill( 0, count( $price_meta_keys ), '%s' ) );
 
+        /*
+         * The interpolated fragments here are not user input: the join and where
+         * clauses are generated and escaped by WP_Tax_Query and WP_Meta_Query, and
+         * the meta keys are bound through $wpdb->prepare placeholders. This mirrors
+         * how WooCommerce core builds its own price filter query.
+         */
+        // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
         $prices = $wpdb->get_row($wpdb->prepare("SELECT min(FLOOR(price_meta.meta_value + 0.0)) as min_price, max(CEILING(price_meta.meta_value + 0.0)) as max_price  FROM {$wpdb->posts} LEFT JOIN {$wpdb->postmeta} as price_meta ON {$wpdb->posts}.ID = price_meta.post_id {$tax_query_sql['join']} {$meta_query_sql['join']} WHERE {$wpdb->posts}.post_type = 'product' AND {$wpdb->posts}.post_status = 'publish' AND price_meta.meta_key IN ({$swpf_key_placeholders}) AND price_meta.meta_value > '' {$tax_query_sql['where']} {$meta_query_sql['where']}", ...$price_meta_keys));
         return $prices;
     }

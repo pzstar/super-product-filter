@@ -31,10 +31,102 @@ class SuperWooProductFilter {
     }
 
     initial() {
+        this.resolveRegions();
         this.renderPriceFilters();
         // add data-attr swpf-preset to pagination wrapper to make sure pagination works with filtered products
         jQuery(this.config.pagination_selector).attr('data-swpf-preset', this.config.swpf_preset);
         this.eventsBind();
+    }
+
+    /**
+     * Work out which elements hold the products, the result count and the
+     * pagination, so a shop owner does not have to describe their theme's markup
+     * with CSS selectors.
+     *
+     * Whatever is found gets tagged with data-swpf-region, and the config is
+     * pointed at that tag, so the rest of the script keeps working unchanged.
+     * Order of preference: a selector the owner deliberately set, then a tag
+     * WooCommerce rendered for us, then the stock selector, then the shape of
+     * the markup itself.
+     */
+    resolveRegions() {
+        // Every selector these settings have ever shipped as a default. Anything
+        // else in the field was typed by the shop owner and must win.
+        const STOCK = {
+            product_selector: ['ul.products', '.woocommerce .products'],
+            product_count_selector: ['.woocommerce-result-count'],
+            pagination_selector: ['.woocommerce-pagination']
+        };
+
+        const REGION = {
+            product_selector: 'products',
+            product_count_selector: 'result-count',
+            pagination_selector: 'pagination'
+        };
+
+        const CANDIDATES = {
+            'products': 'ul.products, .products, .wc-block-product-template',
+            'result-count': '.woocommerce-result-count, [class*="result-count"]',
+            'pagination': '.woocommerce-pagination, .wp-block-query-pagination, nav[class*="pagination"]'
+        };
+
+        Object.keys(REGION).forEach((key) => {
+            const region = REGION[key];
+            const tag = '[data-swpf-region="' + region + '"]';
+            const configured = (this.config[key] || '').trim();
+            const isDeliberate = configured && STOCK[key].indexOf(configured) === -1;
+            let found = jQuery();
+            // An explicit selector may legitimately match several lists on one
+            // page; a guess should only ever claim one element.
+            let fromSelector = false;
+
+            if (isDeliberate) {
+                found = jQuery(configured);
+                fromSelector = found.length > 0;
+            }
+
+            if (!found.length) {
+                // A page can hold several product loops. Prefer the one the main
+                // query rendered, because that is the loop filtering drives.
+                const mainTag = tag + '[data-swpf-source="main"]';
+
+                if (jQuery(mainTag).length) {
+                    this.config[key] = mainTag;
+                    return;
+                }
+
+                if (jQuery(tag).length) {
+                    this.config[key] = tag;
+                    return;
+                }
+            }
+
+            if (!found.length && configured) {
+                found = jQuery(configured);
+                fromSelector = found.length > 0;
+            }
+
+            if (!found.length) {
+                found = jQuery(CANDIDATES[region]);
+            }
+
+            if (!found.length && region === 'products') {
+                // Themes vary the container but products almost always carry
+                // .product from post_class(), so walk up from one of them.
+                const probe = document.querySelector('li.product, .product.type-product, .wc-block-product-template li');
+                if (probe) {
+                    const container = probe.closest('ul.products, .products, .wc-block-product-template') || probe.parentElement;
+                    if (container) {
+                        found = jQuery(container);
+                    }
+                }
+            }
+
+            if (found.length) {
+                (fromSelector ? found : found.first()).attr('data-swpf-region', region);
+                this.config[key] = tag;
+            }
+        });
     }
 
     getEl(selector) {
@@ -365,7 +457,11 @@ class SuperWooProductFilter {
         }
 
         if (this.$el.form.hasClass('apply_ajax')) {
-            this.ajaxFilter(scrollAfterFilter);
+            if (typeof swpf_front_js_obj !== 'undefined' && swpf_front_js_obj.compat_mode == 1) {
+                this.pageFilter(getURLs, scrollAfterFilter);
+            } else {
+                this.ajaxFilter(scrollAfterFilter);
+            }
         } else {
             this.$el.form.attr('action', getURLs);
             this.$el.form.submit();
@@ -374,6 +470,147 @@ class SuperWooProductFilter {
         window.history.pushState({
             path: getURLs
         }, '', getURLs);
+    }
+
+    /**
+     * Theme compatibility mode.
+     *
+     * Rather than rebuilding the product list from WooCommerce's default
+     * templates, ask the site for the filtered page and lift the regions out of
+     * the response. Whatever renders the loop, be it a theme, a block or a page
+     * builder, has already produced the markup, so nothing has to be recreated.
+     *
+     * Falls back to the regular request if the page cannot be fetched or does
+     * not contain a product list we recognise.
+     */
+    pageFilter(url, scrollAfterFilter = true) {
+        const mainWrap = this;
+        const filterId = mainWrap.config.unique_id;
+        const REGIONS = ['products', 'result-count', 'pagination'];
+
+        // Replaying a page render only reflects the filter when the main query
+        // produced the loop. Shortcodes, and the builder widgets built on them,
+        // run their own query and would come back unfiltered, so those go through
+        // the regular request instead. Checked before fetching, not after.
+        const target = document.querySelector(mainWrap.config.product_selector);
+
+        if (!target || target.getAttribute('data-swpf-source') !== 'main') {
+            mainWrap.ajaxFilter(scrollAfterFilter);
+            return;
+        }
+
+        jQuery(document).trigger('swpf_before_filter');
+        jQuery('body').addClass('swpf-filter-loading');
+
+        // Once the page has been touched the fallback must not run on top of it,
+        // or the results would be rendered twice.
+        let applied = false;
+
+        const giveUp = function () {
+            jQuery('body').removeClass('swpf-filter-loading');
+            mainWrap.ajaxFilter(scrollAfterFilter);
+        };
+
+        fetch(url, {
+            credentials: 'same-origin',
+            headers: {'X-Requested-With': 'XMLHttpRequest'}
+        }).then(function (response) {
+            if (!response.ok) {
+                throw new Error('swpf: ' + response.status);
+            }
+            return response.text();
+        }).then(function (markup) {
+            const doc = new DOMParser().parseFromString(markup, 'text/html');
+
+            // Nothing recognisable came back. Hand over before touching the page,
+            // so a bad response can never blank out the products already shown.
+            if (!doc.querySelector('[data-swpf-region="products"]')) {
+                giveUp();
+                return;
+            }
+
+            applied = true;
+
+            REGIONS.forEach(function (region) {
+                const selector = '[data-swpf-region="' + region + '"]';
+                const current = document.querySelector(selector);
+
+                if (!current) {
+                    return;
+                }
+
+                const incoming = doc.querySelector(selector);
+
+                if (incoming) {
+                    current.replaceWith(incoming);
+                } else if (region !== 'products') {
+                    // A region the filtered page no longer renders, such as
+                    // pagination once the results fit on one page.
+                    current.innerHTML = '';
+                }
+            });
+
+            // Keep the panel in step so term counts and active filters match.
+            const panelId = 'swpf-filter-preset-' + filterId;
+            const incomingPanel = doc.getElementById(panelId);
+            const currentPanel = document.getElementById(panelId);
+
+            if (incomingPanel && currentPanel && mainWrap.isPagination === false) {
+                currentPanel.replaceWith(incomingPanel);
+                new SuperWooProductFilter(jQuery('#' + panelId));
+            }
+
+            jQuery(mainWrap.config.pagination_selector)
+                .addClass('swpf-ajax-pagination')
+                .attr('data-swpf-preset', mainWrap.config.swpf_preset);
+
+            if (scrollAfterFilter && mainWrap.config.scroll_after_filter == true) {
+                const scrollTarget = jQuery(mainWrap.config.product_selector);
+                if (scrollTarget.length) {
+                    jQuery('html, body').animate({
+                        scrollTop: scrollTarget.parent().offset().top - 25
+                    }, 1000);
+                }
+            }
+
+            jQuery(document).trigger('swpf_after_filter');
+            jQuery('body').removeClass('swpf-filter-loading');
+            jQuery('body').removeClass('swpf-pagination-loading');
+            jQuery('.woocommerce-pagination').removeClass('swpf-processing');
+            jQuery('.swpf-shop-load-more').removeClass('swpf-button-clicked');
+        }).catch(function () {
+            if (applied) {
+                jQuery('body').removeClass('swpf-filter-loading');
+                jQuery('body').removeClass('swpf-pagination-loading');
+                return;
+            }
+
+            giveUp();
+        });
+    }
+
+    /**
+     * The column count the product grid is currently rendered at, read from the
+     * columns-N class WooCommerce puts on the list. Empty when it cannot be read,
+     * in which case the server falls back to the preset.
+     */
+    currentColumns() {
+        const el = document.querySelector(this.config.product_selector);
+        const match = el && el.className.match(/(?:^|\s)columns-(\d+)(?:\s|$)/);
+
+        return match ? match[1] : '';
+    }
+
+    /**
+     * How many products the current loop shows per page, recorded on the list
+     * when it was rendered. Empty when unknown, in which case the server keeps
+     * its own calculation.
+     */
+    currentPerPage() {
+        const el = document.querySelector(this.config.product_selector);
+        const value = el && el.getAttribute('data-swpf-per-page');
+
+        return value ? value : '';
     }
 
     ajaxFilter(scrollAfterFilter = true) {
@@ -398,6 +635,10 @@ class SuperWooProductFilter {
             type: 'POST',
             data: {
                 action: 'swpf_get_product_list',
+                // Tell the server which grid the visitor is looking at, so the
+                // row breaks it renders line up with the columns on screen.
+                current_columns: mainWrap.currentColumns(),
+                current_per_page: mainWrap.currentPerPage(),
                 swpf_form_data: formParams,
                 unique_id: filterId,
                 posid: posid,
@@ -462,7 +703,14 @@ class SuperWooProductFilter {
                 jQuery('.swpf-shop-load-more').removeClass('swpf-button-clicked');
 
                 const html_cols = res['html_columns'];
-                if (html_cols) {
+                // Only restyle a loop this plugin laid out. A shortcode or builder
+                // widget carries its own columns attribute, and WooCommerce ignores
+                // loop_shop_columns for those, so rewriting the class here would
+                // fight the markup the page was rendered with.
+                const colTarget = document.querySelector(mainWrap.config.product_selector);
+                const ownsLayout = colTarget && colTarget.getAttribute('data-swpf-source') !== 'shortcode';
+
+                if (html_cols && ownsLayout) {
                     jQuery(mainWrap.config.product_selector).removeClass('columns-1').removeClass('columns-2').removeClass('columns-3').removeClass('columns-4').removeClass('columns-5').removeClass('columns-6').removeClass('columns-7').removeClass('columns-8').removeClass('columns-9').removeClass('columns-10').addClass('columns-' + html_cols);
                 }
             }

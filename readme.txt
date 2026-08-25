@@ -3,8 +3,8 @@ Contributors: hashthemes
 Tags: ajax filter, ajax product filter, product filter, woocommerce ajax filter, woocommerce filter
 Requires at least: 6.3
 Requires PHP: 7.2
-Tested up to: 6.9
-Stable tag: 1.0.8
+Tested up to: 7.1
+Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,15 @@ The plugin works seamlessly with all major WordPress page builders, such as Elem
 <li>Rating Star</li>
 </ul>
 
+<h3>SEO Friendly Filtering</h3>
+Filtered views rearrange products that already have their own category and product pages. Left alone, every combination of filters becomes another near duplicate page for search engines to crawl and index, which wastes the crawl budget your real pages need. Turn on one setting and filtered views are served as "noindex, follow", keeping them out of search results while links on the page are still followed.
+
+<h3>Product Search Filter</h3>
+Let shoppers narrow the catalogue by keyword. The search field sits alongside your other filters and applies without a page reload, so a shopper can type a term and keep refining by category, price or attribute from the same panel.
+
+<h3>Sorting</h3>
+Give shoppers control over result order without leaving the filter panel. Sort by price low to high or high to low, newest or oldest, title A to Z or Z to A, or show results at random. You choose which sorting options to offer.
+
 <h3>Category and Tag Filter</h3>
 Effortlessly refine the product searches by selecting specific categories and tags. This feature enhances the shopping experience by enabling users to quickly narrow down options and find relevant products based on organized categories or specific tags, all with real-time updates and customizable display options.
 
@@ -76,8 +85,8 @@ You can include specific categories or attributes that are relevant to your prod
 <h3>Display Anywhere on any Pages</h3>
 Position filters wherever you need them on your website. Whether you want to place them in sidebars, headers, footers, or directly within product or shop pages, this feature allows you to use widgets or shortcodes for versatile placement.
 
-<h3>Widget and Shortcode Support</h3>
-Easily integrate filters into various parts of your website using widgets or shortcodes. You can place filters in sidebars, headers, footers, or any page or post by simply adding a widget to a designated area or inserting a shortcode where you want the filters to appear. 
+<h3>Block and Shortcode Support</h3>
+Easily integrate filters into various parts of your website using the editor block or a shortcode. Drop the block into any page, post or block based widget area such as a sidebar, header or footer, or paste the shortcode wherever you want the filters to appear.
 
 <h3>Display Product Count</h3>
 Shows the number of products available within each filter category or attribute. This feature provides users with a clear indication of how many items meet their selected criteria, helping them gauge the variety and volume of products before applying filters. By displaying product counts, you enhance transparency and guide users in making more informed decisions.
@@ -128,6 +137,28 @@ For premium upgrade, please click below link <br>
 <li>Activate the plugin through the 'Plugins' menu in WordPress</li>
 
 == Changelog ==
+= 1.0.9 - 21 Aug, 2026 =
+* Added - Sorting filter, letting shoppers reorder results by price, date, title, popularity or at random
+* Added - Product search filter for filtering results by keyword
+* Added - Theme Compatibility Mode. When products look wrong after filtering, the filtered page is requested from the site instead of being rebuilt from WooCommerce's default templates, so products come back in the theme's own markup
+* Added - The product list, result count and pagination are now found automatically, so the three selector settings only need changing when a theme cannot be detected
+* Added - SEO option to keep filtered views out of search engines, so filter combinations do not create near duplicate pages or eat crawl budget. On for new installs. Existing sites keep their current behaviour until the option is switched on under Settings
+* Added - swpf_filter_query_keys filter, for registering additional filter query parameters
+* Security - Settings sanitization hardened. Values without an explicit rule were stored raw and are now sanitized
+* Security - Filter presets are now restricted to administrators. Please note that Editors and Shop Managers can no longer manage filters
+* Security - Added a capability check when saving filter settings
+* Fixed - The side menu scrollbar library was referenced but never loaded, which threw a JavaScript error on every page
+* Fixed - Removed references to slider theme images that were not shipped, which caused 404 requests on every page
+* Fixed - A preset naming a preloader this version does not ship no longer produces a PHP warning, and the preloader name can no longer point outside the plugin folder
+* Fixed - PHP warning when the filter ran with no submitted form data
+* Fixed - PHP warning about a missing paged value when rendering the filter form
+* Changed - Removed the Product Columns and Product Rows settings. They never took effect: the filters they relied on are read by WooCommerce before the filter renders, and simply registering them made WooCommerce hide its own Columns and Rows controls in the Customizer. Set them under Appearance > Customize > WooCommerce > Product Catalog instead. A product list added by a shortcode or page builder continues to use its own columns and limit
+* Fixed - Filtering no longer changes how many products are shown on pages where a shortcode or page builder sets its own limit. The page size the loop was rendered with is now carried through to the filtered results
+* Fixed - Filtering a product list rendered by a shortcode or page builder no longer breaks the grid. WooCommerce marks each row's first and last item from the loop's column count, and results were being rendered at the preset's count rather than the one on screen, so the row breaks landed in the wrong places and a three column grid collapsed to two. Results now follow the column count the page is actually showing
+* Fixed - Added the product grid widths WooCommerce does not ship, so a four column layout no longer collapses to two
+* Fixed - Elementor widget and shortcode now cast the filter preset id
+* Fixed - Image import now requires a valid absolute image url
+
 = 1.0.8 - 6 Dec, 2025 =
 * Compatibility test with WordPress version 6.9
 
