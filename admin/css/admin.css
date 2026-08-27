@@ -1914,11 +1914,11 @@ form.swpf-custom-terms-options.swpf-field-settings-display-type-image .swpf-cust
 }
 /* Advanced disclosure holding the region selector overrides */
 .swpf-advanced-settings {
-    border: 1px solid #dcdcde;
-    border-radius: 4px;
-    padding: 0 16px;
-    margin: 8px 0 20px;
-    background: #fbfbfc;
+        border: 1px solid #dcdcde;
+        border-radius: 2px;
+        padding: 16px;
+        margin: 8px 0 0;
+        background: #fbfbfc;
 }
 
 .swpf-advanced-settings > summary {
@@ -1934,6 +1934,6 @@ form.swpf-custom-terms-options.swpf-field-settings-display-type-image .swpf-cust
     margin-bottom: 14px;
 }
 
-.swpf-advanced-settings > p.swpf-desc {
-    margin-top: 0;
+.swpf-advanced-settings > .swpf-field-wrap {
+    margin-top: 14px;
 }
