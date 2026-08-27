@@ -21,6 +21,18 @@ if (!defined('WPINC')) {
     die;
 }
 
+/*
+ * High Performance Order Storage changes where WooCommerce keeps orders. This
+ * plugin filters products and taxonomy terms and never reads or writes an
+ * order, so it is unaffected either way. Saying so keeps WooCommerce from
+ * listing it as incompatible on the status screen.
+ */
+add_action('before_woocommerce_init', function () {
+    if (class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil')) {
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, true);
+    }
+});
+
 function super_product_filter_activate() {
     require_once plugin_dir_path(__FILE__) . 'includes/class-super-product-filter-activator.php';
     Super_Product_Filter_Activator::activate();
