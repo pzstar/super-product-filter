@@ -20,6 +20,7 @@ class Super_Product_Filter_Admin {
 
         // Create a Setting Page
         add_action('admin_menu', array($this, 'register_submenu_page'));
+        add_action('admin_menu', array($this, 'register_documentation_page'), 50);
 
         add_action('admin_footer', array($this, 'alert_message'));
         add_action('admin_footer', array($this, 'icon_choices'));
@@ -85,7 +86,9 @@ class Super_Product_Filter_Admin {
             $admin_var = array(
                 'ajaxurl' => esc_url(admin_url('admin-ajax.php')),
                 'ajax_nonce' => wp_create_nonce('swpf-backend-ajax-nonce'),
-                'admin_url' => esc_url(admin_url('post.php'))
+                'admin_url' => esc_url(admin_url('post.php')),
+                'font_preview_label' => esc_html__('Preview', 'super-product-filter'),
+                'font_preview_text' => esc_html__('Almost before we knew it, we had left the ground.', 'super-product-filter'),
             );
             if (swpf_get_post('tab') == 'swpf') {
                 $admin_var['swpf_settings_save_link'] = 'admin.php?page=wc-settings&tab=swpf&settings_saved=1';
@@ -152,8 +155,15 @@ class Super_Product_Filter_Admin {
     }
 
     public function register_submenu_page() {
-        add_submenu_page('edit.php?post_type=swpf-product-filter', esc_html__('Documentation', 'super-product-filter'), esc_html__('Documentation', 'super-product-filter'), 'manage_options', esc_url_raw('https://hashthemes.com/documentation/super-woocommerce-product-filter-documentation/'));
         add_submenu_page('edit.php?post_type=swpf-product-filter', esc_html__('Upgrade To PRO', 'super-product-filter'), esc_html__('Upgrade To PRO', 'super-product-filter'), 'manage_options', esc_url_raw('https://demo.hashthemes.com/super-woocommerce-product-filter/'));
+    }
+
+    /**
+     * Registered on its own late hook so Documentation, which is an outbound link
+     * rather than a screen, sits at the end of the menu.
+     */
+    public function register_documentation_page() {
+        add_submenu_page('edit.php?post_type=swpf-product-filter', esc_html__('Documentation', 'super-product-filter'), esc_html__('Documentation', 'super-product-filter'), 'manage_options', esc_url_raw('https://hashthemes.com/documentation/super-woocommerce-product-filter-documentation/'));
     }
 
     public static function recursive_parse_args($args, $defaults) {

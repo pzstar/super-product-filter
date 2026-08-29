@@ -1937,3 +1937,74 @@ form.swpf-custom-terms-options.swpf-field-settings-display-type-image .swpf-cust
 .swpf-advanced-settings > .swpf-field-wrap {
     margin-top: 14px;
 }
+
+/* Typography preview */
+.swpf-typography-preview-field .swpf-font-preview {
+    min-height: 62px;
+    padding: 14px 16px;
+    border: 1px solid #dcdcde;
+    border-radius: 3px;
+    background: #f6f7f7;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.swpf-font-preview-text {
+    display: block;
+    color: #1e1e1e;
+    word-break: break-word;
+}
+
+/* Default is not a font: it leaves the text on whatever the theme uses, so
+   there is nothing of its own to show. */
+.swpf-font-preview-default .swpf-font-preview-text {
+    color: #787c82;
+}
+
+/* The typography fields sit in columns; the sample runs the full width
+   underneath them. */
+ul.swpf-typography-fields > li.swpf-typography-preview-field {
+    grid-column: 1 / -1;
+    width: 100%;
+}
+
+/* Free VS Pro comparison — section rows and feature descriptions */
+.swpf-compare-table .swpf-compare-section td {
+    background: #f0f6fc;
+    border-color: #c5d9ed;
+    color: #0a4b78;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+}
+
+.swpf-compare-table .swpf-feature-name {
+    font-weight: 600;
+}
+
+/* The explanation sits under the name, so the column stays scannable. */
+.swpf-compare-table .swpf-feature-desc {
+    display: block;
+    margin-top: 4px;
+    max-width: 46em;
+    color: #646970;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Neither a yes nor a no: a count, or a short phrase. */
+.swpf-compare-table .swpf-plain {
+    color: #3c434a;
+}
+
+.swpf-compare-table .swpf-feature,
+.swpf-compare-table .swpf-yes,
+.swpf-compare-table .swpf-no,
+.swpf-compare-table .swpf-plain,
+.swpf-compare-table .swpf-pro {
+    vertical-align: top;
+}

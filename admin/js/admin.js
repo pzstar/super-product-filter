@@ -228,6 +228,162 @@
             $(this).prev('.swpf-range-slider').slider('value', resetValue);
         });
 
+
+        /* ---- Typography preview ----
+         *
+         * Every typography group gets a sample line that takes on whatever the
+         * group is set to. Every screen wraps its fields in
+         * .swpf-typography-fields, so one pass covers the preset design tab and
+         * the layout builder alike. The field selectors carry both naming
+         * schemes so this block stays identical to the free plugin's copy.
+         */
+        var swpfTypography = {
+            loaded: {},
+
+            /* Google families are already separated out by the optgroup they
+               sit in, so nothing extra has to be handed to the browser. */
+            isGoogle: function ($select) {
+                if (!$select || !$select.length) {
+                    return false;
+                }
+
+                var $group = $select.find('option:selected').first().parent('optgroup');
+
+                return $group.length ? /google/i.test($group.attr('label') || '') : false;
+            },
+
+            /* "inherit" is not a font: it means whatever the theme already
+               uses, so the sample is left to inherit too. */
+            stack: function (family) {
+                return (!family || family === 'inherit') ? '' : '"' + family + '"';
+            },
+
+            /*
+             * Fetches a family once. The plain face is always asked for, so a
+             * weight the family does not publish cannot leave the sample with
+             * no font at all.
+             */
+            load: function (family, variant, isGoogle) {
+                if (!isGoogle || !family || family === 'inherit') {
+                    return;
+                }
+
+                var base = 'https://fonts.googleapis.com/css?family=' + encodeURIComponent(family).replace(/%20/g, '+');
+                var urls = [base];
+
+                if (variant && variant !== 'inherit' && variant !== '400') {
+                    urls.push(base + ':' + variant);
+                }
+
+                $.each(urls, function (i, url) {
+                    if (swpfTypography.loaded[url]) {
+                        return;
+                    }
+
+                    swpfTypography.loaded[url] = true;
+                    $('<link rel="stylesheet" />').attr('href', url + '&display=swap').appendTo('head');
+                });
+            },
+
+            value: function ($group, selector) {
+                var $field = $group.find(selector).first();
+
+                return $field.length ? $field.val() : '';
+            },
+
+            /* The two screens name their range inputs differently, so they are
+               matched on the setting each one writes to. */
+            range: function ($group, suffixes) {
+                var found = '';
+
+                $group.find('input.swpf-range-input').each(function () {
+                    var name = $(this).attr('name') || '';
+
+                    for (var i = 0; i < suffixes.length; i++) {
+                        if (name.slice(-suffixes[i].length) === suffixes[i]) {
+                            found = $(this).val();
+                            return false;
+                        }
+                    }
+                });
+
+                return found;
+            },
+
+            paint: function ($group) {
+                var $sample = $group.find('.swpf-font-preview-text');
+
+                if (!$sample.length) {
+                    return;
+                }
+
+                var $family = $group.find('select.swpf-typography-family, select.swpf-typography-font-family, select.typography_face').first();
+                var family = $family.length ? $family.val() : '';
+                var variant = String(swpfTypography.value($group, 'select.swpf-typography-font-style, select.typography_font_style') || '');
+                var weight = parseInt(variant, 10);
+
+                var size = parseFloat(swpfTypography.range($group, ['[size]', '[font_size]']));
+                var spacing = parseFloat(swpfTypography.range($group, ['[letter_spacing]']));
+                var height = parseFloat(swpfTypography.range($group, ['[line_height]']));
+
+                var transform = swpfTypography.value($group, 'select.swpf-typography-text-transform, select.typography_text_transform');
+                var decoration = swpfTypography.value($group, 'select.swpf-typography-text-decoration, select.typography_text_decoration');
+
+                swpfTypography.load(family, variant, swpfTypography.isGoogle($family));
+
+                $sample.css({
+                    fontFamily: swpfTypography.stack(family),
+                    fontWeight: isNaN(weight) ? '' : weight,
+                    fontStyle: variant.indexOf('italic') === -1 ? 'normal' : 'italic',
+                    /* The field goes to 100px, which would push the panel
+                       around, so the sample stops short of that. */
+                    fontSize: isNaN(size) ? '' : Math.min(size, 40) + 'px',
+                    letterSpacing: isNaN(spacing) ? '' : spacing + 'px',
+                    lineHeight: (isNaN(height) || !height) ? '' : height,
+                    textTransform: (!transform || transform === 'inherit') ? '' : transform,
+                    textDecoration: (!decoration || decoration === 'inherit') ? '' : decoration
+                });
+
+                $group.toggleClass('swpf-font-preview-default', !family || family === 'inherit');
+            },
+
+            init: function () {
+                $('.swpf-typography-fields').each(function () {
+                    var $group = $(this);
+
+                    if ($group.find('.swpf-font-preview').length) {
+                        return;
+                    }
+
+                    if (!$group.find('select.swpf-typography-family, select.swpf-typography-font-family, select.typography_face').length) {
+                        return;
+                    }
+
+                    // The design tab lists its fields; the layout builder stacks divs.
+                    var row = $group.is('ul')
+                        ? '<li class="swpf-field-wrap swpf-typography-field swpf-typography-preview-field"/>'
+                        : '<div class="swpf-input-group swpf-typography-preview-field"/>';
+
+                    $group.append(
+                        $(row)
+                            .append($('<label/>').text(swpf_admin_js_obj.font_preview_label || 'Preview'))
+                            .append($('<div class="swpf-font-preview"/>')
+                                .append($('<span class="swpf-font-preview-text"/>')
+                                    .text(swpf_admin_js_obj.font_preview_text
+                                        || 'Almost before we knew it, we had left the ground.')))
+                    );
+
+                    swpfTypography.paint($group);
+                });
+            }
+        };
+
+        $(document).on('change input', '.swpf-typography-fields select, .swpf-typography-fields input', function () {
+            swpfTypography.paint($(this).closest('.swpf-typography-fields'));
+        });
+
+        swpfTypography.init();
+
         $(document).on('change', '.typography_face', function () {
 
             var font_family = $(this).val();
