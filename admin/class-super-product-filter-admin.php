@@ -155,7 +155,7 @@ class Super_Product_Filter_Admin {
     }
 
     public function register_submenu_page() {
-        add_submenu_page('edit.php?post_type=swpf-product-filter', esc_html__('Upgrade To PRO', 'super-product-filter'), esc_html__('Upgrade To PRO', 'super-product-filter'), 'manage_options', esc_url_raw('https://demo.hashthemes.com/super-woocommerce-product-filter/'));
+        add_submenu_page('edit.php?post_type=swpf-product-filter', esc_html__('Upgrade To PRO', 'super-product-filter'), esc_html__('Upgrade To PRO', 'super-product-filter'), 'manage_options', esc_url_raw('https://codecanyon.net/item/super-woocommerce-product-filters/49852702'));
     }
 
     /**

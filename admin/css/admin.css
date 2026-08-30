@@ -2008,3 +2008,45 @@ ul.swpf-typography-fields > li.swpf-typography-preview-field {
 .swpf-compare-table .swpf-pro {
     vertical-align: top;
 }
+
+/* Settings that only Pro can act on: shown, but not usable */
+.swpf-pro-field > label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.swpf-pro-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 9px;
+    background: #1d2327;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1.7;
+}
+
+.swpf-pro-badge:hover,
+.swpf-pro-badge:focus {
+    background: #2271b1;
+    color: #fff;
+}
+
+/* The control is real, so the choices can be read, but it cannot be used. */
+.swpf-pro-locked {
+    opacity: 0.55;
+}
+
+.swpf-pro-locked select {
+    width: 100%;
+    cursor: not-allowed;
+}
+
+.swpf-pro-field .swpf-desc {
+    margin-top: 6px;
+}

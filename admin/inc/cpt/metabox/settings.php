@@ -38,7 +38,7 @@ wp_nonce_field('swpf-settings-nonce', 'swpf_settings_nonce');
     </div>
 
     <div class="swpf-settings-footer">
-        <a href="https://demo.hashthemes.com/super-woocommerce-product-filter/" target="_blank" class="button button-primary swpf-upgrade-to-pro"><?php echo esc_html__('Upgrade to Pro', 'super-product-filter'); ?></a>
+        <a href="https://codecanyon.net/item/super-woocommerce-product-filters/49852702" target="_blank" class="button button-primary swpf-upgrade-to-pro"><?php echo esc_html__('Upgrade to Pro', 'super-product-filter'); ?></a>
         <button type="submit" class="button button-primary"><?php echo esc_html__('Save Settings', 'super-product-filter'); ?></button>
     </div>
 </div>

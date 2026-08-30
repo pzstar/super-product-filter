@@ -1,6 +1,41 @@
 <?php
 defined('ABSPATH') || die();
 
+/**
+ * A setting that only the pro version can act on.
+ *
+ * The control is rendered for real but disabled, so the choices are visible and
+ * the field cannot be changed or submitted.
+ *
+ * @param string $label   Field label.
+ * @param array  $choices Options to show, first one being what the free version does.
+ * @param string $desc    Short line under the field. Optional.
+ */
+if (!function_exists('swpf_pro_field')) :
+function swpf_pro_field($label, $choices, $desc = '') {
+    $buy = 'https://codecanyon.net/item/super-woocommerce-product-filters/49852702';
+    ?>
+    <div class="swpf-field-wrap swpf-pro-field">
+        <label>
+            <?php echo esc_html($label); ?>
+            <a class="swpf-pro-badge" href="<?php echo esc_url($buy); ?>" target="_blank"><?php esc_html_e('Available in Pro', 'super-product-filter'); ?></a>
+        </label>
+        <div class="swpf-settings-input-field swpf-pro-locked">
+            <select disabled>
+                <?php foreach ($choices as $swpf_choice) { ?>
+                    <option><?php echo esc_html($swpf_choice); ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <?php if ($desc) { ?>
+            <p class="swpf-desc"><?php echo esc_html($desc); ?></p>
+        <?php } ?>
+    </div>
+    <?php
+}
+endif;
+
+
 // Custom Typography settings
 $swpf_custom = isset($swpf_settings['custom']) ? $swpf_settings['custom'] : null;
 $swpf_standard_fonts = swpf_get_standard_font_families();
@@ -16,6 +51,7 @@ $swpf_text_decorations = swpf_get_text_decoration_choices();
             <li class="swpf-active"><a href="#" data-tab="swpf-design-filter-box"><?php echo esc_html__('Filter Box', 'super-product-filter'); ?></a></li>
             <li><a href="#" data-tab="swpf-design-offcanvas"><?php echo esc_html__('OffCanvas Menu', 'super-product-filter'); ?></a></li>
             <li><a href="#" data-tab="swpf-design-typography"><?php echo esc_html__('Typography', 'super-product-filter'); ?></a></li>
+            <li><a href="#" data-tab="swpf-design-styles"><?php echo esc_html__('Filter Styles', 'super-product-filter'); ?></a></li>
         </ul>
 
         <div class="swpf-sub-panel-wrap">
@@ -579,6 +615,162 @@ $swpf_text_decorations = swpf_get_text_decoration_choices();
                                 </div>
                             </li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="swpf-sub-panel swpf-design-styles">
+                <div class="swpf-settings-list-row">
+                    <h3 style="margin: 0"><?php esc_html_e('Filter Styles', 'super-product-filter'); ?></h3>
+                    <p class="swpf-desc" style="margin-top:6px">
+                        <?php esc_html_e('The free version uses the first style of each control. Pro opens up the rest, along with the colour and size settings for each one.', 'super-product-filter'); ?>
+                    </p>
+
+                    <div class="swpf-two-column-row">
+                        <?php
+                        swpf_pro_field(
+                            esc_html__('Checkbox &amp; Radio Style', 'super-product-filter'),
+                            array(
+                                esc_html__('Style 1 — plain (in use)', 'super-product-filter'),
+                                esc_html__('Style 2 — filled with a tick', 'super-product-filter'),
+                                esc_html__('Style 3 — outlined', 'super-product-filter'),
+                                esc_html__('Style 4 — soft fill', 'super-product-filter'),
+                                esc_html__('Style 5 — rounded fill', 'super-product-filter'),
+                                esc_html__('Style 6 — inner square', 'super-product-filter'),
+                                esc_html__('Style 7 — light tick', 'super-product-filter'),
+                                esc_html__('Style 8 — solid block', 'super-product-filter'),
+                                esc_html__('Style 9 — hand-drawn tick', 'super-product-filter'),
+                                esc_html__('Style 10 — pill button', 'super-product-filter'),
+                                esc_html__('Style 11 — bordered fill', 'super-product-filter'),
+                            ),
+                            esc_html__('11 styles in Pro.', 'super-product-filter')
+                        );
+
+                        swpf_pro_field(
+                            esc_html__('Toggle Style', 'super-product-filter'),
+                            array_merge(
+                                array(esc_html__('Style 1 (in use)', 'super-product-filter')),
+                                array_map(
+                                    function ($swpf_n) {
+                                        /* translators: %d: style number. */
+                                        return sprintf(esc_html__('Style %d', 'super-product-filter'), $swpf_n);
+                                    },
+                                    range(2, 10)
+                                )
+                            ),
+                            esc_html__('10 styles in Pro.', 'super-product-filter')
+                        );
+
+                        swpf_pro_field(
+                            esc_html__('Button Style', 'super-product-filter'),
+                            array_merge(
+                                array(esc_html__('Style 1 (in use)', 'super-product-filter')),
+                                array_map(
+                                    function ($swpf_n) {
+                                        /* translators: %d: style number. */
+                                        return sprintf(esc_html__('Style %d', 'super-product-filter'), $swpf_n);
+                                    },
+                                    range(2, 10)
+                                )
+                            ),
+                            esc_html__('10 styles in Pro.', 'super-product-filter')
+                        );
+
+                        swpf_pro_field(
+                            esc_html__('Price Slider Style', 'super-product-filter'),
+                            array_merge(
+                                array(esc_html__('Style 1 (in use)', 'super-product-filter')),
+                                array_map(
+                                    function ($swpf_n) {
+                                        /* translators: %d: style number. */
+                                        return sprintf(esc_html__('Style %d', 'super-product-filter'), $swpf_n);
+                                    },
+                                    range(2, 10)
+                                )
+                            ),
+                            esc_html__('10 styles in Pro.', 'super-product-filter')
+                        );
+
+                        swpf_pro_field(
+                            esc_html__('Dropdown Style', 'super-product-filter'),
+                            array(
+                                esc_html__('Default (in use)', 'super-product-filter'),
+                                esc_html__('Accent Bar', 'super-product-filter'),
+                                esc_html__('Card', 'super-product-filter'),
+                                esc_html__('Heavy', 'super-product-filter'),
+                                esc_html__('Notched', 'super-product-filter'),
+                                esc_html__('Offset', 'super-product-filter'),
+                            ),
+                            esc_html__('6 styles in Pro, plus a styled dropdown in place of the browser one.', 'super-product-filter')
+                        );
+
+                        swpf_pro_field(
+                            esc_html__('Multi Select Style', 'super-product-filter'),
+                            array_merge(
+                                array(esc_html__('Style 1 (in use)', 'super-product-filter')),
+                                array_map(
+                                    function ($swpf_n) {
+                                        /* translators: %d: style number. */
+                                        return sprintf(esc_html__('Style %d', 'super-product-filter'), $swpf_n);
+                                    },
+                                    range(2, 6)
+                                )
+                            ),
+                            esc_html__('6 styles in Pro.', 'super-product-filter')
+                        );
+
+                        swpf_pro_field(
+                            esc_html__('Colour Swatch Style', 'super-product-filter'),
+                            array(
+                                esc_html__('Style 1 — corner badge (in use)', 'super-product-filter'),
+                                esc_html__('Offset Shadow', 'super-product-filter'),
+                                esc_html__('Tick', 'super-product-filter'),
+                                esc_html__('Inset Dot', 'super-product-filter'),
+                                esc_html__('Inner Ring', 'super-product-filter'),
+                                esc_html__('Notch', 'super-product-filter'),
+                            ),
+                            esc_html__('6 styles in Pro, with square or round swatches.', 'super-product-filter')
+                        );
+
+                        swpf_pro_field(
+                            esc_html__('Image Swatch Style', 'super-product-filter'),
+                            array(
+                                esc_html__('Style 1 — corner badge (in use)', 'super-product-filter'),
+                                esc_html__('Overlay', 'super-product-filter'),
+                                esc_html__('Spotlight', 'super-product-filter'),
+                                esc_html__('Inset Frame', 'super-product-filter'),
+                                esc_html__('Offset Shadow', 'super-product-filter'),
+                                esc_html__('Caption Bar', 'super-product-filter'),
+                            ),
+                            esc_html__('6 styles in Pro.', 'super-product-filter')
+                        );
+
+                        swpf_pro_field(
+                            esc_html__('Loading Animation', 'super-product-filter'),
+                            array_merge(
+                                array(esc_html__('3 included', 'super-product-filter')),
+                                array_map(
+                                    function ($swpf_n) {
+                                        /* translators: %d: animation number. */
+                                        return sprintf(esc_html__('Animation %d', 'super-product-filter'), $swpf_n);
+                                    },
+                                    range(4, 16)
+                                ),
+                                array(esc_html__('Your own image', 'super-product-filter'))
+                            ),
+                            esc_html__('16 animations in Pro, or upload your own.', 'super-product-filter')
+                        );
+
+                        swpf_pro_field(
+                            esc_html__('Control Colours &amp; Sizes', 'super-product-filter'),
+                            array(
+                                esc_html__('Border, background, icon and active colours', 'super-product-filter'),
+                                esc_html__('Size for every control', 'super-product-filter'),
+                            ),
+                            esc_html__('Set the colours and size of each control separately.', 'super-product-filter')
+                        );
+                        ?>
                     </div>
                 </div>
             </div>
