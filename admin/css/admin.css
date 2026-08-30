@@ -1408,6 +1408,75 @@ ul.swpf-listing ul {
     margin-bottom: 30px;
 }
 
+/*
+ * Each switch is its own card. Before this the rows were separated by margin
+ * alone, so five long descriptions ran together as one wall of text and the
+ * only thing carrying state was a default checkbox.
+ */
+.swpf-general-settings .swpf-settings-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 14px;
+    padding: 18px 20px;
+    border: 1px solid #e0e0e1;
+    border-left: 3px solid #dcdcde;
+    border-radius: 4px;
+    background: #fff;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.swpf-general-settings .swpf-settings-option:hover {
+    border-color: #c9c9cc;
+    border-left-color: #a7aaad;
+}
+
+/* An option that is on carries the accent, so the page can be read at a glance. */
+.swpf-general-settings .swpf-settings-option:has(input:checked) {
+    border-left-color: #7FC6A6;
+    background: #fcfefd;
+}
+
+.swpf-general-settings .swpf-option-text {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.swpf-general-settings .swpf-option-title {
+    display: block;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #1d2327;
+}
+
+/*
+ * Descriptions here run to several sentences. Italic at full container width
+ * is hard work to read, so they are set upright and held to a sane measure.
+ */
+.swpf-general-settings .swpf-settings-option .swpf-desc {
+    font-style: normal;
+    color: #50575e;
+    max-width: 68ch;
+    line-height: 1.6;
+    margin: 6px 0 0;
+}
+
+/* The switch keeps its own column so titles line up down the page. */
+.swpf-general-settings .swpf-settings-option .swpf-toggle-wrap {
+    flex: 0 0 auto;
+    padding-top: 2px;
+}
+
+/* Turning this one on throws data away, so it does not look like the others. */
+.swpf-general-settings .swpf-settings-option-danger {
+    border-left-color: #f0b8b8;
+}
+
+.swpf-general-settings .swpf-settings-option-danger:has(input:checked) {
+    border-left-color: #d63638;
+    background: #fdf7f7;
+}
+
 .swpf-general-settings .swpf-success-notice {
     padding: 15px;
     color: #4BB543;
