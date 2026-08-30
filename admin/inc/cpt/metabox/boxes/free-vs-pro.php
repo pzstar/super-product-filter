@@ -473,7 +473,7 @@ endif;
         <tr>
             <td class="swpf-feature"></td>
             <td class="swpf-compare-button"><a class="button" href="https://demo.hashthemes.com/super-woocommerce-product-filter/comparison-free-vs-pro/" target="_blank"><?php esc_html_e('Detail Comparison', 'super-product-filter'); ?></a></td>
-            <td class="swpf-compare-button"><a class="button" href="https://codecanyon.net/item/super-woocommerce-product-filters/49852702" target="_blank"><?php esc_html_e('Buy Now', 'super-product-filter'); ?></a></td>
+            <td class="swpf-compare-button"><a class="button" href="https://1.envato.market/eK5yrQ" target="_blank"><?php esc_html_e('Buy Now', 'super-product-filter'); ?></a></td>
         </tr>
     </table>
 </div>

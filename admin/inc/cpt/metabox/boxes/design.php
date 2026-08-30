@@ -13,7 +13,7 @@ defined('ABSPATH') || die();
  */
 if (!function_exists('swpf_pro_field')) :
 function swpf_pro_field($label, $choices, $desc = '') {
-    $buy = 'https://codecanyon.net/item/super-woocommerce-product-filters/49852702';
+    $buy = 'https://1.envato.market/eK5yrQ';
     ?>
     <div class="swpf-field-wrap swpf-pro-field">
         <label>
