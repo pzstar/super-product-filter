@@ -6,30 +6,92 @@ if (!defined('ABSPATH')) {
 
 class Super_Product_Filter_Metabox {
     public function __construct() {
-        add_action('add_meta_boxes', array($this, 'settings_metabox'));
-        add_action('save_post', array($this, 'save_metabox_settings'));
-
-        add_action('admin_menu', function () {
-            remove_meta_box('submitdiv', 'swpf-product-filter', 'side');
-            remove_meta_box('slugdiv', 'swpf-product-filter', 'normal');
-        });
-
-        // Ajax Save Post
-        add_action('save_post', array($this, 'save_metabox_settings_xhr'));
-
+        /*
+         * The post editor is redirected to the builder, so nothing here renders
+         * a metabox or reaches save_post any more. The panels and the routine
+         * that stores them are still very much in use - the builder renders the
+         * one and calls the other - but the editor plumbing around them is not,
+         * so it is gone rather than left to look load bearing.
+         */
         add_action('init', array($this, 'register_translation_strings'), 100);
 
         add_action('wp_ajax_swpf_show_custom_term_options', array($this, 'show_custom_term_options'));
         add_action('wp_ajax_swpf_save_custom_term_options', array($this, 'save_custom_term_options'));
     }
 
-    public function settings_metabox() {
-        $current_screen = get_current_screen();
-        add_meta_box('swpf-settings-metabox', esc_html__('Super Product Filter', 'super-product-filter'), array($this, 'settings_metabox_callback'), 'swpf-product-filter', 'normal', 'high');
+
+
+    /**
+     * Prints the settings panels.
+     *
+     * Split out so the builder screen can render the same panels the metabox
+     * did, rather than keeping a second copy of them in step by hand.
+     */
+    public static function render_settings_panels() {
+        include SWPF_PATH . 'admin/inc/cpt/metabox/settings.php';
     }
 
-    public function settings_metabox_callback() {
-        include SWPF_PATH . 'admin/inc/cpt/metabox/settings.php';
+    /**
+     * The panels, in the order they are offered.
+     *
+     * The key is the id of the panel each one reveals, which is what the tab
+     * script switches on.
+     *
+     * @return array
+     */
+    public static function settings_sections() {
+        return array(
+            'swpf-filters' => array(
+                'label' => esc_html__('Filters', 'super-product-filter'),
+                'icon' => 'filter',
+            ),
+            'appearance-settings' => array(
+                'label' => esc_html__('Settings', 'super-product-filter'),
+                'icon' => 'admin-generic',
+            ),
+            'swpf-display-settings' => array(
+                'label' => esc_html__('Display Settings', 'super-product-filter'),
+                'icon' => 'desktop',
+            ),
+            'swpf-design-settings' => array(
+                'label' => esc_html__('Designs', 'super-product-filter'),
+                'icon' => 'art',
+            ),
+            'import-export-settings' => array(
+                'label' => esc_html__('Import/Export', 'super-product-filter'),
+                'icon' => 'migrate',
+            ),
+            'free-vs-pro-settings' => array(
+                'label' => esc_html__('Free Vs Pro', 'super-product-filter'),
+                'icon' => 'star-filled',
+            ),
+        );
+    }
+
+    /**
+     * Prints the section switcher.
+     *
+     * Separate from the panels because the builder puts it in the page header,
+     * away from the panels it controls - the Designs panel carries a second
+     * list of its own, and two nested rails left the fields very little room.
+     * The tab script finds the panels by id, so the two need not be together.
+     */
+    public static function render_settings_nav() {
+        $first = true;
+        ?>
+        <div class="swpf-tab-options-wrap">
+            <ul>
+                <?php foreach (self::settings_sections() as $id => $section) { ?>
+                    <li class="swpf-tab<?php echo $first ? ' swpf-tab-active' : ''; ?>"
+                        data-tab="<?php echo esc_attr($id); ?>" data-tohide="tab-content">
+                        <span class="dashicons dashicons-<?php echo esc_attr($section['icon']); ?>" aria-hidden="true"></span>
+                        <span class="swpf-tab-label"><?php echo esc_html($section['label']); ?></span>
+                    </li>
+                    <?php $first = false; ?>
+                <?php } ?>
+            </ul>
+        </div>
+        <?php
     }
 
     public function save_metabox_settings($post_id) {
@@ -52,19 +114,6 @@ class Super_Product_Filter_Metabox {
         return;
     }
 
-    public function save_metabox_settings_xhr($post_id) {
-        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-            return;
-        }
-
-        #If this is your post type
-        if ('swpf-product-filter' === swpf_get_post('post_type')) {
-            # Send JSON response
-            if (swpf_get_post('save_post_ajax') == true) {
-                wp_send_json_success($post_id);
-            }
-        }
-    }
 
     public static function default_settings_values() {
         $taxonomies = swpf_get_taxonomies();

@@ -539,45 +539,98 @@ body.post-type-swpf-product-filter #post-body-content {
     position: relative;
     display: block;
     width: 44px;
-    height: 24px
-}
-
-.swpf-toggle input {
-    display: none;
-}
-
-.swpf-toggle span {
-    padding: 2px;
-    background: #fff;
-    border: 2px solid #8c8f94;
-    border-radius: 20px;
-    display: block;
-    width: 44px;
     height: 24px;
-    position: relative;
-    cursor: pointer;
-    transition: all 0.2s ease;
 }
 
+/*
+ * Laid over the track rather than hidden. `display: none` takes a control out
+ * of the tab order altogether, so the switch could not be reached or operated
+ * from the keyboard at all - it was only ever a mouse target.
+ */
+.swpf-toggle input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/*
+ * The track carries the state. It used to be a white pill with a grey outline
+ * whose only on-state was a mint border and a mint half-pill sliding inside it:
+ * two washed out colours a long way apart, and nothing to read at a glance.
+ * Filling the track makes on and off legible from across the page.
+ */
+.swpf-toggle span {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 999px;
+    background: #c3c4c7;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* A round knob, not the half-width block that was sliding before. */
 .swpf-toggle span:after {
     content: "";
-    transition: all 0.3s ease;
-    background: #8c8f94;
-    border-radius: 1em;
-    position: relative;
-    display: block;
-    width: 50%;
-    height: 100%;
-    left: 0;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.25);
+    transition: transform 0.2s ease;
 }
 
+.swpf-toggle:hover span {
+    background: #a7aaad;
+}
+
+/* Follows whichever admin colour scheme the user picked. */
 .swpf-toggle input:checked + span {
-    border-color: #7FC6A6;
+    background: var(--wp-admin-theme-color, #3858e9);
+}
+
+.swpf-toggle input:checked:hover + span,
+.swpf-toggle:hover input:checked + span {
+    background: var(--wp-admin-theme-color-darker-10, #2145e6);
 }
 
 .swpf-toggle input:checked + span:after {
-    left: 50%;
-    background: #7FC6A6;
+    /* 44 - 2 - 20 - 2 */
+    transform: translateX(20px);
+}
+
+/* There was no focus state, because there was nothing focusable. */
+.swpf-toggle input:focus-visible + span {
+    outline: 2px solid var(--wp-admin-theme-color, #3858e9);
+    outline-offset: 2px;
+}
+
+.swpf-toggle input:disabled {
+    cursor: default;
+}
+
+.swpf-toggle input:disabled + span {
+    opacity: 0.5;
+    cursor: default;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .swpf-toggle span,
+    .swpf-toggle span:after {
+        transition: none;
+    }
 }
 
 .swpf-plugin-banner {
@@ -1333,26 +1386,7 @@ ul.swpf-listing ul {
     outline: 0;
     text-transform: uppercase;
     font-size: 13px;
-    background: #f7f7ff;
     font-weight: bold;
-}
-
-.swpf-sub-tabs li.swpf-active a {
-    background: #88ddfb;
-    color: #FFF;
-    position: relative;
-}
-
-.swpf-sub-tabs li.swpf-active a:after {
-    content: "";
-    position: absolute;
-    left: 100%;
-    top: 50%;
-    border-style: solid;
-    border-width: 10px;
-    border-color: transparent transparent transparent #88ddfb;
-    transform: translateY(-50%);
-    margin-left: -1px;
 }
 
 .swpf-sub-panel {
@@ -1380,20 +1414,6 @@ ul.swpf-listing ul {
 
 .swpf-separator {
     border-bottom: 1px solid #EEE;
-}
-
-#swpf-design-settings {
-    position: relative;
-}
-
-#swpf-design-settings:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 210px;
-    background: #f7f7ff;
 }
 
 /* General Settings */
@@ -1644,14 +1664,6 @@ ul.swpf-listing ul {
     display: none;
 }
 
-
-.swpf-options-fields-wrap#main-settings .swpf-option-fields-inner-wrap {
-    display: none;
-}
-
-.swpf-options-fields-wrap#main-settings .swpf-each-items-wrap:first-of-type .swpf-option-fields-inner-wrap {
-    display: block;
-}
 
 form.swpf-custom-terms-options .swpf-custom-color,
 form.swpf-custom-terms-options .swpf-custom-image {

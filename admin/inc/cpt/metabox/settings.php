@@ -16,16 +16,10 @@ wp_nonce_field('swpf-settings-nonce', 'swpf_settings_nonce');
 ?>
 <div class="swpf-settings-main-wrapper">
     <div class="swpf-settings-inner-wrap">
-        <div class="swpf-tab-options-wrap">
-            <ul>
-                <li class="swpf-tab swpf-tab-active" data-tab="swpf-filters" data-tohide="tab-content"><?php esc_html_e('Filters', 'super-product-filter'); ?></li>
-                <li class="swpf-tab" data-tab="appearance-settings" data-tohide="tab-content"><?php esc_html_e('Settings', 'super-product-filter'); ?></li>
-                <li class="swpf-tab" data-tab="swpf-display-settings" data-tohide="tab-content"><?php esc_html_e('Display Settings', 'super-product-filter'); ?></li>
-                <li class="swpf-tab" data-tab="swpf-design-settings" data-tohide="tab-content"><?php esc_html_e('Designs', 'super-product-filter'); ?></li>
-                <li class="swpf-tab" data-tab="import-export-settings" data-tohide="tab-content"><?php esc_html_e('Import/Export', 'super-product-filter'); ?></li>
-                <li class="swpf-tab" data-tab="free-vs-pro-settings" data-tohide="tab-content"><?php esc_html_e('Free Vs Pro', 'super-product-filter'); ?></li>
-            </ul>
-        </div>
+        <?php
+        /* The section switcher is printed into the page header by the builder,
+           not here. See Super_Product_Filter_Metabox::render_settings_nav(). */
+        ?>
 
         <?php
         include SWPF_PATH . 'admin/inc/cpt/metabox/boxes/swpf-filters.php';

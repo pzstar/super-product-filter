@@ -1,0 +1,682 @@
+/*
+ * The filter builder screen.
+ *
+ * The panels arrived styled for a metabox inside the post editor, where they
+ * were one box among several and had to announce themselves. On a page of their
+ * own that costume works against them, so most of what follows dresses it back
+ * down and rebuilds the screen around a rail of sections.
+ *
+ * Everything is scoped to the builder. The same classes are used by the general
+ * settings and the term screens, which are not this.
+ */
+
+.swpf-builder-wrap {
+    /* Follows whichever admin colour scheme the user picked. */
+    --swpf-accent: var(--wp-admin-theme-color, #3858e9);
+
+    --swpf-ink: #1d2327;
+    --swpf-muted: #646970;
+    --swpf-line: #e3e5e8;
+    --swpf-hairline: #f0f0f1;
+    --swpf-sunken: #f7f8f9;
+
+    --swpf-radius: 10px;
+    --swpf-pad: 22px;
+
+    --swpf-lift: 0 1px 2px rgba(16, 24, 40, 0.04), 0 12px 28px -16px rgba(16, 24, 40, 0.18);
+
+    max-width: 1240px;
+    margin-right: 20px;
+}
+
+/* ==========================================================================
+   Topbar
+   ========================================================================== */
+
+/*
+ * Follows the page rather than scrolling away, so the name, the way back and
+ * the delete stay reachable from anywhere in a long set of panels. Offset by
+ * the admin bar, which is itself sticky.
+ */
+/*
+ * Follows the page rather than scrolling away, so the name, the way back and
+ * the delete stay reachable from anywhere in a long set of panels. Offset by
+ * the admin bar, which is itself sticky.
+ */
+.swpf-builder-topbar {
+    position: sticky;
+    top: var(--wp-admin--admin-bar--height, 32px);
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+
+    margin: 20px 0 16px;
+    padding: 12px var(--swpf-pad);
+
+    background: #fff;
+    border: 1px solid var(--swpf-line);
+    border-radius: var(--swpf-radius);
+    box-shadow: var(--swpf-lift);
+}
+
+.swpf-topbar-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+
+    padding: 6px 10px 6px 6px;
+    margin-left: -6px;
+    border-radius: 7px;
+
+    color: var(--swpf-muted);
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.swpf-topbar-back:hover,
+.swpf-topbar-back:focus {
+    background: var(--swpf-sunken);
+    color: var(--swpf-ink);
+    box-shadow: none;
+}
+
+.swpf-topbar-back .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+/* Says whose screen this is, in a page of admin screens that all look alike. */
+.swpf-topbar-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    border-radius: 8px;
+
+    background: var(--swpf-accent);
+    color: #fff;
+}
+
+.swpf-topbar-mark .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+.swpf-topbar-name {
+    flex: 1 1 240px;
+    min-width: 0;
+}
+
+/*
+ * The name is the page's title, so it is set like one and edited in place. The
+ * box only appears once there is a reason to think about typing in it.
+ */
+.swpf-builder-wrap .swpf-topbar-name input[type="text"] {
+    width: 100%;
+    margin: 0;
+    padding: 5px 10px;
+
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--swpf-ink);
+
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    box-shadow: none;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.swpf-builder-wrap .swpf-topbar-name input[type="text"]:hover {
+    border-color: var(--swpf-line);
+}
+
+.swpf-builder-wrap .swpf-topbar-name input[type="text"]:focus {
+    background: #fff;
+    border-color: var(--swpf-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--swpf-accent) 18%, transparent);
+    outline: none;
+}
+
+.swpf-builder-wrap .swpf-topbar-name input[type="text"]::placeholder {
+    color: #a7aaad;
+    font-weight: 500;
+}
+
+/*
+ * Whether what is on screen has been written yet. It only tells the truth while
+ * the background save is watching the form, so it is the script that moves it
+ * between states; the dot carries the meaning at a glance and the words carry
+ * it for anyone the colour is lost on.
+ */
+.swpf-topbar-state {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-left: auto;
+    padding: 4px 10px;
+    border-radius: 999px;
+
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+
+    background: var(--swpf-sunken);
+    color: var(--swpf-muted);
+}
+
+.swpf-topbar-state:before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+/* Worth noticing, since leaving now loses the edits. */
+.swpf-topbar-state[data-state="unsaved"],
+.swpf-topbar-state[data-state="new"] {
+    background: #fcf3e3;
+    color: #8a6100;
+}
+
+.swpf-topbar-state[data-state="saving"]:before {
+    animation: swpf-topbar-pulse 1s ease-in-out infinite;
+}
+
+@keyframes swpf-topbar-pulse {
+    50% { opacity: 0.25; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .swpf-topbar-state[data-state="saving"]:before {
+        animation: none;
+    }
+}
+
+.swpf-topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Destructive, so it stays a link and never reads as the primary way out. */
+.swpf-topbar-trash {
+    padding: 6px 10px;
+    border-radius: 7px;
+
+    color: #b32d2e;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s ease;
+}
+
+.swpf-topbar-trash:hover,
+.swpf-topbar-trash:focus {
+    background: #fcf0f1;
+    color: #8a2424;
+    box-shadow: none;
+}
+
+/* ==========================================================================
+   The panel card
+   ========================================================================== */
+
+/*
+ * No overflow clip here, deliberately. Hiding the overflow would be the easy
+ * way to keep the corners rounded, but it makes this card the scroll container
+ * for everything inside it - and then every `position: sticky` within is
+ * measured against the card rather than the page, which silently stops the
+ * section rail and the panels' own save bar from sticking to anything. The
+ * corners are cut by the pieces that actually touch them instead.
+ */
+.swpf-builder-body {
+    background: #fff;
+    border: 1px solid var(--swpf-line);
+    border-radius: var(--swpf-radius);
+    box-shadow: var(--swpf-lift);
+    margin: 0 0 20px;
+}
+
+/*
+ * The panels carried a 4px accent across their top edge, which is how a metabox
+ * announces itself. The card is that anchor now.
+ */
+.swpf-builder-body .swpf-settings-main-wrapper {
+    border-top: 0;
+    border-radius: 0 0 var(--swpf-radius) var(--swpf-radius);
+    /* The card already paints the white; a second opaque layer over it would
+       square the corners back off. */
+    background: transparent;
+}
+
+/*
+ * Sections across the header rather than down the side of the panels. A rail
+ * beside them read well until the Designs panel, which carries a second list of
+ * its own: two nested rails left the fields about half the page. Up here it
+ * costs the fields nothing, and it travels with the sticky header.
+ */
+/*
+ * The strip the tabs stand on. Sunken, so the tabs that are not open read as
+ * sitting behind it and the open one reads as level with the settings.
+ */
+.swpf-builder-sections {
+    padding: 10px 12px 0;
+    background: var(--swpf-sunken);
+    border-bottom: 1px solid var(--swpf-line);
+    border-radius: var(--swpf-radius) var(--swpf-radius) 0 0;
+}
+
+.swpf-builder-sections .swpf-tab-options-wrap {
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 0;
+}
+
+.swpf-builder-sections .swpf-tab-options-wrap ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+/*
+ * They were folder tabs once - a tinted band, a raised white tab and a shadow
+ * curling out from under it, six labels in bold uppercase. This is the same
+ * idea done plainly: the open section is a card of its own that runs into the
+ * settings underneath, and the rest are quiet until pointed at.
+ */
+.swpf-builder-sections .swpf-tab-options-wrap ul li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    /* Deep enough to cover the strip's bottom rule when this tab is open. */
+    margin: 0 0 -1px;
+    padding: 12px 16px;
+
+    font-size: 15px;
+    /*
+     * The same weight whether or not a section is the open one. Switching
+     * weight on selection changes how wide the word is, so every tab after it
+     * shifts along by a pixel or two as you move between them.
+     */
+    font-weight: 600;
+    text-transform: none;
+    text-align: left;
+    white-space: nowrap;
+    color: #3c434a;
+
+    background: none;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    border-radius: 9px 9px 0 0;
+    box-shadow: none;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.swpf-builder-sections .swpf-tab-options-wrap ul li .dashicons {
+    font-size: 19px;
+    width: 19px;
+    height: 19px;
+    flex: 0 0 19px;
+    opacity: 0.7;
+}
+
+.swpf-builder-sections .swpf-tab-options-wrap ul li:hover {
+    background: rgba(16, 24, 40, 0.04);
+    box-shadow: none;
+    color: var(--swpf-ink);
+}
+
+/*
+ * White, edged on three sides, and one pixel taller than the strip - so it
+ * covers the rule along the bottom and joins the panel it opens.
+ */
+.swpf-builder-sections .swpf-tab-options-wrap ul li.swpf-tab-active {
+    background: #fff;
+    border-color: var(--swpf-line);
+    box-shadow: none;
+    color: var(--swpf-accent);
+}
+
+.swpf-builder-sections .swpf-tab-options-wrap ul li.swpf-tab-active .dashicons {
+    opacity: 1;
+}
+
+/* Keyboard users need to see where they are, and none of these are buttons. */
+.swpf-builder-sections .swpf-tab-options-wrap ul li:focus-visible {
+    outline: 2px solid var(--swpf-accent);
+    outline-offset: -2px;
+}
+
+/* ==========================================================================
+   Fields
+   ========================================================================== */
+
+.swpf-builder-body .swpf-options-fields-wrap {
+    padding: 18px 26px 26px;
+}
+
+/*
+ * A flat 30px between every row spaced a bare text box exactly as far from its
+ * neighbour as a row carrying three lines of explanation, so the long ones ran
+ * together. A rule per row is cheaper to scan than the gap was.
+ */
+.swpf-builder-body .swpf-field-inline-wrap {
+    gap: 0;
+}
+
+.swpf-builder-body .swpf-field-inline-wrap > .swpf-field-wrap {
+    gap: 24px;
+    padding: 18px 0;
+    border-top: 1px solid var(--swpf-hairline);
+}
+
+.swpf-builder-body .swpf-field-inline-wrap > .swpf-field-wrap:first-child {
+    border-top: 0;
+}
+
+/*
+ * Bold black down a 200px column reads as a stack of headings rather than as
+ * the quiet half of a pair. Nudged down so it lines up with the text inside the
+ * control it names instead of with the control's top edge.
+ */
+.swpf-builder-body .swpf-field-wrap > label {
+    padding-top: 9px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--swpf-ink);
+}
+
+/* The old width did the gap arithmetic by hand, so it had to be kept in step
+   with it. Letting it simply take the rest costs nothing and cannot drift. */
+.swpf-builder-body .swpf-field-inline-wrap .swpf-field-wrap > .swpf-settings-input-field {
+    width: auto;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+/* Rounded to match the cards and the rail, and given a focus ring that says
+   which control has the keyboard rather than leaving it to the browser. */
+.swpf-builder-body .swpf-field-wrap input[type="text"]:not(.wp-color-picker),
+.swpf-builder-body .swpf-field-wrap input[type="number"],
+.swpf-builder-body .swpf-field-wrap input[type="search"],
+.swpf-builder-body .swpf-field-wrap input[type="url"],
+.swpf-builder-body .swpf-field-wrap select {
+    border-radius: 7px;
+    border-color: #c3c4c7;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.swpf-builder-body .swpf-field-wrap input[type="text"]:not(.wp-color-picker):focus,
+.swpf-builder-body .swpf-field-wrap input[type="number"]:focus,
+.swpf-builder-body .swpf-field-wrap input[type="search"]:focus,
+.swpf-builder-body .swpf-field-wrap input[type="url"]:focus,
+.swpf-builder-body .swpf-field-wrap select:focus {
+    border-color: var(--swpf-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--swpf-accent) 18%, transparent);
+    outline: none;
+}
+
+/*
+ * Descriptions. Italic, full black, and running the whole width of a very wide
+ * screen - three separate reasons to skip them, and they are the part that
+ * explains what the setting does.
+ */
+.swpf-builder-body .swpf-desc {
+    max-width: 68ch;
+    margin: 8px 0 0;
+    font-style: normal;
+    line-height: 1.6;
+    color: var(--swpf-muted);
+}
+
+/* ==========================================================================
+   Each filter's row in the Filters panel
+   --------------------------------------------------------------------------
+   The drag handle and the open/close caret were 56px squares, each walled off
+   by a full height divider, which made them read as cells in a table rather
+   than as two small controls - and set the height of every row in the list.
+   ========================================================================== */
+
+.swpf-builder-body .swpf-tax-heading-wrap {
+    padding: 8px 8px 8px 16px;
+    background: var(--swpf-sunken);
+}
+
+.swpf-builder-body .swpf-tax-heading-wrap h4 {
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: none;
+    color: var(--swpf-ink);
+}
+
+/* A quiet position marker, not a black chip demanding to be read first. */
+.swpf-builder-body .swpf-tax-heading-wrap h4:before {
+    width: 22px;
+    height: 22px;
+    margin-right: 12px;
+    border-radius: 6px;
+    background: #dcdde0;
+    color: var(--swpf-ink);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.swpf-builder-body .swpf-tab-action {
+    gap: 2px;
+}
+
+.swpf-builder-body .swpf-tab-action span {
+    width: 28px;
+    height: 28px;
+    border-left: 0;
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--swpf-muted);
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.swpf-builder-body .swpf-tab-action span:hover {
+    background: rgba(16, 24, 40, 0.08);
+    color: var(--swpf-ink);
+}
+
+/* ==========================================================================
+   The Designs panel's own list
+   --------------------------------------------------------------------------
+   It sits beside its fields, which is what made a second rail beside the panels
+   too much. It arrived in the same metabox costume as the tabs did - uppercase,
+   a solid #88ddfb block for the current one and a speech-bubble arrow pointing
+   out of it - so it gets the same treatment.
+   ========================================================================== */
+
+/*
+ * Scoped to the Designs panel by id, not by class alone. Each filter over in
+ * the Filters panel wraps its own settings in this same class and keeps them
+ * collapsed with `display: none`; a rule of equal weight loading after that one
+ * pried every filter open and put Show Product Count on screen six times over.
+ */
+.swpf-builder-body #swpf-design-settings > .swpf-option-fields-inner-wrap {
+    display: flex;
+    align-items: flex-start;
+    gap: 26px;
+}
+
+.swpf-builder-body #swpf-design-settings .swpf-sub-tabs {
+    flex: 0 0 190px;
+    gap: 2px;
+    padding: 6px;
+    background: var(--swpf-sunken);
+    border-radius: 9px;
+}
+
+.swpf-builder-body #swpf-design-settings .swpf-sub-tabs li a {
+    padding: 9px 11px;
+    border-radius: 7px;
+
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: none;
+    color: var(--swpf-muted);
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.swpf-builder-body #swpf-design-settings .swpf-sub-tabs li a:hover {
+    background: rgba(16, 24, 40, 0.05);
+    color: var(--swpf-ink);
+}
+
+.swpf-builder-body #swpf-design-settings .swpf-sub-tabs li.swpf-active a {
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08);
+    color: var(--swpf-accent);
+    font-weight: 600;
+}
+
+.swpf-builder-body .swpf-sub-panel h3.swpf-sub-title {
+    text-transform: none;
+    font-size: 15px;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.swpf-builder-body .swpf-settings-footer {
+    align-items: center;
+    padding: 14px 26px;
+    background: #fff;
+    border-top: 1px solid var(--swpf-line);
+    border-radius: 0 0 var(--swpf-radius) var(--swpf-radius);
+    box-shadow: 0 -1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.swpf-builder-body .swpf-settings-footer .button {
+    border-radius: 7px;
+}
+
+/*
+ * The upsell was a solid red button the same size and weight as Save, sitting
+ * at the other end of the bar as its equal. Only one of the two is the reason
+ * anyone is on this page. Outlined keeps it findable without letting it read as
+ * something that has to be dealt with.
+ */
+.swpf-builder-body .swpf-settings-footer .button.swpf-upgrade-to-pro {
+    background: #fff;
+    border-color: #d63638;
+    color: #d63638;
+    text-transform: none;
+    font-weight: 600;
+    box-shadow: none;
+}
+
+.swpf-builder-body .swpf-settings-footer .button.swpf-upgrade-to-pro:hover,
+.swpf-builder-body .swpf-settings-footer .button.swpf-upgrade-to-pro:focus {
+    background: #d63638;
+    border-color: #d63638;
+    color: #fff;
+}
+
+.swpf-builder-body .swpf-settings-footer .button-primary:not(.swpf-upgrade-to-pro) {
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.15);
+}
+
+/* ==========================================================================
+   Narrow
+   --------------------------------------------------------------------------
+   The panels break at 768px because that is where the styling they came with
+   breaks. The frame breaks at 782px, where the admin bar stops being sticky.
+   Two different reasons, so two different widths.
+   ========================================================================== */
+
+@media screen and (max-width: 782px) {
+    .swpf-builder-wrap {
+        margin-right: 10px;
+    }
+
+    .swpf-builder-topbar {
+        position: static;
+    }
+
+    /*
+     * Left to wrap on its own the name took the free space, pushing the state
+     * to the right edge and the trash link onto a line by itself. Ordered into
+     * two rows instead: everything small on the first, the name across the
+     * second, where it has room to be read and edited.
+     */
+    .swpf-topbar-back { order: 1; }
+    .swpf-topbar-state { order: 2; }
+    .swpf-topbar-actions { order: 3; }
+
+    /* It would sit at the end of the first row, away from the name it belongs
+       to. It is decorative, and the row is crowded here. */
+    .swpf-topbar-mark {
+        display: none;
+    }
+
+    .swpf-topbar-name {
+        order: 4;
+        flex: 1 1 auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* The switcher already scrolls sideways; here it just needs the room. */
+    .swpf-builder-sections .swpf-tab-options-wrap ul li {
+        padding: 12px 10px;
+    }
+
+    .swpf-builder-body .swpf-options-fields-wrap {
+        padding: 16px;
+    }
+
+    /* Label above control, so the nudge that lined it up beside one is wrong. */
+    .swpf-builder-body .swpf-field-inline-wrap > .swpf-field-wrap {
+        gap: 8px;
+    }
+
+    .swpf-builder-body .swpf-field-wrap > label {
+        padding-top: 0;
+    }
+
+    .swpf-builder-body .swpf-settings-footer {
+        gap: 12px;
+        padding: 12px 16px;
+    }
+
+    /* Two nested lists side by side is what pushed the switcher up here; at
+       this width the inner one cannot sit beside its fields either. Scoped for
+       the same reason as above - this class also collapses each filter. */
+    .swpf-builder-body #swpf-design-settings > .swpf-option-fields-inner-wrap {
+        display: block;
+    }
+
+    .swpf-builder-body #swpf-design-settings .swpf-sub-tabs {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        margin-bottom: 16px;
+    }
+}

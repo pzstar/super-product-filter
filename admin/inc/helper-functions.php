@@ -1475,3 +1475,48 @@ if (!function_exists('swpf_get_brand_count')) {
         return count($products);
     }
 }
+
+/**
+ * A nonce field that belongs to a form it is not inside.
+ *
+ * The import and export controls sit within the settings panels, which are
+ * themselves inside a form. A form cannot be nested in another, so the real
+ * forms are printed in the footer and their fields point at them by id.
+ *
+ * @param string $name Nonce action and field name.
+ * @param string $form Id of the form the field belongs to.
+ */
+function swpf_imex_nonce_field($name, $form) {
+    printf(
+        '<input type="hidden" form="%1$s" name="%2$s" value="%3$s" />',
+        esc_attr($form),
+        esc_attr($name),
+        esc_attr(wp_create_nonce($name))
+    );
+}
+
+/**
+ * The forms the import and export controls submit through.
+ *
+ * Printed in the footer so nothing wraps them, which is what lets the controls
+ * live inside the settings panels without breaking the form around those.
+ */
+function swpf_imex_forms() {
+    $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+
+    if (!$screen) {
+        return;
+    }
+
+    $on_filter_screen = ('swpf-product-filter' === $screen->post_type)
+        || ('swpf-product-filter_page_swpf-filter-builder' === $screen->id);
+
+    if (!$on_filter_screen) {
+        return;
+    }
+    ?>
+    <form id="swpf-imex-export-form" method="post"></form>
+    <form id="swpf-imex-import-form" method="post" enctype="multipart/form-data"></form>
+    <?php
+}
+add_action('admin_footer', 'swpf_imex_forms');

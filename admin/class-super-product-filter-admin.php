@@ -28,6 +28,7 @@ class Super_Product_Filter_Admin {
 
     public function include_files() {
         include SWPF_PATH . 'admin/inc/cpt/init.php';
+        include SWPF_PATH . 'admin/inc/builder/init.php';
         include SWPF_PATH . 'admin/inc/general/init.php';
         include SWPF_PATH . 'admin/inc/google-fonts-list.php';
         include SWPF_PATH . 'admin/inc/helper-functions.php';
@@ -39,7 +40,7 @@ class Super_Product_Filter_Admin {
 
     public function enqueue_styles() {
         global $post_type, $pagenow, $current_screen;
-        if ('swpf-product-filter' == $post_type || $pagenow == 'widgets.php' || in_array($current_screen->id, array('swpf-product-filter_page_swpf-general-settings', 'swpf-product-filter_page_swpf-metafield-settings'))) {
+        if ('swpf-product-filter' == $post_type || $pagenow == 'widgets.php' || in_array($current_screen->id, array('swpf-product-filter_page_swpf-general-settings', 'swpf-product-filter_page_swpf-metafield-settings', 'swpf-product-filter_page_swpf-filter-builder'))) {
             wp_enqueue_style('fontawesome-6.3.0', SWPF_URL . 'public/css/fontawesome-6.3.0.css', array(), $this->version);
             wp_enqueue_style('eleganticons', SWPF_URL . 'public/css/eleganticons.css', array(), $this->version);
             wp_enqueue_style('essentialicon', SWPF_URL . 'public/css/essentialicon.css', array(), $this->version);
@@ -61,7 +62,12 @@ class Super_Product_Filter_Admin {
 
     public function enqueue_scripts() {
         global $post_type, $pagenow, $current_screen;
-        if ('swpf-product-filter' == $post_type || $pagenow == 'widgets.php') {
+        /* The builder screen carries the same panels the post editor did, so it
+           needs the same scripts. Its post_type global is empty, so it is
+           matched on the screen id. */
+        $swpf_builder = isset($current_screen->id) && 'swpf-product-filter_page_swpf-filter-builder' === $current_screen->id;
+
+        if ('swpf-product-filter' == $post_type || $pagenow == 'widgets.php' || $swpf_builder) {
             wp_enqueue_media();
             wp_enqueue_script('wp-color-picker');
 
@@ -96,13 +102,6 @@ class Super_Product_Filter_Admin {
 
             /* Send php values to JS script */
             wp_localize_script($this->plugin_name, 'swpf_admin_js_obj', $admin_var);
-        }
-
-        if ('swpf-product-filter' == $post_type) {
-            wp_enqueue_script('swpf-metabox-settings', SWPF_URL . 'admin/js/swpf-metabox.js', array('jquery'), $this->version, true);
-            wp_localize_script('swpf-metabox-settings', 'swpf_admin_metabox_obj', array(
-                'posturl' => admin_url('post.php')
-            ));
         }
 
         if ($current_screen->id == 'swpf-product-filter_page_swpf-general-settings') {
