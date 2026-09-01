@@ -231,7 +231,7 @@ class Super_Product_Filter_Admin {
 
     public function icon_choices() {
         global $current_screen;
-        if ('swpf-product-filter' == $current_screen->post_type) {
+        if ('swpf-product-filter_page_swpf-filter-builder' == $current_screen->base) {
             ?>
             <div id="swpf-icon-box" class="swpf-icon-box">
                 <div class="swpf-icon-search">

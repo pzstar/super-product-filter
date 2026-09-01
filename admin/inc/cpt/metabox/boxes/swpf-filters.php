@@ -564,7 +564,7 @@ $swpf_index = 1;
 
                             <div class="swpf-custom-term-options-wrap">
                                 <div class="swpf-button-wrap">
-                                    <button class="swpf-show-custom-term-options" data-tax-key="<?php echo esc_attr($swpf_item_key); ?>" data-tax-id="<?php echo esc_attr($post_id); ?>" data-terms-customize-settings="<?php echo esc_attr(htmlspecialchars(wp_json_encode(isset($swpf_settings['terms_customize'][$swpf_item_key]) ? $swpf_settings['terms_customize'][$swpf_item_key] : []), ENT_QUOTES, 'UTF-8')); ?>">
+                                    <button class="swpf-show-custom-term-options button button-primary" data-tax-key="<?php echo esc_attr($swpf_item_key); ?>" data-tax-id="<?php echo esc_attr($post_id); ?>" data-terms-customize-settings="<?php echo esc_attr(htmlspecialchars(wp_json_encode(isset($swpf_settings['terms_customize'][$swpf_item_key]) ? $swpf_settings['terms_customize'][$swpf_item_key] : []), ENT_QUOTES, 'UTF-8')); ?>">
                                         <i class="icofont-gear"></i> <?php esc_html_e('Configure Term Options', 'super-product-filter'); ?>
                                     </button>
                                 </div>

@@ -105,8 +105,6 @@ defined('ABSPATH') || die();
             </div>
         </div>
 
-        <div class="swpf-separator"></div>
-
         <details class="swpf-advanced-settings">
             <summary><?php esc_html_e('Advanced', 'super-product-filter'); ?></summary>
 
@@ -137,8 +135,6 @@ defined('ABSPATH') || die();
             </div>
 
         </details>
-
-        <div class="swpf-separator"></div>
 
         <div class="swpf-field-wrap">
             <label><?php esc_html_e('Product Columns and Rows', 'super-product-filter'); ?></label>

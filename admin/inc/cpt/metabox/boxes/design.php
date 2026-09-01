@@ -140,217 +140,218 @@ $swpf_text_decorations = swpf_get_text_decoration_choices();
 
             <div class="swpf-sub-panel swpf-design-typography">
                 <h3><?php esc_html_e('Heading Typography', 'super-product-filter') ?></h3>
-                <ul class="swpf-typography-fields">
-                    <li class="swpf-field-wrap swpf-typography-field swpf-typography-font-family">
-                        <label><?php esc_html_e('Font Family', 'super-product-filter'); ?></label>
-                        <div class="swpf-settings-input-field">
-                            <select name="swpf_settings[heading_typo][family]" class="typography_face">
-                                <option value="inherit" <?php selected($swpf_settings['heading_typo']['family'], 'inherit'); ?>><?php echo esc_html('Default', 'super-product-filter'); ?></option>
-                                <?php
-                                if ($swpf_standard_fonts) {
-                                    ?>
-                                    <optgroup label="Standard Fonts">
-                                        <?php foreach ($swpf_standard_fonts as $swpf_standard_font) { ?>
-                                            <option value="<?php echo esc_attr($swpf_standard_font); ?>" <?php selected($swpf_settings['heading_typo']['family'], $swpf_standard_font); ?>><?php echo esc_attr($swpf_standard_font); ?></option>
-                                        <?php } ?>
-                                    </optgroup>
+                <div class="swpf-settings-list-row">
+                    <ul class="swpf-typography-fields">
+                        <li class="swpf-field-wrap swpf-typography-field swpf-typography-font-family">
+                            <label><?php esc_html_e('Font Family', 'super-product-filter'); ?></label>
+                            <div class="swpf-settings-input-field">
+                                <select name="swpf_settings[heading_typo][family]" class="typography_face">
+                                    <option value="inherit" <?php selected($swpf_settings['heading_typo']['family'], 'inherit'); ?>><?php echo esc_html('Default', 'super-product-filter'); ?></option>
                                     <?php
-                                }
-
-                                if ($swpf_google_fonts) {
-                                    ?>
-                                    <optgroup label="Google Fonts">
-                                        <?php foreach ($swpf_google_fonts as $swpf_google_font) { ?>
-                                            <option value="<?php echo esc_attr($swpf_google_font); ?>" <?php selected($swpf_settings['heading_typo']['family'], $swpf_google_font); ?>><?php echo esc_attr($swpf_google_font); ?>
-                                            </option>
-                                        <?php } ?>
-                                    </optgroup>
-                                    <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </li>
-
-                    <li class="swpf-field-wrap swpf-typography-field swpf-typography-font-style">
-                        <label><?php esc_html_e('Font Style', 'super-product-filter'); ?></label>
-                        <?php
-                        $swpf_header_title_family = $swpf_settings['heading_typo']['family'];
-                        $swpf_font_weights = swpf_get_font_weight_choices($swpf_header_title_family);
-                        if ($swpf_font_weights) {
-                            ?>
-                            <div class="swpf-settings-input-field">
-                                <select name="swpf_settings[heading_typo][style]" class="typography_font_style">
-                                    <?php foreach ($swpf_font_weights as $swpf_font_weight => $swpf_font_weight_label) { ?>
-                                        <option value="<?php echo esc_attr($swpf_font_weight); ?>" <?php selected($swpf_settings['heading_typo']['style'], $swpf_font_weight); ?>><?php echo esc_html($swpf_font_weight_label); ?>
-                                        </option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        <?php } ?>
-                    </li>
-
-                    <li class="swpf-field-wrap swpf-typography-field swpf-typography-text-transform">
-                        <label><?php esc_html_e('Text Transform', 'super-product-filter'); ?></label>
-                        <?php if ($swpf_text_transforms) { ?>
-                            <div class="swpf-settings-input-field">
-                                <select name="swpf_settings[heading_typo][text_transform]" class="typography_text_transform">
-                                    <?php foreach ($swpf_text_transforms as $swpf_key => $swpf_value) { ?>
-                                        <option value="<?php echo esc_attr($swpf_key); ?>" <?php selected($swpf_settings['heading_typo']['text_transform'], $swpf_key); ?>><?php echo esc_html($swpf_value); ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        <?php } ?>
-                    </li>
-
-                    <li class="swpf-field-wrap swpf-typography-field swpf-typography-text-decoration">
-                        <label><?php esc_html_e('Text Decoration', 'super-product-filter'); ?></label>
-                        <?php if ($swpf_text_decorations) { ?>
-                            <div class="swpf-settings-input-field">
-                                <select name="swpf_settings[heading_typo][text_decoration]" class="typography_text_decoration">
-                                    <?php foreach ($swpf_text_decorations as $swpf_key => $swpf_value) { ?>
-                                        <option value="<?php echo esc_attr($swpf_key); ?>" <?php selected($swpf_settings['heading_typo']['text_decoration'], $swpf_key); ?>><?php echo esc_html($swpf_value); ?>
-                                        </option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        <?php } ?>
-                    </li>
-                    <li class="swpf-field-wrap swpf-typography-field swpf-typography-line-height">
-                        <label><?php esc_html_e('Line Height', 'super-product-filter'); ?></label>
-                        <div class="swpf-settings-input-field">
-                            <div class="swpf-range-slider-field">
-                                <div class="swpf-range-slider"></div>
-                                <input type="number" name="swpf_settings[heading_typo][line_height]" value="<?php echo esc_attr($swpf_settings['heading_typo']['line_height']); ?>" class="swpf-range-input" min="0.5" max="5" step="0.1">
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="swpf-field-wrap swpf-typography-field swpf-typography-letter-spacing">
-                        <label><?php esc_html_e('Letter Spacing', 'super-product-filter'); ?></label>
-                        <div class="swpf-settings-input-field">
-                            <div class="swpf-range-slider-field">
-                                <div class="swpf-range-slider"></div>
-                                <input type="number" name="swpf_settings[heading_typo][letter_spacing]" value="<?php echo esc_attr($swpf_settings['heading_typo']['letter_spacing']); ?>" class="swpf-range-input" min="-5" max="5" step="0.1">px
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="swpf-field-wrap swpf-typography-field swpf-typography-letter-size">
-                        <label><?php esc_html_e('Font Size', 'super-product-filter'); ?></label>
-                        <div class="swpf-settings-input-field">
-                            <div class="swpf-range-slider-field">
-                                <div class="swpf-range-slider"></div>
-                                <input type="number" name="swpf_settings[heading_typo][size]" value="<?php echo esc_attr($swpf_settings['heading_typo']['size']); ?>" class="swpf-range-input" min="8" max="100" step="1">px
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-
-                <div class="swpf-spacer"></div>
-                <div class="swpf-separator"></div>
-
-                <h3><?php esc_html_e('Content Typography', 'super-product-filter') ?></h3>
-                <ul class="swpf-typography-fields">
-                    <li class="swpf-field-wrap swpf-typography-field swpf-typography-font-family">
-                        <label><?php esc_html_e('Font Family', 'super-product-filter'); ?></label>
-                        <div class="swpf-settings-input-field">
-                            <select name="swpf_settings[content_typo][family]" class="typography_face">
-                                <option value="inherit" <?php selected($swpf_settings['content_typo']['family'], 'inherit'); ?>><?php echo esc_html('Default', 'super-product-filter'); ?></option>
-                                <?php if ($swpf_standard_fonts) { ?>
-                                    <optgroup label="Standard Fonts">
-                                        <?php foreach ($swpf_standard_fonts as $swpf_standard_font) { ?>
-                                            <option value="<?php echo esc_attr($swpf_standard_font); ?>" <?php selected($swpf_settings['content_typo']['family'], $swpf_standard_font); ?>>
-                                                <?php echo esc_attr($swpf_standard_font); ?>
-                                            </option>
-                                        <?php } ?>
-                                    </optgroup>
-                                    <?php
-                                }
-                                if ($swpf_google_fonts) {
-                                    ?>
-                                    <optgroup label="Google Fonts">
-                                        <?php foreach ($swpf_google_fonts as $swpf_google_font) { ?>
-                                            <option value="<?php echo esc_attr($swpf_google_font); ?>" <?php selected($swpf_settings['content_typo']['family'], $swpf_google_font); ?>><?php echo esc_attr($swpf_google_font); ?></option>
-                                        <?php } ?>
-                                    </optgroup>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </li>
-
-                    <li class="swpf-field-wrap swpf-typography-field swpf-typography-font-style">
-                        <label><?php esc_html_e('Font Style', 'super-product-filter'); ?></label>
-
-                        <?php
-                        $swpf_header_title_family = $swpf_settings['content_typo']['family'];
-                        $swpf_font_weights = swpf_get_font_weight_choices($swpf_header_title_family);
-
-                        if ($swpf_font_weights) {
-                            ?>
-                            <div class="swpf-settings-input-field">
-                                <select name="swpf_settings[content_typo][style]" class="typography_font_style">
-                                    <?php foreach ($swpf_font_weights as $swpf_font_weight => $swpf_font_weight_label) { ?>
-                                        <option value="<?php echo esc_attr($swpf_font_weight); ?>" <?php selected($swpf_settings['content_typo']['style'], $swpf_font_weight); ?>><?php echo esc_html($swpf_font_weight_label); ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                            <?php
-                        }
-                        ?>
-                    </li>
-
-                    <li class="swpf-field-wrap swpf-typography-field swpf-typography-text-transform">
-                        <label><?php esc_html_e('Text Transform', 'super-product-filter'); ?></label>
-                        <?php
-                        if ($swpf_text_transforms) {
-                            ?>
-                            <div class="swpf-settings-input-field">
-                                <select name="swpf_settings[content_typo][text_transform]" class="typography_text_transform">
-                                    <?php
-                                    foreach ($swpf_text_transforms as $swpf_key => $swpf_value) {
+                                    if ($swpf_standard_fonts) {
                                         ?>
-                                        <option value="<?php echo esc_attr($swpf_key) ?>" <?php selected($swpf_settings['content_typo']['text_transform'], $swpf_key); ?>><?php echo esc_html($swpf_value); ?></option>
+                                        <optgroup label="Standard Fonts">
+                                            <?php foreach ($swpf_standard_fonts as $swpf_standard_font) { ?>
+                                                <option value="<?php echo esc_attr($swpf_standard_font); ?>" <?php selected($swpf_settings['heading_typo']['family'], $swpf_standard_font); ?>><?php echo esc_attr($swpf_standard_font); ?></option>
+                                            <?php } ?>
+                                        </optgroup>
+                                        <?php
+                                    }
+
+                                    if ($swpf_google_fonts) {
+                                        ?>
+                                        <optgroup label="Google Fonts">
+                                            <?php foreach ($swpf_google_fonts as $swpf_google_font) { ?>
+                                                <option value="<?php echo esc_attr($swpf_google_font); ?>" <?php selected($swpf_settings['heading_typo']['family'], $swpf_google_font); ?>><?php echo esc_attr($swpf_google_font); ?>
+                                                </option>
+                                            <?php } ?>
+                                        </optgroup>
                                         <?php
                                     }
                                     ?>
                                 </select>
                             </div>
+                        </li>
+
+                        <li class="swpf-field-wrap swpf-typography-field swpf-typography-font-style">
+                            <label><?php esc_html_e('Font Style', 'super-product-filter'); ?></label>
                             <?php
-                        }
-                        ?>
-                    </li>
+                            $swpf_header_title_family = $swpf_settings['heading_typo']['family'];
+                            $swpf_font_weights = swpf_get_font_weight_choices($swpf_header_title_family);
+                            if ($swpf_font_weights) {
+                                ?>
+                                <div class="swpf-settings-input-field">
+                                    <select name="swpf_settings[heading_typo][style]" class="typography_font_style">
+                                        <?php foreach ($swpf_font_weights as $swpf_font_weight => $swpf_font_weight_label) { ?>
+                                            <option value="<?php echo esc_attr($swpf_font_weight); ?>" <?php selected($swpf_settings['heading_typo']['style'], $swpf_font_weight); ?>><?php echo esc_html($swpf_font_weight_label); ?>
+                                            </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            <?php } ?>
+                        </li>
 
-                    <li class="swpf-field-wrap swpf-typography-field swpf-typography-line-height">
-                        <label><?php esc_html_e('Line Height', 'super-product-filter'); ?></label>
-                        <div class="swpf-settings-input-field">
-                            <div class="swpf-range-slider-field">
-                                <div class="swpf-range-slider"></div>
-                                <input type="number" name="swpf_settings[content_typo][line_height]" value="<?php echo esc_attr($swpf_settings['content_typo']['line_height']); ?>" class="swpf-range-input" min="0.5" max="5" step="0.1">
-                            </div>
-                        </div>
-                    </li>
+                        <li class="swpf-field-wrap swpf-typography-field swpf-typography-text-transform">
+                            <label><?php esc_html_e('Text Transform', 'super-product-filter'); ?></label>
+                            <?php if ($swpf_text_transforms) { ?>
+                                <div class="swpf-settings-input-field">
+                                    <select name="swpf_settings[heading_typo][text_transform]" class="typography_text_transform">
+                                        <?php foreach ($swpf_text_transforms as $swpf_key => $swpf_value) { ?>
+                                            <option value="<?php echo esc_attr($swpf_key); ?>" <?php selected($swpf_settings['heading_typo']['text_transform'], $swpf_key); ?>><?php echo esc_html($swpf_value); ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            <?php } ?>
+                        </li>
 
-                    <li class="swpf-field-wrap swpf-typography-field swpf-typography-letter-spacing">
-                        <label><?php esc_html_e('Letter Spacing', 'super-product-filter'); ?></label>
-                        <div class="swpf-settings-input-field">
-                            <div class="swpf-range-slider-field">
-                                <div class="swpf-range-slider"></div>
-                                <input type="number" name="swpf_settings[content_typo][letter_spacing]" value="<?php echo esc_attr($swpf_settings['content_typo']['letter_spacing']); ?>" class="swpf-range-input" min="-5" max="5" step="0.1">px
+                        <li class="swpf-field-wrap swpf-typography-field swpf-typography-text-decoration">
+                            <label><?php esc_html_e('Text Decoration', 'super-product-filter'); ?></label>
+                            <?php if ($swpf_text_decorations) { ?>
+                                <div class="swpf-settings-input-field">
+                                    <select name="swpf_settings[heading_typo][text_decoration]" class="typography_text_decoration">
+                                        <?php foreach ($swpf_text_decorations as $swpf_key => $swpf_value) { ?>
+                                            <option value="<?php echo esc_attr($swpf_key); ?>" <?php selected($swpf_settings['heading_typo']['text_decoration'], $swpf_key); ?>><?php echo esc_html($swpf_value); ?>
+                                            </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            <?php } ?>
+                        </li>
+                        <li class="swpf-field-wrap swpf-typography-field swpf-typography-line-height">
+                            <label><?php esc_html_e('Line Height', 'super-product-filter'); ?></label>
+                            <div class="swpf-settings-input-field">
+                                <div class="swpf-range-slider-field">
+                                    <div class="swpf-range-slider"></div>
+                                    <input type="number" name="swpf_settings[heading_typo][line_height]" value="<?php echo esc_attr($swpf_settings['heading_typo']['line_height']); ?>" class="swpf-range-input" min="0.5" max="5" step="0.1">
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
 
-                    <li class="swpf-field-wrap swpf-typography-field swpf-typography-letter-size">
-                        <label><?php esc_html_e('Font Size', 'super-product-filter'); ?></label>
-                        <div class="swpf-settings-input-field">
-                            <div class="swpf-range-slider-field">
-                                <div class="swpf-range-slider"></div>
-                                <input type="number" name="swpf_settings[content_typo][size]" value="<?php echo esc_attr($swpf_settings['content_typo']['size']); ?>" class="swpf-range-input" min="8" max="100" step="1">px
+                        <li class="swpf-field-wrap swpf-typography-field swpf-typography-letter-spacing">
+                            <label><?php esc_html_e('Letter Spacing', 'super-product-filter'); ?></label>
+                            <div class="swpf-settings-input-field">
+                                <div class="swpf-range-slider-field">
+                                    <div class="swpf-range-slider"></div>
+                                    <input type="number" name="swpf_settings[heading_typo][letter_spacing]" value="<?php echo esc_attr($swpf_settings['heading_typo']['letter_spacing']); ?>" class="swpf-range-input" min="-5" max="5" step="0.1">px
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+
+                        <li class="swpf-field-wrap swpf-typography-field swpf-typography-letter-size">
+                            <label><?php esc_html_e('Font Size', 'super-product-filter'); ?></label>
+                            <div class="swpf-settings-input-field">
+                                <div class="swpf-range-slider-field">
+                                    <div class="swpf-range-slider"></div>
+                                    <input type="number" name="swpf_settings[heading_typo][size]" value="<?php echo esc_attr($swpf_settings['heading_typo']['size']); ?>" class="swpf-range-input" min="8" max="100" step="1">px
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="swpf-separator"></div>
+
+                    <h3><?php esc_html_e('Content Typography', 'super-product-filter') ?></h3>
+                    <ul class="swpf-typography-fields">
+                        <li class="swpf-field-wrap swpf-typography-field swpf-typography-font-family">
+                            <label><?php esc_html_e('Font Family', 'super-product-filter'); ?></label>
+                            <div class="swpf-settings-input-field">
+                                <select name="swpf_settings[content_typo][family]" class="typography_face">
+                                    <option value="inherit" <?php selected($swpf_settings['content_typo']['family'], 'inherit'); ?>><?php echo esc_html('Default', 'super-product-filter'); ?></option>
+                                    <?php if ($swpf_standard_fonts) { ?>
+                                        <optgroup label="Standard Fonts">
+                                            <?php foreach ($swpf_standard_fonts as $swpf_standard_font) { ?>
+                                                <option value="<?php echo esc_attr($swpf_standard_font); ?>" <?php selected($swpf_settings['content_typo']['family'], $swpf_standard_font); ?>>
+                                                    <?php echo esc_attr($swpf_standard_font); ?>
+                                                </option>
+                                            <?php } ?>
+                                        </optgroup>
+                                        <?php
+                                    }
+                                    if ($swpf_google_fonts) {
+                                        ?>
+                                        <optgroup label="Google Fonts">
+                                            <?php foreach ($swpf_google_fonts as $swpf_google_font) { ?>
+                                                <option value="<?php echo esc_attr($swpf_google_font); ?>" <?php selected($swpf_settings['content_typo']['family'], $swpf_google_font); ?>><?php echo esc_attr($swpf_google_font); ?></option>
+                                            <?php } ?>
+                                        </optgroup>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </li>
+
+                        <li class="swpf-field-wrap swpf-typography-field swpf-typography-font-style">
+                            <label><?php esc_html_e('Font Style', 'super-product-filter'); ?></label>
+
+                            <?php
+                            $swpf_header_title_family = $swpf_settings['content_typo']['family'];
+                            $swpf_font_weights = swpf_get_font_weight_choices($swpf_header_title_family);
+
+                            if ($swpf_font_weights) {
+                                ?>
+                                <div class="swpf-settings-input-field">
+                                    <select name="swpf_settings[content_typo][style]" class="typography_font_style">
+                                        <?php foreach ($swpf_font_weights as $swpf_font_weight => $swpf_font_weight_label) { ?>
+                                            <option value="<?php echo esc_attr($swpf_font_weight); ?>" <?php selected($swpf_settings['content_typo']['style'], $swpf_font_weight); ?>><?php echo esc_html($swpf_font_weight_label); ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <?php
+                            }
+                            ?>
+                        </li>
+
+                        <li class="swpf-field-wrap swpf-typography-field swpf-typography-text-transform">
+                            <label><?php esc_html_e('Text Transform', 'super-product-filter'); ?></label>
+                            <?php
+                            if ($swpf_text_transforms) {
+                                ?>
+                                <div class="swpf-settings-input-field">
+                                    <select name="swpf_settings[content_typo][text_transform]" class="typography_text_transform">
+                                        <?php
+                                        foreach ($swpf_text_transforms as $swpf_key => $swpf_value) {
+                                            ?>
+                                            <option value="<?php echo esc_attr($swpf_key) ?>" <?php selected($swpf_settings['content_typo']['text_transform'], $swpf_key); ?>><?php echo esc_html($swpf_value); ?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <?php
+                            }
+                            ?>
+                        </li>
+
+                        <li class="swpf-field-wrap swpf-typography-field swpf-typography-line-height">
+                            <label><?php esc_html_e('Line Height', 'super-product-filter'); ?></label>
+                            <div class="swpf-settings-input-field">
+                                <div class="swpf-range-slider-field">
+                                    <div class="swpf-range-slider"></div>
+                                    <input type="number" name="swpf_settings[content_typo][line_height]" value="<?php echo esc_attr($swpf_settings['content_typo']['line_height']); ?>" class="swpf-range-input" min="0.5" max="5" step="0.1">
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="swpf-field-wrap swpf-typography-field swpf-typography-letter-spacing">
+                            <label><?php esc_html_e('Letter Spacing', 'super-product-filter'); ?></label>
+                            <div class="swpf-settings-input-field">
+                                <div class="swpf-range-slider-field">
+                                    <div class="swpf-range-slider"></div>
+                                    <input type="number" name="swpf_settings[content_typo][letter_spacing]" value="<?php echo esc_attr($swpf_settings['content_typo']['letter_spacing']); ?>" class="swpf-range-input" min="-5" max="5" step="0.1">px
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="swpf-field-wrap swpf-typography-field swpf-typography-letter-size">
+                            <label><?php esc_html_e('Font Size', 'super-product-filter'); ?></label>
+                            <div class="swpf-settings-input-field">
+                                <div class="swpf-range-slider-field">
+                                    <div class="swpf-range-slider"></div>
+                                    <input type="number" name="swpf_settings[content_typo][size]" value="<?php echo esc_attr($swpf_settings['content_typo']['size']); ?>" class="swpf-range-input" min="8" max="100" step="1">px
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <div class="swpf-sub-panel swpf-design-offcanvas">
@@ -404,7 +405,7 @@ $swpf_text_decorations = swpf_get_text_decoration_choices();
 
                     <div class="swpf-field-wrap" data-condition-toggle="swpf-toggle-button-icon-type" data-condition-val="default_icon">
                         <ul class="swpf-two-column-row">
-                            <li>
+                            <li class="swpf-field-wrap">
                                 <label><?php esc_html_e('Choose Open Trigger Icon', 'super-product-filter'); ?></label>
                                 <div class="swpf-settings-input-field">
                                     <?php
@@ -415,7 +416,7 @@ $swpf_text_decorations = swpf_get_text_decoration_choices();
                                 </div>
                             </li>
 
-                            <li>
+                            <li class="swpf-field-wrap">
                                 <label><?php esc_html_e('Choose Close Trigger Icon', 'super-product-filter'); ?></label>
                                 <div class="swpf-settings-input-field">
                                     <?php

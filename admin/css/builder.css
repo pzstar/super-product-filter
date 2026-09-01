@@ -1,61 +1,30 @@
-/*
- * The filter builder screen.
- *
- * The panels arrived styled for a metabox inside the post editor, where they
- * were one box among several and had to announce themselves. On a page of their
- * own that costume works against them, so most of what follows dresses it back
- * down and rebuilds the screen around a rail of sections.
- *
- * Everything is scoped to the builder. The same classes are used by the general
- * settings and the term screens, which are not this.
- */
+
 
 .swpf-builder-wrap {
-    /* Follows whichever admin colour scheme the user picked. */
     --swpf-accent: var(--wp-admin-theme-color, #3858e9);
-
     --swpf-ink: #1d2327;
     --swpf-muted: #646970;
     --swpf-line: #e3e5e8;
     --swpf-hairline: #f0f0f1;
     --swpf-sunken: #f7f8f9;
-
     --swpf-radius: 10px;
     --swpf-pad: 22px;
-
     --swpf-lift: 0 1px 2px rgba(16, 24, 40, 0.04), 0 12px 28px -16px rgba(16, 24, 40, 0.18);
-
     max-width: 1240px;
     margin-right: 20px;
 }
 
-/* ==========================================================================
-   Topbar
-   ========================================================================== */
-
-/*
- * Follows the page rather than scrolling away, so the name, the way back and
- * the delete stay reachable from anywhere in a long set of panels. Offset by
- * the admin bar, which is itself sticky.
- */
-/*
- * Follows the page rather than scrolling away, so the name, the way back and
- * the delete stay reachable from anywhere in a long set of panels. Offset by
- * the admin bar, which is itself sticky.
- */
+/* Top Bar */
 .swpf-builder-topbar {
     position: sticky;
     top: var(--wp-admin--admin-bar--height, 32px);
     z-index: 20;
-
     display: flex;
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
-
     margin: 20px 0 16px;
     padding: 12px var(--swpf-pad);
-
     background: #fff;
     border: 1px solid var(--swpf-line);
     border-radius: var(--swpf-radius);
@@ -66,11 +35,9 @@
     display: inline-flex;
     align-items: center;
     gap: 2px;
-
     padding: 6px 10px 6px 6px;
     margin-left: -6px;
     border-radius: 7px;
-
     color: var(--swpf-muted);
     text-decoration: none;
     font-weight: 500;
@@ -91,17 +58,14 @@
     height: 18px;
 }
 
-/* Says whose screen this is, in a page of admin screens that all look alike. */
 .swpf-topbar-mark {
     display: flex;
     align-items: center;
     justify-content: center;
-
     width: 32px;
     height: 32px;
     flex: 0 0 32px;
     border-radius: 8px;
-
     background: var(--swpf-accent);
     color: #fff;
 }
@@ -117,20 +81,14 @@
     min-width: 0;
 }
 
-/*
- * The name is the page's title, so it is set like one and edited in place. The
- * box only appears once there is a reason to think about typing in it.
- */
-.swpf-builder-wrap .swpf-topbar-name input[type="text"] {
+.swpf-topbar-name input[type="text"] {
     width: 100%;
     margin: 0;
     padding: 5px 10px;
-
     font-size: 17px;
     font-weight: 600;
     line-height: 1.4;
     color: var(--swpf-ink);
-
     background: transparent;
     border: 1px solid transparent;
     border-radius: 7px;
@@ -138,41 +96,32 @@
     transition: background 0.15s ease, border-color 0.15s ease;
 }
 
-.swpf-builder-wrap .swpf-topbar-name input[type="text"]:hover {
+.swpf-topbar-name input[type="text"]:hover {
     border-color: var(--swpf-line);
 }
 
-.swpf-builder-wrap .swpf-topbar-name input[type="text"]:focus {
+.swpf-topbar-name input[type="text"]:focus {
     background: #fff;
     border-color: var(--swpf-accent);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--swpf-accent) 18%, transparent);
     outline: none;
 }
 
-.swpf-builder-wrap .swpf-topbar-name input[type="text"]::placeholder {
+.swpf-topbar-name input[type="text"]::placeholder {
     color: #a7aaad;
     font-weight: 500;
 }
 
-/*
- * Whether what is on screen has been written yet. It only tells the truth while
- * the background save is watching the form, so it is the script that moves it
- * between states; the dot carries the meaning at a glance and the words carry
- * it for anyone the colour is lost on.
- */
 .swpf-topbar-state {
     display: flex;
     align-items: center;
     gap: 6px;
-
     margin-left: auto;
     padding: 4px 10px;
     border-radius: 999px;
-
     font-size: 12px;
     font-weight: 500;
     white-space: nowrap;
-
     background: var(--swpf-sunken);
     color: var(--swpf-muted);
 }
@@ -197,7 +146,9 @@
 }
 
 @keyframes swpf-topbar-pulse {
-    50% { opacity: 0.25; }
+    50% {
+        opacity: 0.25;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -212,11 +163,9 @@
     gap: 14px;
 }
 
-/* Destructive, so it stays a link and never reads as the primary way out. */
 .swpf-topbar-trash {
     padding: 6px 10px;
     border-radius: 7px;
-
     color: #b32d2e;
     text-decoration: none;
     white-space: nowrap;
@@ -234,14 +183,6 @@
    The panel card
    ========================================================================== */
 
-/*
- * No overflow clip here, deliberately. Hiding the overflow would be the easy
- * way to keep the corners rounded, but it makes this card the scroll container
- * for everything inside it - and then every `position: sticky` within is
- * measured against the card rather than the page, which silently stops the
- * section rail and the panels' own save bar from sticking to anything. The
- * corners are cut by the pieces that actually touch them instead.
- */
 .swpf-builder-body {
     background: #fff;
     border: 1px solid var(--swpf-line);
@@ -250,28 +191,15 @@
     margin: 0 0 20px;
 }
 
-/*
- * The panels carried a 4px accent across their top edge, which is how a metabox
- * announces itself. The card is that anchor now.
- */
 .swpf-builder-body .swpf-settings-main-wrapper {
     border-top: 0;
     border-radius: 0 0 var(--swpf-radius) var(--swpf-radius);
-    /* The card already paints the white; a second opaque layer over it would
-       square the corners back off. */
     background: transparent;
 }
 
-/*
- * Sections across the header rather than down the side of the panels. A rail
- * beside them read well until the Designs panel, which carries a second list of
- * its own: two nested rails left the fields about half the page. Up here it
- * costs the fields nothing, and it travels with the sticky header.
- */
-/*
- * The strip the tabs stand on. Sunken, so the tabs that are not open read as
- * sitting behind it and the open one reads as level with the settings.
- */
+/* ==========================================================================
+   Tab
+   ========================================================================== */
 .swpf-builder-sections {
     padding: 10px 12px 0;
     background: var(--swpf-sunken);
@@ -297,39 +225,25 @@
     scrollbar-width: thin;
 }
 
-/*
- * They were folder tabs once - a tinted band, a raised white tab and a shadow
- * curling out from under it, six labels in bold uppercase. This is the same
- * idea done plainly: the open section is a card of its own that runs into the
- * settings underneath, and the rest are quiet until pointed at.
- */
 .swpf-builder-sections .swpf-tab-options-wrap ul li {
     display: flex;
     align-items: center;
     gap: 8px;
-
-    /* Deep enough to cover the strip's bottom rule when this tab is open. */
     margin: 0 0 -1px;
     padding: 12px 16px;
-
     font-size: 15px;
-    /*
-     * The same weight whether or not a section is the open one. Switching
-     * weight on selection changes how wide the word is, so every tab after it
-     * shifts along by a pixel or two as you move between them.
-     */
     font-weight: 600;
     text-transform: none;
     text-align: left;
     white-space: nowrap;
     color: #3c434a;
-
     background: none;
     border: 1px solid transparent;
     border-bottom: 0;
     border-radius: 9px 9px 0 0;
     box-shadow: none;
     transition: background 0.15s ease, color 0.15s ease;
+    cursor: pointer;
 }
 
 .swpf-builder-sections .swpf-tab-options-wrap ul li .dashicons {
@@ -346,10 +260,6 @@
     color: var(--swpf-ink);
 }
 
-/*
- * White, edged on three sides, and one pixel taller than the strip - so it
- * covers the rule along the bottom and joins the panel it opens.
- */
 .swpf-builder-sections .swpf-tab-options-wrap ul li.swpf-tab-active {
     background: #fff;
     border-color: var(--swpf-line);
@@ -361,66 +271,134 @@
     opacity: 1;
 }
 
-/* Keyboard users need to see where they are, and none of these are buttons. */
 .swpf-builder-sections .swpf-tab-options-wrap ul li:focus-visible {
     outline: 2px solid var(--swpf-accent);
     outline-offset: -2px;
 }
 
 /* ==========================================================================
-   Fields
+   Content
    ========================================================================== */
 
-.swpf-builder-body .swpf-options-fields-wrap {
+.swpf-options-fields-wrap {
     padding: 18px 26px 26px;
+    counter-reset: filtersection;
 }
 
-/*
- * A flat 30px between every row spaced a bare text box exactly as far from its
- * neighbour as a row carrying three lines of explanation, so the long ones ran
- * together. A rule per row is cheaper to scan than the gap was.
- */
-.swpf-builder-body .swpf-field-inline-wrap {
-    gap: 0;
+
+/* ==========================================================================
+   Fields Wrapper
+   ========================================================================== */
+.swpf-row {
+    display: grid;
+    grid-template-columns: repeat(4, 240px);
+    gap: 15px 30px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #EEE;
 }
 
-.swpf-builder-body .swpf-field-inline-wrap > .swpf-field-wrap {
-    gap: 24px;
-    padding: 18px 0;
-    border-top: 1px solid var(--swpf-hairline);
+.swpf-row:last-child,
+.swpf-last-row {
+    border: 0;
+    margin: 0;
+    padding: 0;
 }
 
-.swpf-builder-body .swpf-field-inline-wrap > .swpf-field-wrap:first-child {
-    border-top: 0;
-}
-
-/*
- * Bold black down a 200px column reads as a stack of headings rather than as
- * the quiet half of a pair. Nudged down so it lines up with the text inside the
- * control it names instead of with the control's top edge.
- */
-.swpf-builder-body .swpf-field-wrap > label {
-    padding-top: 9px;
+.swpf-field-wrap > label {
     font-weight: 600;
     line-height: 1.4;
     color: var(--swpf-ink);
+    display: block;
+    margin: 0 0 8px;
+    font-size: 13px;
 }
 
-/* The old width did the gap arithmetic by hand, so it had to be kept in step
-   with it. Letting it simply take the rest costs nothing and cannot drift. */
-.swpf-builder-body .swpf-field-inline-wrap .swpf-field-wrap > .swpf-settings-input-field {
-    width: auto;
-    flex: 1 1 auto;
+.swpf-field-inline-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.swpf-field-inline-wrap .swpf-field-wrap {
+    display: flex;
+    gap: 24px;
+    padding: 15px 0;
+}
+
+.swpf-field-inline-wrap .swpf-field-wrap > .swpf-settings-input-field {
     min-width: 0;
+    width: calc(100% - 215px);
+    flex: 0 0 calc(100% - 215px);
 }
 
-/* Rounded to match the cards and the rail, and given a focus ring that says
-   which control has the keyboard rather than leaving it to the browser. */
+.swpf-field-inline-wrap .swpf-field-wrap > label {
+    width: 200px;
+    flex: 0 0 200px;
+    margin: 0;
+}
+
+.swpf-settings-list-row {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.swpf-settings-list-row > .swpf-field-wrap {
+    width: 300px;
+}
+
+.swpf-settings-list > label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Two Column */
+.swpf-two-column-row {
+    display: grid;
+    grid-template-columns: repeat(2, 300px);
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.swpf-three-column-row {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.swpf-two-column-row > li {
+    margin: 0;
+    padding: 0;
+}
+
+.swpf-custom-term-options-wrap .swpf-button-wrap {
+    display: flex;
+    justify-content: flex-end;
+    border: 1px solid #EEE;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.swpf-custom-term-options-wrap .swpf-button-wrap .swpf-show-custom-term-options {
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Fields
+   ========================================================================== */
+
 .swpf-builder-body .swpf-field-wrap input[type="text"]:not(.wp-color-picker),
 .swpf-builder-body .swpf-field-wrap input[type="number"],
 .swpf-builder-body .swpf-field-wrap input[type="search"],
 .swpf-builder-body .swpf-field-wrap input[type="url"],
-.swpf-builder-body .swpf-field-wrap select {
+.swpf-builder-body .swpf-field-wrap select,
+.swpf-builder-body .swpf-field-wrap .selectize-input {
+    min-height: 40px;
     border-radius: 7px;
     border-color: #c3c4c7;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -430,17 +408,561 @@
 .swpf-builder-body .swpf-field-wrap input[type="number"]:focus,
 .swpf-builder-body .swpf-field-wrap input[type="search"]:focus,
 .swpf-builder-body .swpf-field-wrap input[type="url"]:focus,
-.swpf-builder-body .swpf-field-wrap select:focus {
+.swpf-builder-body .swpf-field-wrap select:focus,
+.swpf-builder-body .swpf-field-wrap .selectize-input:focus {
     border-color: var(--swpf-accent);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--swpf-accent) 18%, transparent);
     outline: none;
 }
 
-/*
- * Descriptions. Italic, full black, and running the whole width of a very wide
- * screen - three separate reasons to skip them, and they are the part that
- * explains what the setting does.
- */
+.swpf-builder-body .swpf-field-wrap input[type=number] {
+    min-width: 60px;
+    width: 60px;
+    padding-right: 0;
+    text-align: center;
+}
+
+.swpf-builder-body .button:not(.wp-color-result):not(.wp-picker-clear) {
+    min-height: 40px;
+    border-radius: 7px;
+}
+
+.swpf-builder-body .swpf-field-wrap input[type=text]:not(.wp-color-picker),
+.swpf-builder-body .swpf-field-wrap .selectize-input,
+.swpf-builder-body .swpf-field-wrap select,
+.swpf-builder-body .swpf-field-wrap .swpf-range-slider-field {
+    max-width: 300px;
+    width: 100%;
+}
+
+.swpf-builder-body .swpf-field-wrap select.swpf-unit {
+    width: 60px;
+    text-align: center;
+}
+
+
+/* Typography */
+.swpf-typography-fields {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.swpf-typography-field > label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.swpf-typography-fields .chosen-container-single {
+    max-width: 100%;
+}
+
+.swpf-typography-fields .chosen-container-single .chosen-single {
+    min-height: 40px;
+    font-size: 13px;
+    line-height: 40px;
+    color: #1e1e1e;
+    border-color: #c3c4c7;
+    box-shadow: none;
+    border-radius: 7px;
+    background: #fff url(data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E) no-repeat right 5px top 50% !important;
+    background-size: 16px 16px !important;
+    cursor: pointer;
+    vertical-align: middle;
+    padding: 0 0 0 10px;
+}
+
+.swpf-typography-fields .chosen-container-single .chosen-single div {
+    display: none;
+}
+
+.swpf-typography-fields .chosen-container-single .chosen-single span {
+    margin: 0 26px 0 0;
+}
+
+.swpf-typography-fields .chosen-container-single .chosen-search input[type="text"] {
+    background: none !important;
+    padding: 5px;
+    box-shadow: none;
+}
+
+.swpf-typography-font-style-wrap.swpf-typography-loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Typography preview */
+.swpf-typography-preview-field .swpf-font-preview {
+    min-height: 62px;
+    padding: 14px 16px;
+    border: 1px solid #dcdcde;
+    border-radius: 3px;
+    background: #f6f7f7;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.swpf-font-preview-text {
+    display: block;
+    color: #1e1e1e;
+    word-break: break-word;
+}
+
+.swpf-font-preview-default .swpf-font-preview-text {
+    color: #787c82;
+}
+
+ul.swpf-typography-fields > li.swpf-typography-preview-field {
+    grid-column: 1 / -1;
+    width: 100%;
+}
+
+
+/* Backend Jquery Slider */
+.swpf-range-slider-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.swpf-range-slider {
+    width: 300px;
+}
+
+.swpf-range-slider.ui-widget.ui-widget-content {
+    position: relative;
+    background: #f0f0f1;
+    border: none;
+    height: 6px;
+    border-radius: 0;
+    margin: 0;
+}
+
+.swpf-range-slider.ui-slider .ui-slider-range {
+    background: var(--wp-admin-theme-color);
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.swpf-range-slider.ui-slider .ui-slider-handle {
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    background: var(--wp-admin-theme-color);
+    border: none;
+    border-radius: 100%;
+    margin-left: -7px;
+    bottom: -4px;
+    top: auto;
+    cursor: pointer;
+    outline: 0;
+    box-shadow: none;
+}
+
+.swpf-range-slider.ui-slider .ui-slider-handle span {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--wp-admin-theme-color);
+    color: #FFF;
+    padding: 4px 6px;
+    font-size: 12px;
+    border-radius: 10px;
+    line-height: 1;
+    margin-bottom: 4px;
+    min-width: 12px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+
+/* Colors */
+.swpf-settings-input-field .wp-picker-container *,
+.swpf-custom-term-field .wp-picker-container * {
+    box-sizing: content-box !important;
+}
+
+.swpf-settings-input-field .wp-picker-open + .wp-picker-input-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.swpf-settings-input-field .wp-picker-container .wp-color-picker {
+    width: 190px !important;
+}
+
+.swpf-settings-input-field .wp-picker-container .wp-color-result.button {
+    min-height: 32px !important;
+}
+
+.swpf-settings-input-field .wp-color-result-text {
+    padding: 0 6px;
+    line-height: 34px;
+}
+
+/* Shadow */
+.swpf-shadow-fields {
+    display: flex;
+    gap: 5px;
+    margin: 0;
+    padding: 0;
+}
+
+.swpf-shadow-fields li {
+    margin: 0;
+    padding: 0;
+}
+
+.swpf-shadow-fields li > label {
+    text-align: center;
+    display: block;
+}
+
+.swpf-shadow-fields li input[type="number"] {
+    width: 60px;
+    text-align: center;
+    padding-right: 0;
+}
+
+/* Dimension */
+.swpf-dimension-fields {
+    display: flex;
+    gap: 5px;
+    margin: 0;
+    padding: 0;
+}
+
+.swpf-dimension-fields li {
+    margin: 0;
+    padding: 0;
+}
+
+.swpf-dimension-fields li > label {
+    text-align: center;
+    display: block;
+    margin-top: 4px;
+}
+
+.swpf-dimension-fields li input[type="number"] {
+    width: 55px;
+    text-align: center;
+    margin: 0;
+}
+
+.swpf-dimension-fields .swpf-link-button {
+    cursor: pointer;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid #8c8f94;
+    min-height: 36px;
+    width: 50px;
+    background-color: #8c8f94;
+    color: #fff;
+}
+
+.swpf-dimension-fields.swpf-not-linked .swpf-link-button {
+    background: none;
+    color: inherit;
+}
+
+.swpf-dimension-fields .swpf-link-button span {
+    font-size: 16px;
+    height: 34px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.swpf-dimension-fields .swpf-link-button .swpf-linked {
+    display: flex;
+}
+
+.swpf-dimension-fields .swpf-link-button .swpf-unlinked {
+    display: none;
+}
+
+.swpf-dimension-fields.swpf-not-linked .swpf-link-button .swpf-linked {
+    display: none;
+}
+
+.swpf-dimension-fields.swpf-not-linked .swpf-link-button .swpf-unlinked {
+    display: flex;
+}
+
+
+/* Multiple Select */
+.swpf-toggle-tab-body .select2-container {
+    width: 100% !important;
+}
+
+.swpf-toggle-tab-body .select2-container--default .select2-selection--multiple .select2-selection__clear {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 0;
+    margin-right: 0;
+    padding: 3px 5px;
+    line-height: 1;
+    font-size: 15px;
+}
+
+.swpf-toggle-tab-body .select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+    margin: 0;
+    float: none;
+}
+
+.swpf-toggle-tab-body .select2-container--default .select2-selection--multiple li.select2-selection__choice {
+    background: #333;
+    color: #FFF;
+    border-radius: 2px;
+    border: 0;
+    padding: 3px 6px;
+    margin: 5px 0 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.swpf-toggle-tab-body .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: #333;
+    background: #FFF;
+    height: 14px;
+    width: 14px;
+    line-height: 12px;
+    text-align: center;
+    margin: 0 6px 0 0;
+}
+
+.swpf-toggle-tab-body .select2-container--default .select2-search--inline .select2-search__field {
+    min-height: 0;
+    min-width: 100%;
+}
+
+.swpf-toggle-tab-body .select2-results__option[aria-selected] {
+    margin: 0;
+}
+
+
+/* Dropzone */
+.swpf-dropzone-wrapper {
+    border: 2px dashed #91b0b3;
+    color: #92b0b3;
+    position: relative;
+    height: 150px;
+    max-width: 500px;
+    margin-bottom: 10px;
+}
+
+.swpf-dropzone-desc {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-direction: column;
+}
+
+.swpf-dropzone-desc .icofont-download {
+    font-size: 22px;
+}
+
+.swpf-dropzone,
+.swpf-dropzone:focus {
+    position: absolute;
+    outline: none !important;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.swpf-dropzone-wrapper:hover,
+.swpf-dropzone-wrapper.dragover {
+    background: #ecf0f5;
+}
+
+.swpf-preview-zone {
+    border: 1px dashed #8c8f94;
+    max-width: 500px;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+.swpf-preview-zone .box-solid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    margin-bottom: 0;
+}
+
+.swpf-preview-zone .swpf-remove-preview {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: red;
+    border: none;
+    background: none !important;
+    vertical-align: top;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 1;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.swpf-preview-zone.hidden + .swpf-dropzone-wrapper + #swpf_import {
+    display: none;
+}
+
+/* Icon Chooser */
+.swpf-icon-box-wrap {
+    position: relative;
+    width: 300px;
+}
+
+.swpf-icon-box {
+    display: none;
+}
+
+.swpf-icon-box-wrap .swpf-icon-box {
+    display: none;
+    margin-top: 5px;
+}
+
+.swpf-icon-box-wrap .swpf-selected-icon {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #c3c4c7;
+    position: relative;
+    cursor: pointer;
+    font-size: 18px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px 0 0 7px;
+}
+
+.swpf-icon-box-wrap .swpf-selected-icon span {
+    position: absolute;
+    left: 60px;
+    top: -1px;
+    height: 40px;
+    width: 40px;
+    border: 1px solid #c3c4c7;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 7px 7px 0;
+}
+
+.swpf-icon-box-wrap .swpf-selected-icon span i.swpf-down-icon {
+    display: block;
+    border: solid #333;
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    margin-top: -3px;
+}
+
+.swpf-icon-box-wrap .swpf-selected-icon span.swpf-icon-reset {
+    border-radius: 4px;
+    right: -80px;
+    color: #666;
+    font-size: 13px;
+}
+
+.swpf-icon-box-wrap .swpf-icon-search {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background: #f7f7ff;
+    border: 1px solid #8c8f94;
+    border-bottom: 0;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    gap: 6px;
+}
+
+.swpf-icon-box-wrap .swpf-icon-list {
+    height: 215px;
+    overflow-y: scroll;
+    font-size: 18px;
+    border: 1px solid #8c8f94;
+    background: #fff;
+    padding: 4px;
+    margin: 0;
+    display: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.swpf-icon-box-wrap .swpf-icon-list::-webkit-scrollbar {
+    display: none;
+}
+
+.swpf-icon-box-wrap .swpf-icon-list:first-of-type {
+    display: block;
+}
+
+.swpf-icon-box-wrap .swpf-icon-list li {
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    width: 38px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    font-size: 18px;
+    margin: 4px;
+    transition: all 0.3s ease;
+}
+
+.swpf-type-icon .swpf-icon-box-wrap .swpf-icon-list li {
+    height: 36px;
+    width: 36px;
+}
+
+.swpf-icon-box-wrap .swpf-icon-list li:hover {
+    background: #333;
+    border: 1px solid #333;
+    color: #fff;
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+}
+
+.swpf-icon-box-wrap .swpf-icon-list li.icon-active {
+    background: #88ddfb;
+    border: 1px solid #88ddfb;
+    color: #fff;
+}
+
+
+/*Description*/
 .swpf-builder-body .swpf-desc {
     max-width: 68ch;
     margin: 8px 0 0;
@@ -449,6 +971,176 @@
     color: var(--swpf-muted);
 }
 
+.swpf-spacer {
+    height: 30px;
+}
+
+.swpf-separator {
+    border-bottom: 1px solid #EEE;
+}
+
+/* Advanced Settings */
+.swpf-advanced-settings {
+    border: 1px solid #dcdcde;
+    border-radius: 2px;
+    padding: 16px;
+    margin: 15px 0;
+    background: #fbfbfc;
+}
+
+.swpf-advanced-settings > summary {
+    cursor: pointer;
+    padding: 12px 0;
+    font-weight: 600;
+    list-style: revert;
+    color: #1d2327;
+}
+
+.swpf-advanced-settings[open] > summary {
+    border-bottom: 1px solid #dcdcde;
+    margin-bottom: 14px;
+}
+
+.swpf-advanced-settings > .swpf-field-wrap {
+    margin-top: 14px;
+    display: flex;
+}
+
+/* Free VS Pro Comparison table*/
+.swpf-compare-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.swpf-compare-table th {
+    background: #2271b1;
+    color: #fff;
+    padding: 14px;
+    font-size: 14px;
+    text-align: left;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.swpf-compare-table td {
+    border: 1px solid #ddd;
+    padding: 14px;
+    font-size: 14px;
+}
+
+.swpf-compare-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.swpf-compare-table .swpf-yes {
+    color: #28a745;
+}
+
+.swpf-compare-table .swpf-no {
+    color: #dc3545;
+}
+
+.swpf-compare-table .swpf-yes i,
+.swpf-compare-table .swpf-no i {
+    color: #FFF;
+    height: 20px;
+    width: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+.swpf-compare-table .swpf-yes i {
+    background: #28a745;
+}
+
+.swpf-compare-table .swpf-no i {
+    background: #dc3545;
+}
+
+.swpf-compare-table .swpf-pro {
+    font-weight: bold;
+}
+
+.swpf-compare-table .swpf-feature a {
+    background: #000;
+    color: #FFF;
+    text-decoration: none;
+    font-size: 12px;
+    border-radius: 3px;
+    padding: 5px 8px;
+    line-height: 1;
+    display: inline-block;
+    margin-left: 6px;
+    outline: 0;
+    box-shadow: none;
+}
+
+.swpf-compare-table .swpf-feature a:hover {
+    background: #2271b1;
+}
+
+.swpf-compare-table .swpf-compare-button a {
+    padding: 13px 20px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1;
+    outline: 0 !important;
+    box-shadow: none !important;
+    background-color: #ff0000;
+    border-color: #ff0000;
+    color: #FFF;
+}
+
+.swpf-compare-table .swpf-compare-button a:hover,
+.swpf-compare-table .swpf-compare-button a:focus {
+    background-color: #000;
+    border-color: #000;
+    color: #FFF;
+}
+
+.swpf-compare-table .swpf-compare-section td {
+    background: #f0f6fc;
+    border-color: #c5d9ed;
+    color: #0a4b78;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+}
+
+.swpf-compare-table .swpf-feature-name {
+    font-weight: 600;
+}
+
+.swpf-compare-table .swpf-feature-desc {
+    display: block;
+    margin-top: 4px;
+    max-width: 46em;
+    color: #646970;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.swpf-compare-table .swpf-plain {
+    color: #3c434a;
+}
+
+.swpf-compare-table .swpf-feature,
+.swpf-compare-table .swpf-yes,
+.swpf-compare-table .swpf-no,
+.swpf-compare-table .swpf-plain,
+.swpf-compare-table .swpf-pro {
+    vertical-align: top;
+}
+
+
 /* ==========================================================================
    Each filter's row in the Filters panel
    --------------------------------------------------------------------------
@@ -456,13 +1148,35 @@
    by a full height divider, which made them read as cells in a table rather
    than as two small controls - and set the height of every row in the list.
    ========================================================================== */
-
-.swpf-builder-body .swpf-tax-heading-wrap {
-    padding: 8px 8px 8px 16px;
-    background: var(--swpf-sunken);
+.swpf-each-items-wrap {
+    margin-bottom: 20px;
+    border: 1px solid #e4eaff;
+    background: #FFF;
 }
 
-.swpf-builder-body .swpf-tax-heading-wrap h4 {
+.swpf-each-items-wrap.swpf-highlight {
+    box-shadow: 0 0 0px 6px #8fd39b;
+}
+
+.swpf-each-items-wrap:last-child {
+    margin-bottom: 0;
+}
+
+.swpf-each-items-wrap .swpf-option-fields-inner-wrap {
+    border-top: 1px solid #e4eaff;
+    padding: 25px;
+    display: none;
+}
+
+.swpf-each-items-wrap .swpf-tax-heading-wrap {
+    padding: 8px 8px 8px 16px;
+    background: var(--swpf-sunken);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.swpf-each-items-wrap .swpf-tax-heading-wrap h4 {
     margin: 0;
     padding: 0;
     font-size: 13px;
@@ -471,8 +1185,9 @@
     color: var(--swpf-ink);
 }
 
-/* A quiet position marker, not a black chip demanding to be read first. */
-.swpf-builder-body .swpf-tax-heading-wrap h4:before {
+.swpf-each-items-wrap .swpf-tax-heading-wrap h4:before {
+    counter-increment: filtersection;
+    content: counter(filtersection);
     width: 22px;
     height: 22px;
     margin-right: 12px;
@@ -481,13 +1196,20 @@
     color: var(--swpf-ink);
     font-size: 11px;
     font-weight: 600;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.swpf-builder-body .swpf-tab-action {
+.swpf-each-items-wrap .swpf-tab-action {
     gap: 2px;
+    display: flex;
 }
 
-.swpf-builder-body .swpf-tab-action span {
+.swpf-each-items-wrap .swpf-tab-action span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 28px;
     height: 28px;
     border-left: 0;
@@ -497,109 +1219,483 @@
     transition: background 0.15s ease, color 0.15s ease;
 }
 
-.swpf-builder-body .swpf-tab-action span:hover {
+.swpf-each-items-wrap .swpf-tab-action span:hover {
     background: rgba(16, 24, 40, 0.08);
     color: var(--swpf-ink);
 }
 
+.swpf-each-items-wrap .swpf-tab-action span.swpf-sortable-box {
+    cursor: move;
+}
+
+.swpf-each-items-wrap .swpf-tab-action span.swpf-toggle-box {
+    cursor: pointer;
+}
+
+/* =====Custom Term Popup ======= */
+.swpf-custom-terms-options {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 32px;
+    bottom: 0;
+    z-index: 99;
+    margin-left: 160px;
+}
+
+.swpf-custom-terms-options.swpf-custom-terms-options-active {
+    display: block;
+}
+
+.swpf-custom-terms-options:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.swpf-custom-terms-options .swpf-custom-terms-field-outer-wrap {
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+    padding: 40px 40px 0;
+    background: #FFF;
+    margin-top: 50px;
+    height: calc(100% - 150px);
+    overflow: hidden auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.swpf-custom-terms-options .swpf-custom-terms-field-outer-wrap::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.swpf-custom-terms-options .swpf-custom-terms-field-outer-wrap::-webkit-scrollbar-track {
+    background: #EEE;
+}
+
+/* Handle */
+.swpf-custom-terms-options .swpf-custom-terms-field-outer-wrap::-webkit-scrollbar-thumb {
+    background: #DDD;
+}
+
+/* Handle on hover */
+.swpf-custom-terms-options .swpf-custom-terms-field-outer-wrap::-webkit-scrollbar-thumb:hover {
+    background: #BBB;
+}
+
+.swpf-custom-terms-options .swpf-custom-terms-field-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px;
+}
+
+.swpf-custom-terms-options .swpf-custom-terms-footer {
+    position: sticky;
+    bottom: 0;
+    background: #FFF;
+    padding: 10px;
+    border: 1px solid #AAA;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.swpf-custom-terms-options .swpf-custom-terms-footer p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.swpf-custom-terms-options .swpf-custom-terms-footer .button {
+    padding: 13px 20px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1;
+    outline: 0 !important;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.swpf-custom-terms-options .swpf-custom-terms-option-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: #FFF;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    text-indent: -999px;
+    z-index: 999;
+}
+
+.swpf-custom-terms-options .swpf-custom-terms-option-close:before {
+    content: "";
+    position: absolute;
+    background: #000;
+    height: 2px;
+    width: 24px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.swpf-custom-terms-options .swpf-custom-terms-option-close:after {
+    content: "";
+    position: absolute;
+    background: #000;
+    width: 2px;
+    height: 24px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.swpf-custom-terms-options .swpf-custom-term-field-wrap {
+    border: 1px solid #AAA;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.swpf-custom-terms-options .swpf-custom-term-field-wrap.swpf-custom-no-term-field {
+    grid-column: span 4;
+    text-align: center;
+}
+
+.swpf-custom-terms-options .swpf-custom-term-field-wrap h4 {
+    margin: 0 -15px 0;
+    padding: 0 15px 10px;
+    border-bottom: 1px solid #AAA;
+}
+
+.swpf-custom-terms-options .swpf-custom-term-field.swpf-field-wrap > label {
+    display: block;
+    margin-bottom: 5px;
+    width: 100%;
+    padding: 0;
+}
+
+.swpf-custom-terms-options .swpf-custom-terms-options .swpf-field-wrap {
+    display: block;
+}
+
+.swpf-custom-terms-options .swpf-custom-img-action-field {
+    display: flex;
+    gap: 10px;
+}
+
+.swpf-custom-terms-options .swpf-custom-img-action-field .swpf-image-remove,
+.swpf-custom-terms-options .swpf-custom-img-action-field .swpf-image-upload {
+    display: block;
+    text-decoration: none;
+    font-size: 13px;
+    height: 30px;
+    margin: 0;
+    padding: 0 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    white-space: nowrap;
+    background: #3fc9f9;
+    color: #FFF;
+    line-height: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.swpf-custom-terms-options .swpf-custom-img-action-field .swpf-image-remove {
+    background: #c70000;
+}
+
+.swpf-custom-terms-options .swpf-image-uploaded .swpf-custom-img-action-field .swpf-image-upload,
+.swpf-custom-terms-options .swpf-custom-img-action-field .swpf-image-remove {
+    display: none;
+}
+
+.swpf-custom-terms-options .swpf-custom-img-action-field .swpf-image-upload,
+.swpf-custom-terms-options .swpf-image-uploaded .swpf-custom-img-action-field .swpf-image-remove {
+    display: block;
+}
+
+.swpf-custom-terms-options .swpf-custom-menu-image-icon {
+    height: 50px;
+    width: 50px;
+    border: 1px solid #8c8f94;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.swpf-custom-terms-options .swpf-custom-menu-image-icon img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.swpf-custom-terms-options .swpf-custom-color,
+.swpf-custom-terms-options .swpf-custom-image {
+    display: none;
+}
+
+.swpf-custom-terms-options.swpf-field-settings-display-type-color .swpf-custom-color,
+.swpf-custom-terms-options.swpf-field-settings-display-type-image .swpf-custom-image {
+    display: block;
+}
+
 /* ==========================================================================
    The Designs panel's own list
-   --------------------------------------------------------------------------
-   It sits beside its fields, which is what made a second rail beside the panels
-   too much. It arrived in the same metabox costume as the tabs did - uppercase,
-   a solid #88ddfb block for the current one and a speech-bubble arrow pointing
-   out of it - so it gets the same treatment.
    ========================================================================== */
 
+.swpf-filter-list {
+    border: 1px solid #e4eaff;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.swpf-filter-list .swpf-filters-title h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.swpf-filter-list .swpf-filters-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.swpf-filter-list .swpf-filters-title i {
+    padding: 10px;
+    cursor: pointer;
+    line-height: 1;
+    border-radius: 3px;
+    border: 1px solid #EEE;
+}
+
+.swpf-filter-list .swpf-filters-title i:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.swpf-filters-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+    margin-right: -20px;
+    padding-right: 20px;
+    overflow: hidden auto;
+    max-height: 300px;
+}
+
+.swpf-filters-wrap::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+.swpf-filters-wrap::-webkit-scrollbar-track {
+    background: #EEE;
+}
+
+/* Handle */
+.swpf-filters-wrap::-webkit-scrollbar-thumb {
+    background: #DDD;
+}
+
+/* Handle on hover */
+.swpf-filters-wrap::-webkit-scrollbar-thumb:hover {
+    background: #BBB;
+}
+
+.swpf-filters-wrap .swpf-filter-show-hide {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 240px;
+    padding: 8px;
+    border: 1px dashed #e4eaff;
+    gap: 10px;
+}
+
+.swpf-filters-wrap .swpf-filter-show-hide:hover {
+    background: #FAFAFA;
+}
+
+.swpf-filters-wrap .swpf-filter-show-hide a.swpf-filter-scroll-to-section {
+    text-decoration: none;
+    color: inherit;
+    box-shadow: none;
+    outline: none;
+}
+
 /*
- * Scoped to the Designs panel by id, not by class alone. Each filter over in
- * the Filters panel wraps its own settings in this same class and keeps them
- * collapsed with `display: none`; a rule of equal weight loading after that one
- * pried every filter open and put Show Product Count on screen six times over.
+Design Panel Sub Tab
  */
-.swpf-builder-body #swpf-design-settings > .swpf-option-fields-inner-wrap {
+.swpf-option-fields-inner-wrap {
     display: flex;
     align-items: flex-start;
     gap: 26px;
 }
 
-.swpf-builder-body #swpf-design-settings .swpf-sub-tabs {
-    flex: 0 0 190px;
-    gap: 2px;
+.swpf-sub-tabs {
+    flex: 0 0 220px;
     padding: 6px;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: 1px;
+    flex-direction: column;
     background: var(--swpf-sunken);
     border-radius: 9px;
 }
 
-.swpf-builder-body #swpf-design-settings .swpf-sub-tabs li a {
+.swpf-sub-tabs li {
+    margin: 0;
+    padding: 0;
+}
+
+.swpf-sub-tabs li a {
+    display: block;
+    text-decoration: none;
     padding: 9px 11px;
     border-radius: 7px;
-
     font-size: 13px;
     font-weight: 500;
     text-transform: none;
+    box-shadow: none;
+    outline: 0;
     color: var(--swpf-muted);
     transition: background 0.15s ease, color 0.15s ease;
 }
 
-.swpf-builder-body #swpf-design-settings .swpf-sub-tabs li a:hover {
+.swpf-sub-tabs li a:hover {
     background: rgba(16, 24, 40, 0.05);
     color: var(--swpf-ink);
 }
 
-.swpf-builder-body #swpf-design-settings .swpf-sub-tabs li.swpf-active a {
+.swpf-sub-tabs li.swpf-active a {
     background: #fff;
     box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08);
     color: var(--swpf-accent);
     font-weight: 600;
 }
 
-.swpf-builder-body .swpf-sub-panel h3.swpf-sub-title {
-    text-transform: none;
-    font-size: 15px;
+.swpf-sub-panel-wrap {
+    flex-grow: 1;
+}
+
+.swpf-sub-panel {
+    display: none;
+}
+
+.swpf-sub-panel h3 {
+    font-size: 16px;
+    margin: 0 0 10px;
+    text-transform: uppercase;
 }
 
 /* ==========================================================================
    Footer
    ========================================================================== */
 
-.swpf-builder-body .swpf-settings-footer {
+.swpf-settings-footer {
     align-items: center;
     padding: 14px 26px;
     background: #fff;
     border-top: 1px solid var(--swpf-line);
     border-radius: 0 0 var(--swpf-radius) var(--swpf-radius);
     box-shadow: 0 -1px 2px rgba(16, 24, 40, 0.04);
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
 }
 
-.swpf-builder-body .swpf-settings-footer .button {
+.swpf-settings-footer .button {
     border-radius: 7px;
+    padding: 13px 20px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1;
+    outline: 0 !important;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 9;
 }
 
-/*
- * The upsell was a solid red button the same size and weight as Save, sitting
- * at the other end of the bar as its equal. Only one of the two is the reason
- * anyone is on this page. Outlined keeps it findable without letting it read as
- * something that has to be dealt with.
- */
-.swpf-builder-body .swpf-settings-footer .button.swpf-upgrade-to-pro {
+.swpf-settings-footer .button.swpf-upgrade-to-pro {
     background: #fff;
     border-color: #d63638;
     color: #d63638;
-    text-transform: none;
-    font-weight: 600;
-    box-shadow: none;
 }
 
-.swpf-builder-body .swpf-settings-footer .button.swpf-upgrade-to-pro:hover,
-.swpf-builder-body .swpf-settings-footer .button.swpf-upgrade-to-pro:focus {
+.swpf-settings-footer .button.swpf-upgrade-to-pro:hover,
+.swpf-settings-footer .button.swpf-upgrade-to-pro:focus {
     background: #d63638;
     border-color: #d63638;
     color: #fff;
 }
 
-.swpf-builder-body .swpf-settings-footer .button-primary:not(.swpf-upgrade-to-pro) {
+.swpf-settings-footer .button-primary:not(.swpf-upgrade-to-pro) {
     box-shadow: 0 1px 2px rgba(16, 24, 40, 0.15);
+}
+
+
+/* Settings that only Pro can act on: shown, but not usable */
+.swpf-pro-field > label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.swpf-pro-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 9px;
+    background: #1d2327;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1.7;
+}
+
+.swpf-pro-badge:hover,
+.swpf-pro-badge:focus {
+    background: #2271b1;
+    color: #fff;
+}
+
+/* The control is real, so the choices can be read, but it cannot be used. */
+.swpf-pro-locked {
+    opacity: 0.55;
+}
+
+.swpf-pro-locked select {
+    width: 100%;
+    cursor: not-allowed;
+}
+
+.swpf-pro-field .swpf-desc {
+    margin-top: 6px;
 }
 
 /* ==========================================================================
@@ -625,9 +1721,17 @@
      * two rows instead: everything small on the first, the name across the
      * second, where it has room to be read and edited.
      */
-    .swpf-topbar-back { order: 1; }
-    .swpf-topbar-state { order: 2; }
-    .swpf-topbar-actions { order: 3; }
+    .swpf-topbar-back {
+        order: 1;
+    }
+
+    .swpf-topbar-state {
+        order: 2;
+    }
+
+    .swpf-topbar-actions {
+        order: 3;
+    }
 
     /* It would sit at the end of the first row, away from the name it belongs
        to. It is decorative, and the row is crowded here. */
@@ -642,6 +1746,7 @@
 }
 
 @media screen and (max-width: 768px) {
+
     /* The switcher already scrolls sideways; here it just needs the room. */
     .swpf-builder-sections .swpf-tab-options-wrap ul li {
         padding: 12px 10px;
@@ -678,5 +1783,88 @@
         overflow-x: auto;
         scrollbar-width: thin;
         margin-bottom: 16px;
+    }
+}
+
+@media screen and (max-width:1400px) {
+
+    .swpf-row,
+    .swpf-three-column-row,
+    .swpf-typography-fields {
+        grid-template-columns: repeat(2, 300px);
+    }
+
+    .swpf-custom-terms-options {
+        margin: 0;
+        z-index: 99999;
+    }
+
+    .swpf-custom-terms-field-outer-wrap {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width:960px) {
+
+    .swpf-row,
+    .swpf-two-column-row,
+    .swpf-three-column-row,
+    .swpf-setting-metafield-wrap .swpf-three-column-row,
+    .swpf-typography-fields {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media screen and (max-width:768px) {
+    .swpf-tab-options-wrap {
+        padding: 10px 20px;
+    }
+
+    .swpf-tab-options-wrap ul {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .swpf-tab-options-wrap ul li {
+        text-align: center;
+        border: 1px solid transparent;
+    }
+
+    .swpf-tab-options-wrap ul li:hover,
+    .swpf-tab-options-wrap ul li.swpf-tab-active {
+        box-shadow: none;
+        border: 1px solid #DDD;
+    }
+
+    .swpf-tab-options-wrap ul li {
+        padding: 10px;
+    }
+
+    .swpf-custom-terms-field-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .swpf-field-inline-wrap .swpf-field-wrap {
+        flex-direction: column;
+    }
+
+    .swpf-field-inline-wrap .swpf-field-wrap > label {
+        width: auto;
+        flex: 0 0 auto;
+    }
+
+    .swpf-field-inline-wrap .swpf-field-wrap > .swpf-settings-input-field {
+        width: auto;
+        flex: 0 0 auto;
+    }
+}
+
+@media screen and (max-width:580px) {
+    .swpf-option-fields-inner-wrap {
+        flex-direction: column;
+    }
+
+    #swpf-design-settings:before {
+        display: none;
     }
 }
