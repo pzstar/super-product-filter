@@ -15,7 +15,18 @@ defined('ABSPATH') || die();
     <form method="POST">
         <input type="hidden" name="updated" value="true" />
         <?php wp_nonce_field('swpf_nonce_update_general_settings', 'swpf_nonce'); ?>
-        <h2 class="swpf-main-header"><?php esc_html_e('General Settings', 'super-product-filter'); ?></h2>
+        <?php
+        /* The same bar the filter builder uses, so moving between the two
+           screens does not feel like moving between two plugins. */
+        ?>
+        <div class="swpf-settings-topbar">
+            <span class="swpf-settings-mark" aria-hidden="true">
+                <span class="dashicons dashicons-admin-generic"></span>
+            </span>
+            <h2 class="swpf-main-header"><?php esc_html_e('General Settings', 'super-product-filter'); ?></h2>
+        </div>
+
+        <div class="swpf-settings-card">
 
         <div class="swpf-settings-row swpf-settings-option">
             <div class="swpf-option-text">
@@ -69,8 +80,9 @@ defined('ABSPATH') || die();
             </div>
         </div>
 
-        <div class="swpf-save-settings swpf-general-settings-btn">
-            <button type="submit" name="submit" class="button button-primary"><?php esc_html_e('Save Settings', 'super-product-filter'); ?></button>
+            <div class="swpf-save-settings swpf-general-settings-btn">
+                <button type="submit" name="submit" class="button button-primary"><?php esc_html_e('Save Settings', 'super-product-filter'); ?></button>
+            </div>
         </div>
     </form>
 </div>

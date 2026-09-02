@@ -200,11 +200,22 @@
 /* ==========================================================================
    Tab
    ========================================================================== */
+/*
+ * The switcher is a row of divided cells across the top of the panel card. The
+ * open one is filled and carries a bar along its bottom edge; hairlines keep
+ * the rest apart without giving any of them a box of its own.
+ */
 .swpf-builder-sections {
-    padding: 10px 12px 0;
-    background: var(--swpf-sunken);
+    padding: 0;
+    background: #fff;
     border-bottom: 1px solid var(--swpf-line);
     border-radius: var(--swpf-radius) var(--swpf-radius) 0 0;
+    /*
+     * The cells run to the edge of the card, so the bar clips them back to its
+     * corners. Safe here: nothing inside this bar is sticky - the panels' save
+     * bar is a sibling, not a descendant.
+     */
+    overflow: hidden;
 }
 
 .swpf-builder-sections .swpf-tab-options-wrap {
@@ -218,7 +229,8 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    gap: 4px;
+    /* Cells meet on their hairlines; a gap would break the row up. */
+    gap: 0;
     margin: 0;
     padding: 0;
     overflow-x: auto;
@@ -229,21 +241,21 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    margin: 0 0 -1px;
-    padding: 12px 16px;
-    font-size: 15px;
-    font-weight: 600;
-    text-transform: none;
+    margin: 0;
+    padding: 25px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 700;
     text-align: left;
     white-space: nowrap;
-    color: #3c434a;
+    color: #111;
     background: none;
-    border: 1px solid transparent;
-    border-bottom: 0;
-    border-radius: 9px 9px 0 0;
+    border: 0;
+    border-right: 1px solid var(--swpf-hairline);
+    border-radius: 0;
     box-shadow: none;
-    transition: background 0.15s ease, color 0.15s ease;
     cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
 }
 
 .swpf-builder-sections .swpf-tab-options-wrap ul li .dashicons {
@@ -255,15 +267,20 @@
 }
 
 .swpf-builder-sections .swpf-tab-options-wrap ul li:hover {
-    background: rgba(16, 24, 40, 0.04);
+    background: rgba(16, 24, 40, 0.03);
     box-shadow: none;
     color: var(--swpf-ink);
 }
 
+/*
+ * A tint of whichever accent the admin scheme sets, so the fill follows the
+ * label rather than being a fixed blue that fights a green or red scheme. The
+ * flat colour above it is what browsers without color-mix get.
+ */
 .swpf-builder-sections .swpf-tab-options-wrap ul li.swpf-tab-active {
-    background: #fff;
-    border-color: var(--swpf-line);
-    box-shadow: none;
+    background: #eef1fd;
+    background: color-mix(in srgb, var(--swpf-accent) 9%, #fff);
+    box-shadow: inset 0 -3px 0 var(--swpf-accent);
     color: var(--swpf-accent);
 }
 
@@ -386,6 +403,9 @@
 
 .swpf-custom-term-options-wrap .swpf-button-wrap .swpf-show-custom-term-options {
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 /* ==========================================================================
@@ -1006,140 +1026,6 @@ ul.swpf-typography-fields > li.swpf-typography-preview-field {
     display: flex;
 }
 
-/* Free VS Pro Comparison table*/
-.swpf-compare-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.swpf-compare-table th {
-    background: #2271b1;
-    color: #fff;
-    padding: 14px;
-    font-size: 14px;
-    text-align: left;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.swpf-compare-table td {
-    border: 1px solid #ddd;
-    padding: 14px;
-    font-size: 14px;
-}
-
-.swpf-compare-table tr:nth-child(even) {
-    background: #f9f9f9;
-}
-
-.swpf-compare-table .swpf-yes {
-    color: #28a745;
-}
-
-.swpf-compare-table .swpf-no {
-    color: #dc3545;
-}
-
-.swpf-compare-table .swpf-yes i,
-.swpf-compare-table .swpf-no i {
-    color: #FFF;
-    height: 20px;
-    width: 20px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 8px;
-    border-radius: 3px;
-    font-size: 16px;
-}
-
-.swpf-compare-table .swpf-yes i {
-    background: #28a745;
-}
-
-.swpf-compare-table .swpf-no i {
-    background: #dc3545;
-}
-
-.swpf-compare-table .swpf-pro {
-    font-weight: bold;
-}
-
-.swpf-compare-table .swpf-feature a {
-    background: #000;
-    color: #FFF;
-    text-decoration: none;
-    font-size: 12px;
-    border-radius: 3px;
-    padding: 5px 8px;
-    line-height: 1;
-    display: inline-block;
-    margin-left: 6px;
-    outline: 0;
-    box-shadow: none;
-}
-
-.swpf-compare-table .swpf-feature a:hover {
-    background: #2271b1;
-}
-
-.swpf-compare-table .swpf-compare-button a {
-    padding: 13px 20px;
-    text-transform: uppercase;
-    font-size: 13px;
-    font-weight: bold;
-    line-height: 1;
-    outline: 0 !important;
-    box-shadow: none !important;
-    background-color: #ff0000;
-    border-color: #ff0000;
-    color: #FFF;
-}
-
-.swpf-compare-table .swpf-compare-button a:hover,
-.swpf-compare-table .swpf-compare-button a:focus {
-    background-color: #000;
-    border-color: #000;
-    color: #FFF;
-}
-
-.swpf-compare-table .swpf-compare-section td {
-    background: #f0f6fc;
-    border-color: #c5d9ed;
-    color: #0a4b78;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 10px 14px;
-}
-
-.swpf-compare-table .swpf-feature-name {
-    font-weight: 600;
-}
-
-.swpf-compare-table .swpf-feature-desc {
-    display: block;
-    margin-top: 4px;
-    max-width: 46em;
-    color: #646970;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 1.5;
-}
-
-.swpf-compare-table .swpf-plain {
-    color: #3c434a;
-}
-
-.swpf-compare-table .swpf-feature,
-.swpf-compare-table .swpf-yes,
-.swpf-compare-table .swpf-no,
-.swpf-compare-table .swpf-plain,
-.swpf-compare-table .swpf-pro {
-    vertical-align: top;
-}
-
 
 /* ==========================================================================
    Each filter's row in the Filters panel
@@ -1234,6 +1120,12 @@ ul.swpf-typography-fields > li.swpf-typography-preview-field {
 
 /* =====Custom Term Popup ======= */
 .swpf-custom-terms-options {
+    /*
+     * Closing the popup only removes the -active class, so this is what
+     * actually puts it away. Without it the class comes off and a fixed,
+     * full-screen panel stays exactly where it was.
+     */
+    display: none;
     position: fixed;
     left: 0;
     right: 0;
@@ -1698,6 +1590,11 @@ Design Panel Sub Tab
     margin-top: 6px;
 }
 
+#swpf-copied-shortcode{
+    color: green;
+    margin-top: 10px;
+}
+
 /* ==========================================================================
    Narrow
    --------------------------------------------------------------------------
@@ -1866,5 +1763,179 @@ Design Panel Sub Tab
 
     #swpf-design-settings:before {
         display: none;
+    }
+}
+/* ==========================================================================
+   Free vs Pro comparison
+   --------------------------------------------------------------------------
+   One table per section rather than one long one, all sharing a colgroup so
+   they line up with the header above them. The Pro column is tinted the whole
+   way down, because reading across a wide row is what a comparison table is
+   usually worst at.
+   ========================================================================== */
+
+.swpf-compare-table table {
+    width: 100%;
+    border-collapse: collapse;
+    /* The colgroup only fixes the widths if the table is told to obey it. */
+    table-layout: fixed;
+}
+
+.swpf-compare-table col.swpf-col-free {
+    width: 180px;
+}
+
+.swpf-compare-table col.swpf-col-pro {
+    width: 210px;
+    /* Painting the column, not each cell, so no row markup has to know. */
+    background: #f3f5fe;
+    background: color-mix(in srgb, var(--swpf-accent, #3858e9) 6%, #fff);
+}
+
+.swpf-compare-head {
+    margin-bottom: 10px;
+}
+
+.swpf-compare-head th {
+    padding: 9px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    text-align: left;
+    color: var(--swpf-muted, #646970);
+}
+
+/* The one place the accent is stated outright, at the head of the column. */
+.swpf-compare-head th.swpf-compare-pro-head {
+    background: var(--swpf-accent, #3858e9);
+    color: #fff;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.swpf-compare-section {
+    margin-bottom: 14px;
+    border: 1px solid #e6e7e9;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.swpf-compare-section h4 {
+    margin: 0;
+    padding: 11px 16px;
+    background: #f7f8f9;
+    border-bottom: 1px solid #e6e7e9;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #50575e;
+}
+
+.swpf-compare-table td {
+    padding: 13px 16px;
+    font-size: 14px;
+    vertical-align: top;
+}
+
+.swpf-compare-table tr + tr td {
+    border-top: 1px solid #f3f4f5;
+}
+
+.swpf-compare-table .swpf-feature-name {
+    font-weight: 600;
+    color: var(--swpf-ink, #1d2327);
+}
+
+.swpf-compare-table .swpf-feature-desc {
+    display: block;
+    max-width: 52ch;
+    margin-top: 3px;
+    color: var(--swpf-muted, #646970);
+    font-size: 12.5px;
+    line-height: 1.55;
+}
+
+.swpf-compare-table .swpf-feature-demo {
+    margin-left: 8px;
+    padding: 2px 7px;
+    border: 1px solid #dcdde0;
+    border-radius: 5px;
+    color: var(--swpf-accent, #3858e9);
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.swpf-compare-table .swpf-yes i,
+.swpf-compare-table .swpf-no i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    margin-right: 7px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 13px;
+}
+
+.swpf-compare-table .swpf-yes {
+    color: var(--swpf-ink, #1d2327);
+}
+
+.swpf-compare-table .swpf-yes i {
+    background: #1e8e3e;
+}
+
+/*
+ * Grey, not red. A red cross on every line Free does not have turns the table
+ * into a list of complaints and pulls the eye to the wrong column.
+ */
+.swpf-compare-table .swpf-no {
+    color: #8c8f94;
+}
+
+.swpf-compare-table .swpf-no i {
+    background: #c9cbcf;
+}
+
+.swpf-compare-table .swpf-plain {
+    color: #3c434a;
+}
+
+.swpf-compare-table .swpf-pro {
+    font-weight: 600;
+    color: var(--swpf-ink, #1d2327);
+}
+
+.swpf-compare-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.swpf-compare-table .swpf-compare-actions .button.swpf-compare-buy {
+    background: var(--swpf-accent, #3858e9);
+    border-color: var(--swpf-accent, #3858e9);
+    color: #fff;
+}
+
+@media screen and (max-width: 782px) {
+    /* Three fixed columns will not fit; let the content set them instead. */
+    .swpf-compare-table table {
+        table-layout: auto;
+    }
+
+    .swpf-compare-table col.swpf-col-free,
+    .swpf-compare-table col.swpf-col-pro {
+        width: auto;
+    }
+
+    .swpf-compare-table td {
+        padding: 10px 12px;
     }
 }

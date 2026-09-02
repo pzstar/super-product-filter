@@ -24,141 +24,6 @@
     }
 }
 
-/* General Settings */
-.swpf-general-settings {
-    background: #FFF;
-    padding: 30px;
-    max-width: 800px;
-    margin: 30px 0 0;
-}
-
-.swpf-general-settings .swpf-settings-option {
-    display: flex;
-    align-items: flex-start;
-    gap: 24px;
-    margin-bottom: 14px;
-    padding: 18px 20px;
-    border: 1px solid #e0e0e1;
-    border-left: 3px solid #dcdcde;
-    border-radius: 4px;
-    background: #fff;
-    transition: border-color 0.15s ease, background 0.15s ease;
-}
-
-.swpf-general-settings .swpf-settings-option:hover {
-    border-color: #c9c9cc;
-    border-left-color: #a7aaad;
-}
-
-.swpf-general-settings .swpf-settings-option:has(input:checked) {
-    border-left-color: #7FC6A6;
-    background: #fcfefd;
-}
-
-.swpf-general-settings .swpf-option-text {
-    flex: 1 1 auto;
-    min-width: 0;
-}
-
-.swpf-general-settings .swpf-option-title {
-    display: block;
-    font-size: 14px;
-    line-height: 1.4;
-    color: #1d2327;
-}
-
-.swpf-general-settings .swpf-settings-option .swpf-desc {
-    font-style: normal;
-    color: #50575e;
-    max-width: 68ch;
-    line-height: 1.6;
-    margin: 6px 0 0;
-}
-
-.swpf-general-settings .swpf-settings-option .swpf-toggle-wrap {
-    flex: 0 0 auto;
-    padding-top: 2px;
-}
-
-.swpf-general-settings .swpf-settings-option-danger {
-    border-left-color: #f0b8b8;
-}
-
-.swpf-general-settings .swpf-settings-option-danger:has(input:checked) {
-    border-left-color: #d63638;
-    background: #fdf7f7;
-}
-
-.swpf-general-settings .swpf-success-notice {
-    padding: 15px;
-    color: #4BB543;
-    border-top: 3px solid #4BB543;
-    font-size: 14px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-    font-weight: bold;
-    text-transform: capitalize;
-    text-align: center;
-}
-
-.swpf-general-settings .swpf-error-notice {
-    padding: 15px;
-    color: #ff0033;
-    border-top: 3px solid #ff0033;
-    font-size: 14px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-    font-weight: bold;
-    text-transform: capitalize;
-    text-align: center;
-}
-
-.swpf-general-settings .swpf-success-notice p {
-    margin: 0;
-}
-
-.swpf-general-settings .swpf-main-header {
-    background: #111;
-    padding: 15px;
-    color: #FFF;
-    margin: 0 0 25px;
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-.swpf-general-settings .swpf-field-wrap {
-    margin-bottom: 25px;
-}
-
-.swpf-general-settings .swpf-field-wrap input[type="text"] {
-    width: 100%;
-    max-width: 100%;
-}
-
-.swpf-general-settings .swpf-save-settings {
-    padding: 12px 30px;
-    display: flex;
-    justify-content: flex-end;
-    border-top: 1px solid #e4eaff;
-    position: sticky;
-    bottom: 0;
-    background: #FFF;
-    margin-left: -30px;
-    margin-right: -30px;
-    margin-bottom: -30px;
-    margin-top: 30px;
-}
-
-.swpf-general-settings .swpf-save-settings button {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
 
 
 /* Toggle */
@@ -285,5 +150,196 @@
     .swpf-toggle span,
     .swpf-toggle span:after {
         transition: none;
+    }
+}
+/* ==========================================================================
+   General Settings
+   --------------------------------------------------------------------------
+   Built to match the filter builder: the same bar across the top, the same
+   card, the same hairline-separated rows and the same save bar along the
+   bottom, so moving between the two screens does not feel like moving between
+   two plugins.
+
+   The values below are stated again rather than shared, because the builder's
+   stylesheet only loads on the builder screen. If a third screen ever needs
+   them, they are worth lifting into a file both can load.
+   ========================================================================== */
+
+.swpf-general-settings {
+    --swpf-accent: var(--wp-admin-theme-color, #3858e9);
+    --swpf-ink: #1d2327;
+    --swpf-muted: #646970;
+    --swpf-line: #e3e5e8;
+    --swpf-hairline: #f0f0f1;
+    --swpf-radius: 10px;
+    --swpf-lift: 0 1px 2px rgba(16, 24, 40, 0.04), 0 12px 28px -16px rgba(16, 24, 40, 0.18);
+
+    max-width: 1240px;
+    margin-right: 20px;
+}
+
+/* Follows the page, as the builder's does. */
+.swpf-settings-topbar {
+    position: sticky;
+    top: var(--wp-admin--admin-bar--height, 32px);
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin: 20px 0 16px;
+    padding: 12px 22px;
+
+    background: #fff;
+    border: 1px solid var(--swpf-line);
+    border-radius: var(--swpf-radius);
+    box-shadow: var(--swpf-lift);
+}
+
+/* Says whose screen this is, in a page of admin screens that all look alike. */
+.swpf-settings-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    border-radius: 8px;
+
+    background: var(--swpf-accent);
+    color: #fff;
+}
+
+.swpf-settings-mark .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+/* It was a black bar with white uppercase type; it is the page title now. */
+.swpf-general-settings .swpf-main-header {
+    margin: 0;
+    padding: 0;
+    background: none;
+    color: var(--swpf-ink);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-transform: none;
+}
+
+.swpf-settings-card {
+    background: #fff;
+    border: 1px solid var(--swpf-line);
+    border-radius: var(--swpf-radius);
+    box-shadow: var(--swpf-lift);
+    margin: 0 0 20px;
+}
+
+/*
+ * Rows, not boxes. Each option used to carry its own border, which made four
+ * settings read as four separate panels; a hairline between them is enough.
+ */
+.swpf-general-settings .swpf-settings-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin: 0;
+    padding: 18px 22px;
+    border: 0;
+    background: none;
+}
+
+.swpf-general-settings .swpf-settings-option + .swpf-settings-option {
+    border-top: 1px solid var(--swpf-hairline);
+}
+
+.swpf-general-settings .swpf-option-text {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.swpf-general-settings .swpf-option-title {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--swpf-ink);
+}
+
+/*
+ * These run to several sentences. Italic at full container width is hard work,
+ * so they are upright and held to a measure the eye can track back from.
+ */
+.swpf-general-settings .swpf-settings-option .swpf-desc {
+    max-width: 68ch;
+    margin: 6px 0 0;
+    color: #50575e;
+    font-style: normal;
+    line-height: 1.6;
+}
+
+.swpf-general-settings .swpf-settings-option .swpf-toggle-wrap {
+    flex: 0 0 auto;
+    padding-top: 2px;
+}
+
+/*
+ * The one row that deletes things keeps a warning of its own, and only once it
+ * is actually armed. The switch says what is on; this says what it costs.
+ */
+.swpf-general-settings .swpf-settings-option-danger:has(input:checked) {
+    background: #fdf7f7;
+    box-shadow: inset 3px 0 0 #d63638;
+}
+
+.swpf-general-settings .swpf-field-wrap {
+    padding: 18px 22px;
+    margin: 0;
+}
+
+.swpf-general-settings .swpf-field-wrap input[type="text"] {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* The builder's save bar, in the same place at the foot of the card. */
+.swpf-general-settings .swpf-save-settings {
+    display: flex;
+    justify-content: flex-end;
+    padding: 14px 22px;
+    background: #fff;
+    border-top: 1px solid var(--swpf-line);
+    border-radius: 0 0 var(--swpf-radius) var(--swpf-radius);
+}
+
+.swpf-general-settings .swpf-save-settings button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 7px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 782px) {
+    .swpf-general-settings {
+        margin-right: 10px;
+    }
+
+    /* The admin bar stops being sticky at this width. */
+    .swpf-settings-topbar {
+        position: static;
+    }
+
+    .swpf-general-settings .swpf-settings-option {
+        gap: 16px;
+        padding: 16px;
+    }
+
+    .swpf-general-settings .swpf-save-settings {
+        padding: 12px 16px;
     }
 }

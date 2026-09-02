@@ -107,7 +107,7 @@
             copyCode.select();
             document.execCommand('copy');
             var copiedText = window.getSelection().toString();
-            $(this).closest('.swpf-display-with-shortcode').find('#swpf-copied-shortcode').html('Your shortcode ' + copiedText + ' is copied!').css('color', 'green');
+            $(this).closest('.swpf-display-with-shortcode').find('#swpf-copied-shortcode').html('Your shortcode ' + copiedText + ' is copied!');
             $(this).closest('.swpf-display-with-shortcode').find('#swpf-copied-shortcode').show().delay(1000).fadeOut();
         });
 
@@ -203,8 +203,19 @@
                 min: parseFloat($dis.attr('min')),
                 max: parseFloat($dis.attr('max')),
                 step: parseFloat($dis.attr('step')),
+                /*
+                 * .val() writes the number straight into the field, which
+                 * fires nothing - so anything watching the input for changes
+                 * (the typography preview, for one) never heard a drag and
+                 * only ever updated when the number was typed by hand.
+                 * `input` while dragging, `change` once it is let go, which is
+                 * how a native range control behaves.
+                 */
                 slide: function (event, ui) {
-                    $dis.val(ui.value);
+                    $dis.val(ui.value).trigger('input');
+                },
+                stop: function () {
+                    $dis.trigger('change');
                 }
             });
         });
@@ -224,8 +235,15 @@
                     resetValue = sliderMaxValue;
                 }
             }
+            /* Clamping rewrites the field, so say so if it actually moved. */
+            var changed = String($(this).val()) !== String(resetValue);
+
             $(this).val(resetValue);
             $(this).prev('.swpf-range-slider').slider('value', resetValue);
+
+            if (changed) {
+                $(this).trigger('change');
+            }
         });
 
 

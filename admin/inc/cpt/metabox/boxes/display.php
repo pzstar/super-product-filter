@@ -9,7 +9,7 @@ defined('ABSPATH') || die();
                 <label><?php esc_html_e('Shortcode', 'super-product-filter'); ?></label>
                 <div class="swpf-settings-input-field swpf-settings-shortcode-field">
                     <input type="text" readonly name="swpf_settings[shortcode]" id="swpf-shortcode-field" value="<?php echo esc_attr('[swpf_shortcode id="' . absint($post_id) . '"]', 'super-product-filter'); ?>">
-                    <button id="swpf-copy-shortcod" class="button button-primary"><?php echo esc_html('Copy Shortcode', 'super-product-filter'); ?></button>
+                    <button id="swpf-copy-shortcode" class="button button-primary"><?php echo esc_html('Copy Shortcode', 'super-product-filter'); ?></button>
                     <div id="swpf-copied-shortcode" style="display: none;"></div>
                 </div>
             </div>

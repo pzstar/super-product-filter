@@ -19,7 +19,7 @@ if ($swpf_current_filter_option) {
                     <?php
                     $this->render_price($swpf_from);
                     echo (" - ");
-                    $this->render_price($swpf_to)
+                    $this->render_price($swpf_to);
                         ?>
                     <span class="swpf-remove-filter-icon"></span>
                 </button>
@@ -180,7 +180,6 @@ if ($swpf_current_filter_option) {
                     <i class="swpf-icon swpf-icon-tick"></i>
                     <?php esc_html_e('On Sale Products', 'super-product-filter'); ?>
                 </span>
-                ?>
                 <button type="submit" class="swpf-remove-filter-item" name="swpf_remove[on-sale]" value="1">
                     <?php esc_html_e('On Sale', 'super-product-filter'); ?>
                     <span class="swpf-remove-filter-icon"></span>

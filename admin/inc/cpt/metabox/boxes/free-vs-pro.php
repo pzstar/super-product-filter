@@ -57,20 +57,73 @@ function swpf_compare_row($feature, $desc, $free, $pro, $demo = '') {
     echo '</tr>';
 }
 
+/**
+ * The columns, declared once per table so every card lines up with the header.
+ *
+ * @return string
+ */
+function swpf_compare_cols() {
+    return '<colgroup><col/><col class="swpf-col-free"/><col class="swpf-col-pro"/></colgroup>';
+}
+
+/**
+ * Starts a section.
+ *
+ * Each group of features is a card of its own, so closing the one before it is
+ * part of opening the next. swpf_compare_end() closes the last.
+ */
 function swpf_compare_heading($title) {
-    echo '<tr class="swpf-compare-section"><td colspan="3">' . esc_html($title) . '</td></tr>';
+    if (swpf_compare_open(null)) {
+        echo '</table></div>';
+    }
+
+    swpf_compare_open(true);
+
+    echo '<div class="swpf-compare-section"><h4>' . esc_html($title) . '</h4>';
+    echo '<table>' . swpf_compare_cols(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- fixed markup.
+}
+
+/**
+ * Whether a section is currently open. Passing a value sets it.
+ */
+function swpf_compare_open($set) {
+    static $open = false;
+
+    if (null !== $set) {
+        $open = (bool) $set;
+    }
+
+    return $open;
+}
+
+/**
+ * Closes the last section.
+ */
+function swpf_compare_end() {
+    if (swpf_compare_open(null)) {
+        echo '</table></div>';
+        swpf_compare_open(false);
+    }
 }
 endif;
 ?>
 
 <div class="swpf-options-fields-wrap tab-content swpf-settings-content" id="free-vs-pro-settings" style="display: none;">
 
-    <table class="swpf-compare-table">
-        <tr>
-            <th><?php esc_html_e('Feature', 'super-product-filter'); ?></th>
-            <th><?php esc_html_e('Free Version', 'super-product-filter'); ?></th>
-            <th><?php esc_html_e('Pro Version', 'super-product-filter'); ?></th>
-        </tr>
+    <div class="swpf-compare-table">
+
+        <?php
+        /* The columns are set once here; every card repeats the same colgroup,
+           so the cards line up with this header and with each other. */
+        ?>
+        <table class="swpf-compare-head">
+            <?php echo swpf_compare_cols(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- fixed markup. ?>
+            <tr>
+                <th><?php esc_html_e('Feature', 'super-product-filter'); ?></th>
+                <th><?php esc_html_e('Free Version', 'super-product-filter'); ?></th>
+                <th class="swpf-compare-pro-head"><?php esc_html_e('Pro Version', 'super-product-filter'); ?></th>
+            </tr>
+        </table>
 
         <?php
         swpf_compare_heading(esc_html__('What you can filter by', 'super-product-filter'));
@@ -470,10 +523,11 @@ endif;
         );
         ?>
 
-        <tr>
-            <td class="swpf-feature"></td>
-            <td class="swpf-compare-button"><a class="button" href="https://demo.hashthemes.com/super-woocommerce-product-filter/comparison-free-vs-pro/" target="_blank"><?php esc_html_e('Detail Comparison', 'super-product-filter'); ?></a></td>
-            <td class="swpf-compare-button"><a class="button" href="https://1.envato.market/eK5yrQ" target="_blank"><?php esc_html_e('Buy Now', 'super-product-filter'); ?></a></td>
-        </tr>
-    </table>
+        <?php swpf_compare_end(); ?>
+
+        <div class="swpf-compare-actions">
+            <a class="button" href="https://demo.hashthemes.com/super-woocommerce-product-filter/comparison-free-vs-pro/" target="_blank"><?php esc_html_e('Detail Comparison', 'super-product-filter'); ?></a>
+            <a class="button swpf-compare-buy" href="https://1.envato.market/eK5yrQ" target="_blank"><?php esc_html_e('Buy Now', 'super-product-filter'); ?></a>
+        </div>
+    </div>
 </div>
