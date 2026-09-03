@@ -288,9 +288,9 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
             swpf_enqueue_preset_icons($this->filter_shortcode_id);
             $swpf_settings = get_post_meta($this->filter_shortcode_id, 'swpf_settings', true);
             if (!$swpf_settings) {
-                $swpf_settings = Super_Product_Filter_Metabox::default_settings_values();
+                $swpf_settings = Super_Product_Filter_Panels::default_settings_values();
             } else {
-                $swpf_settings = Super_Product_Filter_Admin::recursive_parse_args($swpf_settings, Super_Product_Filter_Metabox::default_settings_values());
+                $swpf_settings = Super_Product_Filter_Admin::recursive_parse_args($swpf_settings, Super_Product_Filter_Panels::default_settings_values());
             }
             $this->settings = $swpf_settings;
         }

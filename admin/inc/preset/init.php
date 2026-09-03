@@ -23,7 +23,7 @@ class Super_Product_Filter_CPT {
     }
 
     public function include_files() {
-        include SWPF_PATH . 'admin/inc/cpt/metabox/init.php';
+        include SWPF_PATH . 'admin/inc/preset/panels.php';
     }
 
     public function register_post_type() {

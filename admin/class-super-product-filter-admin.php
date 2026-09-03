@@ -27,12 +27,12 @@ class Super_Product_Filter_Admin {
     }
 
     public function include_files() {
-        include SWPF_PATH . 'admin/inc/cpt/init.php';
+        include SWPF_PATH . 'admin/inc/preset/init.php';
         include SWPF_PATH . 'admin/inc/builder/init.php';
         include SWPF_PATH . 'admin/inc/general/init.php';
-        include SWPF_PATH . 'admin/inc/google-fonts-list.php';
+        include SWPF_PATH . 'admin/inc/data/google-fonts-list.php';
         include SWPF_PATH . 'admin/inc/helper-functions.php';
-        include SWPF_PATH . 'admin/inc/icon-manager.php';
+        include SWPF_PATH . 'admin/inc/data/icon-manager.php';
         include SWPF_PATH . 'admin/inc/block.php';
         include SWPF_PATH . 'admin/inc/elementor/loader.php';
         include SWPF_PATH . 'admin/inc/import-export/init.php';

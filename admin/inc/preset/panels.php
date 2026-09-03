@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-class Super_Product_Filter_Metabox {
+class Super_Product_Filter_Panels {
     public function __construct() {
         /*
          * The post editor is redirected to the builder, so nothing here renders
@@ -28,7 +28,7 @@ class Super_Product_Filter_Metabox {
      * did, rather than keeping a second copy of them in step by hand.
      */
     public static function render_settings_panels() {
-        include SWPF_PATH . 'admin/inc/cpt/metabox/settings.php';
+        include SWPF_PATH . 'admin/inc/preset/panels/wrapper.php';
     }
 
     /**
@@ -976,4 +976,12 @@ class Super_Product_Filter_Metabox {
 
 }
 
-new Super_Product_Filter_Metabox();
+/*
+ * The class was called ..._Metabox until the panels moved out of the post
+ * editor. render/filter.php is a template a theme may have copied and
+ * overridden, and any copy taken before the rename still calls the old name,
+ * so the old name keeps resolving.
+ */
+class_alias('Super_Product_Filter_Panels', 'Super_Product_Filter_Metabox');
+
+new Super_Product_Filter_Panels();

@@ -92,7 +92,7 @@ class Super_Product_Filter_Import_Export {
             $old_settings = get_post_meta($filter_id, 'swpf_settings', true);
             $settings = self::import_images($imdat);
             $settings = Super_Product_Filter_Admin::recursive_parse_args($settings, $old_settings);
-            $settings = Super_Product_Filter_Admin::sanitize_array($settings, Super_Product_Filter_Metabox::sanitize_settings_rules());
+            $settings = Super_Product_Filter_Admin::sanitize_array($settings, Super_Product_Filter_Panels::sanitize_settings_rules());
             update_post_meta($filter_id, 'swpf_settings', $settings);
 
             $location = isset($_SERVER['HTTP_REFERER']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_REFERER'])) : '';

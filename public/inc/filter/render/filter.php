@@ -30,7 +30,7 @@ if (defined('DOING_AJAX') && DOING_AJAX) {
     $swpf_posid = $swpf_requested_posid ? $swpf_requested_posid : $swpf_prevposid;
     if ($swpf_prevposid != $swpf_posid) {
         $swpf_settings = get_post_meta($swpf_posid, 'swpf_settings', true);
-        $swpf_settings = Super_Product_Filter_Admin::recursive_parse_args($swpf_settings, Super_Product_Filter_Metabox::default_settings_values());
+        $swpf_settings = Super_Product_Filter_Admin::recursive_parse_args($swpf_settings, Super_Product_Filter_Panels::default_settings_values());
     }
 }
 

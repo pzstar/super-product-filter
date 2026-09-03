@@ -18,16 +18,16 @@ wp_nonce_field('swpf-settings-nonce', 'swpf_settings_nonce');
     <div class="swpf-settings-inner-wrap">
         <?php
         /* The section switcher is printed into the page header by the builder,
-           not here. See Super_Product_Filter_Metabox::render_settings_nav(). */
+           not here. See Super_Product_Filter_Panels::render_settings_nav(). */
         ?>
 
         <?php
-        include SWPF_PATH . 'admin/inc/cpt/metabox/boxes/swpf-filters.php';
-        include SWPF_PATH . 'admin/inc/cpt/metabox/boxes/appearance.php';
-        include SWPF_PATH . 'admin/inc/cpt/metabox/boxes/design.php';
-        include SWPF_PATH . 'admin/inc/cpt/metabox/boxes/display.php';
-        include SWPF_PATH . 'admin/inc/cpt/metabox/boxes/import-export.php';
-        include SWPF_PATH . 'admin/inc/cpt/metabox/boxes/free-vs-pro.php';
+        include SWPF_PATH . 'admin/inc/preset/panels/filters.php';
+        include SWPF_PATH . 'admin/inc/preset/panels/appearance.php';
+        include SWPF_PATH . 'admin/inc/preset/panels/design.php';
+        include SWPF_PATH . 'admin/inc/preset/panels/display.php';
+        include SWPF_PATH . 'admin/inc/preset/panels/import-export.php';
+        include SWPF_PATH . 'admin/inc/preset/panels/free-vs-pro.php';
         ?>
     </div>
 

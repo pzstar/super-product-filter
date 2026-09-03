@@ -128,7 +128,7 @@ class Super_Product_Filter_Public {
                 if (!$swpf_settings) {
                     return;
                 } else {
-                    $swpf_settings = Super_Product_Filter_Admin::recursive_parse_args($swpf_settings, Super_Product_Filter_Metabox::default_settings_values());
+                    $swpf_settings = Super_Product_Filter_Admin::recursive_parse_args($swpf_settings, Super_Product_Filter_Panels::default_settings_values());
                 }
 
                 if ($swpf_settings['side_menu']['panel_width']) {

@@ -323,14 +323,14 @@ class Super_Product_Filter_Builder {
                        it. Separate from the name above, which is its own bar. */
                     ?>
                     <div class="swpf-builder-sections">
-                        <?php Super_Product_Filter_Metabox::render_settings_nav(); ?>
+                        <?php Super_Product_Filter_Panels::render_settings_nav(); ?>
                     </div>
                     <?php
                     /* The settings panels, unchanged - same tabs, same fields,
                        same styling as the metabox they came from. Saving is the
                        panels' own sticky footer, so the builder adds none of
                        its own. */
-                    Super_Product_Filter_Metabox::render_settings_panels();
+                    Super_Product_Filter_Panels::render_settings_panels();
                     ?>
                 </div>
 
@@ -388,7 +388,7 @@ class Super_Product_Filter_Builder {
 
         /* Same routine the metabox ran on save_post, and the panels still print
            the nonce it checks for. */
-        $metabox = new Super_Product_Filter_Metabox();
+        $metabox = new Super_Product_Filter_Panels();
         $metabox->save_metabox_settings($post_id);
 
         return $post_id;

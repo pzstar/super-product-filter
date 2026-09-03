@@ -12,7 +12,7 @@ if (empty($swpf_post_data)) {
 
 $swpf_posid = swpf_get_preset_id();
 $swpf_settings = get_post_meta($swpf_posid, 'swpf_settings', true);
-$swpf_settings = Super_Product_Filter_Admin::recursive_parse_args($swpf_settings, Super_Product_Filter_Metabox::default_settings_values());
+$swpf_settings = Super_Product_Filter_Admin::recursive_parse_args($swpf_settings, Super_Product_Filter_Panels::default_settings_values());
 /*
  * The page tells us the grid it is showing, which covers shortcodes and page
  * builders that set their own columns and limit as well as ordinary shop pages.

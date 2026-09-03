@@ -39,9 +39,9 @@ class Super_Product_Filter_Init extends Super_Product_Filter_General {
             $this->filter_shortcode_id = $swpf_sc_id;
             $swpf_settings = get_post_meta($swpf_sc_id, 'swpf_settings', true);
             if (!$swpf_settings) {
-                $swpf_settings = Super_Product_Filter_Metabox::default_settings_values();
+                $swpf_settings = Super_Product_Filter_Panels::default_settings_values();
             } else {
-                $swpf_settings = Super_Product_Filter_Admin::recursive_parse_args($swpf_settings, Super_Product_Filter_Metabox::default_settings_values());
+                $swpf_settings = Super_Product_Filter_Admin::recursive_parse_args($swpf_settings, Super_Product_Filter_Panels::default_settings_values());
             }
             $this->settings = $swpf_settings;
         }
@@ -84,7 +84,7 @@ class Super_Product_Filter_Init extends Super_Product_Filter_General {
 
     public function includes() {
         include SWPF_PATH . 'public/inc/woo-helpers.php';
-        include SWPF_PATH . 'public/inc/swpf-webfont-loader.php';
+        include SWPF_PATH . 'public/vendor/wptt-font-loader/wptt-webfont-loader.php';
         include SWPF_PATH . 'public/inc/filter/render/init.php';
     }
 
