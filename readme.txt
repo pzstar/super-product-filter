@@ -4,7 +4,7 @@ Tags: ajax filter, ajax product filter, product filter, woocommerce ajax filter,
 Requires at least: 6.3
 Requires PHP: 7.2
 Tested up to: 7.1
-Stable tag: 1.0.9
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -137,7 +137,10 @@ For premium upgrade, please click below link <br>
 <li>Activate the plugin through the 'Plugins' menu in WordPress</li>
 
 == Changelog ==
-= 1.0.9 - 25 Aug, 2026 =
+= 2.0.0 - 3 Sep, 2026 =
+* Added - A builder screen for filter presets. Editing a preset now opens a purpose built, full page builder instead of the WordPress post editor, and saving happens in place without a page reload
+* Added - Live typography preview. Every typography group in the design settings shows a sample line that takes on the font, size and spacing as they are changed
+* Changed - The admin screens have been redesigned, and the choices the pro version adds now sit disabled where they apply, so what the upgrade offers can be seen in place
 * Added - Template overrides. Copy any filter template into yourtheme/super-product-filter/ to change its markup without editing the plugin, the same way WooCommerce templates are overridden
 * Added - swpf_before_filter_fields, swpf_after_filter_fields, swpf_before_filter_field and swpf_after_filter_field actions, plus swpf_template_folder and swpf_locate_template filters
 * Fixed - Term counts now take account of the on sale, rating, review and stock filters, so the number beside a term matches what selecting it returns
@@ -166,6 +169,10 @@ For premium upgrade, please click below link <br>
 * Fixed - Added the product grid widths WooCommerce does not ship, so a four column layout no longer collapses to two
 * Fixed - Elementor widget and shortcode now cast the filter preset id
 * Fixed - Image import now requires a valid absolute image url
+* Fixed - A stray "?>" was printed beside the On Sale entry in the applied filters list
+* Fixed - The Upgrade To PRO menu entry linked to the demo site rather than the upgrade page
+* Changed - The stylesheet no longer carries the styling for the pro version's filter skins, which the free version cannot select, making it around 800 lines lighter
+* Added - Declared compatibility with WooCommerce High Performance Order Storage. The plugin never reads or writes an order, so the WooCommerce status screen no longer lists it as incompatible
 
 = 1.0.8 - 6 Dec, 2025 =
 * Compatibility test with WordPress version 6.9

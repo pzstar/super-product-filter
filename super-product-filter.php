@@ -4,7 +4,7 @@
  * Plugin Name:       Super Product Filter for WooCommerce
  * Plugin URI:        https://demo.hashthemes.com/super-woocommerce-product-filter/
  * Description:       Ajax Filter For WooCommerce Products - Simplify your Search, Save your Time.
- * Version:           1.0.9
+ * Version:           2.0.0
  * Author:            HashThemes
  * Author URI:        https://hashthemes.com
  * License:           GPL-2.0+
@@ -54,7 +54,7 @@ function super_product_filter_run() {
 
     if (is_plugin_active('woocommerce/woocommerce.php')) {
         if (!is_plugin_active('super-woocommerce-product-filter/super-woocommerce-product-filter.php')) {
-            define('SWPF_VERSION', '1.0.9');
+            define('SWPF_VERSION', '2.0.0');
             define('SWPF_PATH', plugin_dir_path(__FILE__));
             define('SWPF_URL', plugin_dir_url(__FILE__));
             define('SWPF_BASENAME', plugin_basename(__FILE__));
