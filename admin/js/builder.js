@@ -108,6 +108,73 @@
             notify(message || swpfBuilder.failed, 'warning');
         }
 
+        /*
+         * The settings go over as one JSON field rather than as one POST
+         * variable per input.
+         *
+         * A preset renders roughly eighty fields for every taxonomy on the
+         * site, so a shop with fifty attributes posts several thousand
+         * variables. PHP stops at max_input_vars - 1000 by default, and it
+         * drops the excess silently: no error, no warning, just the tail of the
+         * form missing. The panels that render last, Designs among them, were
+         * the ones being cut, so typography came back as defaults after a save
+         * that reported success.
+         *
+         * max_input_vars does not apply to a single field, and json_decode is
+         * not bound by it either, so the whole settings tree arrives intact
+         * however many taxonomies a shop has.
+         */
+        function payload() {
+            var data = {};
+            var settings = {};
+
+            $.each($form.serializeArray(), function (i, field) {
+                var path = field.name.match(/^swpf_settings((?:\[[^\]]*\])+)$/);
+
+                if (!path) {
+                    /* action, nonces, the preset id and its name travel as they
+                       always did - a handful of fields, well inside any limit. */
+                    data[field.name] = field.value;
+                    return;
+                }
+
+                var keys = path[1].match(/\[[^\]]*\]/g).map(function (k) {
+                    return k.slice(1, -1);
+                });
+
+                var node = settings;
+
+                for (var i2 = 0; i2 < keys.length; i2++) {
+                    var key = keys[i2];
+                    var last = i2 === keys.length - 1;
+
+                    /* name="...[]" appends rather than assigns. */
+                    if (key === '') {
+                        if (last) {
+                            node.push(field.value);
+                        } else {
+                            node.push({});
+                            node = node[node.length - 1];
+                        }
+                        continue;
+                    }
+
+                    if (last) {
+                        node[key] = field.value;
+                    } else {
+                        if (!(key in node)) {
+                            node[key] = keys[i2 + 1] === '' ? [] : {};
+                        }
+                        node = node[key];
+                    }
+                }
+            });
+
+            data.swpf_settings_json = JSON.stringify(settings);
+
+            return data;
+        }
+
         function save() {
             if (saving) {
                 return;
@@ -117,9 +184,7 @@
             $save.addClass('swpf-button-loader').prop('disabled', true);
             setState('saving');
 
-            /* The form already carries the action and the nonce as hidden
-               fields, for the plain post this is standing in for. */
-            $.post(swpfBuilder.ajaxurl, $form.serialize())
+            $.post(swpfBuilder.ajaxurl, payload())
                 .done(function (response) {
                     if (!response || !response.success || !response.data) {
                         failed(response && response.data ? response.data.message : '');

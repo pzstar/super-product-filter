@@ -401,8 +401,35 @@ class Super_Product_Filter_Builder {
      * has been written: the id to keep editing, the address to sit at, and a
      * trash link. A new preset was created from a page that had none of them.
      */
+    /**
+     * Rebuilds $_POST['swpf_settings'] from the JSON the builder sends.
+     *
+     * The panels render roughly eighty fields per taxonomy, so a shop with many
+     * attributes posts several thousand variables and PHP drops everything past
+     * max_input_vars without a word - the tail of the form simply never arrives.
+     * The builder sends the settings as one field instead, and json_decode is
+     * not subject to that limit, so the tree is put back here before anything
+     * downstream looks at it.
+     */
+    protected function restore_settings_from_json() {
+        if (!isset($_POST['swpf_settings_json'])) {
+            return;
+        }
+
+        $json = wp_unslash($_POST['swpf_settings_json']); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- decoded below, then sanitised by the save routine.
+        $settings = json_decode($json, true);
+
+        if (is_array($settings)) {
+            /* Re-slashed because the save routine unslashes it again, as it
+               would for anything that arrived through the form normally. */
+            $_POST['swpf_settings'] = wp_slash($settings);
+        }
+    }
+
     public function handle_ajax_save() {
         check_ajax_referer(self::NONCE_ACTION, self::NONCE_NAME);
+
+        $this->restore_settings_from_json();
 
         $post_id = $this->save_filter();
 
@@ -432,8 +459,44 @@ class Super_Product_Filter_Builder {
      * The form posts here on its own when the background save is unavailable,
      * so the builder still works with no scripting at all.
      */
+    /**
+     * Whether PHP dropped part of this request.
+     *
+     * max_input_vars is enforced by discarding everything past the limit and
+     * saying nothing, so a truncated post looks exactly like a complete one.
+     * Counting what arrived is the only signal available: at or over the limit
+     * means the tail was cut, and saving would write defaults over whatever did
+     * not make it.
+     *
+     * @return bool
+     */
+    protected function input_was_truncated() {
+        $limit = (int) ini_get('max_input_vars');
+
+        if ($limit < 1) {
+            return false;
+        }
+
+        return count($_POST, COUNT_RECURSIVE) >= $limit; // phpcs:ignore WordPress.Security.NonceVerification.Missing -- counting only; the caller checks the nonce.
+    }
+
     public function handle_save() {
         check_admin_referer(self::NONCE_ACTION, self::NONCE_NAME);
+
+        /*
+         * The builder normally posts the settings as one JSON field, which this
+         * limit does not apply to. This is the no-scripting fallback, where the
+         * form posts a field per input and a large shop can exceed it. Refusing
+         * is the only safe answer: a partial save silently resets every setting
+         * that did not arrive.
+         */
+        if ($this->input_was_truncated()) {
+            wp_die(
+                esc_html__('This filter has more settings than the server accepts in one request, so it was not saved. Ask your host to raise the PHP setting max_input_vars, or enable JavaScript, which sends the settings in a form that is not affected by it.', 'super-product-filter'),
+                esc_html__('Filter not saved', 'super-product-filter'),
+                array('back_link' => true)
+            );
+        }
 
         $post_id = $this->save_filter();
 
