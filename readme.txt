@@ -4,7 +4,7 @@ Tags: ajax filter, ajax product filter, product filter, woocommerce ajax filter,
 Requires at least: 6.3
 Requires PHP: 7.2
 Tested up to: 7.1
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -168,6 +168,9 @@ For premium upgrade, please click below link <br>
 <li>Activate the plugin through the 'Plugins' menu in WordPress</li>
 
 == Changelog ==
+= 2.0.1 - 11 Sep, 2026 =
+* Fixed - Product grids of four columns, or seven and more, kept their desktop widths on phones and small tablets instead of dropping to two across. The grid widths added in 2.0.0 now stop at WooCommerce's small screen breakpoint, including on themes that move it, such as Astra
+
 = 2.0.0 - 10 Sep, 2026 =
 * Added - A builder screen for filter presets. Editing a preset now opens a purpose built, full page builder instead of the WordPress post editor, and saving happens in place without a page reload
 * Added - Live typography preview. Every typography group in the design settings shows a sample line that takes on the font, size and spacing as they are changed

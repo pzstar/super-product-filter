@@ -494,4 +494,65 @@ class Super_Product_Filter_Public {
 
         return swpf_css_strip_whitespace($swpf_css);
     }
+
+    /**
+     * Product grid column counts WooCommerce does not ship.
+     *
+     * WooCommerce styles ul.products.columns-1, -2, -3, -5 and -6 but not -4, and
+     * nothing above -6. A theme catch-all such as
+     * `ul.products[class*="columns-"] li.product { width: 48% }` then captures the
+     * unstyled counts and the grid silently collapses, most often to two across.
+     *
+     * These fill the gaps using WooCommerce's own 3.8% gutter, and are scoped to
+     * loops this plugin tagged so themes that already handle these counts keep
+     * their own layout everywhere else.
+     *
+     * The selectors outrank WooCommerce's small screen rule, so they are held to
+     * the widths that rule does not cover. Otherwise a four column grid stays four
+     * across on a phone instead of dropping to two.
+     */
+    public function product_grid_column_styles() {
+        $widths = array(
+            4 => '22.05%',
+            7 => '11.02%',
+            8 => '9.17%',
+            9 => '7.73%',
+            10 => '6.58%',
+        );
+
+        $swpf_css = '';
+
+        foreach ($widths as $columns => $width) {
+            $swpf_css .= ".woocommerce ul.products[data-swpf-region=\"products\"].columns-{$columns} li.product,";
+            $swpf_css .= ".woocommerce-page ul.products[data-swpf-region=\"products\"].columns-{$columns} li.product{width:{$width}}";
+        }
+
+        $breakpoint = self::woocommerce_smallscreen_breakpoint();
+
+        // The exact inverse of WooCommerce's `only screen and (max-width: ...)`.
+        wp_add_inline_style($this->plugin_name, "@media not all and (max-width:{$breakpoint}){{$swpf_css}}");
+    }
+
+    /**
+     * Width at or below which WooCommerce's small screen stylesheet applies.
+     *
+     * Read from the stylesheet as registered, because themes that ship their own
+     * copy can pass a different default to the filter. Astra uses its tablet
+     * breakpoint, for one.
+     *
+     * @return string CSS length, such as 768px.
+     */
+    private static function woocommerce_smallscreen_breakpoint() {
+        $styles = wp_styles();
+        $pattern = '/max-width\s*:\s*([0-9]*\.?[0-9]+[a-z]+)/i';
+
+        if (isset($styles->registered['woocommerce-smallscreen']) && preg_match($pattern, (string) $styles->registered['woocommerce-smallscreen']->args, $matches)) {
+            return $matches[1];
+        }
+
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WooCommerce's own filter.
+        $breakpoint = apply_filters('woocommerce_style_smallscreen_breakpoint', '768px');
+
+        return preg_match($pattern, 'max-width:' . $breakpoint, $matches) ? $matches[1] : '768px';
+    }
 }

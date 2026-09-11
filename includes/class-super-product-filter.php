@@ -78,6 +78,8 @@ class Super_Product_Filter {
 
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
+        // After WooCommerce and the theme have registered the small screen stylesheet.
+        $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'product_grid_column_styles', 20);
     }
 
     public function run() {
