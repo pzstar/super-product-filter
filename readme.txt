@@ -8,155 +8,168 @@ Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Enhance your shopping experience by using a product filter that streamlines the selection process, ensuring you find the perfect product effortlessly.
+AJAX product filter for WooCommerce. Filter by category, brand, attribute, price, rating, stock and sale, with instant results and no page reload.
 
 == Description ==
 
-Super Product Filter for WooCommerce adds AJAX product filtering to any WooCommerce store. Shoppers narrow the catalog by category, tag, brand, attribute, price, rating, review count, stock and sale status, search by keyword and change the sort order, and the product list updates in place without a page reload.
+Shoppers leave when they cannot find what they came for. Super Product Filter for WooCommerce lets them narrow your catalog by category, brand, attribute, price, rating, stock and sale status, search by keyword and change the sort order, and the product list updates in place the moment they click. No page reloads, no waiting, no dead ends.
 
-Filters are built as presets in a full page builder, placed anywhere with a block, a shortcode or an Elementor widget, and styled to match your theme. The plugin finds your theme's product list, result count and pagination on its own, and a Theme Compatibility Mode returns filtered products in your theme's own markup when a theme or page builder draws its own product cards.
+It works with any WooCommerce theme, sits anywhere you want it through a block, a shortcode or an Elementor widget, and is set up in a purpose built filter builder rather than a wall of settings. The free version is not a trial. Everything listed under "Everything in the free version" works the day you activate it.
 
-<h3>Test Dashboard</h3>
-Explore a test dashboard to get a hands on experience with our features and functionalities. Visit <a href="https://tastewp.com/plugins/super-product-filter/" target="_blank">Test Dashboard</a> to access the test environment.
+<a href="https://demo.hashthemes.com/super-woocommerce-product-filter/" target="_blank">Live Demo</a> | <a href="https://tastewp.com/plugins/super-product-filter/" target="_blank">Try It in a Test Dashboard</a> | <a href="https://hashthemes.com/documentation/super-woocommerce-product-filter-documentation/" target="_blank">Documentation</a> | <a href="https://demo.hashthemes.com/super-woocommerce-product-filter/comparison-free-vs-pro/" target="_blank">Free vs Pro</a> | <a href="https://1.envato.market/eK5yrQ" target="_blank">Get Pro</a>
 
-Feel free to experiment, and if you have any feedback or encounter issues, please let us know through our support tickets.
-
-<h3>Real Time AJAX Filtering</h3>
-Results refresh in place as filters change, with no page reload. Choose whether filters apply the moment a shopper clicks, or wait for an Apply button with the text you set. A loading animation covers the product list while the new results arrive, and the page can scroll back to the results once they land.
-
-<h3>Full Page Filter Builder</h3>
-Each filter preset is edited in a purpose built builder rather than the WordPress post editor. Switch each filter on or off, drag them into the order you want, configure every option in one place and save without leaving the page. Typography settings show a live sample line that takes on the font, size and spacing as you change them. Shops with many attributes save reliably, because the settings travel as a single field that is not subject to the PHP input variable limit.
-
-<h3>Category, Tag and Brand Filters</h3>
-Let shoppers refine by product category, product tag and WooCommerce brand. Categories can be shown as an indented tree, and every list can be ordered by name, product count, ID or numeric name, ascending or descending.
-
-<h3>Attribute Filters</h3>
-Any WooCommerce attribute becomes a filter: size, material, color and so on. Each attribute has its own title, display type, order, AND/OR logic and orientation, and can show or hide the term name and the product count.
-
-<h3>Eight Display Types</h3>
-Each category, tag, brand or attribute filter can be shown as any of the following, laid out vertically or horizontally:
+<h3>Why stores choose Super Product Filter</h3>
 <ul>
-<li>Checkbox</li>
-<li>Radio</li>
-<li>Dropdown</li>
-<li>Multi Select</li>
-<li>Button</li>
-<li>Toggle</li>
-<li>Color Swatch</li>
-<li>Image Swatch</li>
+<li><strong>Instant results.</strong> Every filter applies over AJAX, so shoppers never lose their place or wait for a reload.</li>
+<li><strong>Every filter a store needs.</strong> Categories, tags, brands, attributes, price, rating, reviews, stock, sale, keyword search and sorting, all in the free version.</li>
+<li><strong>Eight ways to show a filter.</strong> Checkboxes, radios, dropdowns, multi selects, buttons, toggles, color swatches and image swatches.</li>
+<li><strong>Works with your theme.</strong> The product list, result count and pagination are found automatically, and a compatibility mode handles themes and page builders that draw their own product cards.</li>
+<li><strong>A real builder.</strong> Drag filters into order, switch them on and off, style them with live previews and save without leaving the page.</li>
+<li><strong>Light and search engine safe.</strong> Only the assets a preset uses are loaded, and filtered views can be kept out of search results with one switch.</li>
 </ul>
-Color and image swatches are set per term from the builder, so a color attribute shows real swatches and a pattern or brand attribute can show pictures. Dropdown and multi select fields take a placeholder text of your own.
 
-<h3>Price Range Slider</h3>
-A two handle slider lets shoppers set a minimum and a maximum price, and the product list updates to match.
+<h3>Everything in the free version</h3>
 
-<h3>Rating and Review Filters</h3>
-The rating filter shows rows of stars, so shoppers can ask for products rated a given number of stars and above. The review filter narrows results to products with at least the number of reviews a shopper types in.
+<h4>Filters shoppers actually use</h4>
+<ul>
+<li><strong>Categories, tags and brands.</strong> Refine by product category, product tag and WooCommerce brand, with categories shown as an indented tree.</li>
+<li><strong>Attributes.</strong> Any WooCommerce attribute becomes a filter: size, material, color and so on, each with its own title, display type, order and logic.</li>
+<li><strong>Price range.</strong> A two handle slider sets a minimum and a maximum, and the product list updates to match.</li>
+<li><strong>Rating and reviews.</strong> Rows of stars for products rated a given number and above, and a minimum review count for products with real feedback behind them.</li>
+<li><strong>In stock and on sale.</strong> One tick hides everything that cannot be bought today. Another takes shoppers straight to the deals.</li>
+<li><strong>Keyword search.</strong> A search box that sits with the other filters, so a shopper can type a term and keep refining by category, price or attribute from the same panel.</li>
+<li><strong>Sorting.</strong> Price low to high or high to low, latest or oldest, title A to Z or Z to A, or random. You choose which to offer.</li>
+</ul>
 
-<h3>Stock and Sale Filters</h3>
-One tick shows only products that are in stock. Another shows only products currently on sale, so shoppers can go straight to the deals.
+<h4>Eight ways to show a filter</h4>
+Every category, tag, brand or attribute filter can be a Checkbox, Radio, Dropdown, Multi Select, Button, Toggle, Color Swatch or Image Swatch list, laid out vertically or horizontally. Swatch colors and images are set per term inside the builder, so a color attribute shows real swatches and a pattern or brand attribute shows pictures. Dropdowns and multi selects take a placeholder text of your own.
 
-<h3>Product Search</h3>
-A keyword search box sits alongside the other filters and applies without a page reload, so a shopper can type a term and keep refining by category, price or attribute from the same panel.
+<h4>A shopping experience that feels instant</h4>
+<ul>
+<li><strong>Apply on click or on demand.</strong> Filters can apply the moment a shopper clicks, or wait for an Apply button with the text you set.</li>
+<li><strong>Active filter chips.</strong> Every selection is listed as a removable chip. Click one to drop that selection, or Clear All to start over.</li>
+<li><strong>Honest product counts.</strong> The number beside each term takes account of the price, rating, review, stock and sale filters already applied, so it always matches what selecting it returns.</li>
+<li><strong>Loading animation and scroll to results.</strong> A loader covers the products while new results arrive, and the page can scroll back to the results once they land.</li>
+<li><strong>Collapsible filters.</strong> Shoppers fold each filter box open or closed from its heading, and long lists can be capped to a height and scrolled.</li>
+</ul>
 
-<h3>Sorting</h3>
-Give shoppers control over result order without leaving the filter panel. Sort by price low to high or high to low, latest or oldest, title A to Z or Z to A, or at random, and choose which of these options to offer.
+<h4>You decide what shoppers see</h4>
+<ul>
+<li><strong>Include or exclude terms.</strong> Show every term, or pick exactly which ones a filter offers.</li>
+<li><strong>AND or OR logic.</strong> Set it for the preset as a whole and for each filter on its own. AND means a product must match every selected term. OR means any one is enough.</li>
+<li><strong>Term order.</strong> By name, product count, ID or numeric name, ascending or descending.</li>
+<li><strong>Limit a preset to categories.</strong> A filter placed on a page only ever returns products from the part of the catalog you choose.</li>
+<li><strong>Show or hide details.</strong> Term names and product counts can each be shown or hidden per filter.</li>
+</ul>
 
-<h3>Active Filters with Clear All</h3>
-Everything a shopper has selected is listed as removable chips above the filters. Clicking a chip removes that one selection, and a Clear All button returns the product list to its default view in one click.
+<h4>Off-canvas panel and mobile</h4>
+<ul>
+<li><strong>Slide-in filter panel.</strong> Show the filters in a panel that slides in from the left or the right instead of taking up page space.</li>
+<li><strong>Your own trigger button.</strong> Sixteen ready made icon styles and an icon library to pick from, with the shape, size, colors and screen position all yours to set. Any link or button on the page can open the panel through the trigger class.</li>
+<li><strong>Responsive by design.</strong> Filters adapt to phones and tablets, and inline filters can switch to the off-canvas panel below a screen width you choose.</li>
+</ul>
 
-<h3>Product Count Beside Each Term</h3>
-Show how many products match each term. Counts take account of the price, rating, review, stock and sale filters already applied, so the number beside a term matches what selecting it returns.
+<h4>Make it match your brand</h4>
+<ul>
+<li><strong>Colors and spacing.</strong> Primary color, filter box and heading colors, and the spacing between filters and between items.</li>
+<li><strong>Typography with live preview.</strong> Any Google Font for headings and filter text, with a sample line that takes on the font, size and spacing as you change them.</li>
+<li><strong>GDPR ready fonts.</strong> Serve Google Fonts from your own site instead of Google's servers with one switch.</li>
+</ul>
 
-<h3>AND / OR Logic</h3>
-Set the logic for the preset as a whole and for each filter on its own. With AND, a product must match every selected term. With OR, matching any one of them is enough.
+<h4>Built in a real builder</h4>
+<ul>
+<li><strong>Full page filter builder.</strong> Every preset is edited in a purpose built screen rather than the WordPress post editor. Switch filters on or off, drag them into order, configure every option in one place and save without a page reload.</li>
+<li><strong>Import and export presets.</strong> Export a configured preset to a file and import it on another site, or restore it later.</li>
+<li><strong>Built for big catalogs.</strong> Shops with many attributes save reliably, because settings travel as a single field that is not subject to the PHP input variable limit.</li>
+</ul>
 
-<h3>Include and Exclude Terms</h3>
-Show every term, or pick exactly which terms a filter offers. Include only the ones that matter for a range, or exclude the ones that do not apply, so shoppers only see relevant options. A preset can also be limited to one or more categories, so a filter placed on a page only ever returns products from that part of the catalog.
+<h4>Place it anywhere, on any theme</h4>
+<ul>
+<li><strong>Block, shortcode and Elementor widget.</strong> Drop the block into any page, post or block based widget area such as a sidebar, header or footer, add the Elementor widget, or paste the shortcode into WPBakery, Beaver Builder, Divi, Bricks or any builder that renders shortcodes.</li>
+<li><strong>Automatic theme detection.</strong> The product list, result count and pagination are detected on their own, and three selector fields are there for the rare theme that cannot be detected.</li>
+<li><strong>Theme Compatibility Mode.</strong> When a theme or page builder draws its own product cards, the filtered page is requested from your site, so products come back in exactly the markup your theme already uses.</li>
+</ul>
 
-<h3>Off-Canvas Filter Panel</h3>
-Slide the filters in from the left or the right of the screen instead of showing them inline. The panel comes with a floating trigger button whose icon, shape, size, colors and position are yours to set, with sixteen ready made icon styles and an icon library to pick from. Any link or button on the page can open the panel through the trigger class, and a breakpoint setting switches inline filters to the panel on smaller screens.
+<h4>Fast, search engine safe and tidy</h4>
+<ul>
+<li><strong>Loads only what it needs.</strong> Icon fonts are loaded only when a preset uses them, the plugin's own icons are drawn inline, and AJAX responses carry only what the page needs.</li>
+<li><strong>SEO friendly filtering.</strong> Filter combinations can become thousands of near duplicate pages that eat crawl budget. One setting serves filtered views as "noindex, follow", keeping them out of search results while links on the page are still followed.</li>
+<li><strong>Clean uninstall.</strong> An option removes every filter and setting when the plugin is deleted. It is off by default, so deactivating or reinstalling never loses your work.</li>
+<li><strong>Plays well with WooCommerce.</strong> Declares compatibility with High Performance Order Storage, and works in every current browser.</li>
+<li><strong>Multilingual and RTL.</strong> Filter titles are registered with WPML String Translation and Polylang, and right to left languages such as Arabic and Hebrew are supported.</li>
+</ul>
 
-<h3>Collapsible Filters</h3>
-Let shoppers fold each filter box open or closed from its heading, and cap the height of long lists so they scroll instead of pushing the page down.
+<h4>For developers</h4>
+<ul>
+<li><strong>Template overrides.</strong> Copy any filter template into a super-product-filter folder in your theme to change its markup, the same way WooCommerce templates are overridden.</li>
+<li><strong>Hooks.</strong> swpf_before_filter_fields, swpf_after_filter_fields, swpf_before_filter_field and swpf_after_filter_field actions, plus swpf_template_folder, swpf_locate_template, swpf_filter_query_keys and swpf_preset_icon_families filters.</li>
+</ul>
 
-<h3>Design and Typography</h3>
-Set the primary color, the filter box and heading colors, the spacing between filters and between items, and the heading and content typography with any Google Font. Fonts can be served from your own site instead of Google's servers to meet GDPR requirements.
+<h3>Go further with Super WooCommerce Product Filter Pro</h3>
+The free version gives you a complete, fast product filter. Pro is for stores that want to shape the whole shopping journey: filter by your own data, guide shoppers step by step, style every control, and design the product cards themselves. It is a one-off payment, and everything you set up in the free version carries over.
 
-<h3>Display Anywhere</h3>
-Drop the Super Product Filter block into any page, post or block based widget area such as a sidebar, header or footer, add the Elementor widget, or paste the shortcode wherever you want the filters to appear. The shortcode works in any page builder that renders shortcodes, including WPBakery, Beaver Builder, Divi and Bricks.
+<h4>Filter by anything</h4>
+<ul>
+<li><strong>ACF and custom meta fields.</strong> Turn Advanced Custom Fields values into filters, or define your own meta keys and the options shoppers pick from.</li>
+<li><strong>Hide empty terms.</strong> Options that would return no products disappear, so a shopper never lands on an empty page.</li>
+<li><strong>Search inside a filter.</strong> A search box within long filters narrows the list of terms as you type.</li>
+<li><strong>Dynamic price range.</strong> The slider ends follow the results, moving to the cheapest and dearest products currently shown. The price filter can also be shown as a pair of inputs.</li>
+<li><strong>Variation images in the product list.</strong> Filter by a color and each variable product shows the image of the matching variation.</li>
+</ul>
 
-<h3>Works With Any Theme</h3>
-The product list, result count and pagination are detected automatically, so the plugin works out of the box with standard WooCommerce markup, and three selector fields are there for the rare theme that cannot be detected. When a theme or page builder draws its own product cards, switch on Theme Compatibility Mode and the filtered page is requested from your site, so products come back in exactly the markup your theme already uses.
+<h4>Guide the shopper</h4>
+<ul>
+<li><strong>Step by step filtering.</strong> Reveal the next filter only once the one before it is answered: a category first, then its attributes, then a price.</li>
+<li><strong>Conditional filters.</strong> Show or hide a filter depending on the category, tag or brand being viewed, so screen size appears for laptops and not for wine.</li>
+<li><strong>Readable filter URLs.</strong> Addresses such as /shop/filter/categories-laptop/ instead of a query string, easier to share and better in search results.</li>
+<li><strong>Redirect to another page.</strong> Place a filter anywhere and land the shopper on your shop with the results applied.</li>
+<li><strong>Descriptions, icons and labels.</strong> A description and an icon for each filter title, and your own labels for the in stock and on sale ticks.</li>
+</ul>
 
-<h3>SEO Friendly Filtering</h3>
-Filtered views rearrange products that already have their own category and product pages. Left alone, every combination of filters becomes another near duplicate page for search engines to crawl and index, which wastes the crawl budget your real pages need. Turn on one setting and filtered views are served as "noindex, follow", keeping them out of search results while links on the page are still followed.
+<h4>Faster browsing</h4>
+<ul>
+<li><strong>AJAX pagination.</strong> Each page of results loads in place instead of reloading.</li>
+<li><strong>Load More and infinite scroll.</strong> Replace paged links with a Load More button carrying your own text, or let results flow in as the shopper scrolls.</li>
+</ul>
 
-<h3>Template Overrides and Developer Hooks</h3>
-Copy any filter template into a super-product-filter folder in your theme to change its markup without editing the plugin, the same way WooCommerce templates are overridden. Actions run before and after the filter fields and around each field, and filters let you change the template folder, register extra query parameters or load an icon font for markup your theme renders itself.
+<h4>Place and lay out</h4>
+<ul>
+<li><strong>Attach to the shop archive.</strong> Show the filter above the shop and category pages without editing a template, on every archive, only on the shop page or chosen categories, tags and brands, or hidden on the ones you name.</li>
+<li><strong>Multi-column layouts.</strong> Filters across up to eight columns, terms inside a filter across up to three, with column counts and panel width set per breakpoint.</li>
+<li><strong>Positioned filter chips.</strong> Selected filter chips before the filters, after them or above the products, grouped by attribute.</li>
+</ul>
 
-<h3>Import and Export Filter Presets</h3>
-Export a configured preset to a file and import it on another site, or restore it later, so a filter set up once can be reused across environments without configuring it again.
+<h4>Design without limits</h4>
+<ul>
+<li><strong>Filter styles.</strong> Eleven checkbox and radio styles, ten each for price sliders, buttons and toggles, six each for dropdowns, multi selects, color swatches and image swatches, chip styles for multi select, and a styled dropdown in place of the browser one.</li>
+<li><strong>Every color and size.</strong> Border, background, icon and active colors and sizing for every control, each with a live preview, plus star colors, apply button, input fields and active chip styling, and full filter box styling with background, border, radius, shadow and padding.</li>
+<li><strong>Off-canvas with motion.</strong> A trigger button as a font icon, an uploaded image or a hamburger icon, attention animations such as pulse, bounce and swing, panel show and hide animations, and a separate panel width for small screens.</li>
+<li><strong>Sixteen loading animations</strong> or your own image, in place of the three in the free version.</li>
+<li><strong>Custom CSS and JavaScript.</strong> A CSS box per preset, plus JavaScript that runs before and after every filter request.</li>
+</ul>
 
-<h3>Lightweight and Fast</h3>
-Only the assets a preset actually uses are loaded. Icon fonts are enqueued only when a preset needs them, and the plugin's own tick, close and spinner icons are drawn inline, so a page can load no icon font at all. AJAX responses carry only what the page needs, and the stylesheet carries only the styles the free version can use.
+<h4>Shop Builder</h4>
+<ul>
+<li><strong>Design the product card.</strong> Image, badge, category, title, price, rating and buttons, arranged in a full page builder with a device switcher for desktop, tablet and mobile.</li>
+<li><strong>Forty ready made templates.</strong> Start from one and edit it, then pick a grid such as uniform, featured first, repeating highlight, staggered or masonry.</li>
+<li><strong>Images that sell.</strong> Aspect ratio, fit and hover effects, including a fade or slide to the second gallery image.</li>
+<li><strong>Quick view, wishlist and compare.</strong> Open a product in a popup without leaving the results, and add wishlist and compare buttons through YITH or WCBoost.</li>
+<li><strong>Your shop and category pages.</strong> Assign a template to the WooCommerce shop and category pages, with full control over which products show, in what order and how many per page.</li>
+</ul>
 
-<h3>Clean Uninstall</h3>
-An option under Settings removes every filter and setting when the plugin is deleted. It is off by default, so deactivating or reinstalling never loses your filters.
+<h4>Direct support and updates</h4>
+Pro customers get direct support from us, and updates arrive in the WordPress dashboard once the license key is activated.
 
-<h3>Mobile Responsive</h3>
-Filters adapt to phones and tablets, and can switch to the off-canvas panel below a screen width you choose, so the product list keeps the space it needs on small screens.
+<a href="https://demo.hashthemes.com/super-woocommerce-product-filter/" target="_blank">See the Pro Demos</a> | <a href="https://demo.hashthemes.com/super-woocommerce-product-filter/comparison-free-vs-pro/" target="_blank">Compare Free and Pro</a> | <a href="https://1.envato.market/eK5yrQ" target="_blank">Get Pro</a>
 
-<h3>Cross Browser Compatibility</h3>
-Works consistently in all current browsers, including Chrome, Firefox, Safari and Edge.
+<h3>Try it before you install</h3>
+Explore a test dashboard to get hands on with every feature. Visit the <a href="https://tastewp.com/plugins/super-product-filter/" target="_blank">Test Dashboard</a> to open a ready made site with the plugin installed.
 
-<h3>Multilingual and RTL Support</h3>
-Filter titles are registered with WPML String Translation and Polylang, so they can be translated for each language. Right to left languages such as Arabic and Hebrew are supported.
-
-<h3>WooCommerce HPOS Compatible</h3>
-The plugin declares compatibility with WooCommerce High Performance Order Storage, so the WooCommerce status screen never lists it as incompatible.
-
-<h3>Support and Documentation</h3>
-Step by step documentation covers every setting, and help is available through the WordPress.org support forum. Pro customers get direct support from us, and pro updates arrive in the WordPress dashboard once the license key is activated.
-
-<h3>ACF and Custom Meta Field Filters - <strong>PRO</strong></h3>
-Turn Advanced Custom Fields values into filters, or define your own meta keys and the options shoppers pick from, so products can be filtered by any data you store on them.
-
-<h3>Step By Step Filtering - <strong>PRO</strong></h3>
-Reveal the next filter only once the one before it is answered, such as a category first, then its attributes, then a price range. Presenting filters in a logical order keeps each choice relevant to the last and reduces overwhelm.
-
-<h3>Conditional Display of Filters by Product Category, Tag or Brand - <strong>PRO</strong></h3>
-Show or hide specific filters depending on the product category, tag or brand being viewed, so screen size appears for laptops and not for wine. Only relevant filters are displayed, which streamlines the browsing experience and reduces clutter.
-
-<h3>Hide Empty Terms and Search Inside a Filter - <strong>PRO</strong></h3>
-Drop terms that would return no products, so shoppers never pick an option that leads to an empty page, and add a search box inside long filters that narrows the list of terms as you type.
-
-<h3>Per Filter Descriptions, Icons and Labels - <strong>PRO</strong></h3>
-Add a description and an icon to each filter title, write your own label for the in stock and on sale ticks, show the price filter as a pair of inputs instead of a slider, and lay the terms inside a filter out in up to three columns.
-
-<h3>Dynamic Price Range and Variation Images - <strong>PRO</strong></h3>
-The price slider can follow the results, moving its ends to the cheapest and dearest products currently shown. When an attribute filter is applied, a variable product shows the image of the matching variation in the product list instead of its main image.
-
-<h3>Readable Filter URLs and Redirect to Another Page - <strong>PRO</strong></h3>
-Filtered addresses become paths such as /shop/filter/categories-laptop/ instead of a query string, on the shop page, category and tag archives and any page holding a filter shortcode. A filter can also be placed on any page and send the shopper to your shop with the results applied.
-
-<h3>AJAX Pagination, Load More and Infinite Scroll - <strong>PRO</strong></h3>
-Load each page of results over AJAX instead of reloading, or replace paged links with a Load More button carrying your own text, or with infinite scroll. Pagination can also be kept on archive pages once filters are applied.
-
-<h3>Attach to the Shop Archive with Visibility Rules - <strong>PRO</strong></h3>
-Place the filter in the header of the shop and category pages without editing a template, then decide where it shows: on every archive, only on the shop page or on chosen categories, tags and brands, or hidden on the ones you name. Filters can be laid out across up to eight columns, and the selected filter chips can sit before the filters, after them or above the products, grouped by attribute.
-
-<h3>Filter Styles and Full Design Control - <strong>PRO</strong></h3>
-Eleven checkbox and radio styles, ten each for price sliders, buttons and toggles, six each for dropdowns, multi selects, color swatches and image swatches, chip styles for multi select, and a styled dropdown in place of the browser one. Border, background, icon and active colors and sizing for every control with a live preview of each setting, star colors for the rating filter, styling for the apply button, input fields and active filter chips, and full filter box styling with background, border, radius, shadow and padding. The off-canvas trigger button can be a font icon, an uploaded image or a hamburger icon with attention animations such as pulse, bounce and swing, the panel gets show and hide animations and a separate width for small screens, and sixteen loading animations or your own image replace the three in the free version.
-
-<h3>Custom CSS and JavaScript - <strong>PRO</strong></h3>
-Each preset has a CSS box of its own, plus JavaScript that runs before and after every filter request, for tweaks that need no theme edit.
-
-<h3>Shop Builder with Quick View, Wishlist and Compare - <strong>PRO</strong></h3>
-Build the product card itself: image, badge, category, title, price, rating and buttons, in a full page builder with a device switcher for desktop, tablet and mobile. Start from one of forty ready made templates and edit it, pick a grid such as uniform, featured first, repeating highlight, staggered or masonry, and set the image aspect ratio and hover effect, including a fade or slide to the second gallery image. Add quick view popups, wishlist and compare buttons through YITH or WCBoost, choose the products, order and page size the card list shows, and assign a template to the WooCommerce shop and category pages.
+<h3>Documentation and Support</h3>
+Step by step <a href="https://hashthemes.com/documentation/super-woocommerce-product-filter-documentation/" target="_blank">documentation</a> covers every setting, and help is available through the <a href="https://wordpress.org/support/plugin/super-product-filter/" target="_blank">WordPress.org support forum</a>. Found a bug or have an idea? We read every thread.
 
 <h3>Get Started Today!</h3>
-Ready to transform your WooCommerce store? Install Super Product Filter now and empower your customers with a superior shopping experience.
+Install Super Product Filter, add a preset, drop the block or shortcode where you want it, and give your shoppers a faster way to find what they came for.
 
 == Premium Upgrade ==
 For premium upgrade, please click below link <br>
