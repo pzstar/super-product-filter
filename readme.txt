@@ -4,7 +4,7 @@ Tags: ajax filter, ajax product filter, product filter, woocommerce ajax filter,
 Requires at least: 6.3
 Requires PHP: 7.2
 Tested up to: 7.1
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -181,6 +181,9 @@ For premium upgrade, please click below link <br>
 <li>Activate the plugin through the 'Plugins' menu in WordPress</li>
 
 == Changelog ==
+= 2.0.2 - 16 Sep, 2026 =
+* Added - Font family dropdowns now list each family in the font it names, so a family can be picked by the look of it. Only the part of the list scrolled to is fetched, and standard fonts are drawn without fetching anything
+
 = 2.0.1 - 11 Sep, 2026 =
 * Fixed - Product grids of four columns, or seven and more, kept their desktop widths on phones and small tablets instead of dropping to two across. The grid widths added in 2.0.0 now stop at WooCommerce's small screen breakpoint, including on themes that move it, such as Astra
 

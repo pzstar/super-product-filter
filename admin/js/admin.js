@@ -303,6 +303,100 @@
                 });
             },
 
+            /*
+             * The families the browser has to fetch, named by the optgroup they
+             * sit in. Worked out once per dropdown and kept on the select.
+             */
+            googleFamilies: function ($select) {
+                var known = $select.data('swpfGoogleFamilies');
+
+                if (!known) {
+                    known = {};
+
+                    $select.find('optgroup').each(function () {
+                        if (!/google/i.test($(this).attr('label') || '')) {
+                            return;
+                        }
+
+                        $(this).children('option').each(function () {
+                            known[$(this).text().trim()] = true;
+                        });
+                    });
+
+                    $select.data('swpfGoogleFamilies', known);
+                }
+
+                return known;
+            },
+
+            /*
+             * Draws an open family dropdown in the faces it lists, so a family
+             * can be picked by the look of it rather than by name alone.
+             *
+             * Only what has been scrolled to is drawn. The list runs to around a
+             * thousand families, and fetching every one of them to open a
+             * dropdown would cost far more than it tells anyone.
+             */
+            paintDropdown: function ($select) {
+                var $results = $select.next('.chosen-container').find('.chosen-results'),
+                    results = $results[0];
+
+                if (!results) {
+                    return;
+                }
+
+                var google = swpfTypography.googleFamilies($select);
+
+                var paint = function (item) {
+                    var family = ($(item).text() || '').trim();
+
+                    /* The first entry stands for whatever the theme already
+                       uses, so it has no face of its own to show. */
+                    if (!family || family === 'Default' || item.getAttribute('data-swpf-previewed')) {
+                        return;
+                    }
+
+                    item.setAttribute('data-swpf-previewed', '1');
+                    swpfTypography.load(family, '', !!google[family]);
+                    item.style.fontFamily = swpfTypography.stack(family);
+                };
+
+                var $items = $results.children('li.active-result');
+
+                if (!window.IntersectionObserver) {
+                    /* With no way of telling what is on screen, drawing the head
+                       of the list beats fetching every family at once. */
+                    $items.slice(0, 60).each(function () {
+                        paint(this);
+                    });
+
+                    return;
+                }
+
+                var previous = $select.data('swpfFontObserver');
+
+                if (previous) {
+                    previous.disconnect();
+                }
+
+                var observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            paint(entry.target);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {root: results, rootMargin: '240px 0px'});
+
+                $items.each(function () {
+                    if (!this.getAttribute('data-swpf-previewed')) {
+                        observer.observe(this);
+                    }
+                });
+
+                $select.data('swpfFontObserver', observer);
+            },
+
             value: function ($group, selector) {
                 var $field = $group.find(selector).first();
 
@@ -401,6 +495,23 @@
         });
 
         swpfTypography.init();
+
+        /* Chosen replaces the select with markup of its own, so the families can
+           only be drawn once the dropdown is open, and again whenever a search
+           rebuilds the list. */
+        var swpfFamilySelects = 'select.swpf-typography-family, select.swpf-typography-font-family, select.typography_face';
+
+        $(document).on('chosen:showing_dropdown', swpfFamilySelects, function () {
+            swpfTypography.paintDropdown($(this));
+        });
+
+        $(document).on('keyup', '.chosen-container .chosen-search-input, .chosen-container .chosen-search input', function () {
+            var $select = $(this).closest('.chosen-container').prev(swpfFamilySelects);
+
+            if ($select.length) {
+                swpfTypography.paintDropdown($select);
+            }
+        });
 
         $(document).on('change', '.typography_face', function () {
 
