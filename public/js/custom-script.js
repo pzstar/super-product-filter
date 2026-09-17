@@ -14,6 +14,223 @@ const SuperWooProductFilterUtils = {
     }
 }
 
+/**
+ * Where the pagination is.
+ *
+ * WooCommerce's own class covers most themes. A theme that draws pagination of
+ * its own is named in a preset's Products Pagination Div Selector Class, and
+ * whatever the filter resolves is tagged with data-swpf-region. Every lookup goes
+ * through here so all three are honoured alike. The presets' settings are read
+ * straight from their forms, so this works before any filter has run.
+ */
+const SuperWooProductFilterPagination = {
+
+    /**
+     * Selector list matching every pagination wrapper on the page.
+     *
+     * @return {string}
+     */
+    wrapper() {
+        const forms = document.querySelectorAll('.swpf-main-wrap form[data-config]');
+
+        if (this.cache && this.cache.count === forms.length) {
+            return this.cache.selector;
+        }
+
+        const selectors = ['.woocommerce-pagination', '[data-swpf-region="pagination"]'];
+
+        forms.forEach((form) => {
+            let custom = '';
+
+            try {
+                custom = String(JSON.parse(form.getAttribute('data-config')).pagination_selector || '').trim();
+                // A mistyped selector must not take the stock pagination down with it.
+                document.querySelector(custom);
+            } catch (e) {
+                return;
+            }
+
+            if (selectors.indexOf(custom) === -1) {
+                selectors.push(custom);
+            }
+        });
+
+        this.cache = {count: forms.length, selector: selectors.join(', ')};
+
+        return this.cache.selector;
+    },
+
+    /**
+     * The link to the next page, when there is one.
+     *
+     * @return {jQuery}
+     */
+    next() {
+        return jQuery(this.wrapper()).find('a.next, a[rel="next"]');
+    },
+
+    /**
+     * The page a wrapper marks as current.
+     *
+     * @param {jQuery} $wrap
+     * @return {number}
+     */
+    currentPage($wrap) {
+        return this.pageNumber($wrap.find('.current, [aria-current="page"]').first());
+    },
+
+    /**
+     * The page number an element shows. Themes often put screen reader text such
+     * as "Page" in front of it, so only the digits are read.
+     *
+     * @param {jQuery} $el
+     * @return {number} NaN when there is no number.
+     */
+    pageNumber($el) {
+        const digits = ($el.text() || '').match(/\d+/);
+
+        return digits ? parseInt(digits[0], 10) : NaN;
+    },
+
+    /**
+     * The page a pagination link leads to.
+     *
+     * Read from the address first. A theme's own arrows need not sit beside a
+     * marked current page, as the "page 3 of 12" style of navigation shows, but
+     * every link WordPress builds carries the page it points at.
+     *
+     * @param {jQuery} $link
+     * @param {jQuery} $wrap The pagination the link belongs to.
+     * @return {number} NaN when the link says nothing about which page it is.
+     */
+    targetPage($link, $wrap) {
+        const href = $link.attr('href') || '',
+            fromHref = href.match(/\/page\/(\d+)\/?(?:[?#]|$)/) || href.match(/[?&](?:paged|product-page|query-\d+-page)=(\d+)/);
+
+        if (fromHref) {
+            return parseInt(fromHref[1], 10);
+        }
+
+        if ($link.is('.next, [rel="next"]')) {
+            return this.currentPage($wrap) + 1;
+        }
+
+        if ($link.is('.prev, [rel="prev"]')) {
+            return this.currentPage($wrap) - 1;
+        }
+
+        return this.pageNumber($link);
+    },
+
+    /**
+     * The page after the one a pagination shows.
+     *
+     * @param {jQuery} $wrap
+     * @return {number}
+     */
+    nextPage($wrap) {
+        const $next = $wrap.find('a.next, a[rel="next"]').first();
+
+        return $next.length ? this.targetPage($next, $wrap) : this.currentPage($wrap) + 1;
+    },
+};
+
+/**
+ * Finding a tagged region again in a page fetched later.
+ *
+ * The server tags only the markup WooCommerce renders, so whatever the filter
+ * tagged itself, such as a theme's own pagination, arrives untagged. Each element
+ * therefore remembers how it was found, and is paired with the element found the
+ * same way in the fetched page. That keeps a page with several of a region, say
+ * pagination above and below the products, from having one swapped for the other.
+ */
+const SuperWooProductFilterRegions = {
+
+    /**
+     * An element's tag name and its first class of the theme's own, which is the
+     * part of it that stays the same from one render to the next.
+     *
+     * @param {Element} el
+     * @return {string}
+     */
+    signature(el) {
+        const own = Array.from(el.classList).find(name => 0 !== name.indexOf('swpf-'));
+
+        return el.tagName.toLowerCase() + (own ? '.' + own : '');
+    },
+
+    /**
+     * The elements a selector matches that share a signature, in page order.
+     */
+    alike(root, selector, signature) {
+        try {
+            return Array.from(root.querySelectorAll(selector)).filter(el => this.signature(el) === signature);
+        } catch (e) {
+            return [];
+        }
+    },
+
+    /**
+     * Record the selector an element was found with, and which of its matches it is.
+     *
+     * @param {Element} el
+     * @param {string} selector
+     */
+    remember(el, selector) {
+        if (el.hasAttribute('data-swpf-locator')) {
+            return;
+        }
+
+        const signature = this.signature(el);
+        const index = this.alike(document, selector, signature).indexOf(el);
+
+        el.setAttribute('data-swpf-locator', JSON.stringify({s: selector, sig: signature, i: Math.max(index, 0)}));
+    },
+
+    /**
+     * The element in a fetched page that stands where this one does.
+     *
+     * @param {Element} el
+     * @param {Document} doc
+     * @return {Element|null}
+     */
+    counterpart(el, doc) {
+        let locator = null;
+
+        try {
+            locator = JSON.parse(el.getAttribute('data-swpf-locator') || 'null');
+        } catch (e) {
+            locator = null;
+        }
+
+        if (!locator) {
+            // Tagged by the server, which tags the fetched page the same way.
+            const source = el.getAttribute('data-swpf-source');
+            const selector = '[data-swpf-region="' + el.getAttribute('data-swpf-region') + '"]' + (source ? '[data-swpf-source="' + source + '"]' : '');
+            const signature = this.signature(el);
+
+            locator = {s: selector, sig: signature, i: this.alike(document, selector, signature).indexOf(el)};
+        }
+
+        return locator.i < 0 ? null : (this.alike(doc, locator.s, locator.sig)[locator.i] || null);
+    },
+
+    /**
+     * Swap a region for its counterpart, keeping the tags the filter put on it.
+     *
+     * @param {Element} current
+     * @param {Element} incoming
+     */
+    replace(current, incoming) {
+        Array.from(current.attributes).forEach((attr) => {
+            if (0 === attr.name.indexOf('data-swpf-') && !incoming.hasAttribute(attr.name)) {
+                incoming.setAttribute(attr.name, attr.value);
+            }
+        });
+
+        current.replaceWith(incoming);
+    },
+};
 class SuperWooProductFilter {
     constructor (el) {
         if (!(el instanceof jQuery) || !el.hasClass('swpf-main-wrap')) {
@@ -76,6 +293,7 @@ class SuperWooProductFilter {
             const configured = (this.config[key] || '').trim();
             const isDeliberate = configured && STOCK[key].indexOf(configured) === -1;
             let found = jQuery();
+            let foundWith = '';
             // An explicit selector may legitimately match several lists on one
             // page; a guess should only ever claim one element.
             let fromSelector = false;
@@ -83,6 +301,7 @@ class SuperWooProductFilter {
             if (isDeliberate) {
                 found = jQuery(configured);
                 fromSelector = found.length > 0;
+                foundWith = configured;
             }
 
             if (!found.length) {
@@ -104,10 +323,12 @@ class SuperWooProductFilter {
             if (!found.length && configured) {
                 found = jQuery(configured);
                 fromSelector = found.length > 0;
+                foundWith = configured;
             }
 
             if (!found.length) {
                 found = jQuery(CANDIDATES[region]);
+                foundWith = CANDIDATES[region];
             }
 
             if (!found.length && region === 'products') {
@@ -118,12 +339,18 @@ class SuperWooProductFilter {
                     const container = probe.closest('ul.products, .products, .wc-block-product-template') || probe.parentElement;
                     if (container) {
                         found = jQuery(container);
+                        foundWith = SuperWooProductFilterRegions.signature(container);
                     }
                 }
             }
 
             if (found.length) {
-                (fromSelector ? found : found.first()).attr('data-swpf-region', region);
+                const claimed = fromSelector ? found : found.first();
+
+                claimed.each(function () {
+                    SuperWooProductFilterRegions.remember(this, foundWith);
+                });
+                claimed.attr('data-swpf-region', region);
                 this.config[key] = tag;
             }
         });
@@ -522,33 +749,45 @@ class SuperWooProductFilter {
         }).then(function (markup) {
             const doc = new DOMParser().parseFromString(markup, 'text/html');
 
+            // Loops a shortcode or widget drew run their own query, which filtering
+            // does not change, and swapping them would undo whatever the theme set
+            // up on them, such as a carousel.
+            const tagged = Array.from(document.querySelectorAll('[data-swpf-region]'))
+                .filter(el => el.getAttribute('data-swpf-source') !== 'shortcode');
+
+            // A region inside another, such as a result count within a theme's
+            // pagination bar, comes along when the outer one is swapped.
+            const outermost = tagged.filter(el => !tagged.some(other => other !== el && other.contains(el)));
+
+            // Pair everything before changing anything, since moving an element
+            // out of the fetched page changes what is left to match against.
+            const pairs = outermost.map(el => ({
+                region: el.getAttribute('data-swpf-region'),
+                current: el,
+                incoming: SuperWooProductFilterRegions.counterpart(el, doc)
+            })).filter(pair => REGIONS.indexOf(pair.region) !== -1);
+
             // Nothing recognisable came back. Hand over before touching the page,
             // so a bad response can never blank out the products already shown.
-            if (!doc.querySelector('[data-swpf-region="products"]')) {
+            if (!pairs.some(pair => pair.region === 'products' && pair.incoming)) {
                 giveUp();
                 return;
             }
 
             applied = true;
 
-            REGIONS.forEach(function (region) {
-                const selector = '[data-swpf-region="' + region + '"]';
-                const current = document.querySelector(selector);
-
-                if (!current) {
-                    return;
-                }
-
-                const incoming = doc.querySelector(selector);
-
-                if (incoming) {
-                    current.replaceWith(incoming);
-                } else if (region !== 'products') {
+            pairs.forEach(function (pair) {
+                if (pair.incoming) {
+                    SuperWooProductFilterRegions.replace(pair.current, pair.incoming);
+                } else if (pair.region !== 'products') {
                     // A region the filtered page no longer renders, such as
                     // pagination once the results fit on one page.
-                    current.innerHTML = '';
+                    pair.current.innerHTML = '';
                 }
             });
+
+            // Tag what came in untagged inside a swapped region.
+            mainWrap.resolveRegions();
 
             // Keep the panel in step so term counts and active filters match.
             const panelId = 'swpf-filter-preset-' + filterId;
@@ -576,7 +815,7 @@ class SuperWooProductFilter {
             jQuery(document).trigger('swpf_after_filter');
             jQuery('body').removeClass('swpf-filter-loading');
             jQuery('body').removeClass('swpf-pagination-loading');
-            jQuery('.woocommerce-pagination').removeClass('swpf-processing');
+            jQuery(SuperWooProductFilterPagination.wrapper()).removeClass('swpf-processing');
             jQuery('.swpf-shop-load-more').removeClass('swpf-button-clicked');
         }).catch(function () {
             if (applied) {
@@ -699,7 +938,7 @@ class SuperWooProductFilter {
                 jQuery(document).trigger('swpf_after_filter');
                 jQuery('body').removeClass('swpf-filter-loading');
                 jQuery('body').removeClass('swpf-pagination-loading');
-                jQuery('.woocommerce-pagination').removeClass('swpf-processing');
+                jQuery(SuperWooProductFilterPagination.wrapper()).removeClass('swpf-processing');
                 jQuery('.swpf-shop-load-more').removeClass('swpf-button-clicked');
 
                 const html_cols = res['html_columns'];
@@ -816,9 +1055,8 @@ jQuery(($) => {
     var load_more_class = 'swpf-shop-load-more';
 
     var selector = {
-        pagination: '.woocommerce-pagination',
-        pagination_button: '.woocommerce-pagination a',
-        next_button: '.woocommerce-pagination a.next',
+        // Includes any wrapper a preset names in Products Pagination Div Selector Class.
+        pagination: SuperWooProductFilterPagination.wrapper(),
         products_container: '.products',
         product_item: 'section.product',
         breadcrumb_container: '.breadcrumbs-container',
@@ -833,21 +1071,22 @@ jQuery(($) => {
 
     if (filterForm.length > 0) {
         /* Ajax Pagination */
-        $(document).on('click', selector.pagination_button, function (e) {
-            e.preventDefault();
-            let target = $(e.currentTarget),
-                pagination_wrap = target.closest('.woocommerce-pagination'),
-                filterPreset = $('#' + pagination_wrap.data('swpf-preset'));
-            let paged;
-            // $('body').addClass('swpf-pagination-loading');
-
-            if (target.hasClass('next')) {
-                paged = parseInt(pagination_wrap.find('.current').text()) + 1;
-            } else if (target.hasClass('prev')) {
-                paged = parseInt(target.closest('nav.woocommerce-pagination').find('.current').text()) - 1;
-            } else {
-                paged = parseInt(target.text());
+        $(document).on('click', 'a', function (e) {
+            if (!$(this).closest(selector.pagination).length) {
+                return;
             }
+
+            let target = $(e.currentTarget),
+                pagination_wrap = target.closest(selector.pagination),
+                filterPreset = $('#' + pagination_wrap.data('swpf-preset'));
+            let paged = SuperWooProductFilterPagination.targetPage(target, pagination_wrap);
+
+            // Not a page link this can read, so let the browser follow it.
+            if (isNaN(paged)) {
+                return;
+            }
+
+            e.preventDefault();
 
             $('.swpf-main-wrap').find('input[name="paged"]').val(paged);
             const swpf_obj = new SuperWooProductFilter(filterPreset);
