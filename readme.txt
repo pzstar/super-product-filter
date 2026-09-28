@@ -4,7 +4,7 @@ Tags: ajax filter, ajax product filter, product filter, woocommerce ajax filter,
 Requires at least: 6.3
 Requires PHP: 7.2
 Tested up to: 7.1
-Stable tag: 2.0.3
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -181,12 +181,10 @@ For premium upgrade, please click below link <br>
 <li>Activate the plugin through the 'Plugins' menu in WordPress</li>
 
 == Changelog ==
-= 2.0.3 - 18 Sep, 2026 =
+= 2.0.2 - 28 Sep, 2026 =
 * Fixed - A custom Products Pagination Div Selector Class was ignored by the pagination links, which only looked for WooCommerce's own pagination, so themes with pagination markup of their own could not page through filtered results
 * Fixed - With Theme Compatibility Mode, a page showing pagination or the product list more than once only had the first copy updated, and could have it replaced with the wrong one. Each copy is now updated from its own counterpart on the filtered page, and product carousels from shortcodes or widgets are left untouched
 * Fixed - Page links are now read from their address, so a theme's own previous and next arrows work without a marked current page
-
-= 2.0.2 - 16 Sep, 2026 =
 * Added - Font family dropdowns now list each family in the font it names, so a family can be picked by the look of it. Only the part of the list scrolled to is fetched, and standard fonts are drawn without fetching anything
 
 = 2.0.1 - 11 Sep, 2026 =
