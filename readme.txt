@@ -181,7 +181,7 @@ For premium upgrade, please click below link <br>
 <li>Activate the plugin through the 'Plugins' menu in WordPress</li>
 
 == Changelog ==
-= 2.0.2 - 28 Sep, 2026 =
+= 2.0.2 - 1 Oct, 2026 =
 * Fixed - A custom Products Pagination Div Selector Class was ignored by the pagination links, which only looked for WooCommerce's own pagination, so themes with pagination markup of their own could not page through filtered results
 * Fixed - With Theme Compatibility Mode, a page showing pagination or the product list more than once only had the first copy updated, and could have it replaced with the wrong one. Each copy is now updated from its own counterpart on the filtered page, and product carousels from shortcodes or widgets are left untouched
 * Fixed - Page links are now read from their address, so a theme's own previous and next arrows work without a marked current page
