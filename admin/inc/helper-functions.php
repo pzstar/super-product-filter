@@ -844,15 +844,15 @@ function swpf_detect_icon_families($settings) {
         }
 
         if (0 === strpos($value, 'mdi-')) {
-            $families['materialdesignicons'] = true;
+            $families['materialdesignicons-7.4.47'] = true;
         } elseif (0 === strpos($value, 'icofont-')) {
-            $families['icofont'] = true;
-        } elseif (0 === strpos($value, 'essentialicon-')) {
-            $families['essentialicon'] = true;
+            $families['icofont-1.0.1'] = true;
+        } elseif (0 === strpos($value, 'esi-')) {
+            $families['essentialicon-1.0'] = true;
         } elseif (false !== strpos($value, 'fa-')) {
-            $families['fontawesome-6.3.0'] = true;
+            $families['fontawesome-7.3.1'] = true;
         } elseif ($elegant && in_array($value, $elegant, true)) {
-            $families['eleganticons'] = true;
+            $families['eleganticons-1.0'] = true;
         }
     });
 

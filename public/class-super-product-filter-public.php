@@ -36,11 +36,11 @@ class Super_Product_Filter_Public {
          * uses as it renders; the filter's own chrome needs none of them.
          */
         $swpf_icon_css = array(
-            'fontawesome-6.3.0' => 'public/css/fontawesome-6.3.0.css',
-            'eleganticons' => 'public/css/eleganticons.css',
-            'essentialicon' => 'public/css/essentialicon.css',
-            'icofont' => 'public/css/icofont.css',
-            'materialdesignicons' => 'public/css/materialdesignicons.css',
+            'fontawesome-7.3.1' => 'public/css/fontawesome-6.3.0.css',
+            'eleganticons-1.0' => 'public/css/eleganticons.css',
+            'essentialicon-1.0' => 'public/css/essentialicon.css',
+            'icofont-1.0.1' => 'public/css/icofont.css',
+            'materialdesignicons-7.4.47' => 'public/css/materialdesignicons.css',
         );
 
         foreach ($swpf_icon_css as $swpf_handle => $swpf_path) {

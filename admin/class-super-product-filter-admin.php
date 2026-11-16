@@ -41,11 +41,11 @@ class Super_Product_Filter_Admin {
     public function enqueue_styles() {
         global $post_type, $pagenow, $current_screen;
         if ('swpf-product-filter' == $post_type || $pagenow == 'widgets.php' || in_array($current_screen->id, array('swpf-product-filter_page_swpf-general-settings', 'swpf-product-filter_page_swpf-metafield-settings', 'swpf-product-filter_page_swpf-filter-builder'))) {
-            wp_enqueue_style('fontawesome-6.3.0', SWPF_URL . 'public/css/fontawesome-6.3.0.css', array(), $this->version);
-            wp_enqueue_style('eleganticons', SWPF_URL . 'public/css/eleganticons.css', array(), $this->version);
-            wp_enqueue_style('essentialicon', SWPF_URL . 'public/css/essentialicon.css', array(), $this->version);
-            wp_enqueue_style('materialdesignicons', SWPF_URL . 'public/css/materialdesignicons.css', array(), $this->version);
-            wp_enqueue_style('icofont', SWPF_URL . 'public/css/icofont.css', array(), $this->version);
+            wp_enqueue_style('fontawesome-7.3.1', SWPF_URL . 'public/css/fontawesome-6.3.0.css', array(), $this->version);
+            wp_enqueue_style('eleganticons-1.0', SWPF_URL . 'public/css/eleganticons.css', array(), $this->version);
+            wp_enqueue_style('essentialicon-1.0', SWPF_URL . 'public/css/essentialicon.css', array(), $this->version);
+            wp_enqueue_style('materialdesignicons-7.4.47', SWPF_URL . 'public/css/materialdesignicons.css', array(), $this->version);
+            wp_enqueue_style('icofont-1.0.1', SWPF_URL . 'public/css/icofont.css', array(), $this->version);
 
             /* Select2 */
             wp_enqueue_style('jquery-select2', SWPF_URL . 'admin/css/select2.min.css', array(), $this->version);

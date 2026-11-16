@@ -4,7 +4,7 @@ Tags: ajax filter, ajax product filter, product filter, woocommerce ajax filter,
 Requires at least: 6.3
 Requires PHP: 7.2
 Tested up to: 7.1
-Stable tag: 2.0.2
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -181,6 +181,12 @@ For premium upgrade, please click below link <br>
 <li>Activate the plugin through the 'Plugins' menu in WordPress</li>
 
 == Changelog ==
+= 2.1.0 - 16 Nov, 2026 =
+* Changed - Elegant Icons are now written egi-icon-cart rather than icon_cart, and Essential Icons esi-add rather than essentialicon-add, the same in every HashThemes theme and plugin. Icons already chosen in your filters, product layouts and settings are renamed automatically when the plugin updates
+* Changed - Font Awesome updated to 7.3.1 (with the Font Awesome 4 names built in) and Material Design Icons to 7.4.47
+* Changed - Each icon font loads under the same stylesheet handle as in the other HashThemes themes and plugins, so it loads only once
+* Changed - The icon picker lists match the icon fonts exactly, with the newer IcoFont brand icons (X, TikTok, Discord, Figma and more)
+
 = 2.0.2 - 1 Oct, 2026 =
 * Fixed - A custom Products Pagination Div Selector Class was ignored by the pagination links, which only looked for WooCommerce's own pagination, so themes with pagination markup of their own could not page through filtered results
 * Fixed - With Theme Compatibility Mode, a page showing pagination or the product list more than once only had the first copy updated, and could have it replaced with the wrong one. Each copy is now updated from its own counterpart on the filtered page, and product carousels from shortcodes or widgets are left untouched
