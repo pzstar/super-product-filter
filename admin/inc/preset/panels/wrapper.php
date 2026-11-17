@@ -17,8 +17,7 @@ wp_nonce_field('swpf-settings-nonce', 'swpf_settings_nonce');
 <div class="swpf-settings-main-wrapper">
     <div class="swpf-settings-inner-wrap">
         <?php
-        /* The section switcher is printed into the page header by the builder,
-           not here. See Super_Product_Filter_Panels::render_settings_nav(). */
+        /* The section switcher is printed into the page header by the builder, not here. */
         ?>
 
         <?php

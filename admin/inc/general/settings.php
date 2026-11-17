@@ -16,8 +16,7 @@ defined('ABSPATH') || die();
         <input type="hidden" name="updated" value="true" />
         <?php wp_nonce_field('swpf_nonce_update_general_settings', 'swpf_nonce'); ?>
         <?php
-        /* The same bar the filter builder uses, so moving between the two
-           screens does not feel like moving between two plugins. */
+        /* The same bar the filter builder uses, so both screens feel like one plugin. */
         ?>
         <div class="swpf-settings-topbar">
             <span class="swpf-settings-mark" aria-hidden="true">
