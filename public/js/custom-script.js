@@ -630,6 +630,7 @@ class SuperWooProductFilter {
                 // If Ajax is Enabled
                 jQuery(".swpf-filter-type-dropdown").val(jQuery(".swpf-filter-type-dropdown option:first").val());
                 this.getEl('input').prop('checked', false);
+                this.$el.form.find('input[name="s"]').val('');
 
                 if (this.getEl('input[name="paged"]')) {
                     this.$el['input[name="paged"]'].val('');

@@ -65,8 +65,8 @@ class SwpfProductFilter extends Widget_Base {
         );
 
         $posts = get_posts($args);
+        $option = array();
         if (!empty($posts)) {
-            $option = array();
             $option['none'] = esc_html__('None', 'super-product-filter');
             foreach ($posts as $post) {
                 $option[$post->ID] = $post->post_title;

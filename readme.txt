@@ -16,7 +16,7 @@ Shoppers leave when they cannot find what they came for. Super Product Filter fo
 
 It works with any WooCommerce theme, sits anywhere you want it through a block, a shortcode or an Elementor widget, and is set up in a purpose built filter builder rather than a wall of settings. The free version is not a trial. Everything listed under "Everything in the free version" works the day you activate it.
 
-<a href="https://demo.hashthemes.com/super-woocommerce-product-filter/" target="_blank">Live Demo</a> | <a href="https://tastewp.com/plugins/super-product-filter/" target="_blank">Try It in a Test Dashboard</a> | <a href="https://hashthemes.com/documentation/super-woocommerce-product-filter-documentation/" target="_blank">Documentation</a> | <a href="https://demo.hashthemes.com/super-woocommerce-product-filter/comparison-free-vs-pro/" target="_blank">Free vs Pro</a> | <a href="https://1.envato.market/eK5yrQ" target="_blank">Get Pro</a>
+<a href="https://demo.hashthemes.com/super-woocommerce-product-filter/" target="_blank">Live Demo</a> | <a href="https://tastewp.com/plugins/super-product-filter/" target="_blank">Try It in a Test Dashboard</a> | <a href="https://hashthemes.com/documentation/super-product-filter-documentation/" target="_blank">Documentation</a> | <a href="https://demo.hashthemes.com/super-woocommerce-product-filter/comparison-free-vs-pro/" target="_blank">Free vs Pro</a> | <a href="https://1.envato.market/eK5yrQ" target="_blank">Get Pro</a>
 
 <h3>Why stores choose Super Product Filter</h3>
 <ul>
@@ -166,7 +166,7 @@ Pro customers get direct support from us, and updates arrive in the WordPress da
 Explore a test dashboard to get hands on with every feature. Visit the <a href="https://tastewp.com/plugins/super-product-filter/" target="_blank">Test Dashboard</a> to open a ready made site with the plugin installed.
 
 <h3>Documentation and Support</h3>
-Step by step <a href="https://hashthemes.com/documentation/super-woocommerce-product-filter-documentation/" target="_blank">documentation</a> covers every setting, and help is available through the <a href="https://wordpress.org/support/plugin/super-product-filter/" target="_blank">WordPress.org support forum</a>. Found a bug or have an idea? We read every thread.
+Step by step <a href="https://hashthemes.com/documentation/super-product-filter-documentation/" target="_blank">documentation</a> covers every setting, and help is available through the <a href="https://wordpress.org/support/plugin/super-product-filter/" target="_blank">WordPress.org support forum</a>. Found a bug or have an idea? We read every thread.
 
 <h3>Get Started Today!</h3>
 Install Super Product Filter, add a preset, drop the block or shortcode where you want it, and give your shoppers a faster way to find what they came for.

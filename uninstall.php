@@ -32,6 +32,11 @@ function swpf_uninstall_current_site() {
         && isset($swpf_general_settings['delete_data_on_uninstall'])
         && 'on' === $swpf_general_settings['delete_data_on_uninstall'];
 
+    if (file_exists(WP_PLUGIN_DIR . '/super-woocommerce-product-filter/super-woocommerce-product-filter.php')) {
+        /* Super WooCommerce Product Filter (Pro) uses these same filters and settings. */
+        return;
+    }
+
     if (!$swpf_delete_everything) {
         /*
          * The filters and settings stay put, so reinstalling picks up exactly

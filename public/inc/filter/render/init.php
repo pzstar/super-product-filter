@@ -32,6 +32,23 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
         include SWPF_PATH . 'public/inc/filter/render/ajax-request.php';
     }
 
+    /* The archive's own term must always apply; with OR between filters it would otherwise be one of the alternatives. */
+
+    public static function require_archive_term($tax_query, $clause) {
+
+        if (isset($tax_query['relation']) && strtoupper($tax_query['relation']) === 'OR' && count($tax_query) > 1) {
+
+            return array('relation' => 'AND', $tax_query, $clause);
+
+        }
+
+        $tax_query[] = $clause;
+
+        return $tax_query;
+
+    }
+
+
     public function filter_posts($wp_query, $swpf_post_data = false) {
         if ((isset($GLOBALS['current_screen']) && $GLOBALS['current_screen']->in_admin()) || is_customize_preview()) {
             return $wp_query;
@@ -241,23 +258,23 @@ class Super_Product_Filter_Render extends Super_Product_Filter_General {
             }
 
             if (wp_doing_ajax() && swpf_get_post('is_prod_taxonomy') == 'yes') {
-                $tax_query[] = array(
+                $tax_query = self::require_archive_term($tax_query, array(
                     'taxonomy' => swpf_get_post('page_tax_name'),
                     'field' => 'id',
                     'terms' => swpf_get_post('page_cat_id'),
                     'operator' => 'IN'
-                );
+                ));
             }
 
             if (!wp_doing_ajax() && is_product_taxonomy()) {
                 $term = get_queried_object();
                 $term_name = $term->name;
-                $tax_query[] = array(
+                $tax_query = self::require_archive_term($tax_query, array(
                     'taxonomy' => get_queried_object()->taxonomy,
                     'field' => 'id',
                     'terms' => get_queried_object()->term_id,
                     'operator' => 'IN'
-                );
+                ));
             }
 
             $wp_query->set('post_type', 'product');

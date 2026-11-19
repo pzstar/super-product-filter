@@ -146,7 +146,7 @@ $swpf_text_decorations = swpf_get_text_decoration_choices();
                             <label><?php esc_html_e('Font Family', 'super-product-filter'); ?></label>
                             <div class="swpf-settings-input-field">
                                 <select name="swpf_settings[heading_typo][family]" class="typography_face">
-                                    <option value="inherit" <?php selected($swpf_settings['heading_typo']['family'], 'inherit'); ?>><?php echo esc_html('Default', 'super-product-filter'); ?></option>
+                                    <option value="inherit" <?php selected($swpf_settings['heading_typo']['family'], 'inherit'); ?>><?php echo esc_html__('Default', 'super-product-filter'); ?></option>
                                     <?php
                                     if ($swpf_standard_fonts) {
                                         ?>
@@ -256,7 +256,7 @@ $swpf_text_decorations = swpf_get_text_decoration_choices();
                             <label><?php esc_html_e('Font Family', 'super-product-filter'); ?></label>
                             <div class="swpf-settings-input-field">
                                 <select name="swpf_settings[content_typo][family]" class="typography_face">
-                                    <option value="inherit" <?php selected($swpf_settings['content_typo']['family'], 'inherit'); ?>><?php echo esc_html('Default', 'super-product-filter'); ?></option>
+                                    <option value="inherit" <?php selected($swpf_settings['content_typo']['family'], 'inherit'); ?>><?php echo esc_html__('Default', 'super-product-filter'); ?></option>
                                     <?php if ($swpf_standard_fonts) { ?>
                                         <optgroup label="Standard Fonts">
                                             <?php foreach ($swpf_standard_fonts as $swpf_standard_font) { ?>
@@ -625,7 +625,7 @@ $swpf_text_decorations = swpf_get_text_decoration_choices();
                 <div class="swpf-settings-list-row">
                     <h3 style="margin: 0"><?php esc_html_e('Filter Styles', 'super-product-filter'); ?></h3>
                     <p class="swpf-desc" style="margin-top:6px">
-                        <?php esc_html_e('The free version uses the first style of each control. Pro opens up the rest, along with the colour and size settings for each one.', 'super-product-filter'); ?>
+                        <?php esc_html_e('The free version uses the first style of each control. Pro opens up the rest, along with the color and size settings for each one.', 'super-product-filter'); ?>
                     </p>
 
                     <div class="swpf-two-column-row">
@@ -722,7 +722,7 @@ $swpf_text_decorations = swpf_get_text_decoration_choices();
                         );
 
                         swpf_pro_field(
-                            esc_html__('Colour Swatch Style', 'super-product-filter'),
+                            esc_html__('Color Swatch Style', 'super-product-filter'),
                             array(
                                 esc_html__('Style 1 — corner badge (in use)', 'super-product-filter'),
                                 esc_html__('Offset Shadow', 'super-product-filter'),
@@ -764,12 +764,12 @@ $swpf_text_decorations = swpf_get_text_decoration_choices();
                         );
 
                         swpf_pro_field(
-                            esc_html__('Control Colours &amp; Sizes', 'super-product-filter'),
+                            esc_html__('Control Colors &amp; Sizes', 'super-product-filter'),
                             array(
-                                esc_html__('Border, background, icon and active colours', 'super-product-filter'),
+                                esc_html__('Border, background, icon and active colors', 'super-product-filter'),
                                 esc_html__('Size for every control', 'super-product-filter'),
                             ),
-                            esc_html__('Set the colours and size of each control separately.', 'super-product-filter')
+                            esc_html__('Set the colors and size of each control separately.', 'super-product-filter')
                         );
                         ?>
                     </div>

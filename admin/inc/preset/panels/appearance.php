@@ -38,7 +38,7 @@ defined('ABSPATH') || die();
                     <?php esc_html_e('Displays only the products that belong to the selected category when filtering. Leave blank to include all categories.', 'super-product-filter'); ?><br>
                     <?php
                     /* translators: 1: Link open, 2: Link close */
-                    echo sprintf(esc_html__('Find in detail %1$shere%2$s', 'super-product-filter'), '<a href="https://hashthemes.com/documentation/super-woocommerce-product-filter-documentation/#ShowOnly(Categories)" target="_blank">', '</a>');
+                    echo sprintf(esc_html__('Find in detail %1$shere%2$s', 'super-product-filter'), '<a href="https://hashthemes.com/documentation/super-product-filter-documentation/#Filter-Settings" target="_blank">', '</a>');
                     ?>
                 </p>
             </div>
@@ -56,7 +56,7 @@ defined('ABSPATH') || die();
                     <?php
                     esc_html_e('Instant filtering on selection, no submit button required.', 'super-product-filter');
                     /* translators: 1: Link open, 2: Link close */
-                    echo sprintf(esc_html__('Find in detail %1$shere%2$s', 'super-product-filter'), '<a href="https://hashthemes.com/documentation/super-woocommerce-product-filter-documentation/#AutoSubmit" target="_blank">', '</a>');
+                    echo sprintf(esc_html__('Find in detail %1$shere%2$s', 'super-product-filter'), '<a href="https://hashthemes.com/documentation/super-product-filter-documentation/#Filter-Settings" target="_blank">', '</a>');
                     ?>
                 </p>
             </div>
@@ -79,11 +79,11 @@ defined('ABSPATH') || die();
                     <option value="OR" <?php selected($swpf_settings['config']['logic_operator'], 'OR'); ?>><?php esc_html_e('OR', 'super-product-filter'); ?></option>
                 </select>
                 <p class="swpf-desc">
-                    <?php esc_html_e('AND refers all the fiters should be matched.', 'super-product-filter'); ?><br>
-                    <?php esc_html_e('OR refers if any one of the fiter is matched.', 'super-product-filter'); ?><br>
+                    <?php esc_html_e('AND: a product must match every filter.', 'super-product-filter'); ?><br>
+                    <?php esc_html_e('OR: a product must match at least one filter.', 'super-product-filter'); ?><br>
                     <?php
                     /* translators: 1: Link open, 2: Link close */
-                    echo sprintf(esc_html__('Find in detail %1$shere%2$s', 'super-product-filter'), '<a href="https://hashthemes.com/documentation/super-woocommerce-product-filter-documentation/#LogicOperator" target="_blank">', '</a>');
+                    echo sprintf(esc_html__('Find in detail %1$shere%2$s', 'super-product-filter'), '<a href="https://hashthemes.com/documentation/super-product-filter-documentation/#Filter-Settings" target="_blank">', '</a>');
                     ?>
                 </p>
             </div>
@@ -175,7 +175,7 @@ defined('ABSPATH') || die();
                     <?php
                     esc_html_e('Open/Close each filter by clicking on button.', 'super-product-filter');
                     /* translators: 1: Link open, 2: Link close */
-                    echo sprintf(esc_html__('Find in detail %1$shere%2$s', 'super-product-filter'), '<a href="https://hashthemes.com/documentation/super-woocommerce-product-filter-documentation/#Show/HideEachFilter" target="_blank">', '</a>');
+                    echo sprintf(esc_html__('Find in detail %1$shere%2$s', 'super-product-filter'), '<a href="https://hashthemes.com/documentation/super-product-filter-documentation/#Filter-Settings" target="_blank">', '</a>');
                     ?>
                 </p>
             </div>

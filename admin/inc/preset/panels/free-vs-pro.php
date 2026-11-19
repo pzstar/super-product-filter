@@ -144,7 +144,7 @@ endif;
 
         swpf_compare_row(
             esc_html__('Product Attributes', 'super-product-filter'),
-            esc_html__('Any WooCommerce attribute, shown as checkboxes, radios, buttons, a dropdown, a multi select, toggles, colour or image swatches.', 'super-product-filter'),
+            esc_html__('Any WooCommerce attribute, shown as checkboxes, radios, buttons, a dropdown, a multi select, toggles, color or image swatches.', 'super-product-filter'),
             array(esc_html__('All 8 display types', 'super-product-filter'), 'yes'),
             array(esc_html__('All 8 display types', 'super-product-filter'), 'yes')
         );
@@ -152,7 +152,7 @@ endif;
         swpf_compare_row(
             esc_html__('Price Range Slider', 'super-product-filter'),
             esc_html__('Pro can also move the slider ends to match the products currently shown.', 'super-product-filter'),
-            array(esc_html__('Fixed range', 'super-product-filter'), 'yes'),
+            array(esc_html__('Narrows with category and attribute choices', 'super-product-filter'), 'yes'),
             array(esc_html__('Range follows the results', 'super-product-filter'), 'plain')
         );
 
@@ -196,7 +196,7 @@ endif;
 
         swpf_compare_row(
             esc_html__('Variation Images In The Loop', 'super-product-filter'),
-            esc_html__('Filtering by a colour shows that colour on the product card.', 'super-product-filter'),
+            esc_html__('Filtering by a color shows that color on the product card.', 'super-product-filter'),
             array(esc_html__('No', 'super-product-filter'), 'no'),
             array(esc_html__('Yes', 'super-product-filter'), 'plain')
         );
@@ -284,7 +284,7 @@ endif;
         swpf_compare_row(
             esc_html__('Collapsible Filter Boxes', 'super-product-filter'),
             esc_html__('Let shoppers fold a filter away, or cap its height and scroll.', 'super-product-filter'),
-            array(esc_html__('No', 'super-product-filter'), 'no'),
+            array(esc_html__('Yes', 'super-product-filter'), 'yes'),
             array(esc_html__('Yes', 'super-product-filter'), 'plain'),
             $swpf_demo . 'open-close-filter-box/'
         );
@@ -356,7 +356,7 @@ endif;
         );
 
         swpf_compare_row(
-            esc_html__('Colour Swatch Styles', 'super-product-filter'),
+            esc_html__('Color Swatch Styles', 'super-product-filter'),
             esc_html__('Square or round, with a tick, ring, notch or offset shadow when chosen.', 'super-product-filter'),
             array(esc_html__('1 style', 'super-product-filter'), 'plain'),
             array(esc_html__('6 styles', 'super-product-filter'), 'plain')
@@ -370,8 +370,8 @@ endif;
         );
 
         swpf_compare_row(
-            esc_html__('Colour & Size Controls', 'super-product-filter'),
-            esc_html__('Border, background, icon and active colours, plus sizing, for every control.', 'super-product-filter'),
+            esc_html__('Color & Size Controls', 'super-product-filter'),
+            esc_html__('Border, background, icon and active colors, plus sizing, for every control.', 'super-product-filter'),
             array(esc_html__('No', 'super-product-filter'), 'no'),
             array(esc_html__('Yes', 'super-product-filter'), 'plain')
         );
@@ -393,7 +393,7 @@ endif;
         swpf_compare_row(
             esc_html__('Filter Box Styling', 'super-product-filter'),
             esc_html__('Background, border, radius, shadow, padding and spacing.', 'super-product-filter'),
-            array(esc_html__('Colours & spacing', 'super-product-filter'), 'plain'),
+            array(esc_html__('Colors & spacing', 'super-product-filter'), 'plain'),
             array(esc_html__('Full control', 'super-product-filter'), 'plain')
         );
 
@@ -401,8 +401,8 @@ endif;
 
         swpf_compare_row(
             esc_html__('Paged Navigation', 'super-product-filter'),
-            esc_html__('Pro loads each page over AJAX instead of reloading.', 'super-product-filter'),
-            array(esc_html__('Standard links', 'super-product-filter'), 'yes'),
+            esc_html__('Each page of results loads over AJAX instead of reloading.', 'super-product-filter'),
+            array(esc_html__('AJAX paging', 'super-product-filter'), 'yes'),
             array(esc_html__('AJAX paging', 'super-product-filter'), 'plain'),
             $swpf_demo . 'pagination-paged/'
         );
@@ -466,8 +466,8 @@ endif;
 
         swpf_compare_row(
             esc_html__('Works With Your Theme', 'super-product-filter'),
-            esc_html__('Pro lets you name the product, count and pagination selectors when a theme differs from the norm.', 'super-product-filter'),
-            array(esc_html__('Standard markup', 'super-product-filter'), 'yes'),
+            esc_html__('Name the product, count and pagination selectors when a theme differs from the norm.', 'super-product-filter'),
+            array(esc_html__('Custom selectors', 'super-product-filter'), 'yes'),
             array(esc_html__('Custom selectors', 'super-product-filter'), 'plain')
         );
 
@@ -480,7 +480,7 @@ endif;
 
         swpf_compare_row(
             esc_html__('Custom CSS & JS', 'super-product-filter'),
-            esc_html__('A CSS box, plus hooks that run before and after each filter.', 'super-product-filter'),
+            esc_html__('Boxes for your own CSS and JavaScript in the filter settings.', 'super-product-filter'),
             array(esc_html__('No', 'super-product-filter'), 'no'),
             array(esc_html__('Yes', 'super-product-filter'), 'plain')
         );
@@ -510,7 +510,7 @@ endif;
 
         swpf_compare_row(
             esc_html__('Updates', 'super-product-filter'),
-            esc_html__('Pro updates from your dashboard once the licence is activated.', 'super-product-filter'),
+            esc_html__('Pro updates from your dashboard once the license is activated.', 'super-product-filter'),
             array(esc_html__('Yes', 'super-product-filter'), 'yes'),
             array(esc_html__('Yes', 'super-product-filter'), 'yes')
         );

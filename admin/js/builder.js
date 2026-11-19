@@ -75,7 +75,18 @@
         /* A preset created here has an id, an address and a trash link for the
            first time, none of which the page it was created from could have. */
         function adopt(data) {
+            var wasNew = !parseInt($form.find('input[name="filter"]').val(), 10);
             $form.find('input[name="filter"]').val(data.id);
+
+            /* Everything on the page that names the filter was printed with id 0, so reload it under its new address. */
+            if (wasNew && data.url) {
+                dirty = false;
+                window.setTimeout(function () {
+                    $(window).off('beforeunload');
+                    window.location.replace(data.url);
+                }, 800);
+                return;
+            }
 
             if (window.history && window.history.replaceState && data.url) {
                 window.history.replaceState({}, document.title, data.url);

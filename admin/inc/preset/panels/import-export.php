@@ -14,7 +14,7 @@ defined('ABSPATH') || die();
                     <?php swpf_imex_nonce_field("swpf_imex_export_nonce", "swpf-imex-export-form"); ?>
                     <button class="button button-primary" form="swpf-imex-export-form" id="swpf_export" name="swpf_export"><i class='icofont-download'></i> <?php esc_html_e("Export Filter Settings", "super-product-filter") ?></button>
                 </div>
-                <p class="swpf-desc"><?php esc_html_e('Settings in Filters Tab is not exported. Settings Tab, Display Setting Tab, Designs Tab, and Custom Code Tab are exported.', 'super-product-filter'); ?></p>
+                <p class="swpf-desc"><?php esc_html_e('Settings in the Filters tab are not exported. The Settings, Display Settings and Designs tabs are exported.', 'super-product-filter'); ?></p>
             </div>
         </div>
 
@@ -33,7 +33,7 @@ defined('ABSPATH') || die();
                     <div class="swpf-dropzone-wrapper">
                         <div class="swpf-dropzone-desc">
                             <i class="icofont-download"></i>
-                            <p><?php esc_html_e("Choose an json file or drag it here", "super-product-filter"); ?></p>
+                            <p><?php esc_html_e("Choose a JSON file or drag it here", "super-product-filter"); ?></p>
                         </div>
                         <input type="file" form="swpf-imex-import-form" name="swpf_import_file" class="swpf-dropzone">
                     </div>

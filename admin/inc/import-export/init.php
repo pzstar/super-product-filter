@@ -32,12 +32,13 @@ class Super_Product_Filter_Import_Export {
 
         if ('publish' == get_post_status($filter_id) || 'draft' == get_post_status($filter_id)) {
             $settings = get_post_meta($filter_id, 'swpf_settings', true);
-            $unset_array = array('enable', 'title_label', 'list_order', 'show_count', 'hide_term_name', 'search_filter', 'placeholder_txt', 'multiselect_logic_operator', 'include_exclude_filter', 'field_orientation', 'terms_customize', 'orderby', 'order_type', 'display_option', 'shortcode', 'display');
+            $unset_array = array('enable', 'title_label', 'list_order', 'show_count', 'hide_term_name', 'search_filter', 'placeholder_txt', 'multiselect_logic_operator', 'include_exclude_filter', 'field_orientation', 'terms_customize', 'orderby', 'order_type', 'display_option', 'shortcode', 'display', 'display_type', 'include_terms', 'exclude_terms');
 
             foreach ($unset_array as $key) {
                 unset($settings[$key]);
             }
             unset($settings['config']['lo_specific_cat']);
+            unset($settings['config']['indent_cat']);
 
 
             ignore_user_abort(true);

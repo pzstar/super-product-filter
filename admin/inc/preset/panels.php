@@ -875,7 +875,7 @@ class Super_Product_Filter_Panels {
                         else {
                             ?>
                             <div class="swpf-custom-term-field-wrap">
-                                <?php esc_html_e('Sorry, Currently there are no any terms available.', 'super-product-filter'); ?>
+                                <?php esc_html_e('There are no terms yet.', 'super-product-filter'); ?>
                             </div>
                             <?php
                         }

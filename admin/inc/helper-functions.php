@@ -55,6 +55,7 @@ function swpf_get_taxonomies() {
         $taxonomies = get_object_taxonomies('product', 'objects');
         unset($taxonomies['product_shipping_class']);
         unset($taxonomies['product_type']);
+        unset($taxonomies['pos_product_visibility']);
     }
     return $taxonomies;
 }
@@ -876,6 +877,7 @@ function swpf_get_filter_query_keys() {
     $keys = array(
         'categories',
         'tags',
+        'brands',
         'visibility',
         'min_price',
         'max_price',

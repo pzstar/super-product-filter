@@ -37,11 +37,11 @@ class Super_Product_Filter_CPT {
             'new_item' => esc_html__('New Filter Preset', 'super-product-filter'),
             'edit_item' => esc_html__('Edit Filter Preset', 'super-product-filter'),
             'view_item' => esc_html__('View Filter Preset', 'super-product-filter'),
-            'all_items' => esc_html__('All Filter Preset', 'super-product-filter'),
-            'search_items' => esc_html__('Search Filter Preset', 'super-product-filter'),
+            'all_items' => esc_html__('All Filters', 'super-product-filter'),
+            'search_items' => esc_html__('Search Filters', 'super-product-filter'),
             'parent_item_colon' => esc_html__('Parent Filter Preset', 'super-product-filter'),
-            'not_found' => esc_html__('No Filter Preset found.', 'super-product-filter'),
-            'not_found_in_trash' => esc_html__('No Filter Preset found in Trash.', 'super-product-filter')
+            'not_found' => esc_html__('No filters found.', 'super-product-filter'),
+            'not_found_in_trash' => esc_html__('No filters found in Trash.', 'super-product-filter')
         );
 
         $args = array(

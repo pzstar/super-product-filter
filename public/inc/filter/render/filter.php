@@ -83,12 +83,8 @@ if ($swpf_auto_submit) {
     array_push($swpf_form_class, 'swpf-instant-filtering');
 }
 
-isset($swpf_settings['checkboxradio']['skin']) ? array_push($swpf_form_class, $swpf_settings['checkboxradio']['skin']) : array_push($swpf_form_class, 'swpf-checkboxradio-skin-1');
-isset($swpf_settings['dropdown']['skin']) ? array_push($swpf_form_class, $swpf_settings['dropdown']['skin']) : array_push($swpf_form_class, 'swpf-dropdown-skin-1');
-isset($swpf_settings['multiselect']['skin']) ? array_push($swpf_form_class, $swpf_settings['multiselect']['skin']) : array_push($swpf_form_class, 'swpf-multiselect-skin-1');
-isset($swpf_settings['pricerangeslider']['skin']) ? array_push($swpf_form_class, $swpf_settings['pricerangeslider']['skin']) : array_push($swpf_form_class, 'swpf-pricerangeslider-skin-1');
-isset($swpf_settings['button']['skin']) ? array_push($swpf_form_class, $swpf_settings['button']['skin']) : array_push($swpf_form_class, 'swpf-button-skin-1');
-isset($swpf_settings['toggle']['skin']) ? array_push($swpf_form_class, $swpf_settings['toggle']['skin']) : array_push($swpf_form_class, 'swpf-toggle-skin-1');
+/* The free version ships the first style of each control only, whatever an imported Pro file says. */
+array_push($swpf_form_class, 'swpf-checkboxradio-skin-1', 'swpf-dropdown-skin-1', 'swpf-multiselect-skin-1', 'swpf-pricerangeslider-skin-1', 'swpf-button-skin-1', 'swpf-toggle-skin-1');
 isset($swpf_settings['button']['size']) ? array_push($swpf_form_class, $swpf_settings['button']['size']) : array_push($swpf_form_class, 'swpf-medium');
 
 $swpf_enablebottomborder = isset($swpf_settings['filterbox']['enablebottomborder']) && $swpf_settings['filterbox']['enablebottomborder'] == 'on' ? array_push($swpf_form_class, 'swpf-enablebottomborder') : '';

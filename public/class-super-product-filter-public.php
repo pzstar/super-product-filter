@@ -126,7 +126,7 @@ class Super_Product_Filter_Public {
                 $swpf_css_class_id = '.swpf-filter-id-' . esc_attr($postid) . ', .swpf-header-filters-' . esc_attr($postid) . ', .swpf-sidemenu-wrapper-' . esc_attr($postid);
 
                 if (!$swpf_settings) {
-                    return;
+                    continue;
                 } else {
                     $swpf_settings = Super_Product_Filter_Admin::recursive_parse_args($swpf_settings, Super_Product_Filter_Panels::default_settings_values());
                 }
@@ -470,12 +470,9 @@ class Super_Product_Filter_Public {
                 $panel_width = $swpf_settings['side_menu']['panel_width'];
                 $panel_unit = $swpf_settings['side_menu']['panel_width_unit'];
                 $responsive_width = $swpf_settings['responsive_width'];
-                if ($panel_unit == '%') {
-                    $panel_width = 768;
-                    $panel_unit = 'px';
-                }
-
-                if ($panel_width && $panel_unit) {
+                if ($panel_width && $panel_unit == '%') {
+                    $swpf_css .= ".swpf-sidemenu-wrapper-{$postid} .swpf-sidemenu-panel{width:" . absint($panel_width) . "%}";
+                } elseif ($panel_width && $panel_unit) {
                     $width = $panel_width . $panel_unit;
                     $swpf_css .= ".swpf-sidemenu-wrapper-{$postid} .swpf-sidemenu-panel{width:{$width}}";
                     $swpf_css .= "@media screen and (max-width:{$width}){

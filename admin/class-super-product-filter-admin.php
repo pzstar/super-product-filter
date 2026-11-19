@@ -162,7 +162,7 @@ class Super_Product_Filter_Admin {
      * rather than a screen, sits at the end of the menu.
      */
     public function register_documentation_page() {
-        add_submenu_page('edit.php?post_type=swpf-product-filter', esc_html__('Documentation', 'super-product-filter'), esc_html__('Documentation', 'super-product-filter'), 'manage_options', esc_url_raw('https://hashthemes.com/documentation/super-woocommerce-product-filter-documentation/'));
+        add_submenu_page('edit.php?post_type=swpf-product-filter', esc_html__('Documentation', 'super-product-filter'), esc_html__('Documentation', 'super-product-filter'), 'manage_options', esc_url_raw('https://hashthemes.com/documentation/super-product-filter-documentation/'));
     }
 
     public static function recursive_parse_args($args, $defaults) {

@@ -176,8 +176,8 @@ $swpf_tax_show_count = (isset($swpf_settings['show_count'][$swpf_tax_name]) && $
                     </div>
                     <?php
                 } elseif ($swpf_tax_name == 'product_brand') {
-                    if (isset($swpf_current_filter_option['brand']) && !empty($swpf_current_filter_option['brand']) && is_array($swpf_current_filter_option['brand'])) {
-                        $swpf_checked = in_array($swpf_term->slug, $swpf_current_filter_option['brand']) ? true : false;
+                    if (isset($swpf_current_filter_option['brands']) && !empty($swpf_current_filter_option['brands']) && is_array($swpf_current_filter_option['brands'])) {
+                        $swpf_checked = in_array($swpf_term->slug, $swpf_current_filter_option['brands']) ? true : false;
                     }
                     ?>
                     <div class="swpf-filter-item">

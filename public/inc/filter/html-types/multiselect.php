@@ -2,10 +2,11 @@
 defined('ABSPATH') || die();
 
 $swpf_tax_show_count = (isset($swpf_settings['show_count'][$swpf_tax_name]) && $swpf_settings['show_count'][$swpf_tax_name] == 'on') ? true : false;
+$swpf_ms_placeholder = !empty($swpf_settings['placeholder_txt'][$swpf_tax_name]) ? $swpf_settings['placeholder_txt'][$swpf_tax_name] : esc_html__('Search', 'super-product-filter');
 
 if ($swpf_tax_name == 'product_visibility') {
     ?>
-    <div class="swpf-multiselect-wrap">
+    <div class="swpf-multiselect-wrap" data-placeholder="<?php echo esc_attr($swpf_ms_placeholder); ?>">
         <select class="swpf-multiselect" name="visibility[]" multiple>
             <?php
             if ($swpf_terms) {
@@ -56,9 +57,9 @@ if ($swpf_tax_name == 'product_visibility') {
     if (isset($swpf_current_filter_option['categories'])) {
         $swpf_selected_cats = is_array($swpf_current_filter_option['categories']) ? implode(',', $swpf_current_filter_option['categories']) : $swpf_current_filter_option['categories'];
     }
-    echo '<div class="swpf-multiselect-wrap" data-placeholder="' . (isset($swpf_settings['placeholder_txt'][$swpf_tax_name]) ? esc_attr($swpf_settings['placeholder_txt'][$swpf_tax_name]) : esc_html__('Search', 'super-product-filter')) . '">';
+    echo '<div class="swpf-multiselect-wrap" data-placeholder="' . esc_attr($swpf_ms_placeholder) . '">';
     ?>
-    <div class="swpf-multiselect-wrap">
+    <div class="swpf-multiselect-wrap" data-placeholder="<?php echo esc_attr($swpf_ms_placeholder); ?>">
         <select class="swpf-multiselect" name="categories[]" multiple>
             <?php
             if (isset($swpf_settings['config']['indent_cat']) && $swpf_settings['config']['indent_cat'] == 'on') {
@@ -69,7 +70,7 @@ if ($swpf_tax_name == 'product_visibility') {
 
                 if ($swpf_all_terms) {
                     foreach ($swpf_all_terms as $swpf_key => $swpf_aterm) {
-                        $swpf_term_name_array[$swpf_key] = (isset($swpf_aterm['term_name']) && !empty($swpf_aterm['term_name'])) ? esc_html(apply_filters('swpf_translate_string', $swpf_aterm['term_name'], 'Super WooCommerce Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($swpf_tax_name) . ' ' . absint($swpf_key))) : esc_html(ucwords(str_replace('-', ' ', get_term($swpf_key)->name)));
+                        $swpf_term_name_array[$swpf_key] = (isset($swpf_aterm['term_name']) && !empty($swpf_aterm['term_name'])) ? esc_html(apply_filters('swpf_translate_string', $swpf_aterm['term_name'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($swpf_tax_name) . ' ' . absint($swpf_key))) : esc_html(ucwords(str_replace('-', ' ', get_term($swpf_key)->name)));
                         if (isset($swpf_settings['show_count']['product_cat']) && $swpf_settings['show_count']['product_cat'] == 'on') {
                             $swpf_term = get_term($swpf_key);
                             $swpf_args = swpf_get_vars_query_args($swpf_current_filter_option, $swpf_settings, $swpf_tax_name, $swpf_term->slug);
@@ -123,7 +124,7 @@ if ($swpf_tax_name == 'product_visibility') {
                     <option data-termurl="<?php echo esc_url(get_term_link($swpf_term->term_id)); ?>" data-taxonomy="<?php echo esc_attr($swpf_term->taxonomy); ?>" data-termid="<?php echo esc_attr($swpf_term->term_id); ?>" value="<?php echo esc_attr($swpf_term->slug); ?>" <?php selected($swpf_selected, true); ?>>
                         <?php
                         if (isset($swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name']) && !empty($swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name'])) {
-                            echo esc_html(apply_filters('swpf_translate_string', $swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name'], 'Super WooCommerce Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($swpf_tax_name) . ' ' . absint($swpf_term->term_id)));
+                            echo esc_html(apply_filters('swpf_translate_string', $swpf_settings['terms_customize'][$swpf_tax_name][$swpf_term->term_id]['term_name'], 'Super Product Filter', esc_html($swpf_sc_title) . ' - Term Name ' . esc_html($swpf_tax_name) . ' ' . absint($swpf_term->term_id)));
                         } else {
                             echo esc_html(ucwords(str_replace('-', ' ', $swpf_term->name)));
                         }
@@ -146,7 +147,7 @@ if ($swpf_tax_name == 'product_visibility') {
 
 } elseif ($swpf_tax_name == 'product_tag') {
     ?>
-    <div class="swpf-multiselect-wrap">
+    <div class="swpf-multiselect-wrap" data-placeholder="<?php echo esc_attr($swpf_ms_placeholder); ?>">
         <select class="swpf-multiselect" name="tags[]" multiple>
             <?php
             if ($swpf_terms) {
@@ -194,7 +195,7 @@ if ($swpf_tax_name == 'product_visibility') {
 
 } elseif ($swpf_tax_name == 'product_brand') {
     ?>
-    <div class="swpf-multiselect-wrap">
+    <div class="swpf-multiselect-wrap" data-placeholder="<?php echo esc_attr($swpf_ms_placeholder); ?>">
         <select class="swpf-multiselect" name="brands[]" multiple>
             <?php
             if ($swpf_terms) {
@@ -242,7 +243,7 @@ if ($swpf_tax_name == 'product_visibility') {
 
 } elseif (substr($swpf_tax_name, 0, 3) === 'pa_') {
     ?>
-    <div class="swpf-multiselect-wrap">
+    <div class="swpf-multiselect-wrap" data-placeholder="<?php echo esc_attr($swpf_ms_placeholder); ?>">
         <select class="swpf-multiselect" name="attribute[<?php echo esc_attr($swpf_tax_name); ?>][]" multiple>
             <?php
             if ($swpf_terms) {
@@ -290,7 +291,7 @@ if ($swpf_tax_name == 'product_visibility') {
 
 } elseif ($swpf_tax_name) {
     ?>
-    <div class="swpf-multiselect-wrap">
+    <div class="swpf-multiselect-wrap" data-placeholder="<?php echo esc_attr($swpf_ms_placeholder); ?>">
         <select class="swpf-multiselect" name="attribute[<?php echo esc_attr($swpf_tax_name); ?>][]" multiple>
             <?php
             if ($swpf_terms) {

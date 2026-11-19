@@ -40,6 +40,7 @@ $swpf_qry = $this->filter_posts(new WP_Query(), $swpf_post_data);
 wp_reset_postdata();
 $swpf_args = [];
 $swpf_args['post_type'] = 'product';
+$swpf_args['post_status'] = 'publish'; // admin-ajax counts as admin, where WP_Query would also return drafts and pending products
 $swpf_args['paged'] = !empty($swpf_post_data['paged']) ? intval($swpf_post_data['paged']) : 1;
 $swpf_args['posts_per_page'] = $swpf_post_per_page;
 $swpf_args['meta_query'] = $swpf_qry->get('meta_query');
@@ -50,6 +51,9 @@ $swpf_args['orderby'] = $swpf_qry->get('orderby');
 $swpf_args['order'] = $swpf_qry->get('order');
 if ($swpf_qry->get('meta_key')) {
     $swpf_args['meta_key'] = $swpf_qry->get('meta_key');
+}
+if ($swpf_qry->get('s')) {
+    $swpf_args['s'] = $swpf_qry->get('s');
 }
 
 $wp_query = new WP_Query($swpf_args);

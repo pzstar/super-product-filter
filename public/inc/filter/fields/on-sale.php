@@ -29,7 +29,7 @@ if (isset($swpf_settings['title_label']['on_sale']) && !empty($swpf_settings['ti
                 <label class="swpf-filter-label">
                     <input type="checkbox" value="1" name="on-sale" <?php isset($swpf_current_filter_option['on-sale']) ? checked($swpf_current_filter_option['on-sale'], '1') : ''; ?> />
                     <span class="swpf-title">
-                        <span class="swpf-term"><?php esc_html_e('Show On Sale only', 'super-product-filter'); ?></span>
+                        <span class="swpf-term"><?php esc_html_e('Show On Sale Only', 'super-product-filter'); ?></span>
                     </span>
                 </label>
             </div>
