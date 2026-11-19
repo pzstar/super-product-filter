@@ -47,7 +47,8 @@ function swpf_hide_show_pages($specific_page, $hide_show, $cpt, $specific_archiv
     } elseif (is_home()) {
         $pageid = get_queried_object_id();
     }
-    $current_archive = $post ? $post->post_type : get_queried_object()->name;
+    $queried = get_queried_object();
+    $current_archive = $post ? $post->post_type : (isset($queried->name) ? $queried->name : '');
     $current_post_type = is_archive() ? null : $current_archive;
 
     $show = true;
